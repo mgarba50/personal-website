@@ -1,0 +1,8 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" rx="32" fill="#0A1018"/>
+  <rect x="72" y="72" width="1056" height="616" rx="24" fill="#141A27"/>
+  <circle cx="292" cy="384" r="120" fill="#C49C4A" fill-opacity="0.14"/>
+  <path d="M260 340L380 384L260 428V340Z" fill="#F3ECDD"/>
+  <text x="148" y="188" fill="#C49C4A" font-family="Arial, sans-serif" font-size="20" letter-spacing="6">AUDIO VAULT</text>
+  <text x="470" y="372" fill="#F3ECDD" font-family="Georgia, serif" font-size="56">Recitations and Studio Readings</text>
+</svg>

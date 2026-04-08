@@ -1,0 +1,9 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" rx="32" fill="#09151A"/>
+  <rect x="72" y="72" width="1056" height="616" rx="24" fill="#11212B"/>
+  <path d="M152 520H1048" stroke="#C49C4A" stroke-opacity="0.22" stroke-width="2"/>
+  <path d="M152 566H1048" stroke="#C49C4A" stroke-opacity="0.18" stroke-width="2"/>
+  <text x="148" y="260" fill="#F3ECDD" font-family="Georgia, serif" font-size="64">Agro Command</text>
+  <text x="148" y="336" fill="#F3ECDD" font-family="Georgia, serif" font-size="64">Procurement Dossier</text>
+  <text x="148" y="432" fill="#AEB6C6" font-family="Arial, sans-serif" font-size="28">Irrigation, hardware, and controlled-agriculture sourcing dialogues.</text>
+</svg>

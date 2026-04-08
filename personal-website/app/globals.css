@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #08111c;
+  --color-surface: #101b2a;
+  --color-surface-strong: #0c1522;
+  --color-text: #f3ecdd;
+  --color-muted: #aeb6c6;
+  --color-line: rgba(236, 228, 213, 0.12);
+  --color-accent: #c49c4a;
+  --color-accent-soft: rgba(196, 156, 74, 0.18);
+  --color-danger: #9f3c4d;
+  --color-success: #1b7d61;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(196, 156, 74, 0.13), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(49, 88, 137, 0.18), transparent 26%),
+    var(--color-bg);
+  color: var(--color-text);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), transparent 92%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(196, 156, 74, 0.3);
+  color: white;
+}
+
+.prose-executive {
+  color: var(--color-muted);
+}
+
+.prose-executive p {
+  line-height: 2;
+}
+
+.prose-executive strong {
+  color: var(--color-text);
+}
