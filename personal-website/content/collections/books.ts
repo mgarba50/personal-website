@@ -57,7 +57,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/collection-of-books-featured.png",
+    cover: "/assets/book-the-desert-ceo.jpg",
     featured: true,
     excerpt: [
       "Unforgiving markets expose the difference between performance and structure.",
@@ -77,7 +77,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/collection-of-books-featured.png",
+    cover: "/assets/book-the-five-language-ceo.jpg",
     featured: true,
     excerpt: [
       "Language is never only grammar. It is leverage, trust, timing, and emotional navigation.",
