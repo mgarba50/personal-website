@@ -43,18 +43,26 @@ export default function CanonPage() {
                   <p className="text-xs uppercase tracking-[0.3em] text-accent">{volume.title}</p>
                   <h3 className="mt-3 font-serif text-3xl text-text">{volume.summary}</h3>
                 </div>
-                <div className="grid gap-6 lg:grid-cols-3">
+                <div className="grid items-stretch gap-6 lg:grid-cols-3">
                   {items.map((book) => (
-                    <Card key={book.slug}>
-                      <img src={book.cover} alt={`${book.title} cover placeholder`} className="h-64 w-full rounded-[22px] border border-line object-cover" />
-                      <CardEyebrow>{book.commercialTier || book.status}</CardEyebrow>
-                      <CardTitle>{book.title}</CardTitle>
-                      <p className="mt-2 text-sm leading-7 text-muted">{book.subtitle}</p>
-                      <p className="mt-4 text-sm leading-7 text-muted">{book.abstract}</p>
-                      <p className="mt-4 text-sm text-text">{book.commerceMode}</p>
-                      <a href={`/canon/${book.slug}`} className="mt-6 inline-flex text-sm uppercase tracking-[0.18em] text-accent">
-                        Open book record
-                      </a>
+                    <Card key={book.slug} className="book-card flex h-full flex-col">
+                      <img
+                        src={book.cover}
+                        alt={`${book.title} cover`}
+                        className="book-cover-image aspect-[2/3] w-full rounded-[22px] border border-line object-cover object-center"
+                      />
+                      <div className="book-info-container flex flex-grow flex-col pt-6">
+                        <CardEyebrow>{book.commercialTier || book.status}</CardEyebrow>
+                        <CardTitle>{book.title}</CardTitle>
+                        <p className="mt-2 text-sm leading-7 text-muted">{book.subtitle}</p>
+                        <p className="mt-4 text-sm leading-7 text-muted">{book.abstract}</p>
+                        <div className="book-action-buttons mt-auto space-y-4 pt-6">
+                          <p className="text-sm text-text">{book.commerceMode}</p>
+                          <a href={`/canon/${book.slug}`} className="inline-flex text-sm uppercase tracking-[0.18em] text-accent">
+                            Open book record
+                          </a>
+                        </div>
+                      </div>
                     </Card>
                   ))}
                 </div>
