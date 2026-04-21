@@ -8,7 +8,7 @@ export const products: Product[] = [
     description: "Institutional frameworks covering systems design, executive routing, and operational clarity.",
     price: "$95",
     accessMethod: "Protected download after payment",
-    cover: "/assets/product-memo-kit.svg",
+    cover: "/assets/Engineering-the-journey.JPG",
     featured: true
   },
   {
@@ -18,7 +18,7 @@ export const products: Product[] = [
     description: "A premium dossier for executives needing structured language for clarity, influence, and decision architecture.",
     price: "$140",
     accessMethod: "Secure digital fulfillment",
-    cover: "/assets/product-inner-diwan.svg",
+    cover: "/assets/book-the-strategist-of-power.png",
     featured: true
   },
   {
@@ -28,7 +28,7 @@ export const products: Product[] = [
     description: "Priority seat allocation for certificate-based education programs under The Madrasa.",
     price: "Application-based pricing",
     accessMethod: "Qualification and payment approval",
-    cover: "/assets/product-agro-dossier.svg",
+    cover: "/assets/knowledge-is-the-seed.jpg",
     featured: false
   },
   {
@@ -38,7 +38,7 @@ export const products: Product[] = [
     description: "Bulk or direct-order corridor for institutions requesting books, dossiers, certifications, or private educational deployments.",
     price: "Quoted on request",
     accessMethod: "Invoice or manual corporate transfer",
-    cover: "/assets/product-deposit.svg",
+    cover: "/assets/collection-of-books-featured.png",
     featured: false
   }
 ];

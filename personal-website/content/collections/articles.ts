@@ -10,7 +10,7 @@ export const articles: Article[] = [
     date: "2026-03-14",
     readingTime: "9 min read",
     featured: true,
-    cover: "/assets/library-systems.svg",
+    cover: "/assets/article-geopolitical-logistics.jpg",
     downloadablePdf: true,
     body: [
       "Cross-border logistics is not merely a transport question. It is a problem of trust, sequencing, jurisdiction, and operational memory.",
@@ -27,7 +27,7 @@ export const articles: Article[] = [
     date: "2026-02-02",
     readingTime: "10 min read",
     featured: true,
-    cover: "/assets/library-agro.svg",
+    cover: "/assets/The-Climate-Resilent-Farmer.jpg",
     downloadablePdf: false,
     body: [
       "Agriculture under pressure requires more than optimism. It requires controllable systems, precise water logic, and operational discipline.",
@@ -44,7 +44,7 @@ export const articles: Article[] = [
     date: "2026-01-18",
     readingTime: "8 min read",
     featured: true,
-    cover: "/assets/library-inner-diwan.svg",
+    cover: "/assets/book-the-strategist-of-power.png",
     downloadablePdf: true,
     body: [
       "Markets marked by scarcity and instability punish theatrical leadership. They reward clear judgment, multilingual precision, and controlled execution.",
@@ -61,7 +61,7 @@ export const articles: Article[] = [
     date: "2025-12-11",
     readingTime: "7 min read",
     featured: false,
-    cover: "/assets/library-canon.svg",
+    cover: "/assets/knowledge-is-the-seed.jpg",
     downloadablePdf: false,
     body: [
       "Aid without capability leaves dependency intact. Human capital development changes the structure of the future by changing the structure of the person.",

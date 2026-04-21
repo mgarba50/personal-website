@@ -6,6 +6,7 @@ export const primaryNavigation: NavItem[] = [
   { href: "/advisory", label: "Strategic Advisory" },
   { href: "/canon", label: "The Canon" },
   { href: "/library", label: "Living Library" },
+  { href: "/madrasa", label: "The Madrasa" },
   { href: "/diwan", label: "The Diwan" },
   { href: "/agro-industrial", label: "Agro Command" },
   { href: "/impact", label: "Institutional Impact" },
@@ -109,19 +110,19 @@ export const executiveTimeline: TimelineEvent[] = [
 
 export const pressDownloads = [
   {
-    title: "Executive dossier",
-    description: "A concise institutional briefing suitable for journalists, summit organizers, and corporate communications teams.",
-    href: "/assets/executive-dossier-placeholder.svg"
+    title: "Selected publications spread",
+    description: "A visual spread of flagship books and intellectual properties suitable for early press and partner context.",
+    href: "/assets/collection-of-books-featured.png"
   },
   {
     title: "Approved portrait",
-    description: "Placeholder portrait asset ready to be replaced with the official headshot set during content onboarding.",
-    href: "/assets/executive-portrait.svg"
+    description: "Current executive portrait asset for media, partner, and institutional reference.",
+    href: "/assets/musa-allama-executive-portrait.jpg"
   },
   {
-    title: "Brand mark pack",
-    description: "Vector-ready mark and visual reference placeholders for downstream press and partner applications.",
-    href: "/assets/brand-mark-placeholder.svg"
+    title: "Flagship title cover",
+    description: "Current cover art for The Strategist of Power, available as a visual reference until the formal press kit is prepared.",
+    href: "/assets/book-the-strategist-of-power.png"
   }
 ];
 

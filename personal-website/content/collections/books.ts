@@ -37,7 +37,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF", "Hardcover"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-foundations.svg",
+    cover: "/assets/book-the-strategist-of-power.png",
     featured: true,
     excerpt: [
       "Calm authority is not passivity. It is a disciplined refusal to surrender the frame of the room.",
@@ -57,7 +57,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-foundations.svg",
+    cover: "/assets/collection-of-books-featured.png",
     featured: true,
     excerpt: [
       "Unforgiving markets expose the difference between performance and structure.",
@@ -77,7 +77,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-foundations.svg",
+    cover: "/assets/collection-of-books-featured.png",
     featured: true,
     excerpt: [
       "Language is never only grammar. It is leverage, trust, timing, and emotional navigation.",
@@ -97,7 +97,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-foundations.svg",
+    cover: "/assets/bridge-of-meaning-cover.jpg",
     featured: false,
     excerpt: [
       "Economies are not only measured by capital flows, but by the architectures of intelligence that make capital usable.",
@@ -117,7 +117,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-foundations.svg",
+    cover: "/assets/the-entrepreneurial-polyglot.jpg",
     featured: false,
     excerpt: [
       "Economic power often follows the individual who can move meaning across worlds without loss.",
@@ -137,7 +137,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF", "Field manual"],
     status: "In development",
     commerceMode: "Institutional order",
-    cover: "/assets/book-agro-command.svg",
+    cover: "/assets/article-geopolitical-logistics.jpg",
     featured: true,
     excerpt: [
       "Trade intelligence is as important as transport capacity.",
@@ -157,7 +157,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-agro-command.svg",
+    cover: "/assets/collection-of-books-featured.png",
     featured: true,
     excerpt: [
       "Infrastructure can nourish both the body and the moral imagination of a community.",
@@ -177,7 +177,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF"],
     status: "In development",
     commerceMode: "Institutional order",
-    cover: "/assets/book-agro-command.svg",
+    cover: "/assets/The-Climate-Resilent-Farmer.jpg",
     featured: false,
     excerpt: [
       "Resilience is not improvised in the middle of disruption. It is designed before the shock arrives.",
@@ -197,7 +197,7 @@ export const books: Book[] = [
     formats: ["Digital paid PDF"],
     status: "Institutional release",
     commerceMode: "Digital paid PDF",
-    cover: "/assets/book-agro-command.svg",
+    cover: "/assets/Engineering-the-journey.JPG",
     featured: false,
     excerpt: [
       "Digital literacy is not only employability. It is structured entry into the logic of systems.",
@@ -217,7 +217,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/bridge-of-meaning-cover.jpg",
     featured: true,
     excerpt: [
       "Attention is the first treasury of the serious mind.",
@@ -237,7 +237,7 @@ export const books: Book[] = [
     formats: ["Digital paid PDF"],
     status: "Institutional release",
     commerceMode: "Digital paid PDF",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/Diwan-Manazil-Noor.PNG",
     featured: true,
     excerpt: [
       "Psychological sovereignty begins with the recovery of attention from algorithmic capture.",
@@ -257,7 +257,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/the-entrepreneurial-polyglot.jpg",
     featured: false,
     excerpt: [
       "Every new language creates new angles from which reality can be grasped.",
@@ -277,7 +277,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/bridge-of-meaning-cover.jpg",
     featured: false,
     excerpt: [
       "The skilled reader of signs is not superstitious. He is observant enough to see patterns before they harden into outcomes.",
@@ -297,7 +297,7 @@ export const books: Book[] = [
     formats: ["Digital paid PDF"],
     status: "Institutional release",
     commerceMode: "Digital paid PDF",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/knowledge-is-the-seed.jpg",
     featured: false,
     excerpt: [
       "Knowledge becomes seed when it is carried into the soil of other lives.",
@@ -317,7 +317,7 @@ export const books: Book[] = [
     formats: ["Institutional PDF"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/Engineering-the-journey.JPG",
     featured: false,
     excerpt: [
       "The healthy society is not anti-technology. It is technologically capable and ethically governed.",
@@ -338,7 +338,7 @@ export const books: Book[] = [
     status: "Institutional release",
     commerceMode: "Institutional order",
     commercialTier: "Flagship Masterpiece",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/Diwan-Manazil-Noor.PNG",
     featured: true,
     excerpt: [
       "The didactic archive culminates here as one long poetic architecture of study, life, and disciplined knowing.",
@@ -358,7 +358,7 @@ export const books: Book[] = [
     formats: ["Institutional order"],
     status: "In development",
     commerceMode: "Institutional order",
-    cover: "/assets/book-agro-command.svg",
+    cover: "/assets/The-Climate-Resilent-Farmer.jpg",
     featured: false,
     excerpt: [
       "The field, the warehouse, and the market speak to one another through نظم as well as logistics.",
@@ -378,7 +378,7 @@ export const books: Book[] = [
     formats: ["Digital paid PDF"],
     status: "Institutional release",
     commerceMode: "Digital paid PDF",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/Cheating-Time.JPG",
     featured: false,
     excerpt: [
       "Discipline is easier to remember when wisdom is made rhythmic.",
@@ -398,7 +398,7 @@ export const books: Book[] = [
     formats: ["Institutional order"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/the-entrepreneurial-polyglot.jpg",
     featured: false,
     excerpt: [
       "Language is bridge-work. Verse makes the bridge memorable.",
@@ -418,7 +418,7 @@ export const books: Book[] = [
     formats: ["Institutional order"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/Engineering-the-journey.JPG",
     featured: false,
     excerpt: [
       "The disciplined mind must learn not only how to think, but how to avoid its most elegant mistakes.",
@@ -438,7 +438,7 @@ export const books: Book[] = [
     formats: ["Digital paid PDF"],
     status: "Institutional release",
     commerceMode: "Digital paid PDF",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/bridge-of-meaning-cover.jpg",
     featured: false,
     excerpt: [
       "Without ethics, competence becomes dangerous.",
@@ -458,7 +458,7 @@ export const books: Book[] = [
     formats: ["Institutional order"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/Engineering-the-journey.JPG",
     featured: false,
     excerpt: [
       "Scientific law and poetic beauty are not enemies.",
@@ -478,7 +478,7 @@ export const books: Book[] = [
     formats: ["Institutional order"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/collection-of-books-featured.png",
     featured: false,
     excerpt: [
       "Beauty has rules, but its deepest rules are felt before they are codified.",
@@ -498,7 +498,7 @@ export const books: Book[] = [
     formats: ["Institutional order"],
     status: "In development",
     commerceMode: "Request manuscript",
-    cover: "/assets/book-inner-diwan.svg",
+    cover: "/assets/bridge-of-meaning-cover.jpg",
     featured: false,
     excerpt: [
       "The final wisdom of a body of work lies in what it trains the next generation to become.",

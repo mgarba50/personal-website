@@ -30,7 +30,7 @@ export function buildMetadata({
       type: "website",
       images: [
         {
-          url: "/assets/og-default.svg",
+          url: "/assets/og-default.png",
           width: 1200,
           height: 630,
           alt: `${env.siteName} executive brand card`
@@ -41,7 +41,7 @@ export function buildMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: ["/assets/og-default.svg"]
+      images: ["/assets/og-default.png"]
     }
   };
 }

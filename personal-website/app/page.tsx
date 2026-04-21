@@ -52,8 +52,8 @@ export default function HomePage() {
       >
         <Card className="h-full bg-[linear-gradient(180deg,rgba(14,23,37,0.92),rgba(14,23,37,0.7))]">
           <img
-            src="/assets/executive-portrait.svg"
-            alt="Executive portrait placeholder for Musa Allama"
+            src="/assets/musa-allama-executive-portrait.jpg"
+            alt="Executive portrait of Musa Allama"
             className="h-72 w-full rounded-[22px] border border-line object-cover"
           />
           <CardEyebrow>{profile.enterpriseBrand}</CardEyebrow>

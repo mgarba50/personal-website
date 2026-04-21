@@ -23,8 +23,8 @@ export default function AboutPage() {
       >
         <Card>
           <img
-            src="/assets/executive-portrait.svg"
-            alt="Executive dossier portrait placeholder"
+            src="/assets/musa-allama-executive-portrait.jpg"
+            alt="Executive dossier portrait of Musa Allama"
             className="h-80 w-full rounded-[22px] border border-line object-cover"
           />
         </Card>
