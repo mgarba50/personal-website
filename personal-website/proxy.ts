@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 const instituteHosts = new Set(["institute.musaallama.com"]);
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const host = request.headers.get("host")?.split(":")[0].toLowerCase();
   const pathname = request.nextUrl.pathname;
 

@@ -28,7 +28,7 @@ The main site includes redirects from `/operations` to `/agro-industrial` and fr
 
 ## Subdomain Readiness
 
-The code includes middleware that rewrites:
+The code includes a Next.js proxy that rewrites:
 
 ```text
 https://institute.musaallama.com/
