@@ -6,7 +6,7 @@ import { LeadForm } from "@/components/forms/lead-form";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-white/65">
+    <footer data-site-chrome className="border-t border-line bg-white/65">
       <div className="mx-auto grid max-w-shell gap-10 px-4 py-16 md:px-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div>
           <p className="text-xs uppercase tracking-[0.32em] text-accent">Strategic Intelligence &amp; Policy Advisory</p>

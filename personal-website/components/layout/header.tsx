@@ -5,7 +5,7 @@ import { MobileNav } from "@/components/layout/mobile-nav";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-white/90 backdrop-blur">
+    <header data-site-chrome className="sticky top-0 z-40 border-b border-line bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-shell items-center justify-between gap-6 px-4 py-4 md:px-6">
         <Link href="/" className="grid gap-1 text-text">
           <span className="text-sm uppercase tracking-[0.28em]">Musa Allama Ibn Garba</span>
