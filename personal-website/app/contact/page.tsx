@@ -30,7 +30,7 @@ const pathways = [
 ];
 
 export const metadata = buildMetadata({
-  title: "Diplomatic Desk | Musa Allama",
+  title: "Diplomatic Desk | Musa Allama Ibn Garba",
   path: "/contact"
 });
 

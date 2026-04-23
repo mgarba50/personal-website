@@ -1,16 +1,17 @@
 import type { SocialLink } from "@/lib/types";
 
 export const profile = {
-  publicName: "Musa Allama",
-  brandName: "The Office of Musa Allama",
+  publicName: "Musa Allama Ibn Garba",
+  technicalName: "Engr Musa Garba",
+  brandName: "The Office of Musa Allama Ibn Garba",
   enterpriseBrand: "Gallifrey International Ltd.",
-  positioningLine: "Polymathic Architect. Diplomatic Intermediary. Systems Theorist.",
+  positioningLine: "Strategic Intelligence & Policy Advisory.",
   heroSummary:
-    "Musa Allama operates at the critical intersection of classical philosophy, modern systems automation, and global agro-allied logistics. As a scholar-practitioner and strategic intermediary fluent across diverse cultural and technical languages, he architects resilient systems for institutions, corporations, and sovereign individuals. His life's mandate is the conversion of elite intellectual and logistical capital into enduring social and humanitarian impact.",
+    "Musa Allama Ibn Garba operates at the critical intersection of classical philosophy, strategic intelligence, policy advisory, modern systems automation, and global agro-allied logistics. As a scholar-practitioner and strategic intermediary fluent across diverse cultural and technical languages, he architects resilient systems for institutions, corporations, and sovereign individuals. His life's mandate is the conversion of elite intellectual and logistical capital into enduring social and humanitarian impact.",
   shortBio:
-    "Musa Allama is the Managing Director of Geidam Agro-Allied Nigeria Ltd and Director at Gallifrey International. Blending Harvard-tier academic rigor with classical Islamic philosophy and high-yield agricultural logistics, he builds automated, future-proof infrastructures for the developing world.",
+    "Engr Musa Garba is the Managing Director of Geidam Agro-Allied Nigeria Ltd and Director at Gallifrey International. Blending engineering discipline with classical Islamic philosophy and high-yield agricultural logistics, he builds automated, future-proof infrastructures for the developing world.",
   longBio:
-    "Musa Allama is a multilingual technologist, entrepreneur, lecturer, and community builder whose work bridges engineering, linguistics, agriculture, publishing, and sacred knowledge. Trained in Electronic and Information Engineering at Liaoning University of Technology in Jinzhou, China, he operates across advisory, agro-industrial logistics, knowledge architecture, and institutional diplomacy. He has navigated 27+ countries, translated Islamic texts for Chinese-speaking audiences, lectures in computer science and systems analysis, and leads both Geidam Agro-Allied Nigeria Ltd and Gallifrey International Ltd. His public mandate combines executive systems thinking, multilingual influence, food security, and human capital development into one long-horizon institutional project.",
+    "Musa Allama Ibn Garba is a multilingual technologist, entrepreneur, lecturer, and community builder whose work bridges engineering, linguistics, agriculture, publishing, and sacred knowledge. Trained in Electronic and Information Engineering at Liaoning University of Technology in Jinzhou, China, he operates across advisory, agro-industrial logistics, knowledge architecture, and institutional diplomacy. As Engr Musa Garba, he leads technical and agricultural corridors through Geidam Agro-Allied Nigeria Ltd and Gallifrey International Ltd. He has navigated 27+ countries, translated Islamic texts for Chinese-speaking audiences, lectures in computer science and systems analysis, and combines executive systems thinking, multilingual influence, food security, and human capital development into one long-horizon institutional project.",
   location:
     "Maiduguri, Borno, Nigeria, with a geopolitical footprint extending across 27+ countries including China, Saudi Arabia, the UAE, and wider Africa.",
   email: "prof@musaallama.com",
@@ -30,8 +31,8 @@ export const profile = {
   ] as SocialLink[],
   brandWords: ["Diplomatic", "Architectural", "Polymathic", "Uncompromising", "Sovereign"],
   roles: [
-    "Managing Director, Geidam Agro-Allied Nigeria Ltd",
-    "Director, Gallifrey International Ltd",
+    "Engr Musa Garba, Managing Director, Geidam Agro-Allied Nigeria Ltd",
+    "Engr Musa Garba, Director, Gallifrey International Ltd",
     "Lecturer of Computer Science and Systems Analysis",
     "National Population Commission Appointee (2024)",
     "BSc Electronic and Information Engineering, Liaoning University of Technology",

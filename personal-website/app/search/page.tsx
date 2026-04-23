@@ -7,7 +7,7 @@ import { filterSearchRecords } from "@/lib/search";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Search | Musa Allama",
+  title: "Search | Musa Allama Ibn Garba",
   path: "/search"
 });
 

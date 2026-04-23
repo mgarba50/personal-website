@@ -19,14 +19,14 @@ export function MobileNav() {
         Menu
       </button>
       {open ? (
-        <div className="absolute left-4 right-4 top-20 z-50 rounded-[28px] border border-line bg-surface p-4 shadow-card">
+        <div className="absolute left-4 right-4 top-20 z-50 rounded-[28px] border border-line bg-white p-4 shadow-card">
           <nav className="grid gap-2">
             {primaryNavigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-2xl px-4 py-3 text-sm text-text transition hover:bg-white/5"
+                className="rounded-2xl px-4 py-3 text-sm text-text transition hover:bg-surface-strong"
               >
                 {item.label}
               </Link>

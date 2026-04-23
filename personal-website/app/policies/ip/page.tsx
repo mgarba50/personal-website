@@ -1,7 +1,7 @@
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Intellectual Property Notice | Musa Allama",
+  title: "Intellectual Property Notice | Musa Allama Ibn Garba",
   path: "/policies/ip"
 });
 

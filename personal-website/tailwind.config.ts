@@ -28,8 +28,8 @@ const config: Config = {
         arabic: ["var(--font-arabic)"]
       },
       boxShadow: {
-        glow: "0 24px 80px rgba(3, 8, 20, 0.45)",
-        card: "0 18px 44px rgba(7, 12, 22, 0.28)"
+        glow: "0 24px 80px rgba(26, 36, 51, 0.12)",
+        card: "0 18px 44px rgba(26, 36, 51, 0.08)"
       },
       borderRadius: {
         shell: "32px"

@@ -10,7 +10,7 @@ export function Card({
   return (
     <article
       className={cn(
-        "rounded-[28px] border border-line bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-6 shadow-card backdrop-blur",
+        "executive-card rounded-[28px] p-6 shadow-card",
         className
       )}
     >

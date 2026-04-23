@@ -5,7 +5,7 @@ import { Card, CardEyebrow, CardTitle } from "@/components/ui/card";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "The Diwan | Musa Allama",
+  title: "The Diwan | Musa Allama Ibn Garba",
   path: "/diwan"
 });
 

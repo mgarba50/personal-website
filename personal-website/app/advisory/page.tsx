@@ -8,7 +8,7 @@ import { engagementModels, qualificationStandards, serviceTiers } from "@/conten
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Strategic Advisory | Musa Allama",
+  title: "Strategic Advisory | Musa Allama Ibn Garba",
   path: "/advisory"
 });
 

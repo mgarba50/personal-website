@@ -14,7 +14,7 @@ export function CtaStrip({
   label: string;
 }) {
   return (
-    <section className="rounded-shell border border-accent/30 bg-[linear-gradient(135deg,rgba(196,156,74,0.16),rgba(255,255,255,0.04))] px-6 py-8 md:px-10">
+    <section className="rounded-shell border border-line bg-white px-6 py-8 shadow-card md:px-10">
       <p className="text-xs uppercase tracking-[0.28em] text-accent">{eyebrow}</p>
       <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">

@@ -1,7 +1,7 @@
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Booking Policy | Musa Allama",
+  title: "Booking Policy | Musa Allama Ibn Garba",
   path: "/policies/booking"
 });
 

@@ -6,7 +6,7 @@ import { CtaStrip } from "@/components/ui/cta-strip";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "The Madrasa | Musa Allama",
+  title: "The Madrasa | Musa Allama Ibn Garba",
   path: "/madrasa"
 });
 

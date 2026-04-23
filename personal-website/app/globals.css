@@ -3,16 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #08111c;
-  --color-surface: #101b2a;
-  --color-surface-strong: #0c1522;
-  --color-text: #f3ecdd;
-  --color-muted: #aeb6c6;
-  --color-line: rgba(236, 228, 213, 0.12);
-  --color-accent: #c49c4a;
-  --color-accent-soft: rgba(196, 156, 74, 0.18);
+  --color-bg: #f4f4f0;
+  --color-surface: #ffffff;
+  --color-surface-strong: #f8f9fa;
+  --color-text: #1a2433;
+  --color-muted: #5f6771;
+  --color-line: #eaeae2;
+  --color-accent: #1a2433;
+  --color-accent-soft: rgba(26, 36, 51, 0.08);
   --color-danger: #9f3c4d;
   --color-success: #1b7d61;
+  --color-charcoal: #2c3539;
 }
 
 * {
@@ -27,8 +28,8 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top, rgba(196, 156, 74, 0.13), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(49, 88, 137, 0.18), transparent 26%),
+    radial-gradient(circle at top left, rgba(26, 36, 51, 0.06), transparent 32%),
+    linear-gradient(180deg, #f8f9fa 0%, var(--color-bg) 52%, #efefe8 100%),
     var(--color-bg);
   color: var(--color-text);
 }
@@ -39,10 +40,10 @@ body::before {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    linear-gradient(rgba(26, 36, 51, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 36, 51, 0.025) 1px, transparent 1px);
   background-size: 80px 80px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), transparent 92%);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.24), transparent 88%);
 }
 
 a {
@@ -58,7 +59,7 @@ textarea {
 }
 
 ::selection {
-  background: rgba(196, 156, 74, 0.3);
+  background: rgba(26, 36, 51, 0.16);
   color: white;
 }
 
@@ -72,4 +73,45 @@ textarea {
 
 .prose-executive strong {
   color: var(--color-text);
+}
+
+.executive-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #ffffff;
+  border: 1px solid var(--color-line);
+}
+
+.executive-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+}
+
+.executive-card-image-book {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.executive-card-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 1.5rem;
+}
+
+.executive-card-action {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.executive-card > a:last-child {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-line);
 }

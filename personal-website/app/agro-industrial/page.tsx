@@ -5,16 +5,40 @@ import { CtaStrip } from "@/components/ui/cta-strip";
 import { buildMetadata } from "@/lib/metadata";
 
 const capabilities = [
-  "Advanced agriculture architecture",
-  "Hydroponics and aeroponics capability",
-  "Irrigation systems planning",
-  "Agrochemical sourcing support",
-  "Fleet and logistics oversight",
-  "Hardware, telematics, and compliance logic"
+  {
+    title: "Advanced agriculture architecture",
+    image: "/assets/agro-field-operations.jpg",
+    summary: "Field systems, cultivation planning, and agricultural frameworks structured for serious operational oversight."
+  },
+  {
+    title: "Hydroponics and aeroponics capability",
+    image: "/assets/hydroponics-system.jpg",
+    summary: "Controlled-environment agriculture capability for resilient food systems and technical training pathways."
+  },
+  {
+    title: "Fleet and logistics oversight",
+    image: "/assets/fleet-logistics.jpg",
+    summary: "Logistics, warehouse, cross-border transport, and fleet oversight translated into procurement-grade language."
+  },
+  {
+    title: "Irrigation systems planning",
+    image: "/assets/agro-field-operations.jpg",
+    summary: "Water logic, irrigation discipline, and operational controls for farms facing climate and supply pressure."
+  },
+  {
+    title: "Agrochemical sourcing support",
+    image: "/assets/hydroponics-system.jpg",
+    summary: "B2B sourcing support for agricultural inputs, vendor qualification, and technical-fit review."
+  },
+  {
+    title: "Hardware, telematics, and compliance logic",
+    image: "/assets/fleet-logistics.jpg",
+    summary: "Hardware, fleet intelligence, tracking readiness, documentation, and compliance-oriented operating systems."
+  }
 ];
 
 export const metadata = buildMetadata({
-  title: "Agro-Industrial Command Center | Musa Allama",
+  title: "Agro-Industrial Command Center | Engr Musa Garba",
   path: "/agro-industrial"
 });
 
@@ -24,7 +48,7 @@ export default function AgroIndustrialPage() {
       <HeroBlock
         eyebrow="Agro-Industrial Command Center"
         title="Technical credibility for agriculture, logistics, sourcing, and field-to-market systems."
-        summary="This section translates Geidam Agro-Allied operational credibility into institutional language suitable for investors, procurement teams, partners, and government-facing stakeholders."
+        summary="This section translates Engr Musa Garba's Geidam Agro-Allied operational credibility into institutional language suitable for investors, procurement teams, partners, and government-facing stakeholders."
       >
         <Card>
           <CardEyebrow>Command tone</CardEyebrow>
@@ -43,12 +67,16 @@ export default function AgroIndustrialPage() {
         />
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {capabilities.map((capability) => (
-            <Card key={capability}>
-              <CardEyebrow>Capability</CardEyebrow>
-              <CardTitle>{capability}</CardTitle>
-              <p className="mt-4 text-sm leading-7 text-muted">
-                Structured for future case notes, technical documentation, asset packs, and procurement routing.
-              </p>
+            <Card key={capability.title} className="overflow-hidden p-0">
+              <img src={capability.image} alt={`${capability.title} visual`} className="executive-card-image" />
+              <div className="executive-card-content">
+                <CardEyebrow>Capability</CardEyebrow>
+                <CardTitle>{capability.title}</CardTitle>
+                <p className="mt-4 text-sm leading-7 text-muted">{capability.summary}</p>
+                <a href="/advisory" className="executive-card-action inline-flex text-sm uppercase tracking-[0.18em] text-accent">
+                  Request access
+                </a>
+              </div>
             </Card>
           ))}
         </div>

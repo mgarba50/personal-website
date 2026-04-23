@@ -6,12 +6,12 @@ import { LeadForm } from "@/components/forms/lead-form";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/6 bg-surface/50">
+    <footer className="border-t border-line bg-white/65">
       <div className="mx-auto grid max-w-shell gap-10 px-4 py-16 md:px-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div>
-          <p className="text-xs uppercase tracking-[0.32em] text-accent">The Global Intelligence Terminal</p>
+          <p className="text-xs uppercase tracking-[0.32em] text-accent">Strategic Intelligence &amp; Policy Advisory</p>
           <h2 className="mt-4 max-w-2xl font-serif text-3xl text-text">
-            Occasional strategic notes, new releases, institutional updates, and selected reflections from the Office of Musa Allama.
+            Occasional strategic notes, new releases, institutional updates, and selected reflections from the Office of Musa Allama Ibn Garba.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-8 text-muted">
             This subscription layer is designed for restrained dispatches on geopolitics, agro-industrial systems, executive strategy, and institutional development.
@@ -43,9 +43,9 @@ export function Footer() {
             />
           </div>
         </div>
-        <div className="grid gap-8 rounded-shell border border-line bg-surface/70 p-8">
+        <div className="grid gap-8 rounded-shell border border-line bg-white p-8 shadow-card">
           <div>
-            <p className="text-xs uppercase tracking-[0.32em] text-accent">Office of Musa Allama</p>
+            <p className="text-xs uppercase tracking-[0.32em] text-accent">Office of Musa Allama Ibn Garba</p>
             <p className="mt-4 text-base leading-8 text-muted">
               Institutional headquarters for advisory, scholarship, agro-industrial command, publishing, media readiness, and long-horizon impact architecture.
             </p>

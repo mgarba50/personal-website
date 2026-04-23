@@ -10,7 +10,7 @@ import { buildMetadata } from "@/lib/metadata";
 const speakingTopics = profile.pressTopics;
 
 export const metadata = buildMetadata({
-  title: "Press and Media Vault | Musa Allama",
+  title: "Press and Media Vault | Musa Allama Ibn Garba",
   path: "/press"
 });
 

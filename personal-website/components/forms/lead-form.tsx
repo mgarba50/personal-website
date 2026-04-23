@@ -34,7 +34,7 @@ export function LeadForm({
   const [isPending, startTransition] = useTransition();
 
   return (
-    <div className="rounded-[28px] border border-line bg-surface/80 p-6">
+    <div className="rounded-[28px] border border-line bg-white p-6 shadow-card">
       <div className="max-w-2xl">
         <h3 className="font-serif text-3xl text-text">{title}</h3>
         <p className="mt-3 text-base leading-8 text-muted">{summary}</p>
@@ -109,11 +109,11 @@ export function LeadForm({
               ) : null}
               {field.type === "checkbox" ? (
                 <span className="flex items-start gap-3 rounded-3xl border border-line bg-surface-strong px-4 py-3">
-                  <input
+            <input
                     type="checkbox"
                     name={field.name}
                     required={field.required}
-                    className="mt-1 h-4 w-4 rounded border-line bg-surface"
+                    className="mt-1 h-4 w-4 rounded border-line bg-white"
                   />
                   <span className="text-sm leading-7 text-text">{field.description || field.placeholder}</span>
                 </span>
@@ -146,8 +146,8 @@ export function LeadForm({
           <p
             className={
               status.tone === "success"
-                ? "rounded-3xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-green-100"
-                : "rounded-3xl border border-danger/30 bg-danger/10 px-4 py-3 text-sm text-red-100"
+                ? "rounded-3xl border border-success/30 bg-success/10 px-4 py-3 text-sm text-success"
+                : "rounded-3xl border border-danger/30 bg-danger/10 px-4 py-3 text-sm text-danger"
             }
           >
             {status.message}

@@ -4,7 +4,7 @@ export function Timeline({ items }: { items: TimelineEvent[] }) {
   return (
     <ol className="grid gap-6">
       {items.map((item, index) => (
-        <li key={item.year + item.title} className="grid gap-4 rounded-[28px] border border-line bg-surface/75 p-6 md:grid-cols-[120px_1fr]">
+        <li key={item.year + item.title} className="grid gap-4 rounded-[28px] border border-line bg-white p-6 shadow-card md:grid-cols-[120px_1fr]">
           <div className="flex items-start gap-3">
             <span className="mt-2 h-3 w-3 rounded-full bg-accent" />
             <div>

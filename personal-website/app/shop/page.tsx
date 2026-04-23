@@ -7,7 +7,7 @@ import { Card, CardEyebrow, CardTitle } from "@/components/ui/card";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Shop and Digital Products | Musa Allama",
+  title: "Shop and Digital Products | Musa Allama Ibn Garba",
   path: "/shop"
 });
 
@@ -36,14 +36,16 @@ export default function ShopPage() {
         />
         <div className="grid gap-6 lg:grid-cols-2">
           {products.map((product) => (
-            <Card key={product.slug}>
-              <img src={product.cover} alt={`${product.name} product cover`} className="h-64 w-full rounded-[22px] border border-line object-cover" />
-              <CardEyebrow>{product.type}</CardEyebrow>
-              <CardTitle>{product.name}</CardTitle>
-              <p className="mt-4 text-sm leading-7 text-muted">{product.description}</p>
-              <div className="mt-5 border-t border-line pt-5 text-sm leading-7">
-                <p className="text-text">{product.price}</p>
-                <p className="text-muted">{product.accessMethod}</p>
+            <Card key={product.slug} className="overflow-hidden p-0">
+              <img src={product.cover} alt={`${product.name} product cover`} className="executive-card-image" />
+              <div className="executive-card-content">
+                <CardEyebrow>{product.type}</CardEyebrow>
+                <CardTitle>{product.name}</CardTitle>
+                <p className="mt-4 text-sm leading-7 text-muted">{product.description}</p>
+                <div className="executive-card-action text-sm leading-7">
+                  <p className="text-text">{product.price}</p>
+                  <p className="text-muted">{product.accessMethod}</p>
+                </div>
               </div>
             </Card>
           ))}

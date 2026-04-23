@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import env from "@/lib/env";
 
 const defaultDescription =
-  "Institutional platform for strategic advisory, publishing, multilingual scholarship, agro-industrial systems, and legacy architecture led by Musa Allama.";
+  "Strategic Intelligence & Policy Advisory.";
 
 export function buildMetadata({
   title,

@@ -13,7 +13,7 @@ const policies = [
 ];
 
 export const metadata = buildMetadata({
-  title: "Policies | Musa Allama",
+  title: "Policies | Musa Allama Ibn Garba",
   path: "/policies"
 });
 

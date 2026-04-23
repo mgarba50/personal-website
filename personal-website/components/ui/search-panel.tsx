@@ -8,7 +8,7 @@ export function SearchPanel({
   type?: string;
 }) {
   return (
-    <form action="/search" className="rounded-[28px] border border-line bg-surface/80 p-6">
+    <form action="/search" className="rounded-[28px] border border-line bg-white p-6 shadow-card">
       <div className="grid gap-4 md:grid-cols-[1fr_220px_auto]">
         <label className="grid gap-2 text-sm text-muted">
           Search
@@ -35,7 +35,7 @@ export function SearchPanel({
         </label>
         <button
           type="submit"
-          className="self-end rounded-full border border-accent bg-accent px-5 py-3 text-sm font-medium uppercase tracking-[0.16em] text-slate-950 transition hover:-translate-y-0.5"
+          className="self-end rounded-full border border-accent bg-accent px-5 py-3 text-sm font-medium uppercase tracking-[0.16em] text-white transition hover:-translate-y-0.5"
         >
           Search
         </button>

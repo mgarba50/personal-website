@@ -29,7 +29,7 @@ Example:
 cd "C:\Users\Allama\OneDrive\Archives\Old_PC_Files\Documents\New project"
 git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git
 git add personal-website .github netlify.toml
-git commit -m "Initial Musa Allama institutional website"
+git commit -m "Initial Musa Allama Ibn Garba institutional website"
 git push -u origin master
 ```
 

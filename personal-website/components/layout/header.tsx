@@ -5,10 +5,11 @@ import { MobileNav } from "@/components/layout/mobile-nav";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-white/6 bg-bg/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-line bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-shell items-center justify-between gap-6 px-4 py-4 md:px-6">
-        <Link href="/" className="text-sm uppercase tracking-[0.34em] text-text">
-          Musa Allama
+        <Link href="/" className="grid gap-1 text-text">
+          <span className="text-sm uppercase tracking-[0.28em]">Musa Allama Ibn Garba</span>
+          <span className="text-[0.68rem] uppercase tracking-[0.22em] text-muted">Strategic Intelligence &amp; Policy Advisory</span>
         </Link>
         <nav className="hidden items-center gap-6 lg:flex">
           {primaryNavigation.map((item) => (

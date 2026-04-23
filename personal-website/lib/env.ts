@@ -1,6 +1,6 @@
 const env = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://musaallama.com",
-  siteName: process.env.NEXT_PUBLIC_SITE_NAME || "Musa Allama",
+  siteName: process.env.NEXT_PUBLIC_SITE_NAME || "Musa Allama Ibn Garba",
   analyticsProvider: process.env.NEXT_PUBLIC_ANALYTICS_PROVIDER || "",
   gaId: process.env.NEXT_PUBLIC_GA_ID || "",
   posthogKey: process.env.NEXT_PUBLIC_POSTHOG_KEY || "",

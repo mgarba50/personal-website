@@ -81,7 +81,7 @@ export async function handleSubmission({
         subject: userSubject,
         html: wrapEmailTemplate({
           title: userSubject,
-          intro: `Dear ${userName}, your submission has been received by the Office of Musa Allama.`,
+    intro: `Dear ${userName}, your submission has been received by the Office of Musa Allama Ibn Garba.`,
           details: [
             "This acknowledgement confirms receipt only.",
             "Fit review, internal routing, or payment follow-up may occur before any scheduling or fulfillment."

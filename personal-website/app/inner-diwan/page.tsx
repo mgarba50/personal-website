@@ -8,7 +8,7 @@ import { buildMetadata } from "@/lib/metadata";
 const offers = profile.innerDiwanOffers;
 
 export const metadata = buildMetadata({
-  title: "The Inner Diwan | Musa Allama",
+  title: "The Inner Diwan | Musa Allama Ibn Garba",
   path: "/inner-diwan"
 });
 
@@ -20,7 +20,7 @@ export default function InnerDiwanPage() {
         title="Confidential executive philosophical, ethical, and spiritual clarity work."
         summary="This corridor is intentionally distinct from consultancy and must never read as casual coaching. It is built for high-level guidance where conscience, responsibility, alignment, and legacy require disciplined language, confidentiality, and executive seriousness."
       >
-        <Card className="border-accent/20 bg-[linear-gradient(180deg,rgba(196,156,74,0.12),rgba(8,17,28,0.82))]">
+        <Card className="border-accent/20 bg-surface-strong">
           <CardEyebrow>Confidential posture</CardEyebrow>
           <CardTitle>Privacy, seriousness, and signal discipline.</CardTitle>
           <p className="mt-4 text-sm leading-7 text-muted">

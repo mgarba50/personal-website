@@ -14,7 +14,7 @@ import { CtaStrip } from "@/components/ui/cta-strip";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Executive Desk | Musa Allama",
+  title: "Executive Desk | Musa Allama Ibn Garba",
   path: "/"
 });
 
@@ -50,10 +50,10 @@ export default function HomePage() {
         summary={profile.heroSummary}
         actions={heroActions}
       >
-        <Card className="h-full bg-[linear-gradient(180deg,rgba(14,23,37,0.92),rgba(14,23,37,0.7))]">
+        <Card className="h-full">
           <img
             src="/assets/musa-allama-executive-portrait.jpg"
-            alt="Executive portrait of Musa Allama"
+            alt="Executive portrait of Musa Allama Ibn Garba"
             className="h-72 w-full rounded-[22px] border border-line object-cover"
           />
           <CardEyebrow>{profile.enterpriseBrand}</CardEyebrow>

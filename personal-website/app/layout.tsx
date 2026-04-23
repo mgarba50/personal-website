@@ -22,7 +22,7 @@ const arabic = Noto_Naskh_Arabic({
 });
 
 export const metadata: Metadata = buildMetadata({
-  title: "Musa Allama | Institutional Digital Headquarters",
+  title: "Musa Allama Ibn Garba | Strategic Intelligence & Policy Advisory",
   path: "/"
 });
 

@@ -5,7 +5,7 @@ import { Card, CardEyebrow, CardTitle } from "@/components/ui/card";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Living Library | Musa Allama",
+  title: "Living Library | Musa Allama Ibn Garba",
   path: "/library"
 });
 
@@ -34,17 +34,19 @@ export default function LibraryPage() {
         />
         <div className="grid gap-6 lg:grid-cols-2">
           {articles.map((article) => (
-            <Card key={article.slug}>
-              <img src={article.cover} alt={`${article.title} cover placeholder`} className="h-56 w-full rounded-[22px] border border-line object-cover" />
-              <CardEyebrow>{article.category}</CardEyebrow>
-              <CardTitle>{article.title}</CardTitle>
-              <p className="mt-3 text-sm text-muted">
-                {article.date} | {article.readingTime}
-              </p>
-              <p className="mt-4 text-sm leading-7 text-muted">{article.summary}</p>
-              <a href={`/library/${article.slug}`} className="mt-6 inline-flex text-sm uppercase tracking-[0.18em] text-accent">
-                Open article
-              </a>
+            <Card key={article.slug} className="overflow-hidden p-0">
+              <img src={article.cover} alt={`${article.title} cover`} className="executive-card-image" />
+              <div className="executive-card-content">
+                <CardEyebrow>{article.category}</CardEyebrow>
+                <CardTitle>{article.title}</CardTitle>
+                <p className="mt-3 text-sm text-muted">
+                  {article.date} | {article.readingTime}
+                </p>
+                <p className="mt-4 text-sm leading-7 text-muted">{article.summary}</p>
+                <a href={`/library/${article.slug}`} className="executive-card-action inline-flex text-sm uppercase tracking-[0.18em] text-accent">
+                  Open article
+                </a>
+              </div>
             </Card>
           ))}
         </div>

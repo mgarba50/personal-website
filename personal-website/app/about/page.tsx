@@ -9,7 +9,7 @@ import { CtaStrip } from "@/components/ui/cta-strip";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Executive Dossier | Musa Allama",
+  title: "Executive Dossier | Musa Allama Ibn Garba",
   path: "/about"
 });
 
@@ -24,7 +24,7 @@ export default function AboutPage() {
         <Card>
           <img
             src="/assets/musa-allama-executive-portrait.jpg"
-            alt="Executive dossier portrait of Musa Allama"
+            alt="Executive dossier portrait of Musa Allama Ibn Garba"
             className="h-80 w-full rounded-[22px] border border-line object-cover"
           />
         </Card>
@@ -32,7 +32,7 @@ export default function AboutPage() {
 
       <QuoteBlock
         quote="Knowledge is the most sustainable form of aid, and lifelong learning is the only way to cheat time."
-        attribution="Musa Allama"
+        attribution="Musa Allama Ibn Garba"
       />
 
       <section className="space-y-8">

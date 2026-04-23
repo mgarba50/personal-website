@@ -5,7 +5,7 @@ import { Card, CardEyebrow, CardTitle } from "@/components/ui/card";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "Album and Media Archive | Musa Allama",
+  title: "Album and Media Archive | Musa Allama Ibn Garba",
   path: "/album"
 });
 
@@ -34,13 +34,15 @@ export default function AlbumPage() {
         />
         <div className="grid gap-6 lg:grid-cols-3">
           {mediaCollections.map((media) => (
-            <Card key={media.slug}>
-              <img src={media.cover} alt={`${media.title} cover`} className="h-56 w-full rounded-[22px] border border-line object-cover" />
-              <CardEyebrow>{media.type}</CardEyebrow>
-              <CardTitle>{media.title}</CardTitle>
-              <p className="mt-2 text-sm text-muted">{media.date}</p>
-              <p className="mt-4 text-sm leading-7 text-muted">{media.description}</p>
-              <p className="mt-4 text-sm text-text">{media.tags.join(" | ")}</p>
+            <Card key={media.slug} className="overflow-hidden p-0">
+              <img src={media.cover} alt={`${media.title} cover`} className="executive-card-image" />
+              <div className="executive-card-content">
+                <CardEyebrow>{media.type}</CardEyebrow>
+                <CardTitle>{media.title}</CardTitle>
+                <p className="mt-2 text-sm text-muted">{media.date}</p>
+                <p className="mt-4 text-sm leading-7 text-muted">{media.description}</p>
+                <p className="executive-card-action text-sm text-text">{media.tags.join(" | ")}</p>
+              </div>
             </Card>
           ))}
         </div>

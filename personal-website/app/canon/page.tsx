@@ -6,7 +6,7 @@ import { Card, CardEyebrow, CardTitle } from "@/components/ui/card";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata = buildMetadata({
-  title: "The Canon | Musa Allama",
+  title: "The Canon | Musa Allama Ibn Garba",
   path: "/canon"
 });
 
@@ -45,18 +45,18 @@ export default function CanonPage() {
                 </div>
                 <div className="grid items-stretch gap-6 lg:grid-cols-3">
                   {items.map((book) => (
-                    <Card key={book.slug} className="book-card flex h-full flex-col">
+                    <Card key={book.slug} className="book-card overflow-hidden p-0">
                       <img
                         src={book.cover}
                         alt={`${book.title} cover`}
-                        className="book-cover-image aspect-[2/3] w-full rounded-[22px] border border-line object-cover object-center"
+                        className="book-cover-image executive-card-image-book"
                       />
-                      <div className="book-info-container flex flex-grow flex-col pt-6">
+                      <div className="book-info-container executive-card-content">
                         <CardEyebrow>{book.commercialTier || book.status}</CardEyebrow>
                         <CardTitle>{book.title}</CardTitle>
                         <p className="mt-2 text-sm leading-7 text-muted">{book.subtitle}</p>
                         <p className="mt-4 text-sm leading-7 text-muted">{book.abstract}</p>
-                        <div className="book-action-buttons mt-auto space-y-4 pt-6">
+                        <div className="book-action-buttons executive-card-action space-y-4">
                           <p className="text-sm text-text">{book.commerceMode}</p>
                           <a href={`/canon/${book.slug}`} className="inline-flex text-sm uppercase tracking-[0.18em] text-accent">
                             Open book record

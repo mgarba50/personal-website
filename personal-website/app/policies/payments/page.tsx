@@ -2,7 +2,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { profile } from "@/content/profile";
 
 export const metadata = buildMetadata({
-  title: "Payment Terms | Musa Allama",
+  title: "Payment Terms | Musa Allama Ibn Garba",
   path: "/policies/payments"
 });
 

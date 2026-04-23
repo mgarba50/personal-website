@@ -15,7 +15,7 @@ export function HeroBlock({
   children?: React.ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden rounded-shell border border-line bg-[radial-gradient(circle_at_top_left,rgba(196,156,74,0.15),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-10 shadow-glow md:px-10 md:py-14">
+    <section className="relative overflow-hidden rounded-shell border border-line bg-white px-6 py-10 shadow-glow md:px-10 md:py-14">
       <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr]">
         <div>
           <p className="text-xs uppercase tracking-[0.32em] text-accent">{eyebrow}</p>

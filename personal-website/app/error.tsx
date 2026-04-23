@@ -15,7 +15,7 @@ export default function ErrorPage({
       <h1 className="font-serif text-5xl text-text">A route-level issue interrupted this request.</h1>
       <p className="text-base leading-8 text-muted">{error.message}</p>
       <div className="flex items-center justify-center gap-4">
-        <button onClick={reset} className="rounded-full border border-accent bg-accent px-5 py-3 text-sm uppercase tracking-[0.16em] text-slate-950">
+        <button onClick={reset} className="rounded-full border border-accent bg-accent px-5 py-3 text-sm uppercase tracking-[0.16em] text-white">
           Retry
         </button>
         <Link href="/" className="text-sm uppercase tracking-[0.18em] text-accent">

@@ -14,7 +14,7 @@ const supportTiers = [
 ];
 
 export const metadata = buildMetadata({
-  title: "Institutional Impact | Musa Allama",
+  title: "Institutional Impact | Musa Allama Ibn Garba",
   path: "/impact"
 });
 
