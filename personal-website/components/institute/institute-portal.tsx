@@ -66,27 +66,31 @@ const courses: Course[] = [
 
 const instituteLinks = [
   { href: "#programs", label: "Programs" },
-  { href: "https://musaallama.com/canon", label: "The Canon" },
-  { href: "https://musaallama.com/operations", label: "Operations" },
-  { href: "https://musaallama.com/endowments", label: "Endowments" }
+  { href: "/canon", label: "The Canon" },
+  { href: "/operations", label: "Operations" },
+  { href: "/endowments", label: "Endowments" }
 ];
 
 const badges = ["GALLIFREY INTERNATIONAL", "GEIDAM AGRO ALLIED", "ALLAMA GIRLS INITIATIVE"];
 
-export function InstitutePortal() {
-  const [view, setView] = useState<View>("landing");
+export function InstitutePortal({
+  initialView = "dashboard"
+}: {
+  initialView?: View;
+}) {
+  const [view, setView] = useState<View>(initialView);
 
   return (
-    <div data-institute-portal className="institute-portal min-h-screen bg-[#f4f4f0] text-slate-900">
+    <div data-madrasa-portal className="institute-portal min-h-screen bg-[#f4f4f0] text-slate-900">
       <style>{`
-        body:has([data-institute-portal]) [data-site-chrome] {
+        body:has([data-madrasa-portal]) [data-site-chrome] {
           display: none !important;
         }
       `}</style>
       {view === "landing" ? (
         <LandingPage onEnterPortal={() => setView("dashboard")} />
       ) : (
-        <Dashboard onExit={() => setView("landing")} />
+        <Dashboard />
       )}
     </div>
   );
@@ -107,9 +111,15 @@ function LandingPage({ onEnterPortal }: { onEnterPortal: () => void }) {
           </Link>
           <div className="hidden items-center gap-7 lg:flex">
             {instituteLinks.map((link) => (
-              <a key={link.href} href={link.href} className="text-sm text-slate-600 transition hover:text-slate-950">
-                {link.label}
-              </a>
+              link.href.startsWith("#") ? (
+                <a key={link.href} href={link.href} className="text-sm text-slate-600 transition hover:text-slate-950">
+                  {link.label}
+                </a>
+              ) : (
+                <Link key={link.href} href={link.href} className="text-sm text-slate-600 transition hover:text-slate-950">
+                  {link.label}
+                </Link>
+              )
             ))}
           </div>
           <div className="flex items-center gap-3">
@@ -221,9 +231,9 @@ function LandingPage({ onEnterPortal }: { onEnterPortal: () => void }) {
         <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
           <p>&copy; 2026 The Allama Institute. Executive learning architecture by the Office of Musa Allama Ibn Garba.</p>
           <div className="flex flex-wrap gap-5">
-            <a href="https://musaallama.com/canon" className="hover:text-slate-950">The Canon</a>
-            <a href="https://musaallama.com/operations" className="hover:text-slate-950">Operations</a>
-            <a href="https://musaallama.com/endowments" className="hover:text-slate-950">Endowments</a>
+            <Link href="/canon" className="hover:text-slate-950">The Canon</Link>
+            <Link href="/operations" className="hover:text-slate-950">Operations</Link>
+            <Link href="/endowments" className="hover:text-slate-950">Endowments</Link>
           </div>
         </div>
       </footer>
@@ -231,7 +241,7 @@ function LandingPage({ onEnterPortal }: { onEnterPortal: () => void }) {
   );
 }
 
-function Dashboard({ onExit }: { onExit: () => void }) {
+function Dashboard() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
@@ -266,9 +276,9 @@ function Dashboard({ onExit }: { onExit: () => void }) {
               <div className="h-full w-2/3 rounded-full bg-white" />
             </div>
           </div>
-          <button type="button" onClick={onExit} className="mt-5 text-sm text-slate-400 transition hover:text-white">
-            Return to landing
-          </button>
+          <Link href="/" className="mt-5 inline-flex text-sm text-slate-400 transition hover:text-white">
+            Back to Main Site
+          </Link>
         </div>
       </aside>
 

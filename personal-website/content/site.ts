@@ -7,7 +7,6 @@ export const primaryNavigation: NavItem[] = [
   { href: "/canon", label: "The Canon" },
   { href: "/library", label: "Living Library" },
   { href: "/madrasa", label: "The Madrasa" },
-  { href: "/institute", label: "The Institute" },
   { href: "/diwan", label: "The Diwan" },
   { href: "/agro-industrial", label: "Agro Command" },
   { href: "/impact", label: "Institutional Impact" },
@@ -143,8 +142,7 @@ export const footerGroups = [
       { href: "/canon", label: "The Canon" },
       { href: "/library", label: "Living Library" },
       { href: "/diwan", label: "The Diwan" },
-      { href: "/madrasa", label: "The Madrasa" },
-      { href: "/institute", label: "The Institute" }
+      { href: "/madrasa", label: "The Madrasa" }
     ]
   },
   {

@@ -14,7 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/library",
     "/diwan",
     "/madrasa",
-    "/institute",
     "/agro-industrial",
     "/impact",
     "/press",

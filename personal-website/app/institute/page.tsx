@@ -1,13 +1,5 @@
-import { InstitutePortal } from "@/components/institute/institute-portal";
-import { buildMetadata } from "@/lib/metadata";
-
-export const metadata = buildMetadata({
-  title: "The Allama Institute | Executive Learning Portal",
-  description:
-    "Executive-grade learning portal for agro-logistics, systems architecture, multilingual leadership, and sovereign strategic execution.",
-  path: "/institute"
-});
+import { redirect } from "next/navigation";
 
 export default function InstitutePage() {
-  return <InstitutePortal />;
+  redirect("/madrasa");
 }
