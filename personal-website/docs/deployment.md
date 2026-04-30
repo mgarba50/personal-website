@@ -22,17 +22,6 @@ Recommended as the canonical deployment target for this Next.js codebase.
 3. Add environment variables from `.env.example`.
 4. Deploy.
 
-## Netlify
-
-Netlify support is scaffolded because you asked for GitHub plus Netlify deployment readiness.
-
-1. Import the repository into Netlify.
-2. Set the base directory to `personal-website`.
-3. Build command: `npm run build`
-4. Publish directory: `.next`
-5. Ensure the Next.js Netlify plugin is available.
-6. Add the environment variables from `.env.example`.
-
 ## Before production deployment
 
 Run these commands:

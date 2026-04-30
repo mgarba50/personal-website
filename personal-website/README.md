@@ -28,13 +28,12 @@ cd .\personal-website
 .\scripts\run-dev.ps1
 ```
 
-## GitHub and Netlify wiring
+## GitHub and Vercel wiring
 
 This project currently lives inside a larger root folder that already contains unrelated files. The deployment wiring is set up so you can keep the source in `personal-website` while using the existing root Git repository.
 
-- Root-level [`netlify.toml`](../netlify.toml) points Netlify to the `personal-website` base directory
 - Root-level [`.github/workflows/personal-website-ci.yml`](../.github/workflows/personal-website-ci.yml) runs validation and build checks only for the website
-- The website's own [`netlify.toml`](./netlify.toml) remains available if you later move `personal-website` into its own dedicated repository
+- Vercel should use `personal-website` as the project root directory
 
 ## Common commands
 
@@ -63,6 +62,5 @@ npm run build
 
 - Primary framework configuration is Next.js App Router
 - Vercel-ready by default
-- Netlify-ready through [`netlify.toml`](./netlify.toml) and the Next.js plugin
 
 See [`docs/deployment.md`](./docs/deployment.md) for the deployment playbook.

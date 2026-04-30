@@ -5,7 +5,6 @@ This repository contains the institutional website build for Musa Allama.
 ## Repository structure
 
 - `.github/` - GitHub Actions workflow for website verification
-- `netlify.toml` - root Netlify configuration pointing to the website app
 - `personal-website/` - the actual Next.js application
 
 ## Main application
@@ -23,11 +22,11 @@ That folder contains:
 
 ## Deployment
 
-This repository is configured so Netlify deploys from the `personal-website` directory, not from the repo root.
+This repository is configured so Vercel deploys from the `personal-website` directory, not from the repo root.
 
 See:
 
-- [`personal-website/docs/github-netlify.md`](./personal-website/docs/github-netlify.md)
+- [`personal-website/docs/github-vercel.md`](./personal-website/docs/github-vercel.md)
 - [`personal-website/docs/deployment.md`](./personal-website/docs/deployment.md)
 
 ## Local development

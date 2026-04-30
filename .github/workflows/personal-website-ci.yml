@@ -9,12 +9,10 @@ on:
     paths:
       - "personal-website/**"
       - ".github/workflows/personal-website-ci.yml"
-      - "netlify.toml"
   pull_request:
     paths:
       - "personal-website/**"
       - ".github/workflows/personal-website-ci.yml"
-      - "netlify.toml"
   workflow_dispatch:
 
 jobs:

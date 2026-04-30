@@ -37,7 +37,8 @@ foreach ($path in @(
   "app\search\page.tsx",
   "app\sitemap.ts",
   "app\robots.ts",
-  "netlify.toml",
+  "package.json",
+  "next.config.ts",
   "README.md"
 )) {
   $target = Join-Path $projectRoot $path
