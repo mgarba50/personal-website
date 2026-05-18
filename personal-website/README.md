@@ -26,6 +26,7 @@ Open `http://localhost:3000`.
 - `supabase/schema.sql` - database schema
 - `.env.example` - environment variable guide
 - `docs/payment-integration-guide.md` - payment flow guide
+- `docs/conversion-architecture.md` - measurable action map for books, courses, advisory, membership, library, checkout, and dashboard
 - `docs/content-update-guide.md` - content update guide
 - `docs/deployment-guide.md` - Vercel and Supabase guide
 - `docs/backup-export-instructions.md` - backup/export guide

@@ -23,6 +23,8 @@ export function TierCard({ tier }: { tier: Tier }) {
       </ul>
       <Link
         className="mt-auto inline-flex justify-center rounded-md border border-gold bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum transition hover:bg-navy"
+        data-conversion="apply_membership"
+        data-conversion-label={tier.title}
         href={`/membership/${tier.slug}`}
       >
         Apply / Join

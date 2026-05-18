@@ -32,8 +32,8 @@ export default async function CheckoutPage({
         eyebrow="Checkout"
         title={title}
         copy="This V1 payment route is ready for Stripe, Paystack, Flutterwave, and manual bank transfer integration."
-        primaryCta={{ label: "Return to products", href: "/books" }}
-        secondaryCta={{ label: "Need help", href: "/contact" }}
+        primaryCta={{ label: "Return to products", href: "/books", action: "view_book_catalog" }}
+        secondaryCta={{ label: "Need help", href: "/contact", action: "send_inquiry" }}
       />
 
       <section className="px-5 py-16">
@@ -47,13 +47,28 @@ export default async function CheckoutPage({
               user dashboard.
             </p>
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <Link className="rounded-md bg-deep px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum" href={`/checkout?type=${params.type ?? "book"}&slug=${params.slug ?? ""}&provider=stripe`}>
+              <Link
+                className="rounded-md bg-deep px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
+                data-conversion="select_payment_stripe"
+                data-conversion-label={title}
+                href={`/checkout?type=${params.type ?? "book"}&slug=${params.slug ?? ""}&provider=stripe`}
+              >
                 Stripe
               </Link>
-              <Link className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep" href={`/checkout?type=${params.type ?? "book"}&slug=${params.slug ?? ""}&provider=paystack`}>
+              <Link
+                className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep"
+                data-conversion="select_payment_paystack"
+                data-conversion-label={title}
+                href={`/checkout?type=${params.type ?? "book"}&slug=${params.slug ?? ""}&provider=paystack`}
+              >
                 Paystack
               </Link>
-              <Link className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep" href={`/checkout?type=${params.type ?? "book"}&slug=${params.slug ?? ""}&provider=flutterwave`}>
+              <Link
+                className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep"
+                data-conversion="select_payment_flutterwave"
+                data-conversion-label={title}
+                href={`/checkout?type=${params.type ?? "book"}&slug=${params.slug ?? ""}&provider=flutterwave`}
+              >
                 Flutterwave
               </Link>
             </div>
@@ -69,7 +84,12 @@ export default async function CheckoutPage({
               <input className="field rounded-md" name="email" placeholder="Email" type="email" required />
               <input className="field rounded-md" name="reference" placeholder="Transfer reference" required />
               <textarea className="field min-h-32 rounded-md" name="notes" placeholder="Payment notes or proof link" />
-              <button className="rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum" type="submit">
+              <button
+                className="rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
+                data-conversion="submit_manual_payment"
+                data-conversion-label={title}
+                type="submit"
+              >
                 Submit for verification
               </button>
             </div>

@@ -9,7 +9,12 @@ export function ServiceCard({ service }: { service: AdvisoryService }) {
       <p className="mt-4 text-sm leading-7 text-muted">{service.description}</p>
       <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-line pt-5">
         <span className="text-sm font-semibold text-deep">{service.price}</span>
-        <Link className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep" href={`/advisory/${service.slug}`}>
+        <Link
+          className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep"
+          data-conversion="book_advisory"
+          data-conversion-label={service.title}
+          href={`/advisory/${service.slug}`}
+        >
           Book session
         </Link>
       </div>

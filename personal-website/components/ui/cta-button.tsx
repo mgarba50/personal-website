@@ -4,9 +4,10 @@ type CtaButtonProps = {
   href: string;
   children: React.ReactNode;
   variant?: "primary" | "secondary" | "light";
+  action?: string;
 };
 
-export function CtaButton({ href, children, variant = "primary" }: CtaButtonProps) {
+export function CtaButton({ href, children, variant = "primary", action }: CtaButtonProps) {
   const styles = {
     primary:
       "border border-gold bg-gold px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-deep transition hover:bg-transparent hover:text-gold",
@@ -17,7 +18,12 @@ export function CtaButton({ href, children, variant = "primary" }: CtaButtonProp
   };
 
   return (
-    <Link className={`inline-flex items-center justify-center rounded-md ${styles[variant]}`} href={href}>
+    <Link
+      className={`inline-flex items-center justify-center rounded-md ${styles[variant]}`}
+      data-conversion={action}
+      data-conversion-label={typeof children === "string" ? children : undefined}
+      href={href}
+    >
       {children}
     </Link>
   );

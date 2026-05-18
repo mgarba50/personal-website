@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Amiri, Cormorant_Garamond, Inter } from "next/font/google";
+import { ConversionTracker } from "@/components/commerce/conversion-tracker";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import "./globals.css";
@@ -69,6 +70,7 @@ export default function RootLayout({
       className={`${inter.variable} ${cormorant.variable} ${amiri.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full bg-vellum text-charcoal">
+        <ConversionTracker />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />

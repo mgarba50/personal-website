@@ -20,18 +20,24 @@ export function PaymentPanel({ title, productType, slug, price }: PaymentPanelPr
       <div className="mt-6 grid gap-3">
         <Link
           className="rounded-md bg-deep px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum transition hover:bg-navy"
+          data-conversion={`checkout_${productType}_stripe`}
+          data-conversion-label={title}
           href={`/checkout?type=${productType}&slug=${slug}&provider=stripe`}
         >
           Pay with Stripe
         </Link>
         <Link
           className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep transition hover:bg-gold"
+          data-conversion={`checkout_${productType}_paystack_flutterwave`}
+          data-conversion-label={title}
           href={`/checkout?type=${productType}&slug=${slug}&provider=paystack`}
         >
           Paystack / Flutterwave
         </Link>
         <Link
           className="rounded-md border border-deep/15 px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep transition hover:bg-vellum"
+          data-conversion={`checkout_${productType}_manual`}
+          data-conversion-label={title}
           href={`/checkout?type=${productType}&slug=${slug}&provider=manual`}
         >
           Manual bank transfer

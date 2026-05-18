@@ -28,6 +28,7 @@ This repository is configured so Vercel deploys from the `personal-website` dire
 See:
 
 - [`personal-website/docs/deployment-guide.md`](./personal-website/docs/deployment-guide.md)
+- [`personal-website/docs/conversion-architecture.md`](./personal-website/docs/conversion-architecture.md)
 - [`personal-website/docs/payment-integration-guide.md`](./personal-website/docs/payment-integration-guide.md)
 - [`personal-website/docs/post-launch-checklist.md`](./personal-website/docs/post-launch-checklist.md)
 

@@ -1,4 +1,5 @@
 import { ServiceCard } from "@/components/cards/service-card";
+import { ConversionStrip } from "@/components/commerce/conversion-strip";
 import { InquiryForm } from "@/components/forms/inquiry-form";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -19,9 +20,10 @@ export default function AdvisoryPage() {
         eyebrow="Strategic Advisory"
         title="Private advisory for serious institutional work."
         copy="Consulting for business, agriculture, publishing, China sourcing communication, AI workflows, and digital transformation."
-        primaryCta={{ label: "Book session", href: "/advisory/strategic-session" }}
-        secondaryCta={{ label: "Send inquiry", href: "#inquiry" }}
+        primaryCta={{ label: "Book session", href: "/advisory/strategic-session", action: "book_advisory" }}
+        secondaryCta={{ label: "Send inquiry", href: "#inquiry", action: "send_inquiry" }}
       />
+      <ConversionStrip title="Advisory pages should produce bookings or qualified inquiries." />
 
       <section className="px-5 py-16">
         <div className="mx-auto max-w-7xl">

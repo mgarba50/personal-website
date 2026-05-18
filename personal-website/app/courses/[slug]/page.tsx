@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { ConversionStrip } from "@/components/commerce/conversion-strip";
 import { CourseAccessPanel } from "@/components/course/course-access-panel";
 import { PaymentPanel } from "@/components/commerce/payment-panel";
 import { PageHero } from "@/components/ui/page-hero";
@@ -44,9 +45,10 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
         eyebrow={course.category}
         title={course.title}
         copy={course.description}
-        primaryCta={{ label: "Enroll now", href: `/checkout?type=course&slug=${course.slug}` }}
-        secondaryCta={{ label: "Free preview", href: "#preview" }}
+        primaryCta={{ label: "Enroll now", href: `/checkout?type=course&slug=${course.slug}`, action: "enroll_course" }}
+        secondaryCta={{ label: "Free preview", href: "#preview", action: "view_free_preview" }}
       />
+      <ConversionStrip title="Enroll, preview, or enter the student dashboard." />
 
       <section className="px-5 py-16">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_360px]">

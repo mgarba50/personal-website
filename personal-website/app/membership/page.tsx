@@ -1,4 +1,5 @@
 import { TierCard } from "@/components/membership/tier-card";
+import { ConversionStrip } from "@/components/commerce/conversion-strip";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { membershipTiers } from "@/lib/content";
@@ -18,9 +19,10 @@ export default function MembershipPage() {
         eyebrow="Membership Circles"
         title="Access to a private institutional circle."
         copy="Memberships are structured for premium articles, selected PDFs, private dispatches, discounts, priority advisory, reports, collector editions, and invitation-only briefings."
-        primaryCta={{ label: "Choose circle", href: "#tiers" }}
-        secondaryCta={{ label: "Member login", href: "/dashboard" }}
+        primaryCta={{ label: "Choose circle", href: "#tiers", action: "apply_membership" }}
+        secondaryCta={{ label: "Member login", href: "/dashboard", action: "open_dashboard" }}
       />
+      <ConversionStrip title="Membership traffic should become applications or upgrades." />
 
       <section id="tiers" className="px-5 py-16">
         <div className="mx-auto max-w-7xl">

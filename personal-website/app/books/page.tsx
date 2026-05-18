@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BookCard } from "@/components/cards/book-card";
+import { ConversionStrip } from "@/components/commerce/conversion-strip";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -22,9 +23,10 @@ export default function BooksPage() {
         eyebrow="The Canon"
         title="Books, manuals, diwans, and strategic publications."
         copy="The publishing house of MusaAllama.com: PDF, EPUB, print, bundle offers, and collector edition products."
-        primaryCta={{ label: "Browse books", href: "#book-grid" }}
-        secondaryCta={{ label: "Publishing advisory", href: "/advisory/publishing-system" }}
+        primaryCta={{ label: "Browse books", href: "#book-grid", action: "view_book_catalog" }}
+        secondaryCta={{ label: "Publishing advisory", href: "/advisory/publishing-system", action: "book_advisory" }}
       />
+      <ConversionStrip title="Books should lead to purchase, bundle interest, or advisory." />
 
       <section className="px-5 py-12">
         <div className="mx-auto max-w-7xl">
@@ -32,6 +34,8 @@ export default function BooksPage() {
             {categories.map((category) => (
               <Link
                 className="rounded-md border border-line bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-charcoal hover:border-gold"
+                data-conversion="filter_books"
+                data-conversion-label={category}
                 href={`/books?category=${encodeURIComponent(category)}`}
                 key={category}
               >

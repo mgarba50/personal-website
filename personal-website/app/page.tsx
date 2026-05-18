@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BookCard } from "@/components/cards/book-card";
 import { CourseCard } from "@/components/cards/course-card";
+import { ConversionStrip } from "@/components/commerce/conversion-strip";
 import { ServiceCard } from "@/components/cards/service-card";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { CtaButton } from "@/components/ui/cta-button";
@@ -50,8 +51,8 @@ export default function Home() {
               intelligence, language scholarship, and practical transformation.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <CtaButton href="/books">Explore Books</CtaButton>
-              <CtaButton href="/advisory/strategic-session" variant="secondary">
+              <CtaButton action="buy_book" href="/books">Explore Books</CtaButton>
+              <CtaButton action="book_advisory" href="/advisory/strategic-session" variant="secondary">
                 Book Strategic Session
               </CtaButton>
             </div>
@@ -123,7 +124,12 @@ export default function Home() {
               <p className="mt-4 text-sm leading-7 text-muted">{featuredTier.description}</p>
               <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-line pt-5">
                 <span className="text-sm font-semibold text-deep">{featuredTier.price}</span>
-                <Link className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep" href={`/membership/${featuredTier.slug}`}>
+                <Link
+                  className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep"
+                  data-conversion="apply_membership"
+                  data-conversion-label={featuredTier.title}
+                  href={`/membership/${featuredTier.slug}`}
+                >
                   Join circle
                 </Link>
               </div>
@@ -131,6 +137,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <ConversionStrip title="Move from profile viewing to a measurable commercial action." />
 
       <section className="px-5 py-16">
         <div className="mx-auto max-w-7xl">
@@ -170,13 +178,13 @@ export default function Home() {
             Begin with a book, a course, or a strategic session.
           </h2>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <CtaButton href="/books" variant="light">
+            <CtaButton action="buy_book" href="/books" variant="light">
               Buy a book
             </CtaButton>
-            <CtaButton href="/courses" variant="light">
+            <CtaButton action="enroll_course" href="/courses" variant="light">
               Enroll in a course
             </CtaButton>
-            <CtaButton href="/contact" variant="light">
+            <CtaButton action="send_inquiry" href="/contact" variant="light">
               Send inquiry
             </CtaButton>
           </div>

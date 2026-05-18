@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { ConversionStrip } from "@/components/commerce/conversion-strip";
 import { PaymentPanel } from "@/components/commerce/payment-panel";
 import { PageHero } from "@/components/ui/page-hero";
 import { membershipTiers } from "@/lib/content";
@@ -30,9 +31,10 @@ export default async function MembershipTierPage({ params }: { params: Promise<{
         eyebrow="Membership Circle"
         title={tier.title}
         copy={tier.description}
-        primaryCta={{ label: "Apply / Join", href: `/checkout?type=membership&slug=${tier.slug}` }}
-        secondaryCta={{ label: "Member login", href: "/dashboard" }}
+        primaryCta={{ label: "Apply / Join", href: `/checkout?type=membership&slug=${tier.slug}`, action: "apply_membership" }}
+        secondaryCta={{ label: "Member login", href: "/dashboard", action: "open_dashboard" }}
       />
+      <ConversionStrip title="Membership detail pages should create applications, renewals, or upgrades." />
 
       <section className="px-5 py-16">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_360px]">

@@ -9,7 +9,12 @@ export function ArticleCard({ article }: { article: Article }) {
       <p className="mt-4 text-sm leading-7 text-muted">{article.excerpt}</p>
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4 text-sm">
         <span className="text-muted">{article.readingTime}</span>
-        <Link className="font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep" href={`/library/${article.slug}`}>
+        <Link
+          className="font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep"
+          data-conversion="read_library_article"
+          data-conversion-label={article.title}
+          href={`/library/${article.slug}`}
+        >
           Read brief
         </Link>
       </div>

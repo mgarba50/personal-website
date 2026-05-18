@@ -1,4 +1,5 @@
 import { CourseCard } from "@/components/cards/course-card";
+import { ConversionStrip } from "@/components/commerce/conversion-strip";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -19,9 +20,10 @@ export default function CoursesPage() {
         eyebrow="The Madrasa"
         title="A premium learning academy for practical operators."
         copy="Courses and certifications for language intelligence, agriculture, technology, publishing, strategy, and business."
-        primaryCta={{ label: "Browse courses", href: "#courses" }}
-        secondaryCta={{ label: "Student dashboard", href: "/dashboard" }}
+        primaryCta={{ label: "Browse courses", href: "#courses", action: "view_course_catalog" }}
+        secondaryCta={{ label: "Student dashboard", href: "/dashboard", action: "open_dashboard" }}
       />
+      <ConversionStrip title="Course traffic should become enrollment or subscriber demand." />
 
       <section id="courses" className="px-5 py-16">
         <div className="mx-auto max-w-7xl">

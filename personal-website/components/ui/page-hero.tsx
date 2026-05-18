@@ -4,8 +4,8 @@ type PageHeroProps = {
   eyebrow: string;
   title: string;
   copy: string;
-  primaryCta?: { label: string; href: string };
-  secondaryCta?: { label: string; href: string };
+  primaryCta?: { label: string; href: string; action?: string };
+  secondaryCta?: { label: string; href: string; action?: string };
 };
 
 export function PageHero({ eyebrow, title, copy, primaryCta, secondaryCta }: PageHeroProps) {
@@ -17,9 +17,13 @@ export function PageHero({ eyebrow, title, copy, primaryCta, secondaryCta }: Pag
         <p className="mt-6 max-w-2xl text-lg leading-8 text-vellum/78">{copy}</p>
         {(primaryCta || secondaryCta) ? (
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            {primaryCta ? <CtaButton href={primaryCta.href}>{primaryCta.label}</CtaButton> : null}
+            {primaryCta ? (
+              <CtaButton action={primaryCta.action} href={primaryCta.href}>
+                {primaryCta.label}
+              </CtaButton>
+            ) : null}
             {secondaryCta ? (
-              <CtaButton href={secondaryCta.href} variant="secondary">
+              <CtaButton action={secondaryCta.action} href={secondaryCta.href} variant="secondary">
                 {secondaryCta.label}
               </CtaButton>
             ) : null}

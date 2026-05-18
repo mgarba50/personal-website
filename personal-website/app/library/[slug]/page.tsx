@@ -45,8 +45,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         eyebrow={article.category}
         title={article.title}
         copy={article.excerpt}
-        primaryCta={{ label: "Subscribe", href: "#dispatch" }}
-        secondaryCta={{ label: "Related products", href: "#related" }}
+        primaryCta={{ label: "Subscribe", href: "#dispatch", action: "subscribe_dispatch" }}
+        secondaryCta={{ label: "Related products", href: "#related", action: "view_related_products" }}
       />
 
       <section className="px-5 py-16">
@@ -66,10 +66,20 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 ))}
               </ul>
               <div className="mt-5 grid gap-3">
-                <Link className="rounded-md bg-deep px-4 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum" href="/books">
+                <Link
+                  className="rounded-md bg-deep px-4 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
+                  data-conversion="buy_book"
+                  data-conversion-label={`Books from ${article.title}`}
+                  href="/books"
+                >
                   Explore books
                 </Link>
-                <Link className="rounded-md border border-gold px-4 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep" href="/courses">
+                <Link
+                  className="rounded-md border border-gold px-4 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep"
+                  data-conversion="enroll_course"
+                  data-conversion-label={`Courses from ${article.title}`}
+                  href="/courses"
+                >
                   View courses
                 </Link>
               </div>

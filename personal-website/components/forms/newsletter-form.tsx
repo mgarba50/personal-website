@@ -30,6 +30,8 @@ export function NewsletterForm({ compact = false }: NewsletterFormProps) {
         className={`rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-vellum transition hover:bg-navy ${
           compact ? "md:col-span-2" : "md:col-span-2"
         }`}
+        data-conversion="subscribe_dispatch"
+        data-conversion-label="Institutional Dispatch"
         type="submit"
       >
         Receive the Dispatch

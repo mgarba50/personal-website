@@ -159,11 +159,24 @@ create table manual_payment_proofs (
   created_at timestamptz not null default now()
 );
 
+create table conversion_events (
+  id uuid primary key default gen_random_uuid(),
+  action text not null,
+  label text,
+  href text,
+  path text,
+  user_id uuid references users(id) on delete set null,
+  metadata jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now()
+);
+
 create index products_slug_idx on products(slug);
 create index courses_slug_idx on courses(slug);
 create index articles_slug_idx on articles(slug);
 create index orders_user_id_idx on orders(user_id);
 create index inquiries_status_idx on inquiries(status);
 create index memberships_user_id_idx on memberships(user_id);
+create index conversion_events_action_idx on conversion_events(action);
+create index conversion_events_path_idx on conversion_events(path);
 
 -- Enable RLS before production launch, then add policies for authenticated users, admins, and public read-only content.

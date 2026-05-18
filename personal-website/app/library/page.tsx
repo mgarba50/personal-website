@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArticleCard } from "@/components/cards/article-card";
+import { ConversionStrip } from "@/components/commerce/conversion-strip";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -32,9 +33,10 @@ export default function LibraryPage() {
         eyebrow="Living Library"
         title="Essays, field notes, language lessons, and research briefs."
         copy="The authority archive for agriculture, agrochemicals, hydroponics, languages, publishing, AI, automation, strategy, and reflective thought."
-        primaryCta={{ label: "Read briefs", href: "#articles" }}
-        secondaryCta={{ label: "Get free resource", href: "#resources" }}
+        primaryCta={{ label: "Read briefs", href: "#articles", action: "read_library" }}
+        secondaryCta={{ label: "Get free resource", href: "#resources", action: "subscribe_dispatch" }}
       />
+      <ConversionStrip title="SEO traffic should become subscribers, buyers, or advisory leads." />
 
       <section className="px-5 py-12">
         <div className="mx-auto max-w-7xl">
@@ -42,6 +44,8 @@ export default function LibraryPage() {
             {categories.map((category) => (
               <Link
                 className="rounded-md border border-line bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-charcoal hover:border-gold"
+                data-conversion="filter_library"
+                data-conversion-label={category}
                 href={`/library?category=${encodeURIComponent(category)}`}
                 key={category}
               >
@@ -76,6 +80,14 @@ export default function LibraryPage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald">{resource.category}</p>
                 <h3 className="display mt-3 text-2xl font-semibold text-deep">{resource.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-muted">{resource.description}</p>
+                <a
+                  className="mt-4 inline-flex text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep"
+                  data-conversion="subscribe_dispatch"
+                  data-conversion-label={resource.title}
+                  href="#resources"
+                >
+                  Request resource
+                </a>
               </article>
             ))}
           </div>

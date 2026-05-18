@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { ConversionStrip } from "@/components/commerce/conversion-strip";
 import { PaymentPanel } from "@/components/commerce/payment-panel";
 import { InquiryForm } from "@/components/forms/inquiry-form";
 import { PageHero } from "@/components/ui/page-hero";
@@ -44,9 +45,10 @@ export default async function AdvisoryDetailPage({ params }: { params: Promise<{
         eyebrow="Strategic Advisory"
         title={service.title}
         copy={service.description}
-        primaryCta={{ label: "Book session", href: `/checkout?type=advisory&slug=${service.slug}` }}
-        secondaryCta={{ label: "Send inquiry", href: "#inquiry" }}
+        primaryCta={{ label: "Book session", href: `/checkout?type=advisory&slug=${service.slug}`, action: "book_advisory" }}
+        secondaryCta={{ label: "Send inquiry", href: "#inquiry", action: "send_inquiry" }}
       />
+      <ConversionStrip title="Advisory detail pages should create paid bookings or qualified inquiries." />
 
       <section className="px-5 py-16">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_360px]">

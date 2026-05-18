@@ -34,6 +34,8 @@ export function InquiryForm() {
       <textarea className="field min-h-40 rounded-md md:col-span-2" name="message" placeholder="Message" required />
       <button
         className="rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-vellum transition hover:bg-navy md:col-span-2"
+        data-conversion="send_inquiry"
+        data-conversion-label="Diplomatic Desk inquiry"
         type="submit"
       >
         Send Inquiry

@@ -13,7 +13,12 @@ export function CourseCard({ course }: { course: Course }) {
       </div>
       <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-line pt-5">
         <span className="text-sm font-semibold text-deep">{course.price}</span>
-        <Link className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep" href={`/courses/${course.slug}`}>
+        <Link
+          className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep"
+          data-conversion="view_course"
+          data-conversion-label={course.title}
+          href={`/courses/${course.slug}`}
+        >
           View course
         </Link>
       </div>

@@ -27,8 +27,13 @@ export function BookCard({ book }: { book: Book }) {
       </div>
       <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4">
         <span className="text-sm font-semibold text-deep">{book.price}</span>
-        <Link className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep" href={`/books/${book.slug}`}>
-          View book
+        <Link
+          className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep"
+          data-conversion="view_book"
+          data-conversion-label={book.title}
+          href={`/books/${book.slug}`}
+        >
+          View sales page
         </Link>
       </div>
     </article>

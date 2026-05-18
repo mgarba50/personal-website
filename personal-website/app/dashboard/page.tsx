@@ -16,8 +16,8 @@ export default function DashboardPage() {
         eyebrow="Member Dashboard"
         title="Your private access center."
         copy="Purchased books, enrolled courses, membership status, downloads, certificates, advisory bookings, renewal, and upgrade paths."
-        primaryCta={{ label: "Renew / upgrade", href: "/membership" }}
-        secondaryCta={{ label: "Browse products", href: "/books" }}
+        primaryCta={{ label: "Renew / upgrade", href: "/membership", action: "apply_membership" }}
+        secondaryCta={{ label: "Browse products", href: "/books", action: "buy_book" }}
       />
 
       <section className="px-5 py-16">
@@ -41,10 +41,20 @@ export default function DashboardPage() {
             ))}
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link className="rounded-md bg-deep px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum" href="/courses">
+            <Link
+              className="rounded-md bg-deep px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
+              data-conversion="enroll_course"
+              data-conversion-label="Dashboard course CTA"
+              href="/courses"
+            >
               Enroll in course
             </Link>
-            <Link className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep" href="/advisory">
+            <Link
+              className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep"
+              data-conversion="book_advisory"
+              data-conversion-label="Dashboard advisory CTA"
+              href="/advisory"
+            >
               Book advisory
             </Link>
           </div>
