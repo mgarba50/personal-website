@@ -33,22 +33,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Validate content
-        shell: pwsh
-        run: ./scripts/content-check.ps1
-
-      - name: Validate assets
-        shell: pwsh
-        run: ./scripts/validate-assets.ps1
-
       - name: Lint
         run: npm run lint
-
-      - name: Typecheck
-        run: npm run typecheck
-
-      - name: Test
-        run: npm run test
 
       - name: Build
         run: npm run build

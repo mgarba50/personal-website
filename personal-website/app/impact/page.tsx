@@ -1,100 +1,68 @@
-import { initiatives } from "@/content/collections/initiatives";
-import { LeadForm } from "@/components/forms/lead-form";
-import { HeroBlock } from "@/components/ui/hero-block";
+import { InquiryForm } from "@/components/forms/inquiry-form";
+import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { Card, CardEyebrow, CardTitle } from "@/components/ui/card";
-import { buildMetadata } from "@/lib/metadata";
+import { pageMetadata } from "@/lib/seo";
 
-const supportTiers = [
-  "Recurring support",
-  "One-time contribution",
-  "Corporate sponsorship",
-  "Library or archive sponsorship",
-  "Strategic alliance inquiry"
-];
-
-export const metadata = buildMetadata({
-  title: "Institutional Impact | Musa Allama Ibn Garba",
-  path: "/impact"
+export const metadata = pageMetadata({
+  title: "Institutional Impact",
+  description:
+    "Education support, agriculture training, youth skills development, knowledge preservation, scholarships, endowment inquiries, and partnerships.",
+  path: "/impact",
 });
+
+const initiatives = [
+  "Education support",
+  "Agriculture training",
+  "Youth skills development",
+  "Knowledge preservation",
+  "Scholarships",
+  "Endowment inquiries",
+];
 
 export default function ImpactPage() {
   return (
-    <main className="mx-auto max-w-shell space-y-16 px-4 py-8 md:px-6 md:py-10">
-      <HeroBlock
+    <>
+      <PageHero
         eyebrow="Institutional Impact"
-        title="Human capital, publishing preservation, and livelihoods designed with dignity."
-        summary="This page frames impact work as legacy architecture and strategic stewardship rather than charity rhetoric. It is designed for benefactors, corporate partners, and long-horizon allies under the Gallifrey Human Capital Initiative."
-      >
-        <Card>
-          <CardEyebrow>Manifesto</CardEyebrow>
-          <CardTitle>No pity tone. No brochure sentimentality.</CardTitle>
-          <p className="mt-4 text-sm leading-7 text-muted">
-            The language and structure emphasize operational mandate, measurable support architecture, and proof-of-work readiness.
-          </p>
-        </Card>
-      </HeroBlock>
+        title="Legacy, education, agriculture, and knowledge preservation."
+        copy="A partnership center for initiatives that support learning, agricultural capability, youth skills, scholarships, and long-term institutional memory."
+        primaryCta={{ label: "Partner with us", href: "#partner" }}
+        secondaryCta={{ label: "Support initiative", href: "#partner" }}
+      />
 
-      <section className="space-y-8">
-        <SectionHeading
-          eyebrow="Three-pillar architecture"
-          title="Impact corridors aligned with scholarship, preservation, and productive capability"
-          description="Each initiative is designed to support reporting, sponsorship, and future impact dossier publication."
-        />
-        <div className="grid gap-6 lg:grid-cols-3">
-          {initiatives.map((initiative) => (
-            <Card key={initiative.title}>
-              <CardEyebrow>{initiative.impactType}</CardEyebrow>
-              <CardTitle>{initiative.title}</CardTitle>
-              <p className="mt-4 text-sm leading-7 text-muted">{initiative.summary}</p>
-              <ul className="mt-5 grid gap-3 text-sm leading-7 text-muted">
-                {initiative.assets.map((asset) => (
-                  <li key={asset}>- {asset}</li>
-                ))}
-              </ul>
-            </Card>
-          ))}
+      <section className="px-5 py-16">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            eyebrow="Impact areas"
+            title="Support an educational, agricultural, or publishing initiative"
+            copy="Partnership and endowment inquiries can be routed through the Diplomatic Desk for review."
+          />
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {initiatives.map((initiative) => (
+              <article className="rounded-lg border border-line bg-white/80 p-6" key={initiative}>
+                <h3 className="display text-3xl font-semibold text-deep">{initiative}</h3>
+                <p className="mt-4 text-sm leading-7 text-muted">
+                  Program details, partner documentation, outcomes, and funding notes can be managed through the content
+                  system.
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardEyebrow>Support modes</CardEyebrow>
-          <CardTitle>Flexible contribution architecture</CardTitle>
-          <ul className="mt-4 grid gap-3 text-sm leading-7 text-muted">
-            {supportTiers.map((tier) => (
-              <li key={tier}>- {tier}</li>
-            ))}
-          </ul>
-        </Card>
-        <Card>
-          <CardEyebrow>Transparency layer</CardEyebrow>
-          <CardTitle>Proof-of-work and reporting placeholders are built into the page model.</CardTitle>
-          <p className="mt-4 text-sm leading-7 text-muted">
-            The current build creates space for impact reports, partner acknowledgements, sponsorship dossiers, and future audit-facing updates once the real program data is added.
-          </p>
-        </Card>
+      <section id="partner" className="bg-white/55 px-5 py-16">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-burgundy">Partner with us</p>
+            <h2 className="display mt-3 text-4xl font-semibold text-deep md:text-5xl">Send an institutional partnership inquiry.</h2>
+            <p className="mt-5 text-sm leading-7 text-muted">
+              Include project scope, location, intended beneficiaries, budget range, and partnership expectations.
+            </p>
+          </div>
+          <InquiryForm />
+        </div>
       </section>
-
-      <LeadForm
-        title="Endowment and Institutional Support Form"
-        summary="Use this route for benefactor commitments, corporate sponsorship, CSR partnerships, or legacy architecture conversations."
-        endpoint="/api/support"
-        submitLabel="Submit support inquiry"
-        fields={[
-          { name: "fullName", label: "Full name", type: "text", required: true, placeholder: "Full name" },
-          { name: "organization", label: "Organization", type: "text", placeholder: "Organization or family office" },
-          { name: "email", label: "Email", type: "email", required: true, placeholder: "contact@example.com" },
-          {
-            name: "supportType",
-            label: "Support type",
-            type: "select",
-            required: true,
-            options: ["Recurring support", "One-time support", "Corporate sponsorship", "CSR partnership", "Strategic alliance"]
-          },
-          { name: "details", label: "Support brief", type: "textarea", required: true, placeholder: "State the intended support corridor and priorities." }
-        ]}
-      />
-    </main>
+    </>
   );
 }

@@ -1,19 +1,22 @@
-export function SectionHeading({
-  eyebrow,
-  title,
-  description,
-  align = "left"
-}: {
-  eyebrow: string;
+type SectionHeadingProps = {
+  eyebrow?: string;
   title: string;
-  description: string;
-  align?: "left" | "center";
-}) {
+  copy?: string;
+  light?: boolean;
+};
+
+export function SectionHeading({ eyebrow, title, copy, light = false }: SectionHeadingProps) {
   return (
-    <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
-      <p className="text-xs uppercase tracking-[0.32em] text-accent">{eyebrow}</p>
-      <h2 className="mt-4 font-serif text-3xl text-text md:text-4xl">{title}</h2>
-      <p className="mt-4 text-base leading-8 text-muted md:text-lg">{description}</p>
+    <div className="mx-auto max-w-3xl text-center">
+      {eyebrow ? (
+        <p className={`text-xs font-semibold uppercase tracking-[0.22em] ${light ? "text-gold" : "text-burgundy"}`}>
+          {eyebrow}
+        </p>
+      ) : null}
+      <h2 className={`display mt-3 text-4xl font-semibold leading-tight md:text-5xl ${light ? "text-vellum" : "text-deep"}`}>
+        {title}
+      </h2>
+      {copy ? <p className={`mt-5 text-base leading-8 ${light ? "text-vellum/75" : "text-muted"}`}>{copy}</p> : null}
     </div>
   );
 }

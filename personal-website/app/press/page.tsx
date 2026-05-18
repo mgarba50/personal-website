@@ -1,86 +1,82 @@
-import env from "@/lib/env";
-import { pressDownloads } from "@/content/site";
-import { profile } from "@/content/profile";
-import { LeadForm } from "@/components/forms/lead-form";
-import { HeroBlock } from "@/components/ui/hero-block";
-import { Card, CardEyebrow, CardTitle } from "@/components/ui/card";
+import { InquiryForm } from "@/components/forms/inquiry-form";
+import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { buildMetadata } from "@/lib/metadata";
+import { pageMetadata } from "@/lib/seo";
 
-const speakingTopics = profile.pressTopics;
-
-export const metadata = buildMetadata({
-  title: "Press and Media Vault | Musa Allama Ibn Garba",
-  path: "/press"
+export const metadata = pageMetadata({
+  title: "Press & Media Vault",
+  description:
+    "Official bio, photos, logos, media mentions, interviews, speaking topics, press kit, and media contact.",
+  path: "/press",
 });
+
+const speakingTopics = [
+  "Agriculture and technology in Africa",
+  "China-Africa trade communication",
+  "AI for entrepreneurs",
+  "Publishing as institutional legacy",
+  "Hydroponics and food systems",
+  "Multilingual education",
+];
 
 export default function PressPage() {
   return (
-    <main className="mx-auto max-w-shell space-y-16 px-4 py-8 md:px-6 md:py-10">
-      <HeroBlock
-        eyebrow="Press and Media Vault"
-        title="A media-ready corridor for journalists, summit teams, event organizers, and institutions."
-        summary="The press vault is intentionally clean and utilitarian. It holds approved assets, speaking guidance, and a dedicated inquiry route without unnecessary decorative clutter."
-      >
-        <Card>
-          <CardEyebrow>Official contact</CardEyebrow>
-          <CardTitle>{env.pressEmail}</CardTitle>
-          <p className="mt-4 text-sm leading-7 text-muted">
-            Use the inquiry form for interviews, summit participation, panel invitations, media verification, or official asset requests.
-          </p>
-        </Card>
-      </HeroBlock>
+    <>
+      <PageHero
+        eyebrow="Press & Media Vault"
+        title="Official materials for media, speaking, and institutional invitations."
+        copy="A professional credibility vault for official bio, photos, logos, media mentions, interviews, speaking topics, and downloadable press materials."
+        primaryCta={{ label: "Download press kit", href: "/downloads/press-kit-placeholder.zip" }}
+        secondaryCta={{ label: "Media inquiry", href: "#media-contact" }}
+      />
 
-      <section className="space-y-8">
-        <SectionHeading
-          eyebrow="Downloads"
-          title="Approved asset placeholders ready for replacement"
-          description="The current build includes branded placeholders for the official dossier, portrait, and mark pack so the media vault can be populated quickly later."
-        />
-        <div className="grid gap-6 md:grid-cols-3">
-          {pressDownloads.map((item) => (
-            <Card key={item.title}>
-              <CardEyebrow>Download card</CardEyebrow>
-              <CardTitle>{item.title}</CardTitle>
-              <p className="mt-4 text-sm leading-7 text-muted">{item.description}</p>
-              <a href={item.href} className="mt-6 inline-flex text-sm uppercase tracking-[0.18em] text-accent">
-                Download placeholder
-              </a>
-            </Card>
-          ))}
+      <section className="px-5 py-16">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading eyebrow="Official profile" title="Short bio and media assets" />
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            <article className="rounded-lg border border-line bg-white/80 p-6 lg:col-span-2">
+              <h2 className="display text-3xl font-semibold text-deep">Official bio</h2>
+              <p className="mt-4 text-sm leading-7 text-muted">
+                Musa Allama is a multilingual scholar-practitioner, agro-industrial operator, publisher, educator, and
+                strategic advisor working across knowledge systems, agriculture, languages, technology, and institutional
+                design.
+              </p>
+            </article>
+            <article className="rounded-lg border border-line bg-white/80 p-6">
+              <h2 className="display text-3xl font-semibold text-deep">Downloads</h2>
+              <ul className="mt-4 grid gap-3 text-sm leading-7 text-charcoal">
+                <li>Portrait photos placeholder</li>
+                <li>Brand logos placeholder</li>
+                <li>Press kit placeholder</li>
+                <li>Speaking one-sheet placeholder</li>
+              </ul>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardEyebrow>Speaking topics</CardEyebrow>
-          <CardTitle>Event-ready thematic areas</CardTitle>
-          <ul className="mt-4 grid gap-3 text-sm leading-7 text-muted">
+      <section className="bg-white/55 px-5 py-16">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading eyebrow="Speaking topics" title="Prepared themes for serious audiences" />
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {speakingTopics.map((topic) => (
-              <li key={topic}>- {topic}</li>
+              <article className="rounded-lg border border-line bg-white/80 p-6" key={topic}>
+                <h3 className="display text-2xl font-semibold text-deep">{topic}</h3>
+              </article>
             ))}
-          </ul>
-        </Card>
-        <LeadForm
-          title="Press and Speaking Inquiry"
-          summary="For interviews, keynote invitations, summit participation, and media requests."
-          endpoint="/api/press"
-          submitLabel="Submit press inquiry"
-          fields={[
-            { name: "fullName", label: "Full name", type: "text", required: true, placeholder: "Your name" },
-            { name: "organization", label: "Organization", type: "text", required: true, placeholder: "Publication or event organization" },
-            { name: "email", label: "Email", type: "email", required: true, placeholder: "name@organization.com" },
-            {
-              name: "requestType",
-              label: "Request type",
-              type: "select",
-              required: true,
-              options: ["Interview request", "Speaking invitation", "Press asset request", "Profile verification"]
-            },
-            { name: "details", label: "Request details", type: "textarea", required: true, placeholder: "Event context, dates, themes, and deadlines." }
-          ]}
-        />
+          </div>
+        </div>
       </section>
-    </main>
+
+      <section id="media-contact" className="px-5 py-16">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-burgundy">Media desk</p>
+            <h2 className="display mt-3 text-4xl font-semibold text-deep md:text-5xl">Request an interview or speaking engagement.</h2>
+          </div>
+          <InquiryForm />
+        </div>
+      </section>
+    </>
   );
 }

@@ -1,29 +1,20 @@
-import env from "@/lib/env";
+export type PaymentProvider = "stripe" | "paystack" | "flutterwave" | "manual";
 
-export const paymentChannels = [
-  {
-    name: "Stripe",
-    audience: "International cards and global digital product purchases",
-    configured: env.stripeConfigured
+export const paymentProviders = {
+  stripe: {
+    publicKey: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+    secretKey: process.env.STRIPE_SECRET_KEY,
   },
-  {
-    name: "Paystack",
-    audience: "Regional and Nigerian payment routing",
-    configured: env.paystackConfigured
+  paystack: {
+    publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
+    secretKey: process.env.PAYSTACK_SECRET_KEY,
   },
-  {
-    name: "Flutterwave",
-    audience: "Alternative regional rail",
-    configured: env.flutterwaveConfigured
+  flutterwave: {
+    publicKey: process.env.NEXT_PUBLIC_FLUTTERWAVE_PUBLIC_KEY,
+    secretKey: process.env.FLUTTERWAVE_SECRET_KEY,
   },
-  {
-    name: "Manual transfer",
-    audience: "Enterprise, procurement, and invoice-led flows",
-    configured: true
-  }
-];
+};
 
-export function getPaymentStatusSummary() {
-  const configuredCount = paymentChannels.filter((channel) => channel.configured).length;
-  return `${configuredCount}/${paymentChannels.length} channels configured`;
+export function isManualPayment(provider: string | null) {
+  return provider === "manual";
 }

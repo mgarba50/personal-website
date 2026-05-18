@@ -1,66 +1,57 @@
-# MusaAllama.com Institutional Platform
+# MusaAllama.com - Institutional Digital Headquarters
 
-This repository contains the seed implementation for `MusaAllama.com`, built as a Next.js + TypeScript + Tailwind institutional platform rather than a generic portfolio site.
+MusaAllama.com is structured as a premium institutional platform for books, courses, strategic advisory, agro-industrial intelligence, memberships, publishing, and legacy archive work.
 
-## Included in this build
+## Stack
 
-- Executive homepage and institutional public pages
-- Books, library, poetry, courses, media archive, impact, press, shop, and contact architecture
-- Structured intake forms and API handlers
-- Payment readiness scaffolding for Stripe, Paystack, Flutterwave, and manual transfer
-- SEO foundations including metadata, sitemap, robots, and designed error states
-- PowerShell automation package in [`scripts/`](./scripts)
-- Documentation for setup, deployment, content updates, and owner handoff
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Supabase PostgreSQL schema
+- Payment-ready checkout routes for Stripe, Paystack, Flutterwave, and manual bank transfer
+- API stubs for newsletter, inquiries, and manual payment proof
 
-## Prerequisites
+## Local development
 
-- Node.js 20+
-- npm 10+
-- PowerShell 7+ recommended
-
-Note: Node and npm were not available in PATH in the current build environment, so dependency installation and runtime verification were not executed here.
-
-## Quick start
-
-```powershell
-cd .\personal-website
-.\scripts\setup-project.ps1
-.\scripts\run-dev.ps1
-```
-
-## GitHub and Vercel wiring
-
-This project currently lives inside a larger root folder that already contains unrelated files. The deployment wiring is set up so you can keep the source in `personal-website` while using the existing root Git repository.
-
-- Root-level [`.github/workflows/personal-website-ci.yml`](../.github/workflows/personal-website-ci.yml) runs validation and build checks only for the website
-- Vercel should use `personal-website` as the project root directory
-
-## Common commands
-
-```powershell
+```bash
 npm install
 npm run dev
-npm run lint
-npm run typecheck
-npm run test
-npm run build
 ```
 
-## Important folders
+Open `http://localhost:3000`.
 
-- `app/` - Next.js routes, layouts, metadata, APIs
-- `components/` - reusable design system and forms
-- `content/` - typed content collections and site copy
-- `emails/` - restrained HTML email templates
-- `lib/` - metadata, validation, search, payments, server helpers
-- `public/assets/` - placeholder visuals ready for replacement
-- `scripts/` - PowerShell automation package
-- `docs/` - deployment, content, and owner guidance
-- `tests/` - smoke and validation tests
+## Important files
 
-## Deployment support
+- `lib/content.ts` - launch content for books, courses, articles, advisory services, memberships, and lead magnets
+- `supabase/schema.sql` - database schema
+- `.env.example` - environment variable guide
+- `docs/payment-integration-guide.md` - payment flow guide
+- `docs/content-update-guide.md` - content update guide
+- `docs/deployment-guide.md` - Vercel and Supabase guide
+- `docs/backup-export-instructions.md` - backup/export guide
+- `docs/post-launch-checklist.md` - launch checklist
 
-- Primary framework configuration is Next.js App Router
-- Vercel-ready by default
+## V1 included
 
-See [`docs/deployment.md`](./docs/deployment.md) for the deployment playbook.
+- Home page
+- Executive dossier
+- Books section with product pages
+- Checkout route and payment provider paths
+- Courses listing and course pages
+- Strategic advisory section and service pages
+- Contact form
+- Newsletter signup
+- Basic admin dashboard
+- Member dashboard
+- Legal pages
+- SEO metadata and JSON-LD on key pages
+
+## V2 direction
+
+- Full Supabase Auth integration
+- Live Stripe, Paystack, and Flutterwave checkout
+- Course LMS progress tracking
+- Membership subscription billing
+- Certificate generation
+- Advanced admin analytics
+- Private client vault

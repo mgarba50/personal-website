@@ -1,10 +1,9 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { articles } from "@/content/collections/articles";
-import { findArticleBySlug } from "@/lib/content";
-import { buildMetadata } from "@/lib/metadata";
-import { HeroBlock } from "@/components/ui/hero-block";
-import { DataTable } from "@/components/ui/data-table";
-import { Card } from "@/components/ui/card";
+import { NewsletterForm } from "@/components/forms/newsletter-form";
+import { PageHero } from "@/components/ui/page-hero";
+import { articles } from "@/lib/content";
+import { jsonLd, pageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
@@ -12,49 +11,79 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const article = findArticleBySlug(slug);
-  if (!article) {
-    return buildMetadata({ title: "Article not found", path: "/library" });
-  }
-
-  return buildMetadata({
-    title: `${article.title} | Living Library`,
-    description: article.summary,
-    path: `/library/${article.slug}`
+  const article = articles.find((item) => item.slug === slug);
+  if (!article) return {};
+  return pageMetadata({
+    title: article.seoTitle,
+    description: article.metaDescription,
+    path: `/library/${article.slug}`,
   });
 }
 
-export default async function ArticleDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const article = findArticleBySlug(slug);
-  if (!article) {
-    notFound();
-  }
+  const article = articles.find((item) => item.slug === slug);
+  if (!article) notFound();
 
   return (
-    <main className="mx-auto max-w-shell space-y-12 px-4 py-8 md:px-6 md:py-10">
-      <HeroBlock eyebrow={article.category} title={article.title} summary={article.summary}>
-        <Card>
-          <img src={article.cover} alt={`${article.title} cover`} className="h-72 w-full rounded-[22px] border border-line object-cover" />
-        </Card>
-      </HeroBlock>
-
-      <DataTable
-        rows={[
-          { label: "Date", value: article.date },
-          { label: "Reading time", value: article.readingTime },
-          { label: "Tags", value: article.tags },
-          { label: "PDF dossier", value: article.downloadablePdf ? "Available on request" : "Not currently attached" }
-        ]}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: article.title,
+          description: article.metaDescription,
+          datePublished: article.publishedAt,
+          author: {
+            "@type": "Person",
+            name: "Musa Allama",
+          },
+        })}
+      />
+      <PageHero
+        eyebrow={article.category}
+        title={article.title}
+        copy={article.excerpt}
+        primaryCta={{ label: "Subscribe", href: "#dispatch" }}
+        secondaryCta={{ label: "Related products", href: "#related" }}
       />
 
-      <Card>
-        <div className="prose-executive max-w-none">
-          {article.body.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
+      <section className="px-5 py-16">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_320px]">
+          <article className="content rounded-lg border border-line bg-white/80 p-7 text-muted">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-burgundy">{article.readingTime}</p>
+            {article.content.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </article>
+          <aside className="space-y-5">
+            <section id="related" className="rounded-lg border border-line bg-white/80 p-6">
+              <h2 className="display text-3xl font-semibold text-deep">Related products</h2>
+              <ul className="mt-4 grid gap-3 text-sm leading-7 text-charcoal">
+                {article.relatedProducts.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className="mt-5 grid gap-3">
+                <Link className="rounded-md bg-deep px-4 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum" href="/books">
+                  Explore books
+                </Link>
+                <Link className="rounded-md border border-gold px-4 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep" href="/courses">
+                  View courses
+                </Link>
+              </div>
+            </section>
+            <section id="dispatch" className="rounded-lg border border-line bg-white/80 p-6">
+              <h2 className="display text-3xl font-semibold text-deep">Institutional Dispatch</h2>
+              <p className="mt-3 text-sm leading-7 text-muted">Receive practical notes and free resources by interest.</p>
+              <div className="mt-5">
+                <NewsletterForm compact />
+              </div>
+            </section>
+          </aside>
         </div>
-      </Card>
-    </main>
+      </section>
+    </>
   );
 }

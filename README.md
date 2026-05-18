@@ -17,8 +17,9 @@ That folder contains:
 
 - the Next.js source code
 - content architecture
-- automation scripts
 - deployment documentation
+- Supabase schema
+- payment and launch documentation
 
 ## Deployment
 
@@ -26,8 +27,9 @@ This repository is configured so Vercel deploys from the `personal-website` dire
 
 See:
 
-- [`personal-website/docs/github-vercel.md`](./personal-website/docs/github-vercel.md)
-- [`personal-website/docs/deployment.md`](./personal-website/docs/deployment.md)
+- [`personal-website/docs/deployment-guide.md`](./personal-website/docs/deployment-guide.md)
+- [`personal-website/docs/payment-integration-guide.md`](./personal-website/docs/payment-integration-guide.md)
+- [`personal-website/docs/post-launch-checklist.md`](./personal-website/docs/post-launch-checklist.md)
 
 ## Local development
 
@@ -35,6 +37,6 @@ Once Node.js is installed locally:
 
 ```powershell
 cd .\personal-website
-.\scripts\setup-project.ps1
-.\scripts\run-dev.ps1
+npm install
+npm run dev
 ```

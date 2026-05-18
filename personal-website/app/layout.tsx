@@ -1,42 +1,77 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope, Noto_Naskh_Arabic } from "next/font/google";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { buildMetadata } from "@/lib/metadata";
+import { Amiri, Cormorant_Garamond, Inter } from "next/font/google";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
 import "./globals.css";
 
-const sans = Manrope({
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  variable: "--font-sans"
+  display: "swap",
 });
 
-const serif = Cormorant_Garamond({
+const cormorant = Cormorant_Garamond({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-serif"
+  weight: ["500", "600", "700"],
+  display: "swap",
 });
 
-const arabic = Noto_Naskh_Arabic({
-  subsets: ["arabic"],
-  variable: "--font-arabic"
+const amiri = Amiri({
+  variable: "--font-arabic",
+  subsets: ["arabic", "latin"],
+  weight: ["400", "700"],
+  display: "swap",
 });
 
-export const metadata: Metadata = buildMetadata({
-  title: "Musa Allama Ibn Garba | Strategic Intelligence & Policy Advisory",
-  path: "/"
-});
+export const metadata: Metadata = {
+  metadataBase: new URL("https://musaallama.com"),
+  title: {
+    default: "Musa Allama | Institutional Digital Headquarters",
+    template: "%s | Musa Allama",
+  },
+  description:
+    "Books, courses, strategic advisory, agro-industrial intelligence, and multilingual scholarship from Musa Allama.",
+  openGraph: {
+    title: "Musa Allama | Institutional Digital Headquarters",
+    description:
+      "A private institution of knowledge, strategy, publishing, agriculture, and practical transformation.",
+    url: "https://musaallama.com",
+    siteName: "MusaAllama.com",
+    images: [
+      {
+        url: "/images/institutional-hero.png",
+        width: 1600,
+        height: 1000,
+        alt: "Institutional study visual for MusaAllama.com",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Musa Allama",
+    description:
+      "Books, courses, advisory, agro-industrial intelligence, and multilingual scholarship.",
+    images: ["/images/institutional-hero.png"],
+  },
+};
 
 export default function RootLayout({
-  children
+  children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable} ${arabic.variable}`}>
-      <body className="font-sans antialiased">
-        <Header />
-        <div className="relative z-10">{children}</div>
-        <Footer />
+    <html
+      lang="en"
+      className={`${inter.variable} ${cormorant.variable} ${amiri.variable} h-full scroll-smooth antialiased`}
+    >
+      <body className="min-h-full bg-vellum text-charcoal">
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
       </body>
     </html>
   );
