@@ -1,3 +1,5 @@
+import { customerMessageTemplates } from "./revenue";
+
 export const emailConfig = {
   provider: process.env.EMAIL_PROVIDER ?? "resend",
   from: process.env.EMAIL_FROM ?? "MusaAllama.com <hello@musaallama.com>",
@@ -14,3 +16,5 @@ export const transactionalEmailTypes = [
   "membership-renewal-reminder",
   "contact-form-notification",
 ];
+
+export const manualPaymentEmailTemplates = customerMessageTemplates;

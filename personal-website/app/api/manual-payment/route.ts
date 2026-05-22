@@ -2,15 +2,35 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
+  const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "");
+  const phone = String(formData.get("phone") ?? "").trim();
   const reference = String(formData.get("reference") ?? "");
+  const product = String(formData.get("product") ?? "").trim();
+  const amountPaid = String(formData.get("amountPaid") ?? "").trim();
+  const orderNumber = String(formData.get("orderNumber") ?? "").trim();
+  const receipt = formData.get("receipt");
 
-  if (!email.includes("@") || !reference) {
-    return NextResponse.json({ ok: false, message: "Email and transfer reference are required." }, { status: 400 });
+  if (!name || !email.includes("@") || !phone || !reference || !product || !amountPaid || !orderNumber) {
+    return NextResponse.json(
+      { ok: false, message: "Name, email, WhatsApp, product, amount, order number, and reference are required." },
+      { status: 400 },
+    );
+  }
+
+  if (!(receipt instanceof File) || receipt.size === 0) {
+    return NextResponse.json({ ok: false, message: "Receipt screenshot or PDF is required." }, { status: 400 });
+  }
+
+  if (receipt.size > 5 * 1024 * 1024) {
+    return NextResponse.json({ ok: false, message: "Receipt file must be 5MB or smaller." }, { status: 400 });
   }
 
   return NextResponse.json({
     ok: true,
-    message: "Manual payment proof received. Admin verification can unlock the product, course, or membership.",
+    message:
+      "Payment submitted. Your order is now under review. Once confirmed, book access will be delivered by email or dashboard link.",
+    orderNumber,
+    status: "Payment Submitted",
   });
 }

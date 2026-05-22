@@ -1,20 +1,44 @@
 import Link from "next/link";
+import { ManualPaymentForm } from "@/components/commerce/manual-payment-form";
 import { PageHero } from "@/components/ui/page-hero";
 import { advisoryServices, books, courses, membershipTiers } from "@/lib/content";
+import { bankDetails, bundleOffers } from "@/lib/revenue";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Checkout",
-  description: "Payment-ready checkout route for books, courses, advisory, memberships, and manual bank transfer.",
+  title: "Manual Checkout",
+  description: "Manual bank-transfer checkout for MusaAllama.com books and Phase 1 revenue products.",
   path: "/checkout",
 });
 
-function findTitle(type?: string, slug?: string) {
-  if (type === "book") return books.find((item) => item.slug === slug)?.title;
-  if (type === "course") return courses.find((item) => item.slug === slug)?.title;
-  if (type === "advisory") return advisoryServices.find((item) => item.slug === slug)?.shortTitle;
-  if (type === "membership") return membershipTiers.find((item) => item.slug === slug)?.title;
-  return "Selected product";
+function findProduct(type?: string, slug?: string) {
+  if (type === "book") {
+    const book = books.find((item) => item.slug === slug);
+    if (book) return { title: book.title, amount: book.launchPrice ?? book.price };
+  }
+  if (type === "bundle") {
+    const bundle = bundleOffers.find((item) => item.slug === slug);
+    if (bundle) return { title: bundle.title, amount: bundle.price };
+  }
+  if (type === "course") {
+    const course = courses.find((item) => item.slug === slug);
+    if (course) return { title: course.title, amount: course.price };
+  }
+  if (type === "advisory") {
+    const service = advisoryServices.find((item) => item.slug === slug);
+    if (service) return { title: service.shortTitle, amount: service.price };
+  }
+  if (type === "membership") {
+    const tier = membershipTiers.find((item) => item.slug === slug);
+    if (tier) return { title: tier.title, amount: tier.price };
+  }
+  return { title: "Selected product", amount: "Confirm amount before transfer" };
+}
+
+function createOrderNumber(type?: string, slug?: string) {
+  const productCode = (slug ?? "order").slice(0, 3).toUpperCase();
+  const typeCode = (type ?? "manual").slice(0, 2).toUpperCase();
+  return `MA-${typeCode}-${productCode}-${Date.now().toString(36).toUpperCase()}`;
 }
 
 export default async function CheckoutPage({
@@ -23,77 +47,62 @@ export default async function CheckoutPage({
   searchParams: Promise<{ type?: string; slug?: string; provider?: string }>;
 }) {
   const params = await searchParams;
-  const title = findTitle(params.type, params.slug) ?? "Selected product";
-  const provider = params.provider ?? "stripe";
+  const product = findProduct(params.type, params.slug);
+  const orderNumber = createOrderNumber(params.type, params.slug);
 
   return (
     <>
       <PageHero
-        eyebrow="Checkout"
-        title={title}
-        copy="This V1 payment route is ready for Stripe, Paystack, Flutterwave, and manual bank transfer integration."
-        primaryCta={{ label: "Return to products", href: "/books", action: "view_book_catalog" }}
+        eyebrow="Manual Checkout"
+        title="Complete Your Book Order"
+        copy="Manual bank transfer is the active V1 payment method. Automated checkout will come later."
+        primaryCta={{ label: "Return to books", href: "/books", action: "view_book_catalog" }}
         secondaryCta={{ label: "Need help", href: "/contact", action: "send_inquiry" }}
       />
 
       <section className="px-5 py-16">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_0.8fr]">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <article className="rounded-lg border border-line bg-white/80 p-7">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Payment provider</p>
-            <h2 className="display mt-3 text-4xl font-semibold text-deep">{provider}</h2>
-            <p className="mt-4 text-sm leading-7 text-muted">
-              In production, this route should create an order, initialize the selected provider checkout, receive webhook
-              confirmation, unlock the product, send confirmation email, and place secure expiring download links in the
-              user dashboard.
-            </p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <Link
-                className="rounded-md bg-deep px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
-                data-conversion="select_payment_stripe"
-                data-conversion-label={title}
-                href={`/checkout?type=${params.type ?? "book"}&slug=${params.slug ?? ""}&provider=stripe`}
-              >
-                Stripe
-              </Link>
-              <Link
-                className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep"
-                data-conversion="select_payment_paystack"
-                data-conversion-label={title}
-                href={`/checkout?type=${params.type ?? "book"}&slug=${params.slug ?? ""}&provider=paystack`}
-              >
-                Paystack
-              </Link>
-              <Link
-                className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep"
-                data-conversion="select_payment_flutterwave"
-                data-conversion-label={title}
-                href={`/checkout?type=${params.type ?? "book"}&slug=${params.slug ?? ""}&provider=flutterwave`}
-              >
-                Flutterwave
-              </Link>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Step 1</p>
+            <h2 className="display mt-3 text-4xl font-semibold text-deep">Transfer the correct amount.</h2>
+            <div className="mt-6 rounded-md border border-line bg-vellum/70 p-5 text-sm leading-7 text-charcoal">
+              <p><strong>Product:</strong> {product.title}</p>
+              <p><strong>Amount:</strong> {product.amount}</p>
+              <p><strong>Order Number:</strong> {orderNumber}</p>
             </div>
+            <div className="mt-5 rounded-md border border-line bg-white p-5 text-sm leading-7 text-charcoal">
+              <p><strong>Account Name:</strong> {bankDetails.accountName}</p>
+              <p><strong>Account Number:</strong> {bankDetails.accountNumber}</p>
+              <p><strong>Bank:</strong> {bankDetails.bank}</p>
+              <p className="mt-2 text-muted">{bankDetails.notice}</p>
+            </div>
+            <div className="mt-6 grid gap-4 text-sm leading-7 text-muted">
+              <div>
+                <p className="font-semibold text-deep">Step 2</p>
+                <p>Upload your payment receipt or screenshot with your name, email, and WhatsApp number.</p>
+              </div>
+              <div>
+                <p className="font-semibold text-deep">Step 3</p>
+                <p>Your order will be reviewed and approved. Once confirmed, book access will be delivered by email or made available in your dashboard.</p>
+              </div>
+            </div>
+            <Link
+              className="mt-6 inline-flex text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep"
+              data-conversion="send_inquiry"
+              data-conversion-label={`Checkout help for ${product.title}`}
+              href="/contact"
+            >
+              Contact support
+            </Link>
           </article>
 
-          <form action="/api/manual-payment" method="post" className="rounded-lg border border-line bg-white/80 p-7">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Manual bank transfer</p>
-            <h2 className="display mt-3 text-3xl font-semibold text-deep">Submit payment proof</h2>
-            <input type="hidden" name="type" value={params.type ?? ""} />
-            <input type="hidden" name="slug" value={params.slug ?? ""} />
-            <div className="mt-5 grid gap-3">
-              <input className="field rounded-md" name="name" placeholder="Name" required />
-              <input className="field rounded-md" name="email" placeholder="Email" type="email" required />
-              <input className="field rounded-md" name="reference" placeholder="Transfer reference" required />
-              <textarea className="field min-h-32 rounded-md" name="notes" placeholder="Payment notes or proof link" />
-              <button
-                className="rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
-                data-conversion="submit_manual_payment"
-                data-conversion-label={title}
-                type="submit"
-              >
-                Submit for verification
-              </button>
-            </div>
-          </form>
+          <ManualPaymentForm
+            title={product.title}
+            productType={params.type ?? "book"}
+            slug={params.slug ?? ""}
+            amount={product.amount}
+            orderNumber={orderNumber}
+          />
         </div>
       </section>
     </>

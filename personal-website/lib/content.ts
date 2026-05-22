@@ -1,3 +1,5 @@
+import { flagshipProducts, phaseOneLeadMagnets } from "./revenue";
+
 export const navItems = [
   { label: "Executive Desk", href: "/" },
   { label: "Executive Dossier", href: "/about" },
@@ -49,37 +51,62 @@ export type Book = {
   formats: string[];
   coverTone: string;
   related: string[];
+  coverImage?: string;
+  previewHref?: string;
+  promise?: string;
+  launchPrice?: string;
+  standardPrice?: string;
+  bundleLabel?: string;
+  bundlePrice?: string;
+  printPrice?: string;
+  licensePrice?: string;
+  primaryCta?: string;
+  secondaryCta?: string;
+  bonuses?: string[];
+  faq?: { question: string; answer: string }[];
+  waitlistSlug?: string;
+  waitlistTitle?: string;
+  seoTitle?: string;
+  metaDescription?: string;
+  isFlagship?: boolean;
+  salesOrder?: number;
 };
 
 export const books: Book[] = [
-  {
-    title: "The Modern Farmer",
-    slug: "the-modern-farmer",
-    subtitle: "Practical agriculture for disciplined operators.",
-    category: "Agriculture",
-    description:
-      "A field-oriented manual for growers, input sellers, trainers, and entrepreneurs who want practical agricultural systems that can scale.",
-    audience:
-      "Farmers, agro-dealers, trainers, students, and operators building commercially serious agriculture.",
-    learn: [
-      "How to assess farm opportunities with commercial discipline.",
-      "How to structure inputs, training, and seasonal campaigns.",
-      "How to connect practical field knowledge with profitable operations.",
-    ],
-    contents: [
-      "Agriculture as an operating system",
-      "Inputs, timing, and field behavior",
-      "Farmer education and trust",
-      "Hydroponics and controlled systems",
-      "Commercial planning for local markets",
-    ],
-    authorNote:
-      "Written for people who want agriculture to become a serious operating discipline, not a seasonal improvisation.",
-    price: "Price placeholder",
-    formats: ["PDF", "EPUB", "Print"],
-    coverTone: "emerald",
-    related: ["agro-logistics-across-the-great-divide", "chinese-for-agrochemical-professionals"],
-  },
+  ...flagshipProducts.map((product) => ({
+    title: product.title,
+    slug: product.slug,
+    subtitle: product.subtitle,
+    category: product.category,
+    description: product.shortLine,
+    audience: product.audience.join(", "),
+    learn: product.learn,
+    contents: product.contents,
+    authorNote: product.authorNote,
+    price: product.launchPrice,
+    formats: ["PDF", "Preview sample", "Print request"],
+    coverTone: product.coverTone,
+    related: product.relatedBookSlugs,
+    coverImage: product.coverImage,
+    previewHref: product.previewHref,
+    promise: product.shortLine,
+    launchPrice: product.launchPrice,
+    standardPrice: product.standardPrice,
+    bundleLabel: product.bundleLabel,
+    bundlePrice: product.bundlePrice,
+    printPrice: product.printPrice,
+    licensePrice: product.licensePrice,
+    primaryCta: product.primaryCta,
+    secondaryCta: product.secondaryCta,
+    bonuses: product.bonuses,
+    faq: product.faq,
+    waitlistSlug: product.waitlistSlug,
+    waitlistTitle: product.waitlistTitle,
+    seoTitle: product.seoTitle,
+    metaDescription: product.metaDescription,
+    isFlagship: true,
+    salesOrder: product.salesOrder,
+  })),
   {
     title: "Agro Logistics Across the Great Divide",
     slug: "agro-logistics-across-the-great-divide",
@@ -103,38 +130,10 @@ export const books: Book[] = [
     ],
     authorNote:
       "Built from the intersection of agricultural trade, language work, and field-level commercial reality.",
-    price: "Price placeholder",
+    price: "Coming soon",
     formats: ["PDF", "EPUB", "Print"],
     coverTone: "navy",
     related: ["the-modern-farmer", "chinese-for-agrochemical-professionals"],
-  },
-  {
-    title: "Chinese for Agrochemical Professionals",
-    slug: "chinese-for-agrochemical-professionals",
-    subtitle: "Supplier communication, product vocabulary, and negotiation language.",
-    category: "Languages",
-    description:
-      "A focused language manual for agrochemical importers and procurement teams dealing with Chinese suppliers and shipping conversations.",
-    audience:
-      "Importers, agrochemical traders, procurement assistants, and business owners communicating with Chinese suppliers.",
-    learn: [
-      "Basic Chinese phrases for supplier messages.",
-      "Product, packaging, inspection, and shipping vocabulary.",
-      "How to write clearer WeChat and email requests.",
-    ],
-    contents: [
-      "Business Chinese foundations",
-      "Agrochemical vocabulary",
-      "Supplier verification phrases",
-      "Negotiation and payment language",
-      "Inspection and shipment messages",
-    ],
-    authorNote:
-      "This is a commercial language tool, designed for serious communication rather than decorative fluency.",
-    price: "Price placeholder",
-    formats: ["PDF", "EPUB"],
-    coverTone: "gold",
-    related: ["agro-logistics-across-the-great-divide", "the-five-language-ceo"],
   },
   {
     title: "The Desert CEO",
@@ -731,36 +730,7 @@ export const membershipTiers = [
 ];
 
 export const leadMagnets = [
-  {
-    title: "10 Chinese Phrases Every Importer Should Know",
-    slug: "10-chinese-phrases-every-importer-should-know",
-    category: "Languages",
-    description: "A concise supplier communication starter for serious importers.",
-  },
-  {
-    title: "Hydroponics Starter Checklist",
-    slug: "hydroponics-starter-checklist",
-    category: "Agriculture",
-    description: "A practical checklist before buying tanks, pipes, nutrients, or seedlings.",
-  },
-  {
-    title: "Agrochemical Sales Field Guide",
-    slug: "agrochemical-sales-field-guide",
-    category: "Agriculture",
-    description: "A field sales guide for trust, timing, and responsible product explanation.",
-  },
-  {
-    title: "How to Turn Knowledge into a Digital Product",
-    slug: "turn-knowledge-into-a-digital-product",
-    category: "Publishing",
-    description: "A blueprint for packaging expertise into sellable knowledge products.",
-  },
-  {
-    title: "Personal Knowledge Institution Blueprint",
-    slug: "personal-knowledge-institution-blueprint",
-    category: "Strategy",
-    description: "A structural map for building books, courses, advisory, and archives around expertise.",
-  },
+  ...phaseOneLeadMagnets,
 ];
 
 export const serviceProducts = [

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { bankDetails } from "@/lib/revenue";
 
 type PaymentPanelProps = {
   title: string;
@@ -8,39 +9,46 @@ type PaymentPanelProps = {
 };
 
 export function PaymentPanel({ title, productType, slug, price }: PaymentPanelProps) {
+  const checkoutHref = `/checkout?type=${productType}&slug=${slug}&provider=manual`;
+
   return (
     <aside className="rounded-lg border border-line bg-white p-6 shadow-sm">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Secure purchase flow</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Manual bank transfer</p>
       <h2 className="display mt-3 text-3xl font-semibold text-deep">{title}</h2>
       <p className="mt-3 text-sm leading-7 text-muted">
-        Stripe, Paystack, Flutterwave, and manual bank transfer are represented in this V1 flow. Live keys can be added
-        through environment variables.
+        Complete your order by bank transfer, upload your receipt, and wait for manual approval. Book access is delivered
+        after payment confirmation.
       </p>
       <p className="mt-5 text-lg font-semibold text-deep">{price}</p>
+      <div className="mt-5 rounded-md border border-line bg-vellum/70 p-4 text-sm leading-7 text-charcoal">
+        <p><strong>Account Name:</strong> {bankDetails.accountName}</p>
+        <p><strong>Account Number:</strong> {bankDetails.accountNumber}</p>
+        <p><strong>Bank:</strong> {bankDetails.bank}</p>
+      </div>
       <div className="mt-6 grid gap-3">
         <Link
           className="rounded-md bg-deep px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum transition hover:bg-navy"
-          data-conversion={`checkout_${productType}_stripe`}
+          data-conversion="manual_checkout_started"
           data-conversion-label={title}
-          href={`/checkout?type=${productType}&slug=${slug}&provider=stripe`}
+          href={checkoutHref}
         >
-          Pay with Stripe
+          Buy PDF
         </Link>
         <Link
           className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep transition hover:bg-gold"
-          data-conversion={`checkout_${productType}_paystack_flutterwave`}
+          data-conversion="preview_click"
           data-conversion-label={title}
-          href={`/checkout?type=${productType}&slug=${slug}&provider=paystack`}
+          href={`/books/${slug}#preview`}
         >
-          Paystack / Flutterwave
+          Preview sample
         </Link>
         <Link
           className="rounded-md border border-deep/15 px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep transition hover:bg-vellum"
-          data-conversion={`checkout_${productType}_manual`}
+          data-conversion="print_copy_request"
           data-conversion-label={title}
-          href={`/checkout?type=${productType}&slug=${slug}&provider=manual`}
+          href={`/contact?inquiry=print-copy&product=${slug}`}
         >
-          Manual bank transfer
+          Request print copy
         </Link>
       </div>
     </aside>

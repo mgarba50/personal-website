@@ -29,6 +29,14 @@ export default function DashboardPage() {
               required member, student, and client access areas.
             </p>
           </div>
+          <div className="mt-8 rounded-lg border border-line bg-deep p-7 text-vellum">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">Secure delivery preparation</p>
+            <h2 className="display mt-3 text-3xl font-semibold">Paid PDFs unlock only after approval.</h2>
+            <p className="mt-4 text-sm leading-7 text-vellum/72">
+              V1 can send the book by email or place a secure download link here after admin verification. Paid PDF files
+              are not linked from the public site.
+            </p>
+          </div>
           <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {dashboardItems.map((item) => (
               <article className="rounded-lg border border-line bg-white/80 p-6" key={item}>

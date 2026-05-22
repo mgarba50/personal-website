@@ -20,6 +20,10 @@
 # production
 /build
 
+# private paid product files are not committed to this public repository
+/private/products/
+/private/lead-magnets/
+
 # misc
 .DS_Store
 *.pem

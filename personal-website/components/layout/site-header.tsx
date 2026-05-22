@@ -19,10 +19,10 @@ export function SiteHeader() {
         </Link>
       </div>
       <nav className="border-t border-gold/15">
-        <div className="no-scrollbar mx-auto flex max-w-7xl gap-1 overflow-x-auto px-5 py-2">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-1 px-5 py-2 sm:grid-cols-3 lg:flex lg:flex-wrap lg:justify-center">
           {navItems.map((item) => (
             <Link
-              className="min-w-fit rounded-md px-3 py-2 text-xs font-medium uppercase tracking-[0.12em] text-vellum/72 transition hover:bg-vellum/8 hover:text-gold"
+              className="block w-full rounded-md px-2 py-2 text-center text-[0.58rem] font-medium uppercase leading-5 tracking-normal text-vellum/72 transition hover:bg-vellum/8 hover:text-gold sm:text-xs sm:tracking-[0.1em] lg:w-auto"
               href={item.href}
               key={item.href}
             >

@@ -69,7 +69,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${cormorant.variable} ${amiri.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full bg-vellum text-charcoal">
+      <body className="min-h-full overflow-x-hidden bg-vellum text-charcoal">
         <ConversionTracker />
         <SiteHeader />
         <main>{children}</main>

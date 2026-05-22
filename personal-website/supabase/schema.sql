@@ -1,6 +1,6 @@
 create type user_role as enum ('admin', 'member', 'student', 'client');
 create type product_type as enum ('book', 'bundle', 'digital');
-create type order_status as enum ('pending', 'paid', 'failed', 'refunded', 'manual_review');
+create type order_status as enum ('pending_payment', 'payment_submitted', 'payment_under_review', 'payment_approved', 'download_sent', 'cancelled');
 create type payment_provider as enum ('stripe', 'paystack', 'flutterwave', 'manual');
 create type membership_tier as enum ('gold_circle', 'eternal_circle', 'majestic_circle');
 create type membership_status as enum ('active', 'expired', 'cancelled', 'manual_review');
@@ -148,14 +148,43 @@ create table newsletter_subscribers (
 
 create table manual_payment_proofs (
   id uuid primary key default gen_random_uuid(),
+  order_number text not null unique,
   name text not null,
   email text not null,
+  phone text,
   product_type text,
   product_slug text,
+  product_title text,
+  amount_paid text,
   transfer_reference text not null,
   proof_url text,
+  receipt_file_name text,
+  receipt_file_type text,
   notes text,
-  status inquiry_status not null default 'new',
+  status order_status not null default 'payment_submitted',
+  admin_note text,
+  reviewed_at timestamptz,
+  created_at timestamptz not null default now()
+);
+
+create table course_waitlist_submissions (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  email text not null,
+  whatsapp text not null,
+  course_interest text not null,
+  preferred_format text not null,
+  created_at timestamptz not null default now()
+);
+
+create table lead_magnet_signups (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  email text not null,
+  whatsapp text,
+  interest_category text not null,
+  lead_magnet text not null,
+  routed_to text,
   created_at timestamptz not null default now()
 );
 
@@ -178,5 +207,9 @@ create index inquiries_status_idx on inquiries(status);
 create index memberships_user_id_idx on memberships(user_id);
 create index conversion_events_action_idx on conversion_events(action);
 create index conversion_events_path_idx on conversion_events(path);
+create index manual_payment_order_number_idx on manual_payment_proofs(order_number);
+create index manual_payment_status_idx on manual_payment_proofs(status);
+create index course_waitlist_interest_idx on course_waitlist_submissions(course_interest);
+create index lead_magnet_slug_idx on lead_magnet_signups(lead_magnet);
 
 -- Enable RLS before production launch, then add policies for authenticated users, admins, and public read-only content.

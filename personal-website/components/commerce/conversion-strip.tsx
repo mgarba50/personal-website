@@ -17,10 +17,10 @@ export function ConversionStrip({ title = "Choose the next institutional action.
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">Conversion Desk</p>
           <h2 className="display mt-2 text-3xl font-semibold">{title}</h2>
         </div>
-        <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="flex flex-wrap gap-2 lg:justify-end">
           {actions.map((item) => (
             <Link
-              className="rounded-md border border-gold/45 px-4 py-3 text-center text-xs font-semibold uppercase tracking-[0.16em] text-vellum transition hover:bg-gold hover:text-deep"
+              className="min-w-24 rounded-md border border-gold/45 px-3 py-3 text-center text-xs font-semibold uppercase tracking-[0.12em] text-vellum transition hover:bg-gold hover:text-deep"
               data-conversion={item.action}
               data-conversion-label={item.label}
               href={item.href}

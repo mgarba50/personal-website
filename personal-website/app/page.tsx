@@ -8,6 +8,7 @@ import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { CtaButton } from "@/components/ui/cta-button";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { advisoryServices, books, courses, membershipTiers, pillars } from "@/lib/content";
+import { bundleOffers, phaseOneLeadMagnets } from "@/lib/revenue";
 import { jsonLd } from "@/lib/seo";
 
 const divisions = [
@@ -20,6 +21,9 @@ const divisions = [
 ];
 
 export default function Home() {
+  const flagshipBooks = books
+    .filter((book) => book.isFlagship)
+    .sort((first, second) => (first.salesOrder ?? 99) - (second.salesOrder ?? 99));
   const featuredBook = books[0];
   const featuredCourse = courses[0];
   const featuredService = advisoryServices[0];
@@ -88,6 +92,21 @@ export default function Home() {
       <section className="px-5 py-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
+            eyebrow="Phase 1 Revenue Activation"
+            title="Start with the Canon"
+            copy="Practical books for agriculture, agrochemical sales, Chinese trade communication, and profitable enterprise-building."
+          />
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {flagshipBooks.map((book) => (
+              <BookCard book={book} key={book.slug} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white/55 px-5 py-16">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
             eyebrow="Authority Snapshot"
             title="Four operating pillars"
             copy="The platform is organized around the work visitors can buy, study, commission, and join."
@@ -107,7 +126,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white/55 px-5 py-16">
+      <section className="px-5 py-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Featured Revenue Products"
@@ -134,6 +153,72 @@ export default function Home() {
                 </Link>
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white/60 px-5 py-16">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            eyebrow="Manual bundle orders"
+            title="Phase 1 bundle placeholders"
+            copy="Bundle delivery is prepared for manual order while the full automated checkout and dashboard delivery system comes later."
+          />
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {bundleOffers.map((bundle) => (
+              <article className="rounded-lg border border-line bg-white/80 p-6" key={bundle.slug}>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">{bundle.note}</p>
+                <h3 className="display mt-3 text-3xl font-semibold text-deep">{bundle.title}</h3>
+                <p className="mt-4 text-lg font-semibold text-deep">{bundle.price}</p>
+                <ul className="mt-5 grid gap-2 text-sm leading-7 text-muted">
+                  {bundle.includes.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <Link
+                  className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum transition hover:bg-navy"
+                  data-conversion="bundle_inquiry"
+                  data-conversion-label={bundle.title}
+                  href={`/checkout?type=bundle&slug=${bundle.slug}&provider=manual`}
+                >
+                  Order bundle
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-16">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr]">
+          <div>
+            <SectionHeading
+              eyebrow="Free Practical Resources"
+              title="Download useful guides and checklists."
+              copy="Each free resource helps you begin, then leads into a deeper book or course."
+            />
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {phaseOneLeadMagnets.map((resource) => (
+                <article className="rounded-lg border border-line bg-white/75 p-5" key={resource.slug}>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">{resource.category}</p>
+                  <h3 className="display mt-2 text-2xl font-semibold text-deep">{resource.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-muted">{resource.description}</p>
+                  <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-gold">
+                    Leads to {resource.routesTo}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-lg border border-line bg-white/80 p-7">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Email capture required</p>
+            <h3 className="display mt-3 text-3xl font-semibold text-deep">Choose your free resource</h3>
+            <p className="mt-3 text-sm leading-7 text-muted">
+              Submit your details and select the resource you want. Delivery can be automated later or handled manually in V1.
+            </p>
+            <div className="mt-6">
+              <NewsletterForm />
+            </div>
           </div>
         </div>
       </section>

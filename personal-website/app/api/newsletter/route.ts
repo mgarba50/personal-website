@@ -11,6 +11,6 @@ export async function POST(request: Request) {
   return NextResponse.json({
     ok: true,
     message:
-      "Welcome to The Institutional Dispatch - a private note on knowledge, strategy, agriculture, publishing, and technology.",
+      "Your request has been received. The selected free resource can be delivered by email after review or automation setup.",
   });
 }
