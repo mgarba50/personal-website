@@ -24,14 +24,14 @@ export default async function CheckoutPage({
 }) {
   const params = await searchParams;
   const title = findTitle(params.type, params.slug) ?? "Selected product";
-  const provider = params.provider ?? "stripe";
+  const provider = params.provider ?? "manual";
 
   return (
     <>
       <PageHero
         eyebrow="Checkout"
         title={title}
-        copy="This V1 payment route is ready for Stripe, Paystack, Flutterwave, and manual bank transfer integration."
+        copy="Manual bank transfer is active for Phase 1 launch. Use Sterling Bank details and submit payment proof."
         primaryCta={{ label: "Return to products", href: "/books", action: "view_book_catalog" }}
         secondaryCta={{ label: "Need help", href: "/contact", action: "send_inquiry" }}
       />
@@ -46,32 +46,7 @@ export default async function CheckoutPage({
               confirmation, unlock the product, send confirmation email, and place secure expiring download links in the
               user dashboard.
             </p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <Link
-                className="rounded-md bg-deep px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
-                data-conversion="select_payment_stripe"
-                data-conversion-label={title}
-                href={`/checkout?type=${params.type ?? "book"}&slug=${params.slug ?? ""}&provider=stripe`}
-              >
-                Stripe
-              </Link>
-              <Link
-                className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep"
-                data-conversion="select_payment_paystack"
-                data-conversion-label={title}
-                href={`/checkout?type=${params.type ?? "book"}&slug=${params.slug ?? ""}&provider=paystack`}
-              >
-                Paystack
-              </Link>
-              <Link
-                className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep"
-                data-conversion="select_payment_flutterwave"
-                data-conversion-label={title}
-                href={`/checkout?type=${params.type ?? "book"}&slug=${params.slug ?? ""}&provider=flutterwave`}
-              >
-                Flutterwave
-              </Link>
-            </div>
+<p className="mt-5 text-sm">Account Name: Musa Garba<br/>Account Number: 2083408157<br/>Bank: Sterling Bank</p>
           </article>
 
           <form action="/api/manual-payment" method="post" className="rounded-lg border border-line bg-white/80 p-7">
@@ -82,7 +57,11 @@ export default async function CheckoutPage({
             <div className="mt-5 grid gap-3">
               <input className="field rounded-md" name="name" placeholder="Name" required />
               <input className="field rounded-md" name="email" placeholder="Email" type="email" required />
-              <input className="field rounded-md" name="reference" placeholder="Transfer reference" required />
+              <input className="field rounded-md" name="whatsapp" placeholder="WhatsApp number" required />
+              <input className="field rounded-md" name="product" placeholder="Product purchased" required />
+              <input className="field rounded-md" name="amount" placeholder="Amount paid (₦)" required />
+              <input className="field rounded-md" name="paymentDate" placeholder="Payment date" required />
+              <input className="field rounded-md" name="reference" placeholder="Payment narration/reference" />
               <textarea className="field min-h-32 rounded-md" name="notes" placeholder="Payment notes or proof link" />
               <button
                 className="rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
