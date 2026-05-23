@@ -1,14 +1,10 @@
 export const navItems = [
   { label: "Executive Desk", href: "/" },
-  { label: "Executive Dossier", href: "/about" },
-  { label: "Strategic Advisory", href: "/advisory" },
   { label: "The Canon", href: "/books" },
+  { label: "Shop", href: "/shop" },
   { label: "The Madrasa", href: "/courses" },
+  { label: "Strategic Advisory", href: "/advisory" },
   { label: "Living Library", href: "/library" },
-  { label: "Agro Command", href: "/agro" },
-  { label: "Membership", href: "/membership" },
-  { label: "Press", href: "/press" },
-  { label: "Impact", href: "/impact" },
   { label: "Contact", href: "/contact" },
 ];
 

@@ -49,9 +49,9 @@ export default function BooksPage() {
       <section id="book-grid" className="px-5 pb-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Publishing catalog"
-            title="Initial book products"
-            copy="Each book page includes formats, reader promise, table of contents, author note, purchase options, and related offers."
+            eyebrow="Available Now"
+            title="These are the first commercial releases from the Musa Allama Canon."
+            copy="The three ready products are shown first. Future books are listed below as institutional manuscripts."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {books.map((book) => (

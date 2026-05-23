@@ -110,9 +110,9 @@ export default function Home() {
       <section className="bg-white/55 px-5 py-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Featured Revenue Products"
-            title="Start with one practical product"
-            copy="Read a book, enroll in a course, book a strategic session, or enter a private membership circle."
+            eyebrow="Start with the Canon"
+            title="Three practical books for agriculture, agrochemical sales, and China-facing agrochemical trade."
+            copy="Buy the 3 ready products first, then join related programs."
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-4">
             <BookCard book={featuredBook} />
