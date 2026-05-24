@@ -80,7 +80,10 @@ export default async function CheckoutPage({
             <div className="mt-6 grid gap-4 text-sm leading-7 text-muted">
               <div>
                 <p className="font-semibold text-deep">Step 2</p>
-                <p>Upload your payment receipt or screenshot with your name, email, and WhatsApp number.</p>
+                <p>
+                  Upload your payment receipt below, or email it to {siteContact.email} with your order number, name,
+                  and WhatsApp number.
+                </p>
               </div>
               <div>
                 <p className="font-semibold text-deep">Step 3</p>

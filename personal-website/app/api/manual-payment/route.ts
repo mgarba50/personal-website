@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { siteContact } from "@/lib/site-contact";
 import { insertSupabaseRow } from "@/lib/supabase-rest";
 
 export async function POST(request: Request) {
@@ -46,8 +47,25 @@ export async function POST(request: Request) {
     status: "payment_submitted",
   });
 
-  if (!capture.ok && !capture.skipped) {
+  if (!capture.ok && capture.skipped) {
+    return NextResponse.json(
+      {
+        ok: false,
+        message: `Receipt upload is not fully connected yet. Please email ${siteContact.email} with your order number, transfer reference, and receipt.`,
+      },
+      { status: 503 },
+    );
+  }
+
+  if (!capture.ok) {
     console.error("Manual payment capture failed", capture.message);
+    return NextResponse.json(
+      {
+        ok: false,
+        message: `Receipt upload could not be saved. Please email ${siteContact.email} with your order number, transfer reference, and receipt.`,
+      },
+      { status: 502 },
+    );
   }
 
   return NextResponse.json({

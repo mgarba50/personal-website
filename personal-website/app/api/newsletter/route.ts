@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { siteContact } from "@/lib/site-contact";
 import { insertSupabaseRow } from "@/lib/supabase-rest";
 
 export async function POST(request: Request) {
@@ -30,12 +31,40 @@ export async function POST(request: Request) {
       })
     : { ok: true as const };
 
-  if (!subscriberCapture.ok && !subscriberCapture.skipped) {
-    console.error("Newsletter capture failed", subscriberCapture.message);
+  if (!subscriberCapture.ok && subscriberCapture.skipped) {
+    return NextResponse.json(
+      {
+        ok: false,
+        message: `The dispatch signup desk is not fully connected yet. Please email ${siteContact.email} for the free resource.`,
+      },
+      { status: 503 },
+    );
   }
 
-  if (!leadCapture.ok && !leadCapture.skipped) {
+  if (!subscriberCapture.ok) {
+    console.error("Newsletter capture failed", subscriberCapture.message);
+    return NextResponse.json(
+      { ok: false, message: `Signup could not be saved. Please email ${siteContact.email} for the free resource.` },
+      { status: 502 },
+    );
+  }
+
+  if (!leadCapture.ok && leadCapture.skipped) {
+    return NextResponse.json(
+      {
+        ok: false,
+        message: `The free resource desk is not fully connected yet. Please email ${siteContact.email} for delivery.`,
+      },
+      { status: 503 },
+    );
+  }
+
+  if (!leadCapture.ok) {
     console.error("Lead magnet capture failed", leadCapture.message);
+    return NextResponse.json(
+      { ok: false, message: `Resource request could not be saved. Please email ${siteContact.email} for delivery.` },
+      { status: 502 },
+    );
   }
 
   return NextResponse.json({

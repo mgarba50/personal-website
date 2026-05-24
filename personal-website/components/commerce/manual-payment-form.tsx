@@ -50,7 +50,7 @@ export function ManualPaymentForm({ title, productType, slug, amount, orderNumbe
         form.reset();
       }
     } catch {
-      setState({ ok: false, message: "Your receipt could not be submitted. Please try again." });
+      setState({ ok: false, message: "Your receipt could not be submitted. Please use the email fallback above." });
     } finally {
       setIsSubmitting(false);
     }

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { siteContact } from "@/lib/site-contact";
 import { insertSupabaseRow } from "@/lib/supabase-rest";
 
 export async function POST(request: Request) {
@@ -24,8 +25,22 @@ export async function POST(request: Request) {
     preferred_format: preferredFormat,
   });
 
-  if (!capture.ok && !capture.skipped) {
+  if (!capture.ok && capture.skipped) {
+    return NextResponse.json(
+      {
+        ok: false,
+        message: `The course waitlist desk is not fully connected yet. Please email ${siteContact.email} with your course interest.`,
+      },
+      { status: 503 },
+    );
+  }
+
+  if (!capture.ok) {
     console.error("Course waitlist capture failed", capture.message);
+    return NextResponse.json(
+      { ok: false, message: `Waitlist request could not be saved. Please email ${siteContact.email} with your course interest.` },
+      { status: 502 },
+    );
   }
 
   return NextResponse.json({
