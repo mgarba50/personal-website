@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { insertSupabaseRow } from "@/lib/supabase-rest";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
@@ -13,6 +14,18 @@ export async function POST(request: Request) {
       { ok: false, message: "Name, email, WhatsApp, course interest, and preferred format are required." },
       { status: 400 },
     );
+  }
+
+  const capture = await insertSupabaseRow("course_waitlist_submissions", {
+    name,
+    email,
+    whatsapp,
+    course_interest: courseInterest,
+    preferred_format: preferredFormat,
+  });
+
+  if (!capture.ok && !capture.skipped) {
+    console.error("Course waitlist capture failed", capture.message);
   }
 
   return NextResponse.json({

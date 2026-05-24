@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
+import { insertSupabaseRow } from "@/lib/supabase-rest";
 
 export async function POST(request: Request) {
   const formData = await request.formData();
+  const productType = String(formData.get("type") ?? "").trim();
+  const productSlug = String(formData.get("slug") ?? "").trim();
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "");
   const phone = String(formData.get("phone") ?? "").trim();
@@ -9,6 +12,7 @@ export async function POST(request: Request) {
   const product = String(formData.get("product") ?? "").trim();
   const amountPaid = String(formData.get("amountPaid") ?? "").trim();
   const orderNumber = String(formData.get("orderNumber") ?? "").trim();
+  const notes = String(formData.get("notes") ?? "").trim();
   const receipt = formData.get("receipt");
 
   if (!name || !email.includes("@") || !phone || !reference || !product || !amountPaid || !orderNumber) {
@@ -26,10 +30,30 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, message: "Receipt file must be 5MB or smaller." }, { status: 400 });
   }
 
+  const capture = await insertSupabaseRow("manual_payment_proofs", {
+    order_number: orderNumber,
+    name,
+    email,
+    phone,
+    product_type: productType,
+    product_slug: productSlug,
+    product_title: product,
+    amount_paid: amountPaid,
+    transfer_reference: reference,
+    receipt_file_name: receipt.name,
+    receipt_file_type: receipt.type,
+    notes,
+    status: "payment_submitted",
+  });
+
+  if (!capture.ok && !capture.skipped) {
+    console.error("Manual payment capture failed", capture.message);
+  }
+
   return NextResponse.json({
     ok: true,
     message:
-      "Payment submitted. Your order is now under review. Once confirmed, book access will be delivered by email or dashboard link.",
+      "Payment submitted. Your order is now under review. Once confirmed, access will be delivered by email or dashboard link.",
     orderNumber,
     status: "Payment Submitted",
   });

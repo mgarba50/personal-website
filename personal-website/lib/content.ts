@@ -157,7 +157,7 @@ export const books: Book[] = [
     ],
     authorNote:
       "A book for builders who need quiet clarity more than loud slogans.",
-    price: "Price placeholder",
+    price: "Coming soon",
     formats: ["PDF", "EPUB", "Print"],
     coverTone: "burgundy",
     related: ["the-strategist-of-power", "the-five-language-ceo"],
@@ -185,7 +185,7 @@ export const books: Book[] = [
     ],
     authorNote:
       "Language is treated here as strategy, not ornament.",
-    price: "Price placeholder",
+    price: "Coming soon",
     formats: ["PDF", "EPUB", "Print"],
     coverTone: "navy",
     related: ["chinese-for-agrochemical-professionals", "the-desert-ceo"],
@@ -212,7 +212,7 @@ export const books: Book[] = [
     ],
     authorNote:
       "A sober text for readers who prefer institutional thinking to public theatrics.",
-    price: "Price placeholder",
+    price: "Coming soon",
     formats: ["PDF", "EPUB", "Collector Edition"],
     coverTone: "deep",
     related: ["the-desert-ceo", "the-book-of-signs"],
@@ -239,7 +239,7 @@ export const books: Book[] = [
     ],
     authorNote:
       "This collection belongs to the literary wing of the institution.",
-    price: "Price placeholder",
+    price: "Coming soon",
     formats: ["PDF", "Print", "Collector Edition"],
     coverTone: "burgundy",
     related: ["the-book-of-signs", "the-five-language-ceo"],
@@ -266,7 +266,7 @@ export const books: Book[] = [
     ],
     authorNote:
       "A quiet companion text for the Living Library and membership circles.",
-    price: "Price placeholder",
+    price: "Coming soon",
     formats: ["PDF", "Print", "Collector Edition"],
     coverTone: "gold",
     related: ["diwan-al-hayat", "the-strategist-of-power"],
@@ -310,7 +310,7 @@ export const courses: Course[] = [
     audience: "Importers, agrochemical traders, procurement staff, and entrepreneurs.",
     duration: "5 weeks",
     certificate: "Certificate of completion enabled",
-    price: "Price placeholder",
+    price: "NGN 25,000",
     previewLessons: ["Supplier greeting templates", "Product specification vocabulary"],
   },
   {
@@ -335,7 +335,7 @@ export const courses: Course[] = [
     audience: "Farmers, students, trainers, NGOs, and new agricultural entrepreneurs.",
     duration: "6 weeks",
     certificate: "Practical certificate enabled after assessment",
-    price: "Price placeholder",
+    price: "NGN 35,000",
     previewLessons: ["What hydroponics solves", "Basic system map"],
   },
   {
@@ -360,7 +360,7 @@ export const courses: Course[] = [
     audience: "Agro-dealers, field educators, sales teams, and agricultural business owners.",
     duration: "4 weeks",
     certificate: "Certificate of completion enabled",
-    price: "Price placeholder",
+    price: "NGN 30,000",
     previewLessons: ["Input category map", "Field trust checklist"],
   },
   {
@@ -384,7 +384,7 @@ export const courses: Course[] = [
     audience: "Entrepreneurs, consultants, educators, and small teams.",
     duration: "3 weeks",
     certificate: "Certificate of completion enabled",
-    price: "Price placeholder",
+    price: "NGN 20,000",
     previewLessons: ["AI operating principles", "Research prompt worksheet"],
   },
   {
@@ -409,7 +409,7 @@ export const courses: Course[] = [
     audience: "Authors, educators, consultants, and knowledge entrepreneurs.",
     duration: "4 weeks",
     certificate: "Certificate of completion enabled",
-    price: "Price placeholder",
+    price: "NGN 30,000",
     previewLessons: ["Book product map", "Reader promise worksheet"],
   },
 ];
@@ -432,7 +432,7 @@ export const advisoryServices: AdvisoryService[] = [
     shortTitle: "60-Minute Strategy Session",
     slug: "strategic-session",
     duration: "60-90 minutes",
-    price: "Price placeholder",
+    price: "NGN 50,000",
     description:
       "A private working session for business, publishing, education, agriculture, or institutional planning.",
     audience: ["Founders", "Authors", "Agriculture operators", "Educators", "Institution-builders"],
@@ -444,7 +444,7 @@ export const advisoryServices: AdvisoryService[] = [
     shortTitle: "China Supplier Communication Session",
     slug: "china-sourcing",
     duration: "60-90 minutes",
-    price: "Price placeholder",
+    price: "NGN 75,000",
     description:
       "Support for Chinese supplier communication, verification questions, agrochemical import language, and negotiation preparation.",
     audience: ["Importers", "Agrochemical traders", "Procurement teams", "New China-market buyers"],
@@ -456,7 +456,7 @@ export const advisoryServices: AdvisoryService[] = [
     shortTitle: "Agro-Business Strategy Session",
     slug: "agro-industrial-strategy",
     duration: "90 minutes",
-    price: "Price placeholder",
+    price: "NGN 100,000",
     description:
       "Advisory for agrochemical trading, hydroponics, market entry, training design, and procurement strategy.",
     audience: ["Agro-dealers", "Training providers", "NGOs", "Universities", "Agricultural entrepreneurs"],
@@ -468,7 +468,7 @@ export const advisoryServices: AdvisoryService[] = [
     shortTitle: "Institutional Website Architecture Audit",
     slug: "digital-transformation",
     duration: "90 minutes",
-    price: "Price placeholder",
+    price: "NGN 150,000",
     description:
       "Architecture for websites, automation systems, AI workflows, digital operations, and revenue-ready business systems.",
     audience: ["Consultants", "Founders", "Institutions", "Small teams", "Knowledge businesses"],
@@ -480,7 +480,7 @@ export const advisoryServices: AdvisoryService[] = [
     shortTitle: "Publishing System Audit",
     slug: "publishing-system",
     duration: "90 minutes",
-    price: "Price placeholder",
+    price: "NGN 100,000",
     description:
       "A publishing pipeline advisory for book strategy, digital product packaging, print-ready files, and marketplace setup.",
     audience: ["Authors", "Teachers", "Consultants", "Publishers", "Course creators"],
@@ -690,7 +690,7 @@ export const membershipTiers = [
   {
     title: "Gold Circle",
     slug: "gold-circle",
-    price: "Price placeholder",
+    price: "NGN 5,000 / month",
     description: "For readers, students, and supporters who want steady access to premium knowledge.",
     audience: "Readers, students, early supporters, and practical learners.",
     benefits: [
@@ -703,7 +703,7 @@ export const membershipTiers = [
   {
     title: "Eternal Circle",
     slug: "eternal-circle",
-    price: "Price placeholder",
+    price: "NGN 15,000 / month",
     description: "For serious learners, clients, and institutional supporters who need deeper access.",
     audience: "Advanced learners, repeat clients, educators, and institutional supporters.",
     benefits: [
@@ -716,7 +716,7 @@ export const membershipTiers = [
   {
     title: "Majestic Circle",
     slug: "majestic-circle",
-    price: "Price placeholder",
+    price: "NGN 50,000 / month",
     description: "For elite clients, patrons, and institutional partners requiring private strategic access.",
     audience: "Patrons, institutional partners, senior clients, and invited collaborators.",
     benefits: [

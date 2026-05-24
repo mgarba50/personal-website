@@ -4,6 +4,7 @@ import { PageHero } from "@/components/ui/page-hero";
 import { advisoryServices, books, courses, membershipTiers } from "@/lib/content";
 import { bankDetails, bundleOffers } from "@/lib/revenue";
 import { pageMetadata } from "@/lib/seo";
+import { siteContact } from "@/lib/site-contact";
 
 export const metadata = pageMetadata({
   title: "Manual Checkout",
@@ -54,10 +55,10 @@ export default async function CheckoutPage({
     <>
       <PageHero
         eyebrow="Manual Checkout"
-        title="Complete Your Book Order"
-        copy="Manual bank transfer is the active V1 payment method. Automated checkout will come later."
+        title="Complete Your Order"
+        copy="Manual bank transfer is the active V1 payment method for books, bundles, courses, advisory, and membership."
         primaryCta={{ label: "Return to books", href: "/books", action: "view_book_catalog" }}
-        secondaryCta={{ label: "Need help", href: "/contact", action: "send_inquiry" }}
+        secondaryCta={{ label: "Need help", href: siteContact.whatsappHref, action: "send_inquiry" }}
       />
 
       <section className="px-5 py-16">
@@ -90,9 +91,9 @@ export default async function CheckoutPage({
               className="mt-6 inline-flex text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep"
               data-conversion="send_inquiry"
               data-conversion-label={`Checkout help for ${product.title}`}
-              href="/contact"
+              href={siteContact.whatsappHref}
             >
-              Contact support
+              Contact order support
             </Link>
           </article>
 

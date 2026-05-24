@@ -10,14 +10,15 @@ type PaymentPanelProps = {
 
 export function PaymentPanel({ title, productType, slug, price }: PaymentPanelProps) {
   const checkoutHref = `/checkout?type=${productType}&slug=${slug}&provider=manual`;
+  const actionLabel = productType === "book" ? "Buy PDF" : "Start manual order";
+  const deliveryLabel = productType === "book" ? "Book access" : "Access or booking confirmation";
 
   return (
     <aside className="rounded-lg border border-line bg-white p-6 shadow-sm">
       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Manual bank transfer</p>
       <h2 className="display mt-3 text-3xl font-semibold text-deep">{title}</h2>
       <p className="mt-3 text-sm leading-7 text-muted">
-        Complete your order by bank transfer, upload your receipt, and wait for manual approval. Book access is delivered
-        after payment confirmation.
+        Complete your order by bank transfer, upload your receipt, and wait for manual approval. {deliveryLabel} is delivered after payment confirmation.
       </p>
       <p className="mt-5 text-lg font-semibold text-deep">{price}</p>
       <div className="mt-5 rounded-md border border-line bg-vellum/70 p-4 text-sm leading-7 text-charcoal">
@@ -32,24 +33,28 @@ export function PaymentPanel({ title, productType, slug, price }: PaymentPanelPr
           data-conversion-label={title}
           href={checkoutHref}
         >
-          Buy PDF
+          {actionLabel}
         </Link>
-        <Link
-          className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep transition hover:bg-gold"
-          data-conversion="preview_click"
-          data-conversion-label={title}
-          href={`/books/${slug}#preview`}
-        >
-          Preview sample
-        </Link>
-        <Link
-          className="rounded-md border border-deep/15 px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep transition hover:bg-vellum"
-          data-conversion="print_copy_request"
-          data-conversion-label={title}
-          href={`/contact?inquiry=print-copy&product=${slug}`}
-        >
-          Request print copy
-        </Link>
+        {productType === "book" ? (
+          <>
+            <Link
+              className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep transition hover:bg-gold"
+              data-conversion="preview_click"
+              data-conversion-label={title}
+              href={`/books/${slug}#preview`}
+            >
+              Preview sample
+            </Link>
+            <Link
+              className="rounded-md border border-deep/15 px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep transition hover:bg-vellum"
+              data-conversion="print_copy_request"
+              data-conversion-label={title}
+              href={`/contact?inquiry=print-copy&product=${slug}`}
+            >
+              Request print copy
+            </Link>
+          </>
+        ) : null}
       </div>
     </aside>
   );

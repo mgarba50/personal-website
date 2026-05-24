@@ -3,6 +3,7 @@ import { InquiryForm } from "@/components/forms/inquiry-form";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { pageMetadata } from "@/lib/seo";
+import { siteContact } from "@/lib/site-contact";
 
 export const metadata = pageMetadata({
   title: "Agro-Industrial Command Center",
@@ -85,8 +86,8 @@ export default function AgroPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald">WhatsApp CTA</p>
             <h2 className="display mt-3 text-3xl font-semibold text-deep">Fast field contact</h2>
             <p className="mt-4 text-sm leading-7 text-muted">Use WhatsApp for urgent product requests and training inquiries.</p>
-            <Link className="mt-5 inline-flex rounded-md bg-emerald px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white" href="https://wa.me/">
-              Open WhatsApp
+            <Link className="mt-5 inline-flex rounded-md bg-emerald px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white" href={siteContact.whatsappHref}>
+              Open order desk
             </Link>
           </article>
         </div>
