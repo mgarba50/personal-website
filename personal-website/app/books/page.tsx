@@ -4,14 +4,15 @@ import { ConversionStrip } from "@/components/commerce/conversion-strip";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { books } from "@/lib/content";
+import { completedManuscriptSlugs, mergeCompletedBooks } from "@/lib/completed-books";
+import { books as baseBooks } from "@/lib/content";
 import { bundleOffers } from "@/lib/revenue";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "The Canon",
   description:
-    "The publishing division of MusaAllama.com: books, manuals, diwans, bundles, collector editions, and digital products.",
+    "The publishing division of MusaAllama.com: books, manuals, diwans, bundles, collector editions, and completed manuscripts awaiting release.",
   path: "/books",
 });
 
@@ -28,22 +29,25 @@ const categories = [
   "Business",
 ];
 
+const books = mergeCompletedBooks(baseBooks);
+
 export default function BooksPage() {
   const flagshipBooks = books
     .filter((book) => book.isFlagship)
     .sort((first, second) => (first.salesOrder ?? 99) - (second.salesOrder ?? 99));
-  const widerBooks = books.filter((book) => !book.isFlagship);
+  const completedBooks = books.filter((book) => !book.isFlagship && completedManuscriptSlugs.has(book.slug));
+  const widerBooks = books.filter((book) => !book.isFlagship && !completedManuscriptSlugs.has(book.slug));
 
   return (
     <>
       <PageHero
         eyebrow="The Canon"
         title="Books, manuals, diwans, and strategic publications."
-        copy="The publishing house of MusaAllama.com: PDF, EPUB, print, bundle offers, and collector edition products."
+        copy="The publishing house of MusaAllama.com: live commercial books, verified completed manuscripts, future releases, bundles, and collector-edition projects."
         primaryCta={{ label: "Browse books", href: "#book-grid", action: "view_book_catalog" }}
         secondaryCta={{ label: "Publishing advisory", href: "/advisory/publishing-system", action: "book_advisory" }}
       />
-      <ConversionStrip title="Books should lead to purchase, bundle interest, or advisory." />
+      <ConversionStrip title="Commercial titles lead to purchase. Completed but unpriced manuscripts remain inquiry-only until release terms are approved." />
 
       <section className="px-5 py-12">
         <div className="mx-auto max-w-7xl">
@@ -68,11 +72,28 @@ export default function BooksPage() {
           <SectionHeading
             eyebrow="Flagship Commercial Canon"
             title="Phase 1 revenue books"
-            copy="These three premium digital books are ready for manual bank-transfer orders, previews, print requests, and course waitlists."
+            copy="These three premium digital books remain the only Canon titles currently open for manual bank-transfer orders, previews, print requests, and course waitlists."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {flagshipBooks.map((book) => (
               <BookCard book={book} key={book.slug} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-line bg-deep px-5 py-16 text-vellum">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Verified completed manuscripts</p>
+          <h2 className="display mt-3 text-4xl font-semibold md:text-5xl">Finished books now entered into the MusaAllama Canon.</h2>
+          <p className="mt-5 max-w-3xl text-sm leading-7 text-vellum/72">
+            These manuscripts were recovered from completed master files or complete multi-part book packages. Their full files remain private. No price, checkout, or unrestricted paid download is enabled until an approved commercial release is supplied.
+          </p>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {completedBooks.map((book) => (
+              <div className="[&>article]:bg-vellum" key={book.slug}>
+                <BookCard book={book} />
+              </div>
             ))}
           </div>
         </div>
@@ -83,7 +104,7 @@ export default function BooksPage() {
           <SectionHeading
             eyebrow="Product bundles"
             title="Manual order bundles"
-            copy="Bundle cards are live as manual-order placeholders until automated delivery is connected."
+            copy="Existing bundle offers remain unchanged. No newly recovered manuscript has been inserted into a paid bundle without an approved price."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {bundleOffers.map((bundle) => (
@@ -110,20 +131,22 @@ export default function BooksPage() {
         </div>
       </section>
 
-      <section className="px-5 py-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Wider Canon"
-            title="Coming soon and wider publishing catalog"
-            copy="These books remain in the wider canon while the flagship commercial products receive priority placement."
-          />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {widerBooks.map((book) => (
-              <BookCard book={book} key={book.slug} />
-            ))}
+      {widerBooks.length ? (
+        <section className="px-5 py-16">
+          <div className="mx-auto max-w-7xl">
+            <SectionHeading
+              eyebrow="Wider Canon"
+              title="Projects still in development"
+              copy="These titles remain in the wider Canon but were not promoted to completed-manuscript status during this audit."
+            />
+            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {widerBooks.map((book) => (
+                <BookCard book={book} key={book.slug} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <section className="bg-white/60 px-5 py-16">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
@@ -131,8 +154,7 @@ export default function BooksPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-burgundy">Collector Edition</p>
             <h2 className="display mt-3 text-4xl font-semibold text-deep md:text-5xl">Premium editions and bundles.</h2>
             <p className="mt-5 text-sm leading-7 text-muted">
-              Collector editions, institutional bundles, and private reading packs can be sold through direct checkout,
-              manual bank transfer, or membership access.
+              Collector editions, institutional bundles, and private reading packs can be released only through an approved direct checkout, manual bank transfer, or membership-access path.
             </p>
           </div>
           <NewsletterForm />
