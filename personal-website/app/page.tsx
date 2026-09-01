@@ -16,6 +16,7 @@ const divisions = [
   { title: "The Madrasa", href: "/courses", copy: "Courses and certifications for practical learning." },
   { title: "Strategic Advisory", href: "/advisory", copy: "Private consulting for business, agriculture, publishing, and digital systems." },
   { title: "Agro-Industrial Command Center", href: "/agro", copy: "Agriculture, agrochemicals, hydroponics, and procurement intelligence." },
+  { title: "Gallifrey Digital & Compliance", href: "/gallifrey", copy: "Websites, corporate documentation, ICT-centre establishment, and regulatory application facilitation." },
   { title: "Living Library", href: "/library", copy: "Long-form essays, field notes, language lessons, and research briefs." },
   { title: "Membership Circles", href: "/membership", copy: "Access to premium knowledge, reports, discounts, and private briefings." },
 ];
@@ -111,7 +112,7 @@ export default function Home() {
             title="Four operating pillars"
             copy="The platform is organized around the work visitors can buy, study, commission, and join."
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {pillars.map((pillar) => (
               <Link
                 href={pillar.href}
