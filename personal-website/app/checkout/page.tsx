@@ -12,28 +12,50 @@ export const metadata = pageMetadata({
   path: "/checkout",
 });
 
-function findProduct(type?: string, slug?: string) {
+type CheckoutProduct = {
+  title: string;
+  amount: string;
+  purchasable: boolean;
+  reason?: string;
+};
+
+function findProduct(type?: string, slug?: string): CheckoutProduct {
   if (type === "book") {
     const book = books.find((item) => item.slug === slug);
-    if (book) return { title: book.title, amount: book.launchPrice ?? book.price };
+    if (book) {
+      if (!book.isFlagship) {
+        return {
+          title: book.title,
+          amount: "Coming soon",
+          purchasable: false,
+          reason: "This title is listed in the Canon but is not currently open for payment or paid-file delivery.",
+        };
+      }
+      return { title: book.title, amount: book.launchPrice ?? book.price, purchasable: true };
+    }
   }
   if (type === "bundle") {
     const bundle = bundleOffers.find((item) => item.slug === slug);
-    if (bundle) return { title: bundle.title, amount: bundle.price };
+    if (bundle) return { title: bundle.title, amount: bundle.price, purchasable: true };
   }
   if (type === "course") {
     const course = courses.find((item) => item.slug === slug);
-    if (course) return { title: course.title, amount: course.price };
+    if (course) return { title: course.title, amount: course.price, purchasable: true };
   }
   if (type === "advisory") {
     const service = advisoryServices.find((item) => item.slug === slug);
-    if (service) return { title: service.shortTitle, amount: service.price };
+    if (service) return { title: service.shortTitle, amount: service.price, purchasable: true };
   }
   if (type === "membership") {
     const tier = membershipTiers.find((item) => item.slug === slug);
-    if (tier) return { title: tier.title, amount: tier.price };
+    if (tier) return { title: tier.title, amount: tier.price, purchasable: true };
   }
-  return { title: "Selected product", amount: "Confirm amount before transfer" };
+  return {
+    title: "Selected product",
+    amount: "Confirm amount before transfer",
+    purchasable: false,
+    reason: "A valid purchasable product was not selected. Please return to the relevant product page before making a transfer.",
+  };
 }
 
 function createOrderNumber(type?: string, slug?: string) {
@@ -50,6 +72,43 @@ export default async function CheckoutPage({
   const params = await searchParams;
   const product = findProduct(params.type, params.slug);
   const orderNumber = createOrderNumber(params.type, params.slug);
+
+  if (!product.purchasable) {
+    return (
+      <>
+        <PageHero
+          eyebrow="Publication status"
+          title={product.title}
+          copy={product.reason ?? "This product is not currently open for payment."}
+          primaryCta={{ label: "Return to the Canon", href: "/books", action: "view_book_catalog" }}
+          secondaryCta={{ label: "Send an inquiry", href: siteContact.whatsappHref, action: "send_inquiry" }}
+        />
+        <section className="px-5 py-16">
+          <div className="mx-auto max-w-3xl rounded-lg border border-line bg-white/80 p-7">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">No payment requested</p>
+            <h2 className="display mt-3 text-4xl font-semibold text-deep">Coming soon — do not transfer funds for this title.</h2>
+            <p className="mt-4 text-sm leading-7 text-muted">
+              The book may remain visible in the MusaAllama Canon for publication discovery, but checkout and paid-file delivery stay disabled until an approved release price and delivery path are active.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Link
+                className="rounded-md bg-deep px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
+                href="/books"
+              >
+                Browse available books
+              </Link>
+              <Link
+                className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep"
+                href={siteContact.whatsappHref}
+              >
+                Ask about publication
+              </Link>
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
 
   return (
     <>
@@ -87,7 +146,7 @@ export default async function CheckoutPage({
               </div>
               <div>
                 <p className="font-semibold text-deep">Step 3</p>
-                <p>Your order will be reviewed and approved. Once confirmed, book access will be delivered by email or made available in your dashboard.</p>
+                <p>Your order will be reviewed and approved. Once confirmed, book access will be delivered privately by email or secure dashboard link.</p>
               </div>
             </div>
             <Link
