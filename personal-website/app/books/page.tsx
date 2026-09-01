@@ -4,7 +4,7 @@ import { ConversionStrip } from "@/components/commerce/conversion-strip";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { books } from "@/lib/content";
+import { books } from "@/lib/canon-books";
 import { bundleOffers } from "@/lib/revenue";
 import { pageMetadata } from "@/lib/seo";
 
@@ -43,7 +43,7 @@ export default function BooksPage() {
         primaryCta={{ label: "Browse books", href: "#book-grid", action: "view_book_catalog" }}
         secondaryCta={{ label: "Publishing advisory", href: "/advisory/publishing-system", action: "book_advisory" }}
       />
-      <ConversionStrip title="Books should lead to purchase, bundle interest, or advisory." />
+      <ConversionStrip title="Books should lead to purchase, preview reading, release inquiry, bundle interest, or advisory." />
 
       <section className="px-5 py-12">
         <div className="mx-auto max-w-7xl">
@@ -115,7 +115,7 @@ export default function BooksPage() {
           <SectionHeading
             eyebrow="Wider Canon"
             title="Coming soon and wider publishing catalog"
-            copy="These books remain in the wider canon while the flagship commercial products receive priority placement."
+            copy="Forthcoming editions remain visible in the Canon with approved previews or inquiry routes, while payment and full-file delivery stay closed until release is formally opened."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {widerBooks.map((book) => (
