@@ -76,16 +76,31 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="relative">
-            <div className="absolute -inset-3 border border-gold/25" aria-hidden />
+          <div className="founder-hero-stage relative isolate aspect-[4/3] overflow-hidden border border-gold/30">
+            <div className="founder-hero-orbit" aria-hidden />
+            <div className="founder-hero-monogram display" aria-hidden>MA</div>
+            <span className="founder-corner founder-corner-tl" aria-hidden />
+            <span className="founder-corner founder-corner-tr" aria-hidden />
+            <span className="founder-corner founder-corner-bl" aria-hidden />
+            <span className="founder-corner founder-corner-br" aria-hidden />
+            <div className="absolute inset-x-7 top-7 z-30 flex items-center justify-between text-[0.56rem] font-semibold uppercase tracking-[0.2em] text-gold/78">
+              <span className="flex items-center gap-2"><i className="h-1 w-1 rounded-full bg-gold shadow-[0_0_9px_rgba(183,146,97,0.9)]" />Office of the Principal</span>
+              <span className="hidden text-vellum/42 sm:inline">Maiduguri · Nigeria</span>
+            </div>
             <Image
-              src="/images/institutional-hero.png"
-              width={1200}
-              height={900}
-              alt="A premium institutional study with manuscripts, books, technology, and agricultural details"
-              className="relative aspect-[4/3] w-full object-cover"
+              src="/images/musa-allama-founder-hero-final.webp"
+              width={1448}
+              height={1086}
+              alt="Institutional founder portrait of Musa Allama"
+              className="founder-hero-portrait relative z-10 h-full w-full object-contain object-bottom drop-shadow-[0_28px_48px_rgba(0,0,0,0.42)]"
               priority
             />
+            <div className="founder-hero-cartouche absolute bottom-5 left-5 z-30 max-w-[58%] px-4 py-3 sm:bottom-7 sm:left-7 sm:px-5">
+              <p className="text-[0.52rem] font-semibold uppercase tracking-[0.2em] text-gold">Founder &amp; Principal</p>
+              <p className="display mt-1 text-xl leading-none text-vellum sm:text-2xl">Musa Allama</p>
+              <p className="mt-2 hidden text-[0.5rem] font-medium uppercase tracking-[0.16em] text-vellum/48 sm:block">Engineer · Scholar · Publisher · Strategist</p>
+            </div>
+            <div className="absolute inset-0 z-20 border-[8px] border-deep/10" aria-hidden />
           </div>
         </div>
       </section>
