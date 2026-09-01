@@ -16,6 +16,9 @@ export function InquiryForm() {
         <option>Partnership</option>
         <option>Media</option>
         <option>Membership</option>
+        <option>Website development</option>
+        <option>Regulatory application facilitation</option>
+        <option>ICT centre establishment</option>
       </select>
       <select className="field rounded-md" name="budgetRange">
         <option value="">Budget range optional</option>
