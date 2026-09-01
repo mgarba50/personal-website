@@ -6,14 +6,30 @@ import { ConversionStrip } from "@/components/commerce/conversion-strip";
 import { PaymentPanel } from "@/components/commerce/payment-panel";
 import { CourseWaitlistForm } from "@/components/forms/course-waitlist-form";
 import { PageHero } from "@/components/ui/page-hero";
-import { books } from "@/lib/content";
+import {
+  completedBookFrontMatter,
+  completedManuscriptSlugs,
+  mergeCompletedBooks,
+} from "@/lib/completed-books";
+import { books as baseBooks } from "@/lib/content";
 import { bankDetails } from "@/lib/revenue";
 import { jsonLd, pageMetadata } from "@/lib/seo";
+
+const books = mergeCompletedBooks(baseBooks);
 
 const canonicalFrontMatter: Record<string, { author: string; edition: string }> = {
   "the-modern-farmer": { author: "Musa Allama", edition: "Executive Edition" },
   "agrochemical-sales-field-guide": { author: "Musa Allama Ibn Garba", edition: "First Edition" },
   "chinese-for-agrochemical-professionals": { author: "Musa Allama", edition: "Executive Edition" },
+  ...completedBookFrontMatter,
+};
+
+const toneClasses: Record<string, string> = {
+  emerald: "from-emerald to-deep",
+  navy: "from-navy to-deep",
+  gold: "from-gold to-burgundy",
+  burgundy: "from-burgundy to-deep",
+  deep: "from-deep to-navy",
 };
 
 export function generateStaticParams() {
@@ -38,11 +54,15 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
 
   const related = books.filter((item) => book.related.includes(item.slug));
   const canBuy = Boolean(book.isFlagship && book.launchPrice);
+  const manuscriptComplete = completedManuscriptSlugs.has(book.slug);
   const checkoutHref = `/checkout?type=book&slug=${book.slug}&provider=manual`;
   const inquiryHref = `/contact?inquiry=book-publication&product=${book.slug}`;
   const previewHref = book.previewHref;
   const displayPrice = canBuy ? book.launchPrice ?? book.price : "Coming soon";
   const frontMatter = canonicalFrontMatter[book.slug] ?? { author: "Musa Allama", edition: "Forthcoming" };
+  const publicationStatus = manuscriptComplete
+    ? "Manuscript complete · publication release pending"
+    : "Coming soon";
 
   const bookStructuredData = {
     "@context": "https://schema.org",
@@ -89,7 +109,9 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
         title={
           canBuy
             ? "Buy the PDF, submit payment proof, read the approved preview, join a course waitlist, or request a print copy."
-            : "Forthcoming Canon title. Payment and paid-file delivery remain disabled until publication is formally opened."
+            : manuscriptComplete
+              ? "Verified completed manuscript. Full files remain private and payment stays disabled until release terms are approved."
+              : "Forthcoming Canon title. Payment and paid-file delivery remain disabled until publication is formally opened."
         }
       />
 
@@ -102,10 +124,17 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
                   <Image src={book.coverImage} alt={`${book.title} cover`} fill priority sizes="280px" className="object-cover" />
                 </div>
               ) : (
-                <div className="flex aspect-[3/4] items-end rounded-md border border-line bg-deep p-6 text-vellum">
+                <div
+                  className={`flex aspect-[3/4] items-end rounded-md border border-line bg-gradient-to-br ${
+                    toneClasses[book.coverTone] ?? toneClasses.deep
+                  } p-6 text-vellum`}
+                >
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">Forthcoming</p>
-                    <p className="display mt-3 text-3xl font-semibold">{book.title}</p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+                      {manuscriptComplete ? "Verified master" : "Forthcoming"}
+                    </p>
+                    <p className="display mt-3 text-3xl font-semibold leading-none">{book.title}</p>
+                    <p className="mt-4 text-xs leading-5 text-vellum/65">{book.subtitle}</p>
                   </div>
                 </div>
               )}
@@ -115,7 +144,9 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
                 <p className="mt-3 text-lg leading-8 text-muted">{book.promise ?? book.description}</p>
                 <div className="mt-6 grid gap-3 text-sm md:grid-cols-2">
                   <div className="rounded-md border border-line bg-vellum/70 p-4">
-                    <p className="font-semibold text-deep">{canBuy ? `Launch Price: ${displayPrice}` : "Publication status: Coming soon"}</p>
+                    <p className="font-semibold text-deep">
+                      {canBuy ? `Launch Price: ${displayPrice}` : `Publication status: ${publicationStatus}`}
+                    </p>
                     {canBuy && book.standardPrice ? <p className="mt-1 text-muted">Standard Price: {book.standardPrice}</p> : null}
                   </div>
                   {canBuy && book.bundlePrice ? (
@@ -189,10 +220,18 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
               </section>
             ) : (
               <section className="mt-6 rounded-lg border border-line bg-white/80 p-7">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Forthcoming publication</p>
-                <h2 className="display mt-3 text-3xl font-semibold text-deep">This title is in the Canon, but sales are not open.</h2>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">
+                  {manuscriptComplete ? "Completed manuscript" : "Forthcoming publication"}
+                </p>
+                <h2 className="display mt-3 text-3xl font-semibold text-deep">
+                  {manuscriptComplete
+                    ? "The book is complete; the commercial release is not open yet."
+                    : "This title is in the Canon, but sales are not open."}
+                </h2>
                 <p className="mt-4 text-sm leading-7 text-muted">
-                  No checkout, payment request, public paid manuscript, or unrestricted download is enabled for this book. Use the publication inquiry route for availability questions.
+                  {manuscriptComplete
+                    ? "The finished manuscript has been verified from the private archive. It is not copied into the public repository. No checkout, payment request, or unrestricted download is enabled until a price and delivery path are formally approved."
+                    : "No checkout, payment request, public paid manuscript, or unrestricted download is enabled for this book. Use the publication inquiry route for availability questions."}
                 </p>
                 <Link
                   className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
@@ -215,7 +254,9 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
                 <p className="mt-4 text-sm leading-7 text-muted">
                   {previewHref
                     ? "Read the approved short sample before ordering. The complete paid PDF is kept private and delivered only after payment approval."
-                    : "No public preview has been approved for this title yet. The complete manuscript is not exposed from this route."}
+                    : manuscriptComplete
+                      ? "No public preview file has been deployed for this completed manuscript. The full master remains private."
+                      : "No public preview has been approved for this title yet. The complete manuscript is not exposed from this route."}
                 </p>
                 {previewHref ? (
                   <Link
@@ -290,12 +331,18 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
             <section className="mt-6 rounded-lg border border-line bg-deep p-7 text-vellum">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">Publication action</p>
               <h2 className="display mt-3 text-3xl font-semibold">
-                {canBuy ? "Buy the PDF or request a manual order." : "Follow the title without paying for an unreleased edition."}
+                {canBuy
+                  ? "Buy the PDF or request a manual order."
+                  : manuscriptComplete
+                    ? "The master is complete. Follow the release without paying early."
+                    : "Follow the title without paying for an unreleased edition."}
               </h2>
               <p className="mt-4 text-sm leading-7 text-vellum/72">
                 {canBuy
                   ? "Every order is manually verified. Complete paid PDFs are never exposed through public book assets and are delivered only after approval."
-                  : "This title remains catalogue-only until its edition, release terms, price, and delivery path are formally opened."}
+                  : manuscriptComplete
+                    ? "The manuscript is held privately while price, edition release, preview, and delivery terms remain unopened."
+                    : "This title remains catalogue-only until its edition, release terms, price, and delivery path are formally opened."}
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 {canBuy ? (
