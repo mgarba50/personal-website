@@ -8,6 +8,7 @@ export const navItems = [
   { label: "The Madrasa", href: "/courses" },
   { label: "Living Library", href: "/library" },
   { label: "Agro Command", href: "/agro" },
+  { label: "Gallifrey Services", href: "/gallifrey" },
   { label: "Membership", href: "/membership" },
   { label: "Press", href: "/press" },
   { label: "Impact", href: "/impact" },
