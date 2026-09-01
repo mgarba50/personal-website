@@ -50,6 +50,38 @@ body {
     var(--deep);
 }
 
+.founder-hero-stage {
+  background:
+    linear-gradient(rgba(183, 146, 97, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(183, 146, 97, 0.055) 1px, transparent 1px),
+    radial-gradient(circle at 73% 29%, rgba(183, 146, 97, 0.2), transparent 23%),
+    radial-gradient(circle at 52% 65%, rgba(15, 123, 108, 0.12), transparent 38%),
+    linear-gradient(145deg, rgba(10, 35, 66, 0.54), rgba(11, 15, 20, 0.18));
+  background-size: 42px 42px, 42px 42px, auto, auto, auto;
+  box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.33), 0 28px 70px rgba(0, 0, 0, 0.25);
+}
+
+.founder-hero-stage::after {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  background: linear-gradient(90deg, rgba(11, 15, 20, 0.62), transparent 42%, transparent 82%, rgba(11, 15, 20, 0.18));
+  content: "";
+  pointer-events: none;
+}
+
+.founder-hero-orbit {
+  position: absolute;
+  right: 5%;
+  top: 7%;
+  z-index: 0;
+  width: 58%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(183, 146, 97, 0.22);
+  border-radius: 999px;
+  box-shadow: 0 0 0 18px rgba(183, 146, 97, 0.025), 0 0 0 46px rgba(183, 146, 97, 0.018);
+}
+
 .gold-rule {
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
   height: 1px;

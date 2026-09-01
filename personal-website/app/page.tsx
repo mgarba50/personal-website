@@ -76,16 +76,25 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="relative">
-            <div className="absolute -inset-3 border border-gold/25" aria-hidden />
+          <div className="founder-hero-stage relative isolate aspect-[4/3] overflow-hidden border border-gold/30">
+            <div className="founder-hero-orbit" aria-hidden />
+            <div className="absolute inset-x-7 top-7 z-20 flex items-center justify-between text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-gold/75">
+              <span>Founder Portrait</span>
+              <span className="h-px w-16 bg-gold/45" />
+            </div>
             <Image
-              src="/images/institutional-hero.png"
-              width={1200}
-              height={900}
-              alt="A premium institutional study with manuscripts, books, technology, and agricultural details"
-              className="relative aspect-[4/3] w-full object-cover"
+              src="/images/musa-allama-founder-hero-final.webp"
+              width={1448}
+              height={1086}
+              alt="Institutional founder portrait of Musa Allama"
+              className="relative z-10 h-full w-full object-contain object-bottom drop-shadow-[0_28px_48px_rgba(0,0,0,0.42)]"
               priority
             />
+            <div className="absolute bottom-6 left-7 z-20 border-l border-gold/55 pl-3">
+              <p className="text-[0.58rem] font-semibold uppercase tracking-[0.19em] text-gold">Founder &amp; Principal</p>
+              <p className="display mt-1 text-lg text-vellum/90">Musa Allama</p>
+            </div>
+            <div className="absolute inset-0 z-20 border-[8px] border-deep/10" aria-hidden />
           </div>
         </div>
       </section>
