@@ -1,3 +1,4 @@
+import { completedBooks } from "./completed-books";
 import { books as existingBooks, type Book } from "./content";
 
 export const publicationBooks: Book[] = [
@@ -78,9 +79,17 @@ export const publicationBooks: Book[] = [
     metaDescription:
       "ديوان عربي صوفي في مدائح المصطفى وآل بيته، منظّم في سبعة أبواب وجدانية.",
   },
+  ...completedBooks,
 ];
 
-export const books: Book[] = [...existingBooks, ...publicationBooks];
+const publicationBySlug = new Map(publicationBooks.map((book) => [book.slug, book]));
+
+export const books: Book[] = existingBooks.map((book) => publicationBySlug.get(book.slug) ?? book);
+const existingSlugs = new Set(existingBooks.map((book) => book.slug));
+
+for (const book of publicationBooks) {
+  if (!existingSlugs.has(book.slug)) books.push(book);
+}
 
 const slugs = new Set(books.map((book) => book.slug));
 if (slugs.size !== books.length) {
