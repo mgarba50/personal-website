@@ -41,9 +41,11 @@ export function BookCard({ book }: { book: Book }) {
       </div>
       <div className="mt-auto border-t border-line pt-4">
         <div className="grid gap-1 text-sm">
-          <span className="font-semibold text-deep">Launch Price: {book.launchPrice ?? book.price}</span>
-          {book.standardPrice ? <span className="text-muted">Standard Price: {book.standardPrice}</span> : null}
-          {book.bundlePrice ? <span className="text-muted">{book.bundleLabel}: {book.bundlePrice}</span> : null}
+          <span className="font-semibold text-deep">
+            {canBuy ? `Launch Price: ${book.launchPrice ?? book.price}` : `Publication status: ${book.price}`}
+          </span>
+          {canBuy && book.standardPrice ? <span className="text-muted">Standard Price: {book.standardPrice}</span> : null}
+          {canBuy && book.bundlePrice ? <span className="text-muted">{book.bundleLabel}: {book.bundlePrice}</span> : null}
         </div>
         {canBuy ? (
           <>
@@ -94,7 +96,7 @@ export function BookCard({ book }: { book: Book }) {
             data-conversion-label={book.title}
             href={`/books/${book.slug}`}
           >
-            View coming soon page
+            View publication page
           </Link>
         )}
       </div>
