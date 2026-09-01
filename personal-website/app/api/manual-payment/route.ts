@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { books } from "@/lib/content";
 import { siteContact } from "@/lib/site-contact";
 import { insertSupabaseRow } from "@/lib/supabase-rest";
 
@@ -15,6 +16,19 @@ export async function POST(request: Request) {
   const orderNumber = String(formData.get("orderNumber") ?? "").trim();
   const notes = String(formData.get("notes") ?? "").trim();
   const receipt = formData.get("receipt");
+
+  if (productType === "book") {
+    const book = books.find((item) => item.slug === productSlug);
+    if (!book?.isFlagship) {
+      return NextResponse.json(
+        {
+          ok: false,
+          message: "This book is not currently open for payment. Please use the book inquiry or waitlist option instead.",
+        },
+        { status: 409 },
+      );
+    }
+  }
 
   if (!name || !email.includes("@") || !phone || !reference || !product || !amountPaid || !orderNumber) {
     return NextResponse.json(
