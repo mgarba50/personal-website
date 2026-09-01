@@ -24,6 +24,8 @@ const columns = [
     links: [
       ["Strategic Advisory", "/advisory"],
       ["Agro-Industrial Command Center", "/agro"],
+      ["Gallifrey Digital & Compliance", "/gallifrey"],
+      ["Website Samples", "/gallifrey/samples"],
       ["Membership Circles", "/membership"],
     ],
   },
