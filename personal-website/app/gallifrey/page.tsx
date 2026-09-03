@@ -25,12 +25,18 @@ const divisions = [
   },
   {
     index: "03",
-    title: "Corporate Documentation",
-    copy: "Clear, credible institutional documents that present an organisation's legal identity, operating capacity and standards.",
-    items: ["Company profiles and capability statements", "Technical proposals and service agreements", "Policies, manuals and operating documents", "Tender and competence presentation packs"],
+    title: "Business Planning & Funding Documents",
+    copy: "Decision-ready business plans, feasibility studies and funding proposals built around genuine operations, evidence and financial assumptions.",
+    items: ["Farm and agribusiness plans", "Bank-loan and grant proposals", "Feasibility and investment studies", "Financial and implementation schedules"],
   },
   {
     index: "04",
+    title: "Tender & Corporate Documentation",
+    copy: "Evaluator-friendly submissions that connect every requirement to authentic corporate, technical and commercial evidence.",
+    items: ["Company profiles and capability statements", "EOI and prequalification packs", "Technical and financial proposals", "Compliance matrices and evidence registers"],
+  },
+  {
+    index: "05",
     title: "ICT Centre Establishment",
     copy: "A coordinated establishment package for new training centres and technology businesses—from public identity to operating structure.",
     items: ["Centre positioning and service architecture", "Course and programme structuring", "Laboratory and equipment planning", "Forms, certificates and administrative systems"],
@@ -56,13 +62,13 @@ export default function GallifreyPage() {
 
     <section className="border-b border-line bg-white/60 px-5 py-7">
       <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-muted md:flex-row md:items-center md:justify-between">
-        <span>Website development</span><span>ICT-centre establishment</span><span>Corporate documentation</span><span>Application facilitation</span>
+        <span>Website development</span><span>Business planning</span><span>Tender documentation</span><span>Application facilitation</span>
       </div>
     </section>
 
     <section className="px-5 py-20">
       <div className="mx-auto max-w-7xl">
-        <SectionHeading eyebrow="Professional service divisions" title="One desk. Four coordinated capabilities." copy="Digital work and compliance support are planned together so the public identity, corporate records and application documents tell one credible story." />
+        <SectionHeading eyebrow="Professional service divisions" title="One desk. Five coordinated capabilities." copy="Digital work, business planning and compliance support are coordinated so the public identity, corporate records, financial case and application documents tell one credible story." />
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           {divisions.map((division) => <article key={division.index} className="rounded-lg border border-line bg-white/80 p-7 md:p-9">
             <div className="flex items-start justify-between gap-5"><p className="text-xs font-semibold uppercase tracking-[0.2em] text-burgundy">Division {division.index}</p><span className="display text-4xl text-gold/55">{division.index}</span></div>
@@ -71,6 +77,13 @@ export default function GallifreyPage() {
             <ul className="mt-6 grid gap-3 border-t border-line pt-5 text-sm text-deep/80 sm:grid-cols-2">{division.items.map(item => <li key={item}>— {item}</li>)}</ul>
           </article>)}
         </div>
+      </div>
+    </section>
+
+    <section className="border-y border-line bg-white/65 px-5 py-20">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.7fr] lg:items-center">
+        <div><p className="text-xs font-semibold uppercase tracking-[0.2em] text-burgundy">Business Planning & Tender Desk</p><h2 className="display mt-4 max-w-4xl text-4xl font-semibold leading-tight text-deep md:text-6xl">Twenty structured document solutions for farms, funders and contract opportunities.</h2><p className="mt-5 max-w-3xl text-base leading-8 text-muted">Explore agriculture business plans, feasibility studies, bank and grant proposals, capability documents, expressions of interest and complete tender-response systems.</p></div>
+        <div className="border-l border-gold/50 pl-7"><span className="display text-7xl text-gold/60">20</span><p className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted">Professional solution routes</p><Link href="/gallifrey/business-plans" className="mt-7 inline-flex rounded-md bg-deep px-6 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-vellum transition hover:bg-navy">Open the document desk →</Link></div>
       </div>
     </section>
 

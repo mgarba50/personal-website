@@ -25,6 +25,7 @@ const columns = [
       ["Strategic Advisory", "/advisory"],
       ["Agro-Industrial Command Center", "/agro"],
       ["Gallifrey Digital & Compliance", "/gallifrey"],
+      ["Business Plans & Tender Desk", "/gallifrey/business-plans"],
       ["Website Samples", "/gallifrey/samples"],
       ["Membership Circles", "/membership"],
     ],
