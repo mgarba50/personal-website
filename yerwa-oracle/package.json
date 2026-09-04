@@ -1,0 +1,36 @@
+{
+  "name": "yerwa-oracle-suite",
+  "private": true,
+  "version": "1.1.0",
+  "description": "Yerwa Oracle desktop packaging workspace",
+  "scripts": {
+    "build:backend": "npm --prefix backend run build",
+    "build:frontend": "npm --prefix frontend run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "package:win": "npm run build && electron-builder --win nsis"
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.yerwa.oracle",
+    "productName": "Yerwa Oracle",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "desktop/**/*",
+      "frontend/dist/**/*",
+      "backend/dist/**/*",
+      "backend/package.json"
+    ],
+    "extraMetadata": {
+      "main": "desktop/main.cjs"
+    },
+    "win": {
+      "target": ["nsis"],
+      "artifactName": "Yerwa-Oracle-Setup-${version}.${ext}"
+    }
+  }
+}
