@@ -12,285 +12,279 @@ import { bundleOffers, phaseOneLeadMagnets } from "@/lib/revenue";
 import { jsonLd } from "@/lib/seo";
 
 const divisions = [
-  { title: "The Canon", href: "/books", copy: "Books, manuals, diwans, and strategic publications." },
-  { title: "The Madrasa", href: "/courses", copy: "Courses and certifications for practical learning." },
-  { title: "Strategic Advisory", href: "/advisory", copy: "Private consulting for business, agriculture, publishing, and digital systems." },
-  { title: "Agro-Industrial Command Center", href: "/agro", copy: "Agriculture, agrochemicals, hydroponics, and procurement intelligence." },
-  { title: "Gallifrey Digital & Compliance", href: "/gallifrey", copy: "Websites, corporate documentation, ICT-centre establishment, and regulatory application facilitation." },
-  { title: "Living Library", href: "/library", copy: "Long-form essays, field notes, language lessons, and research briefs." },
-  { title: "Membership Circles", href: "/membership", copy: "Access to premium knowledge, reports, discounts, and private briefings." },
+{ title: "The Canon", href: "/books", copy: "Books, manuals, diwans, and strategic publications." },
+{ title: "The Madrasa", href: "/courses", copy: "Accredited courses and certifications for practical state and corporate capacity building." },
+{ title: "Strategic Advisory", href: "/advisory", copy: "Private consulting for government, agriculture, publishing, and digital infrastructure." },
+{ title: "Agro-Industrial Command Center", href: "/agro", copy: "Agriculture, agrochemicals, hydroponics, and advanced procurement intelligence." },
+{ title: "Gallifrey Digital & Compliance", href: "/gallifrey", copy: "Websites, corporate documentation, ICT-centre establishment, and regulatory framework facilitation." },
+{ title: "Living Library", href: "/library", copy: "Long-form essays, executive field notes, language scholarship, and research briefs." },
+{ title: "Membership Circles", href: "/membership", copy: "Restricted access to premium knowledge, reports, and private institutional briefings." },
 ];
 
 export default function Home() {
-  const flagshipBooks = books
-    .filter((book) => book.isFlagship)
-    .sort((first, second) => (first.salesOrder ?? 99) - (second.salesOrder ?? 99));
-  const featuredBook = books[0];
-  const featuredCourse = courses[0];
-  const featuredService = advisoryServices[0];
-  const featuredTier = membershipTiers[1];
+const flagshipBooks = books
+.filter((book) => book.isFlagship)
+.sort((first, second) => (first.salesOrder ?? 99) - (second.salesOrder ?? 99));
+const featuredBook = books[0];
+const featuredCourse = courses[0];
+const featuredService = advisoryServices[0];
+const featuredTier = membershipTiers[1];
 
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={jsonLd({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "MusaAllama.com",
-          url: "https://musaallama.com",
-          description:
-            "An institutional platform for books, courses, strategic advisory, agro-industrial intelligence, and multilingual scholarship.",
-        })}
+return (
+<>
+<script
+type="application/ld+json"
+dangerouslySetInnerHTML={jsonLd({
+"@context": "https://schema.org",
+"@type": "Organization",
+name: "MusaAllama.com",
+url: "https://musaallama.com",
+description:
+"An institutional platform for books, courses, strategic advisory, agro-industrial intelligence, and multilingual scholarship.",
+})}
+/>
+
+
+
+Executive Desk
+Musa Allama
+
+Knowledge. Strategy. Agriculture. Publishing. Technology.
+
+
+MusaAllama.com is the primary institutional headquarters for authoritative publications, executive certifications, strategic advisory, and agro-industrial intelligence.
+
+
+Access The Canon
+
+Commission Advisory
+
+
+
+
+Publications
+
+
+The Academy
+
+
+Advisory
+
+
+Membership
+
+
+
+
+
+MA
+
+
+
+
+
+Office of the Principal
+Maiduguri · Nigeria
+
+
+
+Founder & Principal
+Musa Allama
+Engineer · Scholar · Publisher · Strategist
+
+
+
+
+
+
+  <section className="px-5 py-16">
+    <div className="mx-auto max-w-7xl">
+      <SectionHeading
+        eyebrow="The Canon"
+        title="Institutional Publications & Diwans"
+        copy="Authoritative manuals for agriculture, agrochemical strategy, international trade communication, and profitable enterprise-building."
       />
-      <section className="institutional-shell px-5 py-14 text-vellum md:py-20">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1fr_0.9fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">Executive Desk</p>
-            <h1 className="display mt-5 text-6xl font-semibold leading-none md:text-8xl">Musa Allama</h1>
-            <p className="mt-5 max-w-2xl text-xl leading-8 text-vellum/88">
-              Knowledge. Strategy. Agriculture. Publishing. Technology.
-            </p>
-            <p className="mt-5 max-w-2xl text-base leading-8 text-vellum/70">
-              MusaAllama.com is the institutional headquarters for books, courses, strategic advisory, agro-industrial
-              intelligence, language scholarship, and practical transformation.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <CtaButton action="buy_book" href="/books">Explore Books</CtaButton>
-              <CtaButton action="book_advisory" href="/advisory/strategic-session" variant="secondary">
-                Book Strategic Session
-              </CtaButton>
-            </div>
-            <div className="mt-8 grid gap-3 text-sm text-vellum/68 sm:grid-cols-4">
-              <Link href="/books" className="border-l border-gold/50 pl-3 hover:text-gold">
-                Books
-              </Link>
-              <Link href="/courses" className="border-l border-gold/50 pl-3 hover:text-gold">
-                Courses
-              </Link>
-              <Link href="/advisory" className="border-l border-gold/50 pl-3 hover:text-gold">
-                Advisory
-              </Link>
-              <Link href="/membership" className="border-l border-gold/50 pl-3 hover:text-gold">
-                Membership
-              </Link>
-            </div>
-          </div>
-          <div className="founder-hero-stage relative isolate aspect-[4/3] overflow-hidden border border-gold/30">
-            <div className="founder-hero-orbit" aria-hidden />
-            <div className="founder-hero-monogram display" aria-hidden>MA</div>
-            <span className="founder-corner founder-corner-tl" aria-hidden />
-            <span className="founder-corner founder-corner-tr" aria-hidden />
-            <span className="founder-corner founder-corner-bl" aria-hidden />
-            <span className="founder-corner founder-corner-br" aria-hidden />
-            <div className="absolute inset-x-7 top-7 z-30 flex items-center justify-between text-[0.56rem] font-semibold uppercase tracking-[0.2em] text-gold/78">
-              <span className="flex items-center gap-2"><i className="h-1 w-1 rounded-full bg-gold shadow-[0_0_9px_rgba(183,146,97,0.9)]" />Office of the Principal</span>
-              <span className="hidden text-vellum/42 sm:inline">Maiduguri · Nigeria</span>
-            </div>
-            <Image
-              src="/images/musa-allama-founder-hero-final.webp"
-              width={1448}
-              height={1086}
-              alt="Institutional founder portrait of Musa Allama"
-              className="founder-hero-portrait relative z-10 h-full w-full object-contain object-bottom drop-shadow-[0_28px_48px_rgba(0,0,0,0.42)]"
-              priority
-            />
-            <div className="founder-hero-cartouche absolute bottom-5 left-5 z-30 max-w-[58%] px-4 py-3 sm:bottom-7 sm:left-7 sm:px-5">
-              <p className="text-[0.52rem] font-semibold uppercase tracking-[0.2em] text-gold">Founder &amp; Principal</p>
-              <p className="display mt-1 text-xl leading-none text-vellum sm:text-2xl">Musa Allama</p>
-              <p className="mt-2 hidden text-[0.5rem] font-medium uppercase tracking-[0.16em] text-vellum/48 sm:block">Engineer · Scholar · Publisher · Strategist</p>
-            </div>
-            <div className="absolute inset-0 z-20 border-[8px] border-deep/10" aria-hidden />
-          </div>
-        </div>
-      </section>
+      <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {flagshipBooks.map((book) => (
+          <BookCard book={book} key={book.slug} />
+        ))}
+      </div>
+    </div>
+  </section>
 
-      <section className="px-5 py-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Phase 1 Revenue Activation"
-            title="Start with the Canon"
-            copy="Practical books for agriculture, agrochemical sales, Chinese trade communication, and profitable enterprise-building."
-          />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {flagshipBooks.map((book) => (
-              <BookCard book={book} key={book.slug} />
-            ))}
-          </div>
-        </div>
-      </section>
+  <section className="bg-white/55 px-5 py-16">
+    <div className="mx-auto max-w-7xl">
+      <SectionHeading
+        eyebrow="Institutional Architecture"
+        title="Four Operating Pillars"
+        copy="The platform is structured to deliver strategic capacity, specialized scholarship, and global agricultural intelligence."
+      />
+      <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {pillars.map((pillar) => (
+          <Link
+            href={pillar.href}
+            key={pillar.title}
+            className="rounded-lg border border-line bg-white/75 p-6 transition hover:-translate-y-1 hover:border-gold"
+          >
+            <h3 className="display text-2xl font-semibold text-deep">{pillar.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-muted">{pillar.copy}</p>
+          </Link>
+        ))}
+      </div>
+    </div>
+  </section>
 
-      <section className="bg-white/55 px-5 py-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Authority Snapshot"
-            title="Four operating pillars"
-            copy="The platform is organized around the work visitors can buy, study, commission, and join."
-          />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {pillars.map((pillar) => (
-              <Link
-                href={pillar.href}
-                key={pillar.title}
-                className="rounded-lg border border-line bg-white/75 p-6 transition hover:-translate-y-1 hover:border-gold"
-              >
-                <h3 className="display text-2xl font-semibold text-deep">{pillar.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-muted">{pillar.copy}</p>
-              </Link>
-            ))}
+  <section className="px-5 py-16">
+    <div className="mx-auto max-w-7xl">
+      <SectionHeading
+        eyebrow="Primary Directives"
+        title="Executive Programs & Certifications"
+        copy="Access foundational literature, enroll institutional cohorts, or commission private strategic advisory."
+      />
+      <div className="mt-10 grid gap-6 lg:grid-cols-4">
+        <BookCard book={featuredBook} />
+        <CourseCard course={featuredCourse} />
+        <ServiceCard service={featuredService} />
+        <article className="flex h-full flex-col rounded-lg border border-line bg-white/80 p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Membership</p>
+          <h3 className="display mt-3 text-3xl font-semibold text-deep">{featuredTier.title}</h3>
+          <p className="mt-4 text-sm leading-7 text-muted">{featuredTier.description}</p>
+          <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-line pt-5">
+            <span className="text-sm font-semibold text-deep">{featuredTier.price}</span>
+            <Link
+              className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep"
+              data-conversion="apply_membership"
+              data-conversion-label={featuredTier.title}
+              href={`/membership/${featuredTier.slug}`}
+            >
+              Request Induction
+            </Link>
           </div>
-        </div>
-      </section>
+        </article>
+      </div>
+    </div>
+  </section>
 
-      <section className="px-5 py-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Featured Revenue Products"
-            title="Start with one practical product"
-            copy="Read a book, enroll in a course, book a strategic session, or enter a private membership circle."
-          />
-          <div className="mt-10 grid gap-6 lg:grid-cols-4">
-            <BookCard book={featuredBook} />
-            <CourseCard course={featuredCourse} />
-            <ServiceCard service={featuredService} />
-            <article className="flex h-full flex-col rounded-lg border border-line bg-white/80 p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Membership</p>
-              <h3 className="display mt-3 text-3xl font-semibold text-deep">{featuredTier.title}</h3>
-              <p className="mt-4 text-sm leading-7 text-muted">{featuredTier.description}</p>
-              <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-line pt-5">
-                <span className="text-sm font-semibold text-deep">{featuredTier.price}</span>
-                <Link
-                  className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep"
-                  data-conversion="apply_membership"
-                  data-conversion-label={featuredTier.title}
-                  href={`/membership/${featuredTier.slug}`}
-                >
-                  Join circle
-                </Link>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white/60 px-5 py-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Manual bundle orders"
-            title="Phase 1 bundle placeholders"
-            copy="Bundle delivery is prepared for manual order while the full automated checkout and dashboard delivery system comes later."
-          />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {bundleOffers.map((bundle) => (
-              <article className="rounded-lg border border-line bg-white/80 p-6" key={bundle.slug}>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">{bundle.note}</p>
-                <h3 className="display mt-3 text-3xl font-semibold text-deep">{bundle.title}</h3>
-                <p className="mt-4 text-lg font-semibold text-deep">{bundle.price}</p>
-                <ul className="mt-5 grid gap-2 text-sm leading-7 text-muted">
-                  {bundle.includes.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <Link
-                  className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum transition hover:bg-navy"
-                  data-conversion="bundle_inquiry"
-                  data-conversion-label={bundle.title}
-                  href={`/checkout?type=bundle&slug=${bundle.slug}&provider=manual`}
-                >
-                  Order bundle
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-16">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr]">
-          <div>
-            <SectionHeading
-              eyebrow="Free Practical Resources"
-              title="Download useful guides and checklists."
-              copy="Each free resource helps you begin, then leads into a deeper book or course."
-            />
-            <div className="mt-8 grid gap-4 md:grid-cols-2">
-              {phaseOneLeadMagnets.map((resource) => (
-                <article className="rounded-lg border border-line bg-white/75 p-5" key={resource.slug}>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">{resource.category}</p>
-                  <h3 className="display mt-2 text-2xl font-semibold text-deep">{resource.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-muted">{resource.description}</p>
-                  <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-gold">
-                    Leads to {resource.routesTo}
-                  </p>
-                </article>
+  <section className="bg-white/60 px-5 py-16">
+    <div className="mx-auto max-w-7xl">
+      <SectionHeading
+        eyebrow="Institutional Procurement"
+        title="Strategic Knowledge Collections"
+        copy="Procure comprehensive operational libraries designed for state delegates, corporate teams, and elite practitioners. Immediate digital provisioning enabled."
+      />
+      <div className="mt-10 grid gap-5 md:grid-cols-3">
+        {bundleOffers.map((bundle) => (
+          <article className="rounded-lg border border-line bg-white/80 p-6" key={bundle.slug}>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Procurement Bundle</p>
+            <h3 className="display mt-3 text-3xl font-semibold text-deep">{bundle.title}</h3>
+            <p className="mt-4 text-lg font-semibold text-deep">{bundle.price}</p>
+            <ul className="mt-5 grid gap-2 text-sm leading-7 text-muted">
+              {bundle.includes.map((item) => (
+                <li key={item}>{item}</li>
               ))}
-            </div>
-          </div>
-          <div className="rounded-lg border border-line bg-white/80 p-7">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Email capture required</p>
-            <h3 className="display mt-3 text-3xl font-semibold text-deep">Choose your free resource</h3>
-            <p className="mt-3 text-sm leading-7 text-muted">
-              Submit your details and select the resource you want. Delivery can be automated later or handled manually in V1.
-            </p>
-            <div className="mt-6">
-              <NewsletterForm />
-            </div>
-          </div>
+            </ul>
+            <Link
+              className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum transition hover:bg-navy"
+              data-conversion="bundle_inquiry"
+              data-conversion-label={bundle.title}
+              href={`/checkout?type=bundle&slug=${bundle.slug}`}
+            >
+              Procure Collection
+            </Link>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section className="px-5 py-16">
+    <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr]">
+      <div>
+        <SectionHeading
+          eyebrow="Open Access Briefings"
+          title="Strategic Checklists & Field Guides"
+          copy="Download foundational frameworks to immediately audit and elevate your agricultural and trade operations."
+        />
+        <div className="mt-8 grid gap-4 md:grid-cols-2">
+          {phaseOneLeadMagnets.map((resource) => (
+            <article className="rounded-lg border border-line bg-white/75 p-5" key={resource.slug}>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">{resource.category}</p>
+              <h3 className="display mt-2 text-2xl font-semibold text-deep">{resource.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-muted">{resource.description}</p>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-gold">
+                Gateway to {resource.routesTo}
+              </p>
+            </article>
+          ))}
         </div>
-      </section>
-
-      <ConversionStrip title="Move from profile viewing to a measurable commercial action." />
-
-      <section className="px-5 py-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Institutional Divisions"
-            title="A publishing house, academy, advisory firm, and archive in one platform"
-          />
-          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {divisions.map((division) => (
-              <Link href={division.href} key={division.title} className="rounded-lg border border-line bg-white/70 p-6 transition hover:border-gold">
-                <h3 className="display text-3xl font-semibold text-deep">{division.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-muted">{division.copy}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-navy px-5 py-16 text-vellum">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">The Institutional Dispatch</p>
-            <h2 className="display mt-3 text-4xl font-semibold leading-tight md:text-5xl">
-              Receive the Institutional Dispatch
-            </h2>
-            <p className="mt-5 text-sm leading-7 text-vellum/72">
-              A private note on knowledge, strategy, agriculture, publishing, technology, and language intelligence.
-            </p>
-          </div>
+      </div>
+      <div className="rounded-lg border border-line bg-white/80 p-7">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Secure Access</p>
+        <h3 className="display mt-3 text-3xl font-semibold text-deep">Request Institutional Briefings</h3>
+        <p className="mt-3 text-sm leading-7 text-muted">
+          Submit your credentials to receive direct access to our specialized tactical frameworks and operational checklists.
+        </p>
+        <div className="mt-6">
           <NewsletterForm />
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section className="px-5 py-16">
-        <div className="mx-auto max-w-5xl text-center">
-          <h2 className="display text-4xl font-semibold text-deep md:text-5xl">
-            Begin with a book, a course, or a strategic session.
-          </h2>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <CtaButton action="buy_book" href="/books" variant="light">
-              Buy a book
-            </CtaButton>
-            <CtaButton action="enroll_course" href="/courses" variant="light">
-              Enroll in a course
-            </CtaButton>
-            <CtaButton action="send_inquiry" href="/contact" variant="light">
-              Send inquiry
-            </CtaButton>
-          </div>
-        </div>
-      </section>
-    </>
-  );
+  <ConversionStrip title="Initiate strategic transformation and institutional capacity building." />
+
+  <section className="px-5 py-16">
+    <div className="mx-auto max-w-7xl">
+      <SectionHeading
+        eyebrow="Global Operations"
+        title="Comprehensive Digital & Physical Infrastructure"
+      />
+      <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {divisions.map((division) => (
+          <Link href={division.href} key={division.title} className="rounded-lg border border-line bg-white/70 p-6 transition hover:border-gold">
+            <h3 className="display text-3xl font-semibold text-deep">{division.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-muted">{division.copy}</p>
+          </Link>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section className="bg-navy px-5 py-16 text-vellum">
+    <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">The Institutional Dispatch</p>
+        <h2 className="display mt-3 text-4xl font-semibold leading-tight md:text-5xl">
+          Receive the Institutional Dispatch
+        </h2>
+        <p className="mt-5 text-sm leading-7 text-vellum/72">
+          A private executive briefing on knowledge, strategy, agriculture, publishing, technology, and language intelligence.
+        </p>
+      </div>
+      <NewsletterForm />
+    </div>
+  </section>
+
+  <section className="px-5 py-16">
+    <div className="mx-auto max-w-5xl text-center">
+      <h2 className="display text-4xl font-semibold text-deep md:text-5xl">
+        Commence capacity building through the Canon, the Academy, or Strategic Advisory.
+      </h2>
+      <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <CtaButton action="buy_book" href="/books" variant="light">
+          Procure Publications
+        </CtaButton>
+        <CtaButton action="enroll_course" href="/courses" variant="light">
+          Enroll Institutional Cohort
+        </CtaButton>
+        <CtaButton action="send_inquiry" href="/contact" variant="light">
+          Submit Inquiry
+        </CtaButton>
+      </div>
+    </div>
+  </section>
+</>
+
+
+);
 }
