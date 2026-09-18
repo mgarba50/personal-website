@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "next build --webpack",
+    "verify:publication": "node scripts/verify-publication.mjs",
+    "build": "npm run verify:publication && next build --webpack",
     "start": "next start",
     "lint": "eslint"
   },
