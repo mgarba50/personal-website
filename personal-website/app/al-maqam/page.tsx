@@ -57,7 +57,7 @@ export default function AlMaqamPage() {
       />
 
       <section className="border-y border-line bg-deep px-5 py-12 text-vellum">
-        <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-3">
+        <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-4">
           <div className="rounded-lg border border-gold/25 p-6">
             <p className="text-xs uppercase tracking-[0.2em] text-gold">Main Canon</p>
             <p className="display mt-2 text-5xl font-semibold">{mainDiwanCanon.length}</p>
@@ -67,6 +67,11 @@ export default function AlMaqamPage() {
             <p className="text-xs uppercase tracking-[0.2em] text-gold">Extended Canon</p>
             <p className="display mt-2 text-5xl font-semibold">{extendedDiwanCanon.length}</p>
             <p className="mt-3 text-sm leading-6 text-vellum/70">Independent works verified as distinct from similarly named Main Canon titles.</p>
+          </div>
+          <div className="rounded-lg border border-gold/25 p-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-gold">Archive records</p>
+            <p className="display mt-2 text-5xl font-semibold">{diwanArchive.length}</p>
+            <p className="mt-3 text-sm leading-6 text-vellum/70">Stable reconciliation records for aliases, index-only works, cover witnesses, and unresolved identities.</p>
           </div>
           <div className="rounded-lg border border-gold/25 p-6">
             <p className="text-xs uppercase tracking-[0.2em] text-gold">Release-ready private masters</p>
@@ -110,14 +115,21 @@ export default function AlMaqamPage() {
           <SectionHeading
             eyebrow="Archive & Reconciliation"
             title="Preserved works, aliases, witnesses, and unresolved identities"
-            copy="Nothing is discarded merely because its final Canon position is unresolved. Evidence remains visible here without inflating the book count or attaching a cover to the wrong manuscript."
+            copy="Nothing is discarded merely because its final Canon position is unresolved. Every archive item now has a stable DIW-ARC identity and a public evidence page without inflating the confirmed book count."
           />
           <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {diwanArchive.map((record) => (
-              <article className="rounded-lg border border-line bg-white/80 p-5" key={record.title}>
-                <h3 className="display text-2xl font-semibold text-deep">{record.title}</h3>
+              <article className="rounded-lg border border-line bg-white/80 p-5" key={record.archiveId}>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">{record.archiveId}</p>
+                <h3 className="display mt-2 text-2xl font-semibold text-deep">{record.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-muted"><span className="font-semibold text-deep">Evidence:</span> {record.evidenceState}</p>
                 <p className="mt-2 text-sm leading-6 text-muted"><span className="font-semibold text-deep">Disposition:</span> {record.disposition}</p>
+                <Link
+                  className="mt-5 inline-flex rounded-md border border-line px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-deep transition hover:border-gold"
+                  href={`/al-maqam/archive/${record.slug}`}
+                >
+                  Open archive record
+                </Link>
               </article>
             ))}
           </div>
