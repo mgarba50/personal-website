@@ -11,7 +11,9 @@ export type DiwanCanonRecord = {
 };
 
 export type DiwanArchiveRecord = {
+  archiveId: string;
   title: string;
+  slug: string;
   evidenceState: string;
   disposition: string;
 };
@@ -93,7 +95,7 @@ export const mainDiwanCanon: DiwanCanonRecord[] = mainTitles.map(([title, slug],
     ...(number === 50
       ? {
           alternateTitle: "Diwan al-Zill al-Mutaman",
-          previewHref: "/assets/books/diwan-al-zill-al-mutaman/preview.html",
+          previewHref: "/assets/al-maqam/diwan-al-zill-al-mutaman/preview.html",
         }
       : {}),
   };
@@ -122,28 +124,39 @@ export const extendedDiwanCanon: DiwanCanonRecord[] = [
 
 export const diwanCanon: DiwanCanonRecord[] = [...mainDiwanCanon, ...extendedDiwanCanon];
 
-export const diwanArchive: DiwanArchiveRecord[] = [
-  { title: "Diwan Al-Filaha", evidenceState: "Verified expansion-audit package", disposition: "Agricultural Empire retained as an edition/package alias of the same work" },
-  { title: "Diwan Al-Ghayb", evidenceState: "Verified expansion-audit package", disposition: "Expansion Canon review" },
-  { title: "Diwan Al-Alsun", evidenceState: "Verified expansion-audit package", disposition: "Expansion Canon review; multiple exact cover variants preserved" },
-  { title: "Diwan Al-Imdad", evidenceState: "Verified expansion-audit package", disposition: "Expansion Canon review" },
-  { title: "Diwan Al-Karamat", evidenceState: "Verified expansion-audit package", disposition: "Expansion Canon review" },
-  { title: "Diwan Al-Rumuz", evidenceState: "Verified core work", disposition: "Imperial++ retained as an edition of the same core work" },
-  { title: "Diwan Al-Atyaf", evidenceState: "Index and exact-cover evidence", disposition: "Preserve pending standalone package verification" },
-  { title: "Diwan Al-Sira", evidenceState: "Index and legacy-cover evidence", disposition: "Preserve pending package reconciliation" },
-  { title: "Diwan Al-Mizan", evidenceState: "Separate title-identity evidence", disposition: "Do not bind to Diwan Asrar Al-Mizan; standalone package still requires confirmation" },
-  { title: "Diwan Manazil Al-Nur", evidenceState: "Composite-dossier component", disposition: "Preserve as component evidence; do not count independently yet" },
-  { title: "Diwan al-Hayat", evidenceState: "Legacy/public-catalogue title", disposition: "Moved out of the general Books shelf into Al-Maqam pending full identity reconciliation" },
-  { title: "Diwan Falak", evidenceState: "Legacy cover evidence only", disposition: "Archive intake; manuscript identity not yet confirmed" },
-  { title: "Diwan Siraj al-Qurb", evidenceState: "Multiple legacy cover witnesses", disposition: "Archive intake; manuscript identity not yet confirmed" },
-  { title: "Diwan Shamil al-Wujud al-Kulli", evidenceState: "Multiple legacy cover witnesses", disposition: "Archive intake; manuscript identity not yet confirmed" },
-  { title: "Diwan Asrar al-Takh-theeth", evidenceState: "Legacy cover evidence only", disposition: "Archive intake; manuscript identity not yet confirmed" },
-  { title: "Diwan Al-Falah", evidenceState: "Legacy cover evidence only", disposition: "Archive intake; do not confuse with Al-Filaha" },
-  { title: "Diwan Al-Gamran", evidenceState: "Legacy cover evidence only", disposition: "Archive intake; identity not inferred from filename similarity" },
-  { title: "Diwan Martihi Al-Muhabbah", evidenceState: "Ambiguous legacy cover title", disposition: "Keep unbound; do not attach to Ma'arij Al-Mahabbah without manuscript evidence" },
-];
+const archiveEvidence = [
+  ["Diwan Al-Filaha", "diwan-al-filaha", "Verified expansion-audit package", "Agricultural Empire retained as an edition/package alias of the same work"],
+  ["Diwan Al-Ghayb", "diwan-al-ghayb", "Verified expansion-audit package", "Expansion Canon review"],
+  ["Diwan Al-Alsun", "diwan-al-alsun", "Verified expansion-audit package", "Expansion Canon review; multiple exact cover variants preserved"],
+  ["Diwan Al-Imdad", "diwan-al-imdad", "Verified expansion-audit package", "Expansion Canon review"],
+  ["Diwan Al-Karamat", "diwan-al-karamat", "Verified expansion-audit package", "Expansion Canon review"],
+  ["Diwan Al-Rumuz", "diwan-al-rumuz", "Verified core work", "Imperial++ retained as an edition of the same core work"],
+  ["Diwan Al-Atyaf", "diwan-al-atyaf", "Index and exact-cover evidence", "Preserve pending standalone package verification"],
+  ["Diwan Al-Sira", "diwan-al-sira", "Index and legacy-cover evidence", "Preserve pending package reconciliation"],
+  ["Diwan Al-Mizan", "diwan-al-mizan", "Separate title-identity evidence", "Do not bind to Diwan Asrar Al-Mizan; standalone package still requires confirmation"],
+  ["Diwan Manazil Al-Nur", "diwan-manazil-al-nur", "Composite-dossier component", "Preserve as component evidence; do not count independently yet"],
+  ["Diwan al-Hayat", "diwan-al-hayat", "Legacy/public-catalogue title", "Moved out of the general Books shelf into Al-Maqam pending full identity reconciliation"],
+  ["Diwan Falak", "diwan-falak", "Legacy cover evidence only", "Archive intake; manuscript identity not yet confirmed"],
+  ["Diwan Siraj al-Qurb", "diwan-siraj-al-qurb", "Multiple legacy cover witnesses", "Archive intake; manuscript identity not yet confirmed"],
+  ["Diwan Shamil al-Wujud al-Kulli", "diwan-shamil-al-wujud-al-kulli", "Multiple legacy cover witnesses", "Archive intake; manuscript identity not yet confirmed"],
+  ["Diwan Asrar al-Takh-theeth", "diwan-asrar-al-takh-theeth", "Legacy cover evidence only", "Archive intake; manuscript identity not yet confirmed"],
+  ["Diwan Al-Falah", "diwan-al-falah", "Legacy cover evidence only", "Archive intake; do not confuse with Al-Filaha"],
+  ["Diwan Al-Gamran", "diwan-al-gamran", "Legacy cover evidence only", "Archive intake; identity not inferred from filename similarity"],
+  ["Diwan Martihi Al-Muhabbah", "diwan-martihi-al-muhabbah", "Ambiguous legacy cover title", "Keep unbound; do not attach to Ma'arij Al-Mahabbah without manuscript evidence"],
+] as const;
+
+export const diwanArchive: DiwanArchiveRecord[] = archiveEvidence.map(
+  ([title, slug, evidenceState, disposition], index) => ({
+    archiveId: `DIW-ARC-${String(index + 1).padStart(3, "0")}`,
+    title,
+    slug,
+    evidenceState,
+    disposition,
+  }),
+);
 
 export const diwanBySlug = new Map(diwanCanon.map((record) => [record.slug, record]));
+export const diwanArchiveBySlug = new Map(diwanArchive.map((record) => [record.slug, record]));
 export const releaseReadyDiwans = diwanCanon.filter(
   (record) => record.publicationState === "Release-ready private master",
 );
