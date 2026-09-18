@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { books } from "@/lib/canon-books";
 import { completedManuscriptSlugs } from "@/lib/completed-books";
 import { extendedDiwanCanon, mainDiwanCanon } from "@/lib/diwan-canon";
+import { publicationArchive } from "@/lib/publication-archive";
 import { bundleOffers } from "@/lib/revenue";
 import { pageMetadata } from "@/lib/seo";
 
@@ -165,6 +166,27 @@ export default function BooksPage() {
             {widerBooks.map((book) => (
               <BookCard book={book} key={book.slug} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-line bg-white/60 px-5 py-16">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeading
+            eyebrow="General Publication Archive"
+            title="Legacy identities preserved instead of silently disappearing"
+            copy={`${publicationArchive.length} exact-title legacy general-publication identities are retained as archive evidence while their authoritative manuscripts and edition relationships are recovered.`}
+          />
+          <div className="mt-8 rounded-lg border border-line bg-white/80 p-7">
+            <p className="max-w-3xl text-sm leading-7 text-muted">
+              Archive records are not counted as completed or commercially released books. They exist so older cover evidence and publication identities stay traceable in Git without contaminating the confirmed Canon.
+            </p>
+            <Link
+              className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
+              href="/books/archive"
+            >
+              Open General Publication Archive
+            </Link>
           </div>
         </div>
       </section>
