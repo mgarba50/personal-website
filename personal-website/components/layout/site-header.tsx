@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { navItems } from "@/lib/content";
 
+const institutionalNavItems = navItems.flatMap((item) =>
+  item.href === "/books"
+    ? [item, { label: "Al-Maqam", href: "/al-maqam" }]
+    : [item],
+);
+
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-gold/25 bg-deep/95 text-vellum backdrop-blur">
@@ -20,7 +26,7 @@ export function SiteHeader() {
       </div>
       <nav className="border-t border-gold/15">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-1 px-5 py-2 sm:grid-cols-3 lg:flex lg:flex-wrap lg:justify-center">
-          {navItems.map((item) => (
+          {institutionalNavItems.map((item) => (
             <Link
               className="block w-full rounded-md px-2 py-2 text-center text-[0.58rem] font-medium uppercase leading-5 tracking-normal text-vellum/72 transition hover:bg-vellum/8 hover:text-gold sm:text-xs sm:tracking-[0.1em] lg:w-auto"
               href={item.href}
