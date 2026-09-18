@@ -1,7 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/assets/books/diwan-al-zill-al-mutaman/:path*",
+        destination: "/assets/al-maqam/diwan-al-zill-al-mutaman/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
