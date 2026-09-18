@@ -1,5 +1,6 @@
 import { completedBooks } from "./completed-books";
 import { books as existingBooks, type Book } from "./content";
+import { workingPublicationBooks } from "./working-books";
 
 export const publicationBooks: Book[] = [
   {
@@ -41,51 +42,22 @@ export const publicationBooks: Book[] = [
     metaDescription:
       "Build a multilingual, distributed, and execution-driven firm using the Gallifrey Model for global collaboration.",
   },
-  {
-    title: "ديوان الظلّ المؤتمن",
-    slug: "diwan-al-zill-al-mutaman",
-    subtitle: "في مدائح المصطفى وآل بيته الأطهار",
-    category: "Poetry / Diwan",
-    description:
-      "ديوان صوفي وجداني في سبعة أبواب، ينتقل من الأمان والكساء والحنين إلى السكينة والقوة والقرب.",
-    audience:
-      "قراء الشعر العربي والمدائح النبوية والأدب الصوفي، والمهتمون بالديوان العربي المعاصر والقراءة الوجدانية.",
-    learn: [
-      "قراءة سبعة أبواب وجدانية تتدرج من الأمان والكساء إلى الحنين والسكينة والقرب.",
-      "التعرّف إلى بناء الديوان بعد تنقية التكرار التقني وترتيب الأبيات في سياقها المقصود.",
-      "قراءة 176 بيتًا في طبعة قارئ منقحة بصريًا مع بقاء المراجعة العروضية النهائية مرحلة مستقلة.",
-    ],
-    contents: [
-      "البعد الأول — باب الأمان الأولي",
-      "البعد الثاني — باب الكساء النوراني",
-      "البعد الثالث — باب الحنين",
-      "البعد الرابع — مقام السكينة",
-      "البعد الخامس — سر الليل",
-      "البعد السادس — باب القوة",
-      "البعد السابع — باب القرب والوصول",
-    ],
-    authorNote:
-      "نظم موسى العلامة بن غَرْبَه اليَرْوَاوِي. هذه طبعة قارئ منقحة في البناء والصف والإخراج، وليست ادعاءً بمراجعة عروضية نقدية نهائية بيتًا بيتًا.",
-    price: "Coming soon",
-    formats: ["PDF", "EPUB", "Print"],
-    coverTone: "gold",
-    related: ["diwan-al-hayat", "the-book-of-signs"],
-    coverImage: "/assets/books/diwan-al-zill-al-mutaman/cover.webp",
-    previewHref: "/assets/books/diwan-al-zill-al-mutaman/preview.html",
-    promise: "سبعة أبواب في الشوق والأمان والسكينة.",
-    primaryCta: "طلب إشعار الإصدار",
-    secondaryCta: "قراءة المقتطف",
-    seoTitle: "ديوان الظل المؤتمن | موسى العلامة بن غربة",
-    metaDescription:
-      "ديوان عربي صوفي في مدائح المصطفى وآل بيته، منظّم في سبعة أبواب وجدانية.",
-  },
   ...completedBooks,
+  ...workingPublicationBooks,
 ];
+
+// Diwans belong to the dedicated Al-Maqam collection. Keep the general Books
+// Canon focused on commercial, completed, and developing non-Diwan works.
+const nonDiwanExistingBooks = existingBooks.filter(
+  (book) => !book.category.toLowerCase().includes("diwan"),
+);
 
 const publicationBySlug = new Map(publicationBooks.map((book) => [book.slug, book]));
 
-export const books: Book[] = existingBooks.map((book) => publicationBySlug.get(book.slug) ?? book);
-const existingSlugs = new Set(existingBooks.map((book) => book.slug));
+export const books: Book[] = nonDiwanExistingBooks.map(
+  (book) => publicationBySlug.get(book.slug) ?? book,
+);
+const existingSlugs = new Set(nonDiwanExistingBooks.map((book) => book.slug));
 
 for (const book of publicationBooks) {
   if (!existingSlugs.has(book.slug)) books.push(book);

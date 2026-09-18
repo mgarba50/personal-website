@@ -15,6 +15,7 @@ const columns = [
     title: "Knowledge",
     links: [
       ["The Canon", "/books"],
+      ["Al-Maqam / Diwan Canon", "/al-maqam"],
       ["Living Library", "/library"],
       ["The Madrasa", "/courses"],
     ],
