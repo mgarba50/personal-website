@@ -32,16 +32,33 @@ const categories = [
   "Islamic Scholarship / Language",
 ];
 
-export default function BooksPage() {
+export default async function BooksPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string }>;
+}) {
+  const { category } = await searchParams;
+  const activeCategory = categories.includes(category ?? "") ? category : undefined;
+  const matchesCategory = (book: (typeof books)[number]) =>
+    !activeCategory || book.category === activeCategory;
+
   const flagshipBooks = books
     .filter((book) => book.isFlagship)
+    .filter(matchesCategory)
     .sort((first, second) => (first.salesOrder ?? 99) - (second.salesOrder ?? 99));
   const completedBooks = books.filter(
-    (book) => !book.isFlagship && completedManuscriptSlugs.has(book.slug),
+    (book) => !book.isFlagship && completedManuscriptSlugs.has(book.slug) && matchesCategory(book),
   );
   const widerBooks = books.filter(
-    (book) => !book.isFlagship && !completedManuscriptSlugs.has(book.slug),
+    (book) => !book.isFlagship && !completedManuscriptSlugs.has(book.slug) && matchesCategory(book),
   );
+
+  const filterClass = (selected: boolean) =>
+    `rounded-md border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition ${
+      selected
+        ? "border-gold bg-deep text-vellum"
+        : "border-line bg-white/70 text-charcoal hover:border-gold"
+    }`;
 
   return (
     <>
@@ -75,34 +92,47 @@ export default function BooksPage() {
 
       <section className="px-5 py-12">
         <div className="mx-auto max-w-7xl">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">
+            Filter the Canon {activeCategory ? `· ${activeCategory}` : "· All categories"}
+          </p>
           <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
+            <Link className={filterClass(!activeCategory)} href="/books#book-grid">
+              All
+            </Link>
+            {categories.map((categoryName) => (
               <Link
-                className="rounded-md border border-line bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-charcoal hover:border-gold"
+                aria-current={activeCategory === categoryName ? "page" : undefined}
+                className={filterClass(activeCategory === categoryName)}
                 data-conversion="filter_books"
-                data-conversion-label={category}
-                href={`/books?category=${encodeURIComponent(category)}`}
-                key={category}
+                data-conversion-label={categoryName}
+                href={`/books?category=${encodeURIComponent(categoryName)}#book-grid`}
+                key={categoryName}
               >
-                {category}
+                {categoryName}
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="book-grid" className="px-5 pb-16">
+      <section id="book-grid" className="scroll-mt-20 px-5 pb-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Flagship Commercial Canon"
             title="Phase 1 revenue books"
             copy="These three premium digital books remain the Canon titles open for manual bank-transfer orders, approved previews, print requests, and course waitlists."
           />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {flagshipBooks.map((book) => (
-              <BookCard book={book} key={book.slug} />
-            ))}
-          </div>
+          {flagshipBooks.length ? (
+            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {flagshipBooks.map((book) => (
+                <BookCard book={book} key={book.slug} />
+              ))}
+            </div>
+          ) : (
+            <p className="mt-8 rounded-lg border border-line bg-white/70 p-6 text-sm text-muted">
+              No flagship commercial title is currently filed under this category.
+            </p>
+          )}
         </div>
       </section>
 
@@ -113,13 +143,19 @@ export default function BooksPage() {
           <p className="mt-5 max-w-3xl text-sm leading-7 text-vellum/72">
             These books were verified from complete private masters or complete multi-part manuscript packages. Their full manuscripts remain outside public GitHub and public download paths. Where no approved price or preview exists, the release remains inquiry-only.
           </p>
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {completedBooks.map((book) => (
-              <div className="[&>article]:bg-vellum" key={book.slug}>
-                <BookCard book={book} />
-              </div>
-            ))}
-          </div>
+          {completedBooks.length ? (
+            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {completedBooks.map((book) => (
+                <div className="[&>article]:bg-vellum" key={book.slug}>
+                  <BookCard book={book} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-8 rounded-lg border border-gold/25 p-6 text-sm text-vellum/70">
+              No verified completed manuscript is currently filed under this category.
+            </p>
+          )}
         </div>
       </section>
 
@@ -162,11 +198,17 @@ export default function BooksPage() {
             title="Forthcoming, developing, and packaging-stage publications"
             copy="These legitimate Musa Allama works are now accounted for in Git rather than being invisible. Their cards state the actual evidence level; no developing work is falsely represented as commercially released."
           />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {widerBooks.map((book) => (
-              <BookCard book={book} key={book.slug} />
-            ))}
-          </div>
+          {widerBooks.length ? (
+            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {widerBooks.map((book) => (
+                <BookCard book={book} key={book.slug} />
+              ))}
+            </div>
+          ) : (
+            <p className="mt-8 rounded-lg border border-line bg-white/70 p-6 text-sm text-muted">
+              No developing publication is currently filed under this category.
+            </p>
+          )}
         </div>
       </section>
 
