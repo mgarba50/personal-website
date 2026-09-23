@@ -14,9 +14,22 @@ const requiredFiles = [
   "next.config.ts",
 ];
 
+const recoveredBookCoverFiles = [
+  "public/assets/books/the-desert-ceo/cover.webp",
+  "public/assets/books/the-five-language-ceo/cover.webp",
+  "public/assets/books/the-strategist-of-power/cover.webp",
+  "public/assets/books/a-multilingual-mind/cover.webp",
+  "public/assets/books/cheating-time/cover.webp",
+  "public/assets/books/the-illusion-of-control/cover.webp",
+  "public/assets/books/knowledge-is-seed/cover.webp",
+  "public/assets/books/the-allama-economy/cover.webp",
+  "public/assets/books/the-climate-resilient-farmer/cover.webp",
+  "public/assets/books/the-entrepreneurial-polyglot/cover.webp",
+];
+
 const failures = [];
 
-for (const file of requiredFiles) {
+for (const file of [...requiredFiles, ...recoveredBookCoverFiles]) {
   try {
     await access(file, constants.R_OK);
   } catch {
@@ -72,5 +85,5 @@ if (failures.length > 0) {
 }
 
 console.log(
-  "Publication integrity verified: Al-Maqam ownership, legacy routes, Zill asset aliases, and Canon bindings are consistent.",
+  `Publication integrity verified: Al-Maqam ownership, legacy routes, Zill asset aliases, Canon bindings, and ${recoveredBookCoverFiles.length} recovered book covers are consistent.`,
 );
