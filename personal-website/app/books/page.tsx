@@ -32,16 +32,27 @@ const categories = [
   "Islamic Scholarship / Language",
 ];
 
-export default function BooksPage() {
+type BooksPageProps = {
+  searchParams: Promise<{ category?: string | string[] }>;
+};
+
+export default async function BooksPage({ searchParams }: BooksPageProps) {
+  const params = await searchParams;
+  const requestedCategory = typeof params.category === "string" ? params.category : "";
+  const selectedCategory = categories.includes(requestedCategory) ? requestedCategory : "";
+  const matchesCategory = (category: string) =>
+    !selectedCategory || category.toLowerCase() === selectedCategory.toLowerCase();
+
   const flagshipBooks = books
-    .filter((book) => book.isFlagship)
+    .filter((book) => book.isFlagship && matchesCategory(book.category))
     .sort((first, second) => (first.salesOrder ?? 99) - (second.salesOrder ?? 99));
   const completedBooks = books.filter(
-    (book) => !book.isFlagship && completedManuscriptSlugs.has(book.slug),
+    (book) => !book.isFlagship && completedManuscriptSlugs.has(book.slug) && matchesCategory(book.category),
   );
   const widerBooks = books.filter(
-    (book) => !book.isFlagship && !completedManuscriptSlugs.has(book.slug),
+    (book) => !book.isFlagship && !completedManuscriptSlugs.has(book.slug) && matchesCategory(book.category),
   );
+  const visibleBookCount = flagshipBooks.length + completedBooks.length + widerBooks.length;
 
   return (
     <>
@@ -75,134 +86,171 @@ export default function BooksPage() {
 
       <section className="px-5 py-12">
         <div className="mx-auto max-w-7xl">
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <Link
-                className="rounded-md border border-line bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-charcoal hover:border-gold"
-                data-conversion="filter_books"
-                data-conversion-label={category}
-                href={`/books?category=${encodeURIComponent(category)}`}
-                key={category}
-              >
-                {category}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="book-grid" className="px-5 pb-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Flagship Commercial Canon"
-            title="Phase 1 revenue books"
-            copy="These three premium digital books remain the Canon titles open for manual bank-transfer orders, approved previews, print requests, and course waitlists."
-          />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {flagshipBooks.map((book) => (
-              <BookCard book={book} key={book.slug} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-line bg-deep px-5 py-16 text-vellum">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Verified completed manuscripts</p>
-          <h2 className="display mt-3 text-4xl font-semibold md:text-5xl">Finished general books recovered into the MusaAllama Canon.</h2>
-          <p className="mt-5 max-w-3xl text-sm leading-7 text-vellum/72">
-            These books were verified from complete private masters or complete multi-part manuscript packages. Their full manuscripts remain outside public GitHub and public download paths. Where no approved price or preview exists, the release remains inquiry-only.
-          </p>
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {completedBooks.map((book) => (
-              <div className="[&>article]:bg-vellum" key={book.slug}>
-                <BookCard book={book} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white/60 px-5 py-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Product bundles"
-            title="Manual order bundles"
-            copy="Existing bundle offers remain unchanged. No recovered or developing manuscript is inserted into a paid bundle without an approved price."
-          />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {bundleOffers.map((bundle) => (
-              <article className="rounded-lg border border-line bg-white/80 p-6" key={bundle.slug}>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">{bundle.note}</p>
-                <h3 className="display mt-3 text-3xl font-semibold text-deep">{bundle.title}</h3>
-                <p className="mt-4 text-lg font-semibold text-deep">{bundle.price}</p>
-                <ul className="mt-5 grid gap-2 text-sm leading-7 text-muted">
-                  {bundle.includes.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <Link
-                  className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum transition hover:bg-navy"
-                  data-conversion="bundle_inquiry"
-                  data-conversion-label={bundle.title}
-                  href={`/checkout?type=bundle&slug=${bundle.slug}&provider=manual`}
-                >
-                  Manual order
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="Wider Canon"
-            title="Forthcoming, developing, and packaging-stage publications"
-            copy="These legitimate Musa Allama works are now accounted for in Git rather than being invisible. Their cards state the actual evidence level; no developing work is falsely represented as commercially released."
-          />
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {widerBooks.map((book) => (
-              <BookCard book={book} key={book.slug} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-line bg-white/60 px-5 py-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="General Publication Archive"
-            title="Legacy identities preserved instead of silently disappearing"
-            copy={`${publicationArchive.length} exact-title legacy general-publication identities are retained as archive evidence while their authoritative manuscripts and edition relationships are recovered.`}
-          />
-          <div className="mt-8 rounded-lg border border-line bg-white/80 p-7">
-            <p className="max-w-3xl text-sm leading-7 text-muted">
-              Archive records are not counted as completed or commercially released books. They exist so older cover evidence and publication identities stay traceable in Git without contaminating the confirmed Canon.
-            </p>
+          <div className="flex flex-wrap gap-2" aria-label="Filter books by category">
             <Link
-              className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
-              href="/books/archive"
+              className={`rounded-md border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition ${
+                !selectedCategory ? "border-gold bg-deep text-vellum" : "border-line bg-white/70 text-charcoal hover:border-gold"
+              }`}
+              href="/books#book-grid"
             >
-              Open General Publication Archive
+              All books
+            </Link>
+            {categories.map((category) => {
+              const active = selectedCategory === category;
+              return (
+                <Link
+                  className={`rounded-md border px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition ${
+                    active ? "border-gold bg-deep text-vellum" : "border-line bg-white/70 text-charcoal hover:border-gold"
+                  }`}
+                  data-conversion="filter_books"
+                  data-conversion-label={category}
+                  href={`/books?category=${encodeURIComponent(category)}#book-grid`}
+                  key={category}
+                >
+                  {category}
+                </Link>
+              );
+            })}
+          </div>
+          {selectedCategory ? (
+            <div className="mt-5 flex flex-wrap items-center gap-3 rounded-lg border border-line bg-white/70 px-5 py-4">
+              <p className="text-sm text-muted">
+                Showing <span className="font-semibold text-deep">{visibleBookCount}</span> publication{visibleBookCount === 1 ? "" : "s"} in <span className="font-semibold text-deep">{selectedCategory}</span>.
+              </p>
+              <Link className="text-xs font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep" href="/books#book-grid">
+                Clear filter
+              </Link>
+            </div>
+          ) : null}
+        </div>
+      </section>
+
+      <div id="book-grid" className="scroll-mt-24" />
+
+      {flagshipBooks.length > 0 ? (
+        <section className="px-5 pb-16">
+          <div className="mx-auto max-w-7xl">
+            <SectionHeading
+              eyebrow="Flagship Commercial Canon"
+              title="Phase 1 revenue books"
+              copy="These premium digital books remain the Canon titles open for manual bank-transfer orders, approved previews, print requests, and course waitlists."
+            />
+            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {flagshipBooks.map((book) => <BookCard book={book} key={book.slug} />)}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {completedBooks.length > 0 ? (
+        <section className="border-y border-line bg-deep px-5 py-16 text-vellum">
+          <div className="mx-auto max-w-7xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Verified completed manuscripts</p>
+            <h2 className="display mt-3 text-4xl font-semibold md:text-5xl">Finished general books recovered into the MusaAllama Canon.</h2>
+            <p className="mt-5 max-w-3xl text-sm leading-7 text-vellum/72">
+              These books were verified from complete private masters or complete multi-part manuscript packages. Their full manuscripts remain outside public GitHub and public download paths. Where no approved price or preview exists, the release remains inquiry-only.
+            </p>
+            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {completedBooks.map((book) => (
+                <div className="[&>article]:bg-vellum" key={book.slug}><BookCard book={book} /></div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {!selectedCategory ? (
+        <section className="bg-white/60 px-5 py-16">
+          <div className="mx-auto max-w-7xl">
+            <SectionHeading
+              eyebrow="Product bundles"
+              title="Manual order bundles"
+              copy="Existing bundle offers remain unchanged. No recovered or developing manuscript is inserted into a paid bundle without an approved price."
+            />
+            <div className="mt-10 grid gap-5 md:grid-cols-3">
+              {bundleOffers.map((bundle) => (
+                <article className="rounded-lg border border-line bg-white/80 p-6" key={bundle.slug}>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">{bundle.note}</p>
+                  <h3 className="display mt-3 text-3xl font-semibold text-deep">{bundle.title}</h3>
+                  <p className="mt-4 text-lg font-semibold text-deep">{bundle.price}</p>
+                  <ul className="mt-5 grid gap-2 text-sm leading-7 text-muted">
+                    {bundle.includes.map((item) => <li key={item}>{item}</li>)}
+                  </ul>
+                  <Link
+                    className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum transition hover:bg-navy"
+                    data-conversion="bundle_inquiry"
+                    data-conversion-label={bundle.title}
+                    href={`/checkout?type=bundle&slug=${bundle.slug}&provider=manual`}
+                  >
+                    Manual order
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {widerBooks.length > 0 ? (
+        <section className="px-5 py-16">
+          <div className="mx-auto max-w-7xl">
+            <SectionHeading
+              eyebrow="Wider Canon"
+              title="Forthcoming, developing, and packaging-stage publications"
+              copy="These legitimate Musa Allama works are now accounted for in Git rather than being invisible. Their cards state the actual evidence level; no developing work is falsely represented as commercially released."
+            />
+            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {widerBooks.map((book) => <BookCard book={book} key={book.slug} />)}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {visibleBookCount === 0 ? (
+        <section className="px-5 pb-16">
+          <div className="mx-auto max-w-4xl rounded-xl border border-line bg-white/80 p-10 text-center">
+            <h2 className="display text-3xl font-semibold text-deep">No publications are currently filed under this category.</h2>
+            <Link className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum" href="/books#book-grid">
+              View all books
             </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
-      <section className="bg-white/60 px-5 py-16">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-burgundy">Collector Edition</p>
-            <h2 className="display mt-3 text-4xl font-semibold text-deep md:text-5xl">Premium editions and bundles.</h2>
-            <p className="mt-5 text-sm leading-7 text-muted">
-              Collector editions, institutional bundles, and private reading packs can be released only through an approved direct checkout, manual bank-transfer, or membership-access path.
-            </p>
-          </div>
-          <NewsletterForm />
-        </div>
-      </section>
+      {!selectedCategory ? (
+        <>
+          <section className="border-y border-line bg-white/60 px-5 py-16">
+            <div className="mx-auto max-w-7xl">
+              <SectionHeading
+                eyebrow="General Publication Archive"
+                title="Legacy identities preserved instead of silently disappearing"
+                copy={`${publicationArchive.length} exact-title legacy general-publication identities are retained as archive evidence while their authoritative manuscripts and edition relationships are recovered.`}
+              />
+              <div className="mt-8 rounded-lg border border-line bg-white/80 p-7">
+                <p className="max-w-3xl text-sm leading-7 text-muted">
+                  Archive records are not counted as completed or commercially released books. They exist so older cover evidence and publication identities stay traceable in Git without contaminating the confirmed Canon.
+                </p>
+                <Link className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum" href="/books/archive">
+                  Open General Publication Archive
+                </Link>
+              </div>
+            </div>
+          </section>
+
+          <section className="bg-white/60 px-5 py-16">
+            <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-burgundy">Collector Edition</p>
+                <h2 className="display mt-3 text-4xl font-semibold text-deep md:text-5xl">Premium editions and bundles.</h2>
+                <p className="mt-5 text-sm leading-7 text-muted">
+                  Collector editions, institutional bundles, and private reading packs can be released only through an approved direct checkout, manual bank-transfer, or membership-access path.
+                </p>
+              </div>
+              <NewsletterForm />
+            </div>
+          </section>
+        </>
+      ) : null}
     </>
   );
 }
