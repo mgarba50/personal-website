@@ -11,18 +11,31 @@ const toneClasses: Record<string, string> = {
 };
 
 export function BookCard({ book }: { book: Book }) {
+  const bookHref = `/books/${book.slug}`;
   const checkoutHref = `/checkout?type=book&slug=${book.slug}&provider=manual`;
-  const previewHref = book.previewHref ?? `/books/${book.slug}#preview`;
+  const previewHref = book.previewHref ?? `${bookHref}#preview`;
   const waitlistHref = book.waitlistSlug
     ? `/courses?waitlist=${encodeURIComponent(book.waitlistSlug)}#course-waitlists`
     : "/courses";
   const canBuy = Boolean(book.isFlagship);
 
   return (
-    <article className="grid h-full gap-5 rounded-lg border border-line bg-white/75 p-5 shadow-sm">
-      <div className="relative aspect-[3/4] overflow-hidden rounded-md border border-line bg-deep">
+    <article className="group grid h-full gap-5 rounded-lg border border-line bg-white/75 p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-gold hover:shadow-md">
+      <Link
+        aria-label={`Open ${book.title}`}
+        className="relative aspect-[3/4] overflow-hidden rounded-md border border-line bg-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+        data-conversion="view_book"
+        data-conversion-label={`${book.title} cover`}
+        href={bookHref}
+      >
         {book.coverImage ? (
-          <Image src={book.coverImage} alt={`${book.title} cover`} fill sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw" className="object-cover" />
+          <Image
+            src={book.coverImage}
+            alt={`${book.title} cover`}
+            fill
+            sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
+            className="object-contain p-2 transition duration-300 group-hover:scale-[1.02]"
+          />
         ) : (
           <div
             className={`flex h-full flex-col justify-between bg-gradient-to-br ${
@@ -33,10 +46,14 @@ export function BookCard({ book }: { book: Book }) {
             <h3 className="display text-3xl font-semibold leading-none">{book.title}</h3>
           </div>
         )}
-      </div>
+      </Link>
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">{book.category}</p>
-        <h3 className="display mt-2 text-2xl font-semibold text-deep">{book.title}</h3>
+        <h3 className="display mt-2 text-2xl font-semibold text-deep">
+          <Link className="transition hover:text-burgundy" href={bookHref}>
+            {book.title}
+          </Link>
+        </h3>
         <p className="mt-3 text-sm leading-7 text-muted">{book.promise ?? book.description}</p>
       </div>
       <div className="mt-auto border-t border-line pt-4">
@@ -83,7 +100,7 @@ export function BookCard({ book }: { book: Book }) {
                 className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep"
                 data-conversion="view_book"
                 data-conversion-label={book.title}
-                href={`/books/${book.slug}`}
+                href={bookHref}
               >
                 View sales page
               </Link>
@@ -94,7 +111,7 @@ export function BookCard({ book }: { book: Book }) {
             className="mt-4 inline-flex text-xs font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep"
             data-conversion="view_book"
             data-conversion-label={book.title}
-            href={`/books/${book.slug}`}
+            href={bookHref}
           >
             View publication page
           </Link>
