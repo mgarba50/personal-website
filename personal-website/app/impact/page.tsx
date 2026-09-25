@@ -11,12 +11,30 @@ export const metadata = pageMetadata({
 });
 
 const initiatives = [
-  "Education support",
-  "Agriculture training",
-  "Youth skills development",
-  "Knowledge preservation",
-  "Scholarships",
-  "Endowment inquiries",
+  {
+    title: "Education support",
+    copy: "Partnership opportunities for learning materials, teaching programs, student support, and practical educational initiatives.",
+  },
+  {
+    title: "Agriculture training",
+    copy: "Field-oriented agricultural training for farmers, students, cooperatives, institutions, and development programs.",
+  },
+  {
+    title: "Youth skills development",
+    copy: "Practical skills initiatives in technology, languages, enterprise, publishing, and agriculture for young learners and emerging professionals.",
+  },
+  {
+    title: "Knowledge preservation",
+    copy: "Support for publishing, digitization, educational archives, manuscripts, and long-term access to useful knowledge.",
+  },
+  {
+    title: "Scholarships",
+    copy: "Education-support partnerships and scholarship inquiries for selected learning and training opportunities.",
+  },
+  {
+    title: "Endowment & partnerships",
+    copy: "Long-term institutional support, sponsored programs, research, training, publishing, and collaborative initiatives.",
+  },
 ];
 
 export default function ImpactPage() {
@@ -25,9 +43,9 @@ export default function ImpactPage() {
       <PageHero
         eyebrow="Institutional Impact"
         title="Legacy, education, agriculture, and knowledge preservation."
-        copy="A partnership center for initiatives that support learning, agricultural capability, youth skills, scholarships, and long-term institutional memory."
+        copy="A partnership center for initiatives that support learning, agricultural capability, youth skills, scholarships, publishing, and long-term institutional memory."
         primaryCta={{ label: "Partner with us", href: "#partner" }}
-        secondaryCta={{ label: "Support initiative", href: "#partner" }}
+        secondaryCta={{ label: "Support an initiative", href: "#partner" }}
       />
 
       <section className="px-5 py-16">
@@ -35,16 +53,13 @@ export default function ImpactPage() {
           <SectionHeading
             eyebrow="Impact areas"
             title="Support an educational, agricultural, or publishing initiative"
-            copy="Partnership and endowment inquiries can be routed through the Diplomatic Desk for review."
+            copy="Partnerships can be structured around training, educational support, publishing, scholarships, youth skills, or long-term institutional projects."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {initiatives.map((initiative) => (
-              <article className="rounded-lg border border-line bg-white/80 p-6" key={initiative}>
-                <h3 className="display text-3xl font-semibold text-deep">{initiative}</h3>
-                <p className="mt-4 text-sm leading-7 text-muted">
-                  Program details, partner documentation, outcomes, and funding notes can be managed through the content
-                  system.
-                </p>
+              <article className="rounded-lg border border-line bg-white/80 p-6" key={initiative.title}>
+                <h3 className="display text-3xl font-semibold text-deep">{initiative.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-muted">{initiative.copy}</p>
               </article>
             ))}
           </div>
@@ -57,7 +72,7 @@ export default function ImpactPage() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-burgundy">Partner with us</p>
             <h2 className="display mt-3 text-4xl font-semibold text-deep md:text-5xl">Send an institutional partnership inquiry.</h2>
             <p className="mt-5 text-sm leading-7 text-muted">
-              Include project scope, location, intended beneficiaries, budget range, and partnership expectations.
+              Include project scope, location, intended beneficiaries, budget range, timeline, and partnership expectations.
             </p>
           </div>
           <InquiryForm />
