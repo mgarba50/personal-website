@@ -7,10 +7,7 @@ import { PaymentPanel } from "@/components/commerce/payment-panel";
 import { CourseWaitlistForm } from "@/components/forms/course-waitlist-form";
 import { PageHero } from "@/components/ui/page-hero";
 import { books } from "@/lib/canon-books";
-import {
-  completedBookFrontMatter,
-  completedManuscriptSlugs,
-} from "@/lib/completed-books";
+import { completedBookFrontMatter } from "@/lib/completed-books";
 import { bankDetails } from "@/lib/revenue";
 import { jsonLd, pageMetadata } from "@/lib/seo";
 
@@ -51,15 +48,11 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
 
   const related = books.filter((item) => book.related.includes(item.slug));
   const canBuy = Boolean(book.isFlagship && book.launchPrice);
-  const manuscriptComplete = completedManuscriptSlugs.has(book.slug);
   const checkoutHref = `/checkout?type=book&slug=${book.slug}&provider=manual`;
   const inquiryHref = `/contact?inquiry=book-publication&product=${book.slug}`;
   const previewHref = book.previewHref;
   const displayPrice = canBuy ? book.launchPrice ?? book.price : "Coming soon";
   const frontMatter = canonicalFrontMatter[book.slug] ?? { author: "Musa Allama", edition: "Forthcoming" };
-  const publicationStatus = manuscriptComplete
-    ? "Manuscript complete · publication release pending"
-    : "Coming soon";
 
   const bookStructuredData = {
     "@context": "https://schema.org",
@@ -83,10 +76,7 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={jsonLd(bookStructuredData)}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(bookStructuredData)} />
       <PageHero
         eyebrow={book.category}
         title={book.title}
@@ -94,21 +84,19 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
         primaryCta={
           canBuy
             ? { label: book.primaryCta ?? "Buy PDF", href: checkoutHref, action: "buy_pdf_click" }
-            : { label: "Publication inquiry", href: inquiryHref, action: "send_inquiry" }
+            : { label: "Request updates", href: inquiryHref, action: "send_inquiry" }
         }
         secondaryCta={
           previewHref
             ? { label: "Preview sample", href: previewHref, action: "preview_click" }
-            : { label: "Return to Canon", href: "/books", action: "view_book_catalog" }
+            : { label: "Browse all books", href: "/books", action: "view_book_catalog" }
         }
       />
       <ConversionStrip
         title={
           canBuy
-            ? "Buy the PDF, submit payment proof, read the approved preview, join a course waitlist, or request a print copy."
-            : manuscriptComplete
-              ? "Verified completed manuscript. Full files remain private and payment stays disabled until release terms are approved."
-              : "Forthcoming Canon title. Payment and paid-file delivery remain disabled until publication is formally opened."
+            ? "Order the digital edition, preview the book, request a print copy, or join a related course waitlist."
+            : "This title is forthcoming. Ask for release information or explore the rest of the collection."
         }
       />
 
@@ -118,7 +106,7 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
             <div className="grid gap-8 rounded-lg border border-line bg-white/80 p-7 md:grid-cols-[280px_1fr]">
               {book.coverImage ? (
                 <div className="relative aspect-[3/4] overflow-hidden rounded-md border border-line bg-deep">
-                  <Image src={book.coverImage} alt={`${book.title} cover`} fill priority sizes="280px" className="object-cover" />
+                  <Image src={book.coverImage} alt={`${book.title} cover`} fill priority sizes="280px" className="object-contain p-2" />
                 </div>
               ) : (
                 <div
@@ -127,9 +115,7 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
                   } p-6 text-vellum`}
                 >
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
-                      {manuscriptComplete ? "Verified master" : "Forthcoming"}
-                    </p>
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">Forthcoming</p>
                     <p className="display mt-3 text-3xl font-semibold leading-none">{book.title}</p>
                     <p className="mt-4 text-xs leading-5 text-vellum/65">{book.subtitle}</p>
                   </div>
@@ -141,9 +127,7 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
                 <p className="mt-3 text-lg leading-8 text-muted">{book.promise ?? book.description}</p>
                 <div className="mt-6 grid gap-3 text-sm md:grid-cols-2">
                   <div className="rounded-md border border-line bg-vellum/70 p-4">
-                    <p className="font-semibold text-deep">
-                      {canBuy ? `Launch Price: ${displayPrice}` : `Publication status: ${publicationStatus}`}
-                    </p>
+                    <p className="font-semibold text-deep">{canBuy ? `Launch Price: ${displayPrice}` : "Coming soon"}</p>
                     {canBuy && book.standardPrice ? <p className="mt-1 text-muted">Standard Price: {book.standardPrice}</p> : null}
                   </div>
                   {canBuy && book.bundlePrice ? (
@@ -158,35 +142,20 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
                     </div>
                   )}
                 </div>
-                {canBuy ? (
-                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-burgundy">
-                    Launch pricing is available for early buyers only.
-                  </p>
-                ) : (
-                  <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-burgundy">
-                    No payment is requested for this title until an approved price and delivery path are published.
-                  </p>
-                )}
+                <p className="mt-4 text-xs font-semibold uppercase tracking-[0.14em] text-burgundy">
+                  {canBuy ? "Introductory pricing for early readers." : "Release information will be announced here."}
+                </p>
               </div>
             </div>
 
             {canBuy ? (
               <section className="mt-6 rounded-lg border border-line bg-white/80 p-7">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Manual checkout</p>
-                <h2 className="display mt-3 text-3xl font-semibold text-deep">Complete Your Book Order</h2>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Order the book</p>
+                <h2 className="display mt-3 text-3xl font-semibold text-deep">Complete your order</h2>
                 <div className="mt-5 grid gap-4 text-sm leading-7 text-muted md:grid-cols-3">
-                  <div>
-                    <p className="font-semibold text-deep">Step 1</p>
-                    <p>Transfer the correct amount to the account below.</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-deep">Step 2</p>
-                    <p>Upload your payment receipt or screenshot.</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-deep">Step 3</p>
-                    <p>Your order will be reviewed and approved. Access is delivered privately by email or secure dashboard link.</p>
-                  </div>
+                  <div><p className="font-semibold text-deep">Step 1</p><p>Transfer the displayed amount to the account below.</p></div>
+                  <div><p className="font-semibold text-deep">Step 2</p><p>Upload your payment receipt or screenshot.</p></div>
+                  <div><p className="font-semibold text-deep">Step 3</p><p>Your order is confirmed and your digital copy is delivered to you.</p></div>
                 </div>
                 <div className="mt-5 rounded-md border border-line bg-vellum/70 p-4 text-sm leading-7 text-charcoal">
                   <p><strong>Account Name:</strong> {bankDetails.accountName}</p>
@@ -217,26 +186,18 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
               </section>
             ) : (
               <section className="mt-6 rounded-lg border border-line bg-white/80 p-7">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">
-                  {manuscriptComplete ? "Completed manuscript" : "Forthcoming publication"}
-                </p>
-                <h2 className="display mt-3 text-3xl font-semibold text-deep">
-                  {manuscriptComplete
-                    ? "The book is complete; the commercial release is not open yet."
-                    : "This title is in the Canon, but sales are not open."}
-                </h2>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Forthcoming</p>
+                <h2 className="display mt-3 text-3xl font-semibold text-deep">Be notified when this book becomes available.</h2>
                 <p className="mt-4 text-sm leading-7 text-muted">
-                  {manuscriptComplete
-                    ? "The finished manuscript has been verified from the private archive. It is not copied into the public repository. No checkout, payment request, or unrestricted download is enabled until a price and delivery path are formally approved."
-                    : "No checkout, payment request, public paid manuscript, or unrestricted download is enabled for this book. Use the publication inquiry route for availability questions."}
+                  Release date, edition details, pricing, and ordering information will appear here when announced.
                 </p>
                 <Link
                   className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
                   data-conversion="send_inquiry"
-                  data-conversion-label={`${book.title} publication inquiry`}
+                  data-conversion-label={`${book.title} release inquiry`}
                   href={inquiryHref}
                 >
-                  Ask about publication
+                  Request updates
                 </Link>
               </section>
             )}
@@ -247,13 +208,11 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
                 <p className="mt-4 text-sm leading-7 text-muted">{book.audience}</p>
               </section>
               <section id="preview" className="rounded-lg border border-line bg-white/80 p-7">
-                <h2 className="display text-3xl font-semibold text-deep">{previewHref ? "Preview sample" : "Preview status"}</h2>
+                <h2 className="display text-3xl font-semibold text-deep">{previewHref ? "Preview sample" : "Preview"}</h2>
                 <p className="mt-4 text-sm leading-7 text-muted">
                   {previewHref
-                    ? "Read the approved short sample before ordering. The complete paid PDF is kept private and delivered only after payment approval."
-                    : manuscriptComplete
-                      ? "No public preview file has been deployed for this completed manuscript. The full master remains private."
-                      : "No public preview has been approved for this title yet. The complete manuscript is not exposed from this route."}
+                    ? "Read a sample and explore the book before ordering."
+                    : "A public preview is not available for this title yet."}
                 </p>
                 {previewHref ? (
                   <Link
@@ -271,18 +230,14 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
             <section className="mt-6 rounded-lg border border-line bg-white/80 p-7">
               <h2 className="display text-3xl font-semibold text-deep">What readers will learn</h2>
               <ul className="mt-4 grid list-disc gap-3 pl-5 text-sm leading-7 text-charcoal">
-                {book.learn.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
+                {book.learn.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </section>
 
             <section className="mt-6 rounded-lg border border-line bg-white/80 p-7">
               <h2 className="display text-3xl font-semibold text-deep">Table of contents</h2>
               <ol className="mt-4 grid list-decimal gap-3 pl-5 text-sm leading-7 text-charcoal">
-                {book.contents.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
+                {book.contents.map((item) => <li key={item}>{item}</li>)}
               </ol>
             </section>
 
@@ -290,24 +245,20 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
               <section className="mt-6 rounded-lg border border-line bg-white/80 p-7">
                 <h2 className="display text-3xl font-semibold text-deep">Bonuses</h2>
                 <ul className="mt-4 grid list-disc gap-3 pl-5 text-sm leading-7 text-charcoal">
-                  {book.bonuses.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
+                  {book.bonuses.map((item) => <li key={item}>{item}</li>)}
                 </ul>
               </section>
             ) : null}
 
             {canBuy ? (
               <section className="mt-6 rounded-lg border border-line bg-white/80 p-7">
-                <h2 className="display text-3xl font-semibold text-deep">Related course or waitlist</h2>
+                <h2 className="display text-3xl font-semibold text-deep">Related learning</h2>
                 <p className="mt-4 text-sm leading-7 text-muted">
                   {book.waitlistTitle
                     ? `Join the ${book.waitlistTitle} waitlist connected to this book.`
                     : "Join the course waitlist for the next practical program."}
                 </p>
-                <div className="mt-6">
-                  <CourseWaitlistForm defaultCourse={book.waitlistTitle} />
-                </div>
+                <div className="mt-6"><CourseWaitlistForm defaultCourse={book.waitlistTitle} /></div>
               </section>
             ) : null}
 
@@ -326,58 +277,24 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
             ) : null}
 
             <section className="mt-6 rounded-lg border border-line bg-deep p-7 text-vellum">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">Publication action</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">Next step</p>
               <h2 className="display mt-3 text-3xl font-semibold">
-                {canBuy
-                  ? "Buy the PDF or request a manual order."
-                  : manuscriptComplete
-                    ? "The master is complete. Follow the release without paying early."
-                    : "Follow the title without paying for an unreleased edition."}
+                {canBuy ? "Start reading." : "Follow this book."}
               </h2>
               <p className="mt-4 text-sm leading-7 text-vellum/72">
                 {canBuy
-                  ? "Every order is manually verified. Complete paid PDFs are never exposed through public book assets and are delivered only after approval."
-                  : manuscriptComplete
-                    ? "The manuscript is held privately while price, edition release, preview, and delivery terms remain unopened."
-                    : "This title remains catalogue-only until its edition, release terms, price, and delivery path are formally opened."}
+                  ? "Order the digital edition, request a print copy, or contact us about institutional access."
+                  : "Request release information and we will point you to the latest availability details."}
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 {canBuy ? (
                   <>
-                    <Link
-                      className="rounded-md bg-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep"
-                      data-conversion="buy_pdf_click"
-                      data-conversion-label={book.title}
-                      href={checkoutHref}
-                    >
-                      Buy PDF
-                    </Link>
-                    <Link
-                      className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-gold"
-                      data-conversion="print_copy_request"
-                      data-conversion-label={book.title}
-                      href={`/contact?inquiry=print-copy&product=${book.slug}`}
-                    >
-                      Request print copy
-                    </Link>
-                    <Link
-                      className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-gold"
-                      data-conversion="send_inquiry"
-                      data-conversion-label={`${book.title} institutional license`}
-                      href={`/contact?inquiry=institutional-license&product=${book.slug}`}
-                    >
-                      Institutional license
-                    </Link>
+                    <Link className="rounded-md bg-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep" data-conversion="buy_pdf_click" data-conversion-label={book.title} href={checkoutHref}>Buy PDF</Link>
+                    <Link className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-gold" data-conversion="print_copy_request" data-conversion-label={book.title} href={`/contact?inquiry=print-copy&product=${book.slug}`}>Request print copy</Link>
+                    <Link className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-gold" data-conversion="send_inquiry" data-conversion-label={`${book.title} institutional license`} href={`/contact?inquiry=institutional-license&product=${book.slug}`}>Institutional access</Link>
                   </>
                 ) : (
-                  <Link
-                    className="rounded-md bg-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep"
-                    data-conversion="send_inquiry"
-                    data-conversion-label={`${book.title} publication inquiry`}
-                    href={inquiryHref}
-                  >
-                    Publication inquiry
-                  </Link>
+                  <Link className="rounded-md bg-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep" data-conversion="send_inquiry" data-conversion-label={`${book.title} release inquiry`} href={inquiryHref}>Request updates</Link>
                 )}
               </div>
             </section>
@@ -390,17 +307,13 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Related path</p>
-              <h2 className="display mt-3 text-4xl font-semibold text-deep">Continue through the Canon</h2>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">You may also like</p>
+              <h2 className="display mt-3 text-4xl font-semibold text-deep">Continue exploring</h2>
             </div>
-            <Link className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep" href="/books">
-              Return to Canon
-            </Link>
+            <Link className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep" href="/books">Browse all books</Link>
           </div>
           <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {related.map((item) => (
-              <BookCard book={item} key={item.slug} />
-            ))}
+            {related.map((item) => <BookCard book={item} key={item.slug} />)}
           </div>
         </div>
       </section>
