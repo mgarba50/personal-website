@@ -32,9 +32,9 @@ export default async function MembershipTierPage({ params }: { params: Promise<{
         title={tier.title}
         copy={tier.description}
         primaryCta={{ label: "Apply / Join", href: `/checkout?type=membership&slug=${tier.slug}`, action: "apply_membership" }}
-        secondaryCta={{ label: "Member login", href: "/dashboard", action: "open_dashboard" }}
+        secondaryCta={{ label: "Member support", href: "/dashboard", action: "open_dashboard" }}
       />
-      <ConversionStrip title="Membership detail pages should create applications, renewals, or upgrades." />
+      <ConversionStrip title="Review the benefits, choose your circle, or contact support if you are already a member." />
 
       <section className="px-5 py-16">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_360px]">
@@ -52,10 +52,9 @@ export default async function MembershipTierPage({ params }: { params: Promise<{
               </ul>
             </section>
             <section className="rounded-lg border border-line bg-white/80 p-7">
-              <h2 className="display text-3xl font-semibold text-deep">Access model</h2>
+              <h2 className="display text-3xl font-semibold text-deep">How access works</h2>
               <p className="mt-4 text-sm leading-7 text-muted">
-                Membership status, tier assignment, subscription expiry, premium content access, renewal, and upgrade paths
-                are modeled in the database schema and dashboard.
+                After joining, membership access and benefits are confirmed directly. Existing members can use the support desk for renewals, access questions, benefit requests, and upgrades.
               </p>
             </section>
           </article>
