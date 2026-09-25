@@ -12,10 +12,10 @@ import { bundleOffers, phaseOneLeadMagnets } from "@/lib/revenue";
 import { jsonLd } from "@/lib/seo";
 
 const divisions = [
-  { title: "The Canon", href: "/books", copy: "Books, manuals, diwans, and strategic publications." },
+  { title: "Books", href: "/books", copy: "Books, manuals, Diwans, and strategic publications." },
   { title: "The Madrasa", href: "/courses", copy: "Courses and certifications for practical learning." },
   { title: "Strategic Advisory", href: "/advisory", copy: "Private consulting for business, agriculture, publishing, and digital systems." },
-  { title: "Agro-Industrial Command Center", href: "/agro", copy: "Agriculture, agrochemicals, hydroponics, and procurement intelligence." },
+  { title: "Agriculture & Agro-Industry", href: "/agro", copy: "Agriculture, agrochemicals, hydroponics, sourcing, and procurement." },
   { title: "Gallifrey Digital & Compliance", href: "/gallifrey", copy: "Websites, corporate documentation, ICT-centre establishment, and regulatory application facilitation." },
   { title: "Living Library", href: "/library", copy: "Long-form essays, field notes, language lessons, and research briefs." },
   { title: "Membership Circles", href: "/membership", copy: "Access to premium knowledge, reports, discounts, and private briefings." },
@@ -52,8 +52,7 @@ export default function Home() {
               Knowledge. Strategy. Agriculture. Publishing. Technology.
             </p>
             <p className="mt-5 max-w-2xl text-base leading-8 text-vellum/70">
-              MusaAllama.com is the institutional headquarters for books, courses, strategic advisory, agro-industrial
-              intelligence, language scholarship, and practical transformation.
+              MusaAllama.com brings together books, courses, strategic advisory, agriculture, language scholarship, publishing, and practical digital work.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <CtaButton action="buy_book" href="/books">Explore Books</CtaButton>
@@ -62,18 +61,10 @@ export default function Home() {
               </CtaButton>
             </div>
             <div className="mt-8 grid gap-3 text-sm text-vellum/68 sm:grid-cols-4">
-              <Link href="/books" className="border-l border-gold/50 pl-3 hover:text-gold">
-                Books
-              </Link>
-              <Link href="/courses" className="border-l border-gold/50 pl-3 hover:text-gold">
-                Courses
-              </Link>
-              <Link href="/advisory" className="border-l border-gold/50 pl-3 hover:text-gold">
-                Advisory
-              </Link>
-              <Link href="/membership" className="border-l border-gold/50 pl-3 hover:text-gold">
-                Membership
-              </Link>
+              <Link href="/books" className="border-l border-gold/50 pl-3 hover:text-gold">Books</Link>
+              <Link href="/courses" className="border-l border-gold/50 pl-3 hover:text-gold">Courses</Link>
+              <Link href="/advisory" className="border-l border-gold/50 pl-3 hover:text-gold">Advisory</Link>
+              <Link href="/membership" className="border-l border-gold/50 pl-3 hover:text-gold">Membership</Link>
             </div>
           </div>
           <div className="founder-hero-stage relative isolate aspect-[4/3] overflow-hidden border border-gold/30">
@@ -108,14 +99,12 @@ export default function Home() {
       <section className="px-5 py-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Phase 1 Revenue Activation"
-            title="Start with the Canon"
-            copy="Practical books for agriculture, agrochemical sales, Chinese trade communication, and profitable enterprise-building."
+            eyebrow="Featured Books"
+            title="Start with a practical book"
+            copy="Practical books for agriculture, agrochemical sales, Chinese trade communication, and enterprise-building."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {flagshipBooks.map((book) => (
-              <BookCard book={book} key={book.slug} />
-            ))}
+            {flagshipBooks.map((book) => <BookCard book={book} key={book.slug} />)}
           </div>
         </div>
       </section>
@@ -123,17 +112,13 @@ export default function Home() {
       <section className="bg-white/55 px-5 py-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Authority Snapshot"
-            title="Four operating pillars"
-            copy="The platform is organized around the work visitors can buy, study, commission, and join."
+            eyebrow="Explore MusaAllama.com"
+            title="Areas of work"
+            copy="Choose what you want to read, study, commission, or join."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {pillars.map((pillar) => (
-              <Link
-                href={pillar.href}
-                key={pillar.title}
-                className="rounded-lg border border-line bg-white/75 p-6 transition hover:-translate-y-1 hover:border-gold"
-              >
+              <Link href={pillar.href} key={pillar.title} className="rounded-lg border border-line bg-white/75 p-6 transition hover:-translate-y-1 hover:border-gold">
                 <h3 className="display text-2xl font-semibold text-deep">{pillar.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-muted">{pillar.copy}</p>
               </Link>
@@ -145,9 +130,9 @@ export default function Home() {
       <section className="px-5 py-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Featured Revenue Products"
-            title="Start with one practical product"
-            copy="Read a book, enroll in a course, book a strategic session, or enter a private membership circle."
+            eyebrow="Featured"
+            title="Choose your next step"
+            copy="Read a book, enroll in a course, book a strategic session, or join a membership circle."
           />
           <div className="mt-10 grid gap-6 lg:grid-cols-4">
             <BookCard book={featuredBook} />
@@ -159,12 +144,7 @@ export default function Home() {
               <p className="mt-4 text-sm leading-7 text-muted">{featuredTier.description}</p>
               <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-line pt-5">
                 <span className="text-sm font-semibold text-deep">{featuredTier.price}</span>
-                <Link
-                  className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep"
-                  data-conversion="apply_membership"
-                  data-conversion-label={featuredTier.title}
-                  href={`/membership/${featuredTier.slug}`}
-                >
+                <Link className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep" data-conversion="apply_membership" data-conversion-label={featuredTier.title} href={`/membership/${featuredTier.slug}`}>
                   Join circle
                 </Link>
               </div>
@@ -176,9 +156,9 @@ export default function Home() {
       <section className="bg-white/60 px-5 py-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Manual bundle orders"
-            title="Phase 1 bundle placeholders"
-            copy="Bundle delivery is prepared for manual order while the full automated checkout and dashboard delivery system comes later."
+            eyebrow="Book Bundles"
+            title="Curated reading sets"
+            copy="Choose a bundle when you want several connected titles together at one combined price."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {bundleOffers.map((bundle) => (
@@ -187,16 +167,9 @@ export default function Home() {
                 <h3 className="display mt-3 text-3xl font-semibold text-deep">{bundle.title}</h3>
                 <p className="mt-4 text-lg font-semibold text-deep">{bundle.price}</p>
                 <ul className="mt-5 grid gap-2 text-sm leading-7 text-muted">
-                  {bundle.includes.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
+                  {bundle.includes.map((item) => <li key={item}>{item}</li>)}
                 </ul>
-                <Link
-                  className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum transition hover:bg-navy"
-                  data-conversion="bundle_inquiry"
-                  data-conversion-label={bundle.title}
-                  href={`/checkout?type=bundle&slug=${bundle.slug}&provider=manual`}
-                >
+                <Link className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum transition hover:bg-navy" data-conversion="bundle_inquiry" data-conversion-label={bundle.title} href={`/checkout?type=bundle&slug=${bundle.slug}&provider=manual`}>
                   Order bundle
                 </Link>
               </article>
@@ -211,7 +184,7 @@ export default function Home() {
             <SectionHeading
               eyebrow="Free Practical Resources"
               title="Download useful guides and checklists."
-              copy="Each free resource helps you begin, then leads into a deeper book or course."
+              copy="Each free resource helps you begin, then points you toward a deeper book or course."
             />
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {phaseOneLeadMagnets.map((resource) => (
@@ -219,33 +192,29 @@ export default function Home() {
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">{resource.category}</p>
                   <h3 className="display mt-2 text-2xl font-semibold text-deep">{resource.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-muted">{resource.description}</p>
-                  <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-gold">
-                    Leads to {resource.routesTo}
-                  </p>
+                  <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-gold">Continue with {resource.routesTo}</p>
                 </article>
               ))}
             </div>
           </div>
           <div className="rounded-lg border border-line bg-white/80 p-7">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Email capture required</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Free Resources</p>
             <h3 className="display mt-3 text-3xl font-semibold text-deep">Choose your free resource</h3>
             <p className="mt-3 text-sm leading-7 text-muted">
-              Submit your details and select the resource you want. Delivery can be automated later or handled manually in V1.
+              Enter your details and choose the guide or checklist you would like to receive.
             </p>
-            <div className="mt-6">
-              <NewsletterForm />
-            </div>
+            <div className="mt-6"><NewsletterForm /></div>
           </div>
         </div>
       </section>
 
-      <ConversionStrip title="Move from profile viewing to a measurable commercial action." />
+      <ConversionStrip title="Choose a book, course, advisory session, or resource and continue from there." />
 
       <section className="px-5 py-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Institutional Divisions"
-            title="A publishing house, academy, advisory firm, and archive in one platform"
+            eyebrow="Explore"
+            title="Publishing, learning, advisory, agriculture, technology, and research in one place"
           />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {divisions.map((division) => (
@@ -262,9 +231,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">The Institutional Dispatch</p>
-            <h2 className="display mt-3 text-4xl font-semibold leading-tight md:text-5xl">
-              Receive the Institutional Dispatch
-            </h2>
+            <h2 className="display mt-3 text-4xl font-semibold leading-tight md:text-5xl">Receive the Institutional Dispatch</h2>
             <p className="mt-5 text-sm leading-7 text-vellum/72">
               A private note on knowledge, strategy, agriculture, publishing, technology, and language intelligence.
             </p>
@@ -275,19 +242,11 @@ export default function Home() {
 
       <section className="px-5 py-16">
         <div className="mx-auto max-w-5xl text-center">
-          <h2 className="display text-4xl font-semibold text-deep md:text-5xl">
-            Begin with a book, a course, or a strategic session.
-          </h2>
+          <h2 className="display text-4xl font-semibold text-deep md:text-5xl">Begin with a book, a course, or a strategic session.</h2>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <CtaButton action="buy_book" href="/books" variant="light">
-              Buy a book
-            </CtaButton>
-            <CtaButton action="enroll_course" href="/courses" variant="light">
-              Enroll in a course
-            </CtaButton>
-            <CtaButton action="send_inquiry" href="/contact" variant="light">
-              Send inquiry
-            </CtaButton>
+            <CtaButton action="buy_book" href="/books" variant="light">Buy a book</CtaButton>
+            <CtaButton action="enroll_course" href="/courses" variant="light">Enroll in a course</CtaButton>
+            <CtaButton action="send_inquiry" href="/contact" variant="light">Send inquiry</CtaButton>
           </div>
         </div>
       </section>
