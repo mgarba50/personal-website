@@ -27,7 +27,7 @@ const services = [
   },
   {
     title: "Agricultural Equipment Procurement",
-    copy: "Sprayers, equipment requests, supplier conversation, and basic procurement verification.",
+    copy: "Sprayers, equipment requests, supplier communication, and basic procurement verification.",
   },
   {
     title: "NGO / Institutional Agricultural Training",
@@ -41,9 +41,9 @@ export default function AgroPage() {
       <PageHero
         eyebrow="Agro-Industrial Command Center"
         title="Agriculture, agrochemicals, hydroponics, and procurement intelligence."
-        copy="A lead-generation and authority center for agrochemical supply, farmer education, training programs, equipment procurement, hydroponics, and institutional agriculture projects."
+        copy="Practical support for agrochemical supply, farmer education, training programs, equipment procurement, hydroponics, and institutional agriculture projects."
         primaryCta={{ label: "Request agro support", href: "#inquiry" }}
-        secondaryCta={{ label: "Download agro profile", href: "/downloads/agro-profile-placeholder.pdf" }}
+        secondaryCta={{ label: "WhatsApp agro desk", href: siteContact.whatsappHref }}
       />
 
       <section className="px-5 py-16">
@@ -51,7 +51,7 @@ export default function AgroPage() {
           <SectionHeading
             eyebrow="Agro services"
             title="Commercial agriculture support with field intelligence"
-            copy="Designed for agro-dealers, farmers, universities, NGOs, corporate projects, and institutional partners."
+            copy="For agro-dealers, farmers, universities, NGOs, corporate projects, and institutional partners."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
@@ -67,27 +67,25 @@ export default function AgroPage() {
       <section className="bg-white/55 px-5 py-16">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-3">
           <article className="rounded-lg border border-line bg-white/80 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald">Case study area</p>
-            <h2 className="display mt-3 text-3xl font-semibold text-deep">Training and field work archive</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald">Training & Field Work</p>
+            <h2 className="display mt-3 text-3xl font-semibold text-deep">Practical agriculture education</h2>
             <p className="mt-4 text-sm leading-7 text-muted">
-              Add training reports, field notes, photos, partner outcomes, and agriculture program summaries through the
-              admin content system.
+              Training can be structured for farmers, agro-dealers, students, institutions, and project teams around practical field needs.
             </p>
           </article>
           <article className="rounded-lg border border-line bg-white/80 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald">Product request</p>
-            <h2 className="display mt-3 text-3xl font-semibold text-deep">Sprayers, inputs, equipment</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald">Product Requests</p>
+            <h2 className="display mt-3 text-3xl font-semibold text-deep">Sprayers, inputs, and equipment</h2>
             <p className="mt-4 text-sm leading-7 text-muted">
-              Route product requests into the inquiry system for supplier follow-up, procurement planning, and manual
-              payment verification.
+              Send your product specification, quantity, intended use, and timeline for sourcing and procurement support.
             </p>
           </article>
           <article className="rounded-lg border border-line bg-white/80 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald">WhatsApp CTA</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald">Direct Contact</p>
             <h2 className="display mt-3 text-3xl font-semibold text-deep">Fast field contact</h2>
             <p className="mt-4 text-sm leading-7 text-muted">Use WhatsApp for urgent product requests and training inquiries.</p>
             <Link className="mt-5 inline-flex rounded-md bg-emerald px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white" href={siteContact.whatsappHref}>
-              Open order desk
+              Open agro desk
             </Link>
           </article>
         </div>
