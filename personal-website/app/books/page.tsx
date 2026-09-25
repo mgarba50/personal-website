@@ -7,14 +7,13 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { books } from "@/lib/canon-books";
 import { completedManuscriptSlugs } from "@/lib/completed-books";
 import { extendedDiwanCanon, mainDiwanCanon } from "@/lib/diwan-canon";
-import { publicationArchive } from "@/lib/publication-archive";
 import { bundleOffers } from "@/lib/revenue";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "The Canon",
+  title: "Books",
   description:
-    "The general publishing Canon of MusaAllama.com: live commercial books, verified completed manuscripts, developing publications, bundles, and collector editions. The Arabic Diwan corpus is housed separately in Al-Maqam.",
+    "Books, field guides, strategic publications, language works, agriculture titles, and selected forthcoming releases from MusaAllama.com.",
   path: "/books",
 });
 
@@ -63,26 +62,26 @@ export default async function BooksPage({
   return (
     <>
       <PageHero
-        eyebrow="The Canon"
-        title="Books, manuals, strategic publications, and developing works."
-        copy="The general publishing house of MusaAllama.com: live commercial books, verified completed manuscripts, approved previews, developing editions, and collector projects. The Diwan corpus now has its own dedicated home in Al-Maqam."
+        eyebrow="Musa Allama Books"
+        title="Books for learning, strategy, enterprise, language, and the field."
+        copy="Explore published titles, reader-ready works, forthcoming books, and selected collector editions from Musa Allama. Arabic Diwan works are presented separately in Al-Maqam."
         primaryCta={{ label: "Browse books", href: "#book-grid", action: "view_book_catalog" }}
-        secondaryCta={{ label: "Open Al-Maqam", href: "/al-maqam", action: "view_diwan_canon" }}
+        secondaryCta={{ label: "Visit Al-Maqam", href: "/al-maqam", action: "view_diwan_canon" }}
       />
-      <ConversionStrip title="Commercial titles lead to purchase; completed or developing unpriced manuscripts remain inquiry-only until release terms are approved." />
+      <ConversionStrip title="Available titles can be ordered directly. Forthcoming books can be followed or requested through an inquiry." />
 
       <section className="border-b border-line bg-deep px-5 py-12 text-vellum">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Correct collection placement</p>
-            <h2 className="display mt-3 text-4xl font-semibold md:text-5xl">Arabic Diwans now live in Al-Maqam.</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Arabic Poetry & Diwan</p>
+            <h2 className="display mt-3 text-4xl font-semibold md:text-5xl">Enter Al-Maqam.</h2>
             <p className="mt-5 max-w-3xl text-sm leading-7 text-vellum/72">
-              The Diwan corpus is no longer mixed into the general commercial Books shelf. Al-Maqam now carries {mainDiwanCanon.length} Main Canon records and {extendedDiwanCanon.length} verified Extended Canon works, with archive evidence preserved separately from confirmed titles.
+              Al-Maqam is the dedicated home of the Arabic Diwan collection, bringing the poetic works together in one focused reading experience.
             </p>
           </div>
           <div className="rounded-lg border border-gold/25 p-6">
             <p className="display text-5xl font-semibold text-gold">{mainDiwanCanon.length + extendedDiwanCanon.length}</p>
-            <p className="mt-2 text-sm text-vellum/70">controlled Diwan records in the dedicated collection</p>
+            <p className="mt-2 text-sm text-vellum/70">Diwan works in the collection</p>
             <Link className="mt-6 inline-flex rounded-md bg-gold px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-deep" href="/al-maqam">
               Enter Al-Maqam
             </Link>
@@ -93,7 +92,7 @@ export default async function BooksPage({
       <section className="px-5 py-12">
         <div className="mx-auto max-w-7xl">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">
-            Filter the Canon {activeCategory ? `· ${activeCategory}` : "· All categories"}
+            Browse by category {activeCategory ? `· ${activeCategory}` : "· All books"}
           </p>
           <div className="flex flex-wrap gap-2">
             <Link className={filterClass(!activeCategory)} href="/books#book-grid">
@@ -118,9 +117,9 @@ export default async function BooksPage({
       <section id="book-grid" className="scroll-mt-20 px-5 pb-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Flagship Commercial Canon"
-            title="Phase 1 revenue books"
-            copy="These three premium digital books remain the Canon titles open for manual bank-transfer orders, approved previews, print requests, and course waitlists."
+            eyebrow="Available Now"
+            title="Featured books"
+            copy="Selected digital titles available for direct order, preview, print-copy requests, and related course access."
           />
           {flagshipBooks.length ? (
             <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -130,7 +129,7 @@ export default async function BooksPage({
             </div>
           ) : (
             <p className="mt-8 rounded-lg border border-line bg-white/70 p-6 text-sm text-muted">
-              No flagship commercial title is currently filed under this category.
+              No available title is listed under this category yet.
             </p>
           )}
         </div>
@@ -138,10 +137,10 @@ export default async function BooksPage({
 
       <section className="border-y border-line bg-deep px-5 py-16 text-vellum">
         <div className="mx-auto max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Verified completed manuscripts</p>
-          <h2 className="display mt-3 text-4xl font-semibold md:text-5xl">Finished general books recovered into the MusaAllama Canon.</h2>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Selected Works</p>
+          <h2 className="display mt-3 text-4xl font-semibold md:text-5xl">More books from Musa Allama.</h2>
           <p className="mt-5 max-w-3xl text-sm leading-7 text-vellum/72">
-            These books were verified from complete private masters or complete multi-part manuscript packages. Their full manuscripts remain outside public GitHub and public download paths. Where no approved price or preview exists, the release remains inquiry-only.
+            Explore completed works across language, leadership, agriculture, technology, learning, and enterprise. Release details are shown on each book page.
           </p>
           {completedBooks.length ? (
             <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -153,7 +152,7 @@ export default async function BooksPage({
             </div>
           ) : (
             <p className="mt-8 rounded-lg border border-gold/25 p-6 text-sm text-vellum/70">
-              No verified completed manuscript is currently filed under this category.
+              No additional title is listed under this category yet.
             </p>
           )}
         </div>
@@ -162,9 +161,9 @@ export default async function BooksPage({
       <section className="bg-white/60 px-5 py-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Product bundles"
-            title="Manual order bundles"
-            copy="Existing bundle offers remain unchanged. No recovered or developing manuscript is inserted into a paid bundle without an approved price."
+            eyebrow="Book Bundles"
+            title="Curated reading bundles"
+            copy="Choose a bundle when you want several connected titles together at one combined price."
           />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {bundleOffers.map((bundle) => (
@@ -183,7 +182,7 @@ export default async function BooksPage({
                   data-conversion-label={bundle.title}
                   href={`/checkout?type=bundle&slug=${bundle.slug}&provider=manual`}
                 >
-                  Manual order
+                  Order bundle
                 </Link>
               </article>
             ))}
@@ -194,9 +193,9 @@ export default async function BooksPage({
       <section className="px-5 py-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Wider Canon"
-            title="Forthcoming, developing, and packaging-stage publications"
-            copy="These legitimate Musa Allama works are now accounted for in Git rather than being invisible. Their cards state the actual evidence level; no developing work is falsely represented as commercially released."
+            eyebrow="Forthcoming"
+            title="Books in preparation"
+            copy="A selection of upcoming Musa Allama titles. Open a book page to read its introduction, audience, themes, and availability information."
           />
           {widerBooks.length ? (
             <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -206,40 +205,19 @@ export default async function BooksPage({
             </div>
           ) : (
             <p className="mt-8 rounded-lg border border-line bg-white/70 p-6 text-sm text-muted">
-              No developing publication is currently filed under this category.
+              No forthcoming title is listed under this category yet.
             </p>
           )}
-        </div>
-      </section>
-
-      <section className="border-y border-line bg-white/60 px-5 py-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            eyebrow="General Publication Archive"
-            title="Legacy identities preserved instead of silently disappearing"
-            copy={`${publicationArchive.length} exact-title legacy general-publication identities are retained as archive evidence while their authoritative manuscripts and edition relationships are recovered.`}
-          />
-          <div className="mt-8 rounded-lg border border-line bg-white/80 p-7">
-            <p className="max-w-3xl text-sm leading-7 text-muted">
-              Archive records are not counted as completed or commercially released books. They exist so older cover evidence and publication identities stay traceable in Git without contaminating the confirmed Canon.
-            </p>
-            <Link
-              className="mt-6 inline-flex rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
-              href="/books/archive"
-            >
-              Open General Publication Archive
-            </Link>
-          </div>
         </div>
       </section>
 
       <section className="bg-white/60 px-5 py-16">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-burgundy">Collector Edition</p>
-            <h2 className="display mt-3 text-4xl font-semibold text-deep md:text-5xl">Premium editions and bundles.</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-burgundy">Collector Editions</p>
+            <h2 className="display mt-3 text-4xl font-semibold text-deep md:text-5xl">Premium editions and institutional sets.</h2>
             <p className="mt-5 text-sm leading-7 text-muted">
-              Collector editions, institutional bundles, and private reading packs can be released only through an approved direct checkout, manual bank-transfer, or membership-access path.
+              For collector editions, institutional orders, print requests, and special reading sets, contact MusaAllama.com directly.
             </p>
           </div>
           <NewsletterForm />
