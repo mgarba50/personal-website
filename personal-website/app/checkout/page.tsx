@@ -7,8 +7,8 @@ import { pageMetadata } from "@/lib/seo";
 import { siteContact } from "@/lib/site-contact";
 
 export const metadata = pageMetadata({
-  title: "Manual Checkout",
-  description: "Manual bank-transfer checkout for MusaAllama.com books and Phase 1 revenue products.",
+  title: "Checkout",
+  description: "Bank-transfer checkout for MusaAllama.com books, bundles, courses, advisory, and membership.",
   path: "/checkout",
 });
 
@@ -28,7 +28,7 @@ function findProduct(type?: string, slug?: string): CheckoutProduct {
           title: book.title,
           amount: "Coming soon",
           purchasable: false,
-          reason: "This title is listed in the Canon but is not currently open for payment or paid-file delivery.",
+          reason: "This title is not currently available for purchase.",
         };
       }
       return { title: book.title, amount: book.launchPrice ?? book.price, purchasable: true };
@@ -54,7 +54,7 @@ function findProduct(type?: string, slug?: string): CheckoutProduct {
     title: "Selected product",
     amount: "Confirm amount before transfer",
     purchasable: false,
-    reason: "A valid purchasable product was not selected. Please return to the relevant product page before making a transfer.",
+    reason: "A valid product was not selected. Please return to the relevant product page before making a transfer.",
   };
 }
 
@@ -77,31 +77,25 @@ export default async function CheckoutPage({
     return (
       <>
         <PageHero
-          eyebrow="Publication status"
+          eyebrow="Availability"
           title={product.title}
-          copy={product.reason ?? "This product is not currently open for payment."}
-          primaryCta={{ label: "Return to the Canon", href: "/books", action: "view_book_catalog" }}
-          secondaryCta={{ label: "Send an inquiry", href: siteContact.whatsappHref, action: "send_inquiry" }}
+          copy={product.reason ?? "This product is not currently available for purchase."}
+          primaryCta={{ label: "Browse books", href: "/books", action: "view_book_catalog" }}
+          secondaryCta={{ label: "Ask about availability", href: siteContact.whatsappHref, action: "send_inquiry" }}
         />
         <section className="px-5 py-16">
           <div className="mx-auto max-w-3xl rounded-lg border border-line bg-white/80 p-7">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">No payment requested</p>
-            <h2 className="display mt-3 text-4xl font-semibold text-deep">Coming soon — do not transfer funds for this title.</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Not yet available</p>
+            <h2 className="display mt-3 text-4xl font-semibold text-deep">This title is coming soon.</h2>
             <p className="mt-4 text-sm leading-7 text-muted">
-              The book may remain visible in the MusaAllama Canon for publication discovery, but checkout and paid-file delivery stay disabled until an approved release price and delivery path are active.
+              Payment is not open for this title yet. Browse available books or contact the publication desk for release information.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              <Link
-                className="rounded-md bg-deep px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum"
-                href="/books"
-              >
+              <Link className="rounded-md bg-deep px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-vellum" href="/books">
                 Browse available books
               </Link>
-              <Link
-                className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep"
-                href={siteContact.whatsappHref}
-              >
-                Ask about publication
+              <Link className="rounded-md border border-gold px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.14em] text-deep" href={siteContact.whatsappHref}>
+                Ask about availability
               </Link>
             </div>
           </div>
@@ -113,9 +107,9 @@ export default async function CheckoutPage({
   return (
     <>
       <PageHero
-        eyebrow="Manual Checkout"
+        eyebrow="Checkout"
         title="Complete Your Order"
-        copy="Manual bank transfer is the active V1 payment method for books, bundles, courses, advisory, and membership."
+        copy="Pay by bank transfer, submit your payment proof, and keep your order number for confirmation."
         primaryCta={{ label: "Return to books", href: "/books", action: "view_book_catalog" }}
         secondaryCta={{ label: "Need help", href: siteContact.whatsappHref, action: "send_inquiry" }}
       />
@@ -140,13 +134,12 @@ export default async function CheckoutPage({
               <div>
                 <p className="font-semibold text-deep">Step 2</p>
                 <p>
-                  Upload your payment receipt below, or email it to {siteContact.email} with your order number, name,
-                  and WhatsApp number.
+                  Upload your payment receipt below, or email it to {siteContact.email} with your order number, name, and WhatsApp number.
                 </p>
               </div>
               <div>
                 <p className="font-semibold text-deep">Step 3</p>
-                <p>Your order will be reviewed and approved. Once confirmed, book access will be delivered privately by email or secure dashboard link.</p>
+                <p>Your payment will be reviewed. Once confirmed, access or the next service step will be sent to you directly.</p>
               </div>
             </div>
             <Link
