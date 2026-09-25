@@ -10,19 +10,6 @@ const toneClasses: Record<string, string> = {
   deep: "from-deep to-navy",
 };
 
-const recoveredCoverBySlug: Record<string, string> = {
-  "a-multilingual-mind": "/assets/books/a-multilingual-mind/cover.webp",
-  "cheating-time": "/assets/books/cheating-time/cover.webp",
-  "the-illusion-of-control": "/assets/books/the-illusion-of-control/cover.webp",
-  "knowledge-is-seed": "/assets/books/knowledge-is-seed/cover.webp",
-  "the-allama-economy": "/assets/books/the-allama-economy/cover.webp",
-  "the-climate-resilient-farmer": "/assets/books/the-climate-resilient-farmer/cover.webp",
-  "the-entrepreneurial-polyglot": "/assets/books/the-entrepreneurial-polyglot/cover.webp",
-  "the-desert-ceo": "/assets/books/the-desert-ceo/cover.webp",
-  "the-five-language-ceo": "/assets/books/the-five-language-ceo/cover.webp",
-  "the-strategist-of-power": "/assets/books/the-strategist-of-power/cover.webp",
-};
-
 export function BookCard({ book }: { book: Book }) {
   const bookHref = `/books/${book.slug}`;
   const checkoutHref = `/checkout?type=book&slug=${book.slug}&provider=manual`;
@@ -31,7 +18,6 @@ export function BookCard({ book }: { book: Book }) {
     ? `/courses?waitlist=${encodeURIComponent(book.waitlistSlug)}#course-waitlists`
     : "/courses";
   const canBuy = Boolean(book.isFlagship);
-  const coverImage = book.coverImage ?? recoveredCoverBySlug[book.slug];
 
   return (
     <article className="group grid h-full gap-5 rounded-lg border border-line bg-white/75 p-5 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-gold hover:shadow-md">
@@ -42,9 +28,9 @@ export function BookCard({ book }: { book: Book }) {
         data-conversion-label={`${book.title} cover`}
         href={bookHref}
       >
-        {coverImage ? (
+        {book.coverImage ? (
           <Image
-            src={coverImage}
+            src={book.coverImage}
             alt={`${book.title} cover`}
             fill
             sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
@@ -73,7 +59,7 @@ export function BookCard({ book }: { book: Book }) {
       <div className="mt-auto border-t border-line pt-4">
         <div className="grid gap-1 text-sm">
           <span className="font-semibold text-deep">
-            {canBuy ? `Launch Price: ${book.launchPrice ?? book.price}` : `Publication status: ${book.price}`}
+            {canBuy ? `Launch Price: ${book.launchPrice ?? book.price}` : "Coming soon"}
           </span>
           {canBuy && book.standardPrice ? <span className="text-muted">Standard Price: {book.standardPrice}</span> : null}
           {canBuy && book.bundlePrice ? <span className="text-muted">{book.bundleLabel}: {book.bundlePrice}</span> : null}
@@ -81,7 +67,7 @@ export function BookCard({ book }: { book: Book }) {
         {canBuy ? (
           <>
             <p className="mt-3 text-xs font-semibold uppercase tracking-[0.14em] text-burgundy">
-              Launch pricing is available for early buyers only.
+              Introductory pricing for early readers.
             </p>
             <div className="mt-4 grid gap-2">
               <Link
@@ -116,7 +102,7 @@ export function BookCard({ book }: { book: Book }) {
                 data-conversion-label={book.title}
                 href={bookHref}
               >
-                View sales page
+                View book
               </Link>
             </div>
           </>
@@ -127,7 +113,7 @@ export function BookCard({ book }: { book: Book }) {
             data-conversion-label={book.title}
             href={bookHref}
           >
-            View publication page
+            Explore book
           </Link>
         )}
       </div>
