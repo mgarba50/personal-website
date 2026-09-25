@@ -48,7 +48,7 @@ export default async function AdvisoryDetailPage({ params }: { params: Promise<{
         primaryCta={{ label: "Book session", href: `/checkout?type=advisory&slug=${service.slug}`, action: "book_advisory" }}
         secondaryCta={{ label: "Send inquiry", href: "#inquiry", action: "send_inquiry" }}
       />
-      <ConversionStrip title="Advisory detail pages should create paid bookings or qualified inquiries." />
+      <ConversionStrip title="Choose a session, review the scope, or send an inquiry before booking." />
 
       <section className="px-5 py-16">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_360px]">
@@ -70,7 +70,7 @@ export default async function AdvisoryDetailPage({ params }: { params: Promise<{
               </ul>
             </section>
             <section className="rounded-lg border border-line bg-white/80 p-7">
-              <h2 className="display text-3xl font-semibold text-deep">Deliverables</h2>
+              <h2 className="display text-3xl font-semibold text-deep">What you receive</h2>
               <ul className="mt-4 grid gap-3 text-sm leading-7 text-charcoal">
                 {service.deliverables.map((item) => (
                   <li key={item}>{item}</li>
@@ -78,7 +78,7 @@ export default async function AdvisoryDetailPage({ params }: { params: Promise<{
               </ul>
             </section>
             <section id="inquiry" className="rounded-lg border border-line bg-white/80 p-7">
-              <h2 className="display text-3xl font-semibold text-deep">Inquiry form</h2>
+              <h2 className="display text-3xl font-semibold text-deep">Ask before booking</h2>
               <div className="mt-5">
                 <InquiryForm />
               </div>
