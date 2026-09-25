@@ -18,19 +18,19 @@ export default function AdvisoryPage() {
     <>
       <PageHero
         eyebrow="Strategic Advisory"
-        title="Private advisory for serious institutional work."
-        copy="Consulting for business, agriculture, publishing, China sourcing communication, AI workflows, and digital transformation."
+        title="Private advisory for business, agriculture, publishing, and digital work."
+        copy="Consulting for business planning, agriculture, publishing, China sourcing communication, AI workflows, and digital transformation."
         primaryCta={{ label: "Book session", href: "/advisory/strategic-session", action: "book_advisory" }}
         secondaryCta={{ label: "Send inquiry", href: "#inquiry", action: "send_inquiry" }}
       />
-      <ConversionStrip title="Advisory pages should produce bookings or qualified inquiries." />
+      <ConversionStrip title="Choose the advisory service that fits your objective, or send an inquiry for a tailored engagement." />
 
       <section className="px-5 py-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Consulting products"
-            title="Commercially clear advisory offers"
-            copy="Each service is packaged with problems solved, deliverables, price placeholder, booking route, and inquiry form."
+            eyebrow="Advisory Services"
+            title="Practical support for complex decisions"
+            copy="Explore focused advisory services across business, agriculture, publishing, sourcing, and digital systems."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {advisoryServices.map((service) => (
@@ -43,10 +43,10 @@ export default function AdvisoryPage() {
       <section id="inquiry" className="bg-white/60 px-5 py-16">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-burgundy">Inquiry form</p>
-            <h2 className="display mt-3 text-4xl font-semibold text-deep md:text-5xl">Send a serious advisory request.</h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-burgundy">Inquiry</p>
+            <h2 className="display mt-3 text-4xl font-semibold text-deep md:text-5xl">Tell us what you are trying to achieve.</h2>
             <p className="mt-5 text-sm leading-7 text-muted">
-              Include context, intended outcome, urgency, budget range if useful, and preferred contact method.
+              Share the context, intended outcome, timeline, budget range if useful, and preferred contact method.
             </p>
           </div>
           <InquiryForm />
