@@ -2,6 +2,35 @@ import { completedBooks } from "./completed-books";
 import { books as existingBooks, type Book } from "./content";
 import { workingPublicationBooks } from "./working-books";
 
+/**
+ * Canonical public cover assets recovered from the private Google Drive cover archive.
+ *
+ * Keep this mapping at the Canon layer instead of inside presentation components so a
+ * recovered cover is available everywhere a Book object is used: catalogue cards,
+ * individual sales/publication pages, related-book cards, metadata, and future views.
+ */
+export const recoveredCoverBySlug: Record<string, string> = {
+  "a-multilingual-mind": "/assets/books/a-multilingual-mind/cover.webp",
+  "agrochemical-sales-field-guide": "/assets/books/agrochemical-sales-field-guide/cover.jpg",
+  "cheating-time": "/assets/books/cheating-time/cover.webp",
+  "chinese-for-agrochemical-professionals": "/assets/books/chinese-for-agrochemical-professionals/cover.jpg",
+  "knowledge-is-seed": "/assets/books/knowledge-is-seed/cover.webp",
+  "the-allama-economy": "/assets/books/the-allama-economy/cover.webp",
+  "the-borderless-intellectual-economy": "/assets/books/the-borderless-intellectual-economy/cover.webp",
+  "the-climate-resilient-farmer": "/assets/books/the-climate-resilient-farmer/cover.webp",
+  "the-desert-ceo": "/assets/books/the-desert-ceo/cover.webp",
+  "the-entrepreneurial-polyglot": "/assets/books/the-entrepreneurial-polyglot/cover.webp",
+  "the-five-language-ceo": "/assets/books/the-five-language-ceo/cover.webp",
+  "the-illusion-of-control": "/assets/books/the-illusion-of-control/cover.webp",
+  "the-modern-farmer": "/assets/books/the-modern-farmer/cover.jpg",
+  "the-strategist-of-power": "/assets/books/the-strategist-of-power/cover.webp",
+};
+
+const bindRecoveredCover = (book: Book): Book => ({
+  ...book,
+  coverImage: book.coverImage ?? recoveredCoverBySlug[book.slug],
+});
+
 export const publicationBooks: Book[] = [
   {
     title: "The Borderless Intellectual Economy",
@@ -44,7 +73,7 @@ export const publicationBooks: Book[] = [
   },
   ...completedBooks,
   ...workingPublicationBooks,
-];
+].map(bindRecoveredCover);
 
 // Diwans belong to the dedicated Al-Maqam collection. Keep the general Books
 // Canon focused on commercial, completed, and developing non-Diwan works.
@@ -54,13 +83,13 @@ const nonDiwanExistingBooks = existingBooks.filter(
 
 const publicationBySlug = new Map(publicationBooks.map((book) => [book.slug, book]));
 
-export const books: Book[] = nonDiwanExistingBooks.map(
-  (book) => publicationBySlug.get(book.slug) ?? book,
+export const books: Book[] = nonDiwanExistingBooks.map((book) =>
+  bindRecoveredCover(publicationBySlug.get(book.slug) ?? book),
 );
 const existingSlugs = new Set(nonDiwanExistingBooks.map((book) => book.slug));
 
 for (const book of publicationBooks) {
-  if (!existingSlugs.has(book.slug)) books.push(book);
+  if (!existingSlugs.has(book.slug)) books.push(bindRecoveredCover(book));
 }
 
 const slugs = new Set(books.map((book) => book.slug));
