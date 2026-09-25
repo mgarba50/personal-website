@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Living Library",
   description:
-    "The SEO archive of essays, research briefs, field reports, language lessons, case studies, and strategic notes.",
+    "Essays, research briefs, field reports, language lessons, case studies, and strategic notes from MusaAllama.com.",
   path: "/library",
 });
 
@@ -50,16 +50,16 @@ export default async function LibraryPage({
       <PageHero
         eyebrow="Living Library"
         title="Essays, field notes, language lessons, and research briefs."
-        copy="The authority archive for agriculture, agrochemicals, hydroponics, languages, publishing, AI, automation, strategy, and reflective thought."
-        primaryCta={{ label: "Read briefs", href: "#articles", action: "read_library" }}
-        secondaryCta={{ label: "Get free resource", href: "#resources", action: "subscribe_dispatch" }}
+        copy="Explore writing on agriculture, agrochemicals, hydroponics, languages, publishing, AI, automation, strategy, and reflective thought."
+        primaryCta={{ label: "Read the library", href: "#articles", action: "read_library" }}
+        secondaryCta={{ label: "Get a free resource", href: "#resources", action: "subscribe_dispatch" }}
       />
-      <ConversionStrip title="SEO traffic should become subscribers, buyers, or advisory leads." />
+      <ConversionStrip title="Read practical notes, explore related books and courses, or request a free resource." />
 
       <section className="px-5 py-12">
         <div className="mx-auto max-w-7xl">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">
-            Filter the Library {activeCategory ? `· ${activeCategory}` : "· All categories"}
+            Browse by category {activeCategory ? `· ${activeCategory}` : "· All categories"}
           </p>
           <div className="flex flex-wrap gap-2">
             <Link className={filterClass(!activeCategory)} href="/library#articles">
@@ -84,9 +84,9 @@ export default async function LibraryPage({
       <section id="articles" className="scroll-mt-20 px-5 pb-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="SEO archive"
-            title="Initial article and brief library"
-            copy="Every article includes related products, newsletter capture, and internal links into books, courses, advisory, and membership."
+            eyebrow="Articles & Briefs"
+            title="Writing from the Living Library"
+            copy="Read field notes, essays, lessons, research briefs, and practical reflections across the main areas of work."
           />
           {filteredArticles.length ? (
             <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -96,7 +96,7 @@ export default async function LibraryPage({
             </div>
           ) : (
             <p className="mt-8 rounded-lg border border-line bg-white/70 p-6 text-sm text-muted">
-              No published brief is currently filed under this category.
+              No published brief is currently listed under this category.
             </p>
           )}
         </div>
@@ -104,7 +104,7 @@ export default async function LibraryPage({
 
       <section id="resources" className="scroll-mt-20 bg-white/60 px-5 py-16">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Lead magnets" title="Downloadable resources after email capture" />
+          <SectionHeading eyebrow="Free Resources" title="Guides, checklists, and practical downloads" copy="Choose a resource and submit your details to request a copy." />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
             {leadMagnets.map((resourceItem) => (
               <article
@@ -132,7 +132,7 @@ export default async function LibraryPage({
             </h3>
             <p className="mt-3 text-sm leading-7 text-muted">
               {selectedResource
-                ? "Submit your details below. Your selected resource is preserved in the page URL so the request can be identified during follow-up."
+                ? "Submit your details below and we will follow up with the selected resource."
                 : "Choose any resource above, then submit your details here for delivery or follow-up."}
             </p>
             <div className="mt-6">
