@@ -27,19 +27,19 @@ export default async function CoursesPage({
     <>
       <PageHero
         eyebrow="The Madrasa"
-        title="A premium learning academy for practical operators."
-        copy="Courses and certifications for language intelligence, agriculture, technology, publishing, strategy, and business."
+        title="Practical learning for language, agriculture, technology, and enterprise."
+        copy="Courses and certifications designed around useful skills, clear outcomes, and applied learning."
         primaryCta={{ label: "Browse courses", href: "#courses", action: "view_course_catalog" }}
         secondaryCta={{ label: "Student dashboard", href: "/dashboard", action: "open_dashboard" }}
       />
-      <ConversionStrip title="Course traffic should become enrollment or subscriber demand." />
+      <ConversionStrip title="Explore a course, preview available lessons, or join a waitlist for the next intake." />
 
       <section id="courses" className="px-5 py-16">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            eyebrow="Course products"
-            title="Initial academy catalog"
-            copy="Each course has outcomes, modules, duration, certificate information, free preview lessons, paid access, and a student dashboard path."
+            eyebrow="Courses"
+            title="Practical programs for serious learners"
+            copy="Explore course outcomes, modules, duration, certificate information, previews, and enrollment options."
           />
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {courses.map((course) => (
@@ -55,7 +55,7 @@ export default async function CoursesPage({
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">Free previews</p>
             <h2 className="display mt-3 text-4xl font-semibold md:text-5xl">Sample lessons before enrollment.</h2>
             <p className="mt-5 text-sm leading-7 text-vellum/70">
-              Capture interest, deliver lead magnets, and route students into paid course areas after checkout.
+              Preview selected lessons and receive updates on new courses, resources, and enrollment openings.
             </p>
           </div>
           <NewsletterForm />
@@ -67,8 +67,8 @@ export default async function CoursesPage({
           <div>
             <SectionHeading
               eyebrow="Course waitlists"
-              title="Prepare for next week's course creation."
-              copy="Join the waitlist for the programs connected to the Phase 1 books and practical training tracks."
+              title="Be notified when the next program opens"
+              copy="Join the waitlist for upcoming practical programs and related learning tracks."
             />
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {courseWaitlists.map((course) => (
@@ -80,10 +80,10 @@ export default async function CoursesPage({
             </div>
           </div>
           <div className="rounded-lg border border-line bg-white/80 p-7">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Waitlist form</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Waitlist</p>
             <h3 className="display mt-3 text-3xl font-semibold text-deep">Join a course waitlist</h3>
             <p className="mt-3 text-sm leading-7 text-muted">
-              Choose your preferred course and format. Course updates can be sent by email or WhatsApp.
+              Choose your preferred course and format. Updates can be sent by email or WhatsApp.
             </p>
             <div className="mt-6">
               <CourseWaitlistForm defaultCourse={selectedWaitlist} />
