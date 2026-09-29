@@ -16,7 +16,6 @@ export const recoveredCoverBySlug: Record<string, string> = {
   "cheating-time": "/assets/books/cheating-time/cover.webp",
   "chinese-for-agrochemical-professionals": "/assets/books/chinese-for-agrochemical-professionals/cover.jpg",
   "engineering-the-journey": "/assets/books/engineering-the-journey/cover.webp",
-  "kanuri-heart-chinese-tongue": "/assets/books/kanuri-heart-chinese-tongue/cover.webp",
   "knowledge-is-seed": "/assets/books/knowledge-is-seed/cover.webp",
   "the-allama-economy": "/assets/books/the-allama-economy/cover.webp",
   "the-borderless-intellectual-economy": "/assets/books/the-borderless-intellectual-economy/cover.webp",
