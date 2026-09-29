@@ -16,7 +16,6 @@ export const recoveredCoverBySlug: Record<string, string> = {
   "cheating-time": "/assets/books/cheating-time/cover.webp",
   "chinese-for-agrochemical-professionals": "/assets/books/chinese-for-agrochemical-professionals/cover.jpg",
   "engineering-the-journey": "/assets/books/engineering-the-journey/cover.webp",
-  "kanuri-heart-chinese-tongue": "/assets/books/kanuri-heart-chinese-tongue/cover.webp",
   "knowledge-is-seed": "/assets/books/knowledge-is-seed/cover.webp",
   "the-allama-economy": "/assets/books/the-allama-economy/cover.webp",
   "the-borderless-intellectual-economy": "/assets/books/the-borderless-intellectual-economy/cover.webp",
@@ -80,8 +79,15 @@ export const publicationBooks: Book[] = [
 
 // Diwans belong to the dedicated Al-Maqam collection. Keep the general Books
 // Canon focused on commercial, completed, and developing non-Diwan works.
+const retiredPublicationSlugs = new Set([
+  "prophets-eloquence",
+  "kanuri-heart-chinese-tongue",
+]);
+
 const nonDiwanExistingBooks = existingBooks.filter(
-  (book) => !book.category.toLowerCase().includes("diwan"),
+  (book) =>
+    !book.category.toLowerCase().includes("diwan") &&
+    !retiredPublicationSlugs.has(book.slug),
 );
 
 const publicationBySlug = new Map(publicationBooks.map((book) => [book.slug, book]));
