@@ -79,8 +79,15 @@ export const publicationBooks: Book[] = [
 
 // Diwans belong to the dedicated Al-Maqam collection. Keep the general Books
 // Canon focused on commercial, completed, and developing non-Diwan works.
+const retiredPublicationSlugs = new Set([
+  "prophets-eloquence",
+  "kanuri-heart-chinese-tongue",
+]);
+
 const nonDiwanExistingBooks = existingBooks.filter(
-  (book) => !book.category.toLowerCase().includes("diwan"),
+  (book) =>
+    !book.category.toLowerCase().includes("diwan") &&
+    !retiredPublicationSlugs.has(book.slug),
 );
 
 const publicationBySlug = new Map(publicationBooks.map((book) => [book.slug, book]));
