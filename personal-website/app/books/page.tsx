@@ -5,8 +5,8 @@ import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { PageHero } from "@/components/ui/page-hero";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { books } from "@/lib/canon-books";
-import { completedManuscriptSlugs } from "@/lib/completed-books";
 import { extendedDiwanCanon, mainDiwanCanon } from "@/lib/diwan-canon";
+import { publicCompletedManuscriptSlugs } from "@/lib/publication-authority";
 import { bundleOffers } from "@/lib/revenue";
 import { pageMetadata } from "@/lib/seo";
 
@@ -27,6 +27,9 @@ const categories = [
   "Philosophy",
   "Publishing",
   "Business",
+  "Education",
+  "Spirituality",
+  "Travel / Knowledge",
   "Engineering / Memoir",
   "Islamic Scholarship / Language",
 ];
@@ -46,10 +49,10 @@ export default async function BooksPage({
     .filter(matchesCategory)
     .sort((first, second) => (first.salesOrder ?? 99) - (second.salesOrder ?? 99));
   const completedBooks = books.filter(
-    (book) => !book.isFlagship && completedManuscriptSlugs.has(book.slug) && matchesCategory(book),
+    (book) => !book.isFlagship && publicCompletedManuscriptSlugs.has(book.slug) && matchesCategory(book),
   );
   const widerBooks = books.filter(
-    (book) => !book.isFlagship && !completedManuscriptSlugs.has(book.slug) && matchesCategory(book),
+    (book) => !book.isFlagship && !publicCompletedManuscriptSlugs.has(book.slug) && matchesCategory(book),
   );
 
   const filterClass = (selected: boolean) =>
@@ -68,7 +71,7 @@ export default async function BooksPage({
         primaryCta={{ label: "Browse books", href: "#book-grid", action: "view_book_catalog" }}
         secondaryCta={{ label: "Visit Al-Maqam", href: "/al-maqam", action: "view_diwan_canon" }}
       />
-      <ConversionStrip title="Available titles can be ordered directly. Forthcoming books can be followed or requested through an inquiry." />
+      <ConversionStrip title="Available titles can be ordered directly. Completed private manuscripts show their current release status, while forthcoming books can be followed or requested through an inquiry." />
 
       <section className="border-b border-line bg-deep px-5 py-12 text-vellum">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
@@ -137,10 +140,10 @@ export default async function BooksPage({
 
       <section className="border-y border-line bg-deep px-5 py-16 text-vellum">
         <div className="mx-auto max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Selected Works</p>
-          <h2 className="display mt-3 text-4xl font-semibold md:text-5xl">More books from Musa Allama.</h2>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Verified Manuscripts</p>
+          <h2 className="display mt-3 text-4xl font-semibold md:text-5xl">Completed works from the Musa Allama Canon.</h2>
           <p className="mt-5 max-w-3xl text-sm leading-7 text-vellum/72">
-            Explore completed works across language, leadership, agriculture, technology, learning, and enterprise. Release details are shown on each book page.
+            These works have a verified complete mother manuscript or publication master. Commercial release, pricing, and final package status are shown separately on each book page.
           </p>
           {completedBooks.length ? (
             <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -152,7 +155,7 @@ export default async function BooksPage({
             </div>
           ) : (
             <p className="mt-8 rounded-lg border border-gold/25 p-6 text-sm text-vellum/70">
-              No additional title is listed under this category yet.
+              No additional verified manuscript is listed under this category yet.
             </p>
           )}
         </div>
@@ -195,7 +198,7 @@ export default async function BooksPage({
           <SectionHeading
             eyebrow="Forthcoming"
             title="Books in preparation"
-            copy="A selection of upcoming Musa Allama titles. Open a book page to read its introduction, audience, themes, and availability information."
+            copy="A selection of upcoming Musa Allama titles whose complete publication master is not yet verified. Open a book page to read its current introduction, audience, themes, and availability information."
           />
           {widerBooks.length ? (
             <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
