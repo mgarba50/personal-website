@@ -60,7 +60,7 @@ create table orders (
   product_id uuid references products(id) on delete set null,
   amount numeric(12, 2) not null,
   currency text not null default 'NGN',
-  status order_status not null default 'pending',
+  status order_status not null default 'pending_payment',
   payment_provider payment_provider not null,
   payment_reference text,
   created_at timestamptz not null default now()
