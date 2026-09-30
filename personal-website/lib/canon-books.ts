@@ -16,16 +16,22 @@ export const recoveredCoverBySlug: Record<string, string> = {
   "bridge-of-meaning": "/assets/books/bridge-of-meaning/cover.webp",
   "cheating-time": "/assets/books/cheating-time/cover.webp",
   "chinese-for-agrochemical-professionals": "/assets/books/chinese-for-agrochemical-professionals/cover.jpg",
-  "engineering-the-journey": "/assets/books/engineering-the-journey/cover.webp",
+  "engineering-the-journey": "/assets/books/engineering-the-journey/cover.png",
+  "hydroponic-mosque": "/assets/books/hydroponic-mosque/cover.jpeg",
   "knowledge-is-seed": "/assets/books/knowledge-is-seed/cover.webp",
+  "nurturing-seekers-of-truth": "/assets/books/nurturing-seekers-of-truth/cover.png",
   "the-allama-economy": "/assets/books/the-allama-economy/cover.webp",
+  "the-book-of-signs": "/assets/books/the-book-of-signs/cover.png",
   "the-borderless-intellectual-economy": "/assets/books/the-borderless-intellectual-economy/cover.webp",
   "the-climate-resilient-farmer": "/assets/books/the-climate-resilient-farmer/cover.webp",
   "the-desert-ceo": "/assets/books/the-desert-ceo/cover.webp",
   "the-entrepreneurial-polyglot": "/assets/books/the-entrepreneurial-polyglot/cover.webp",
   "the-five-language-ceo": "/assets/books/the-five-language-ceo/cover.webp",
+  "the-global-seeker": "/assets/books/the-global-seeker/cover.png",
   "the-modern-farmer": "/assets/books/the-modern-farmer/cover.jpg",
+  "the-soul-who-will-never-disappoint": "/assets/books/the-soul-who-will-never-disappoint/cover.png",
   "the-strategist-of-power": "/assets/books/the-strategist-of-power/cover.webp",
+  "web-development-for-world-changers": "/assets/books/web-development-for-world-changers/cover.png",
 };
 
 const bindRecoveredCover = (book: Book): Book => ({
