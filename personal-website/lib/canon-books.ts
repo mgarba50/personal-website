@@ -1,5 +1,6 @@
 import { completedBooks } from "./completed-books";
 import { books as existingBooks, type Book } from "./content";
+import { blockedPublicationSlugs } from "./publication-authority";
 import { workingPublicationBooks } from "./working-books";
 
 /**
@@ -23,7 +24,6 @@ export const recoveredCoverBySlug: Record<string, string> = {
   "the-desert-ceo": "/assets/books/the-desert-ceo/cover.webp",
   "the-entrepreneurial-polyglot": "/assets/books/the-entrepreneurial-polyglot/cover.webp",
   "the-five-language-ceo": "/assets/books/the-five-language-ceo/cover.webp",
-  "the-illusion-of-control": "/assets/books/the-illusion-of-control/cover.webp",
   "the-modern-farmer": "/assets/books/the-modern-farmer/cover.jpg",
   "the-strategist-of-power": "/assets/books/the-strategist-of-power/cover.webp",
 };
@@ -33,7 +33,7 @@ const bindRecoveredCover = (book: Book): Book => ({
   coverImage: book.coverImage ?? recoveredCoverBySlug[book.slug],
 });
 
-export const publicationBooks: Book[] = [
+const publicationCandidates: Book[] = [
   {
     title: "The Borderless Intellectual Economy",
     slug: "the-borderless-intellectual-economy",
@@ -75,19 +75,23 @@ export const publicationBooks: Book[] = [
   },
   ...completedBooks,
   ...workingPublicationBooks,
-].map(bindRecoveredCover);
+];
+
+/**
+ * A stale record in completed-books.ts or content.ts must never overrule the
+ * Sovereign Publication Registry. Filter at the aggregation boundary as well as
+ * in the shelf/status layer so blocked identities cannot silently reappear.
+ */
+export const publicationBooks: Book[] = publicationCandidates
+  .filter((book) => !blockedPublicationSlugs.has(book.slug))
+  .map(bindRecoveredCover);
 
 // Diwans belong to the dedicated Al-Maqam collection. Keep the general Books
 // Canon focused on commercial, completed, and developing non-Diwan works.
-const retiredPublicationSlugs = new Set([
-  "prophets-eloquence",
-  "kanuri-heart-chinese-tongue",
-]);
-
 const nonDiwanExistingBooks = existingBooks.filter(
   (book) =>
     !book.category.toLowerCase().includes("diwan") &&
-    !retiredPublicationSlugs.has(book.slug),
+    !blockedPublicationSlugs.has(book.slug),
 );
 
 const publicationBySlug = new Map(publicationBooks.map((book) => [book.slug, book]));
