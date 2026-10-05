@@ -86,11 +86,11 @@ export default function MusaAllamaHome() {
             <div className="relative w-72 h-80 lg:w-80 lg:h-96">
               <div className="absolute inset-0 border-2 border-[#d4af37] transform translate-x-4 translate-y-4 rounded-sm"></div>
               <div className="absolute inset-0 bg-[#1e293b] overflow-hidden rounded-sm border border-gray-700 shadow-2xl flex items-center justify-center group">
-                {/* REPLACE THIS SRC WITH YOUR FOUNDER PORTRAIT */}
                 <img 
-                  src="https://placehold.co/400x500/1e293b/d4af37?text=Musa+Allama\nFounder+Portrait" 
-                  alt="Musa Allama" 
+                  src="/images/musa-portrait.webp" 
+                  alt="Musa Allama — engineer, scholar, publisher, and strategist" 
                   className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition duration-500"
+                  loading="eager"
                 />
                 <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/80 to-transparent p-4 pt-12">
                   <h3 className="text-[#d4af37] font-bold text-xl mb-1 font-serif">Musa Allama</h3>

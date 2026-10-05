@@ -48,18 +48,34 @@ export default function AboutPage() {
       />
 
       <section className="px-5 py-16">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
+          <div className="mx-auto w-full max-w-sm">
+            <div className="relative overflow-hidden rounded-lg border border-line bg-deep shadow-2xl">
+              <div className="pointer-events-none absolute inset-3 border border-gold/45" />
+              <img
+                src="/images/musa-portrait.webp"
+                alt="Musa Allama — engineer, scholar, publisher, and strategist"
+                className="aspect-[4/5] w-full object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-deep via-deep/85 to-transparent px-6 pb-6 pt-16 text-vellum">
+                <p className="display text-2xl font-semibold">Musa Allama</p>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-gold">
+                  Engineer · Scholar · Publisher · Strategist
+                </p>
+              </div>
+            </div>
+          </div>
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-burgundy">Professional Profile</p>
             <h2 className="display mt-3 text-4xl font-semibold text-deep md:text-5xl">Knowledge connected to practical work.</h2>
-          </div>
-          <div className="content text-muted">
-            <p>
-              MusaAllama.com brings together publishing, teaching, advisory, agriculture, language work, and digital systems in one place. Visitors can explore books, learn through courses, request advisory support, and follow new work as it develops.
-            </p>
-            <p>
-              The work is grounded in multilingual study, field-facing agriculture, publishing, and technology practice, with an emphasis on useful knowledge, clear communication, and practical outcomes.
-            </p>
+            <div className="content mt-6 text-muted">
+              <p>
+                MusaAllama.com brings together publishing, teaching, advisory, agriculture, language work, and digital systems in one place. Visitors can explore books, learn through courses, request advisory support, and follow new work as it develops.
+              </p>
+              <p>
+                The work is grounded in multilingual study, field-facing agriculture, publishing, and technology practice, with an emphasis on useful knowledge, clear communication, and practical outcomes.
+              </p>
+            </div>
           </div>
         </div>
       </section>

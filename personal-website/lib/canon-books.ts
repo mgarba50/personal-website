@@ -1,5 +1,6 @@
 import { completedBooks } from "./completed-books";
 import { books as existingBooks, type Book } from "./content";
+import { blockedPublicationSlugs } from "./publication-authority";
 import { workingPublicationBooks } from "./working-books";
 
 /**
@@ -16,16 +17,21 @@ export const recoveredCoverBySlug: Record<string, string> = {
   "cheating-time": "/assets/books/cheating-time/cover.webp",
   "chinese-for-agrochemical-professionals": "/assets/books/chinese-for-agrochemical-professionals/cover.jpg",
   "engineering-the-journey": "/assets/books/engineering-the-journey/cover.webp",
+  "hydroponic-mosque": "/assets/books/hydroponic-mosque/cover.jpeg",
   "knowledge-is-seed": "/assets/books/knowledge-is-seed/cover.webp",
+  "nurturing-seekers-of-truth": "/assets/books/nurturing-seekers-of-truth/cover.png",
   "the-allama-economy": "/assets/books/the-allama-economy/cover.webp",
+  "the-book-of-signs": "/assets/books/the-book-of-signs/cover.png",
   "the-borderless-intellectual-economy": "/assets/books/the-borderless-intellectual-economy/cover.webp",
   "the-climate-resilient-farmer": "/assets/books/the-climate-resilient-farmer/cover.webp",
   "the-desert-ceo": "/assets/books/the-desert-ceo/cover.webp",
   "the-entrepreneurial-polyglot": "/assets/books/the-entrepreneurial-polyglot/cover.webp",
   "the-five-language-ceo": "/assets/books/the-five-language-ceo/cover.webp",
-  "the-illusion-of-control": "/assets/books/the-illusion-of-control/cover.webp",
+  "the-global-seeker": "/assets/books/the-global-seeker/cover.png",
   "the-modern-farmer": "/assets/books/the-modern-farmer/cover.jpg",
+  "the-soul-who-will-never-disappoint": "/assets/books/the-soul-who-will-never-disappoint/cover.png",
   "the-strategist-of-power": "/assets/books/the-strategist-of-power/cover.webp",
+  "web-development-for-world-changers": "/assets/books/web-development-for-world-changers/cover.png",
 };
 
 const bindRecoveredCover = (book: Book): Book => ({
@@ -33,7 +39,7 @@ const bindRecoveredCover = (book: Book): Book => ({
   coverImage: book.coverImage ?? recoveredCoverBySlug[book.slug],
 });
 
-export const publicationBooks: Book[] = [
+const publicationCandidates: Book[] = [
   {
     title: "The Borderless Intellectual Economy",
     slug: "the-borderless-intellectual-economy",
@@ -75,19 +81,23 @@ export const publicationBooks: Book[] = [
   },
   ...completedBooks,
   ...workingPublicationBooks,
-].map(bindRecoveredCover);
+];
+
+/**
+ * A stale record in completed-books.ts or content.ts must never overrule the
+ * Sovereign Publication Registry. Filter at the aggregation boundary as well as
+ * in the shelf/status layer so blocked identities cannot silently reappear.
+ */
+export const publicationBooks: Book[] = publicationCandidates
+  .filter((book) => !blockedPublicationSlugs.has(book.slug))
+  .map(bindRecoveredCover);
 
 // Diwans belong to the dedicated Al-Maqam collection. Keep the general Books
 // Canon focused on commercial, completed, and developing non-Diwan works.
-const retiredPublicationSlugs = new Set([
-  "prophets-eloquence",
-  "kanuri-heart-chinese-tongue",
-]);
-
 const nonDiwanExistingBooks = existingBooks.filter(
   (book) =>
     !book.category.toLowerCase().includes("diwan") &&
-    !retiredPublicationSlugs.has(book.slug),
+    !blockedPublicationSlugs.has(book.slug),
 );
 
 const publicationBySlug = new Map(publicationBooks.map((book) => [book.slug, book]));
