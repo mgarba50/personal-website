@@ -59,9 +59,10 @@ function findProduct(type?: string, slug?: string): CheckoutProduct {
 }
 
 function createOrderNumber(type?: string, slug?: string) {
-  const productCode = (slug ?? "order").slice(0, 3).toUpperCase();
-  const typeCode = (type ?? "manual").slice(0, 2).toUpperCase();
-  return `MA-${typeCode}-${productCode}-${Date.now().toString(36).toUpperCase()}`;
+  const productCode = (slug ?? "order").replace(/[^a-z0-9]/gi, "").slice(0, 4).toUpperCase() || "ORD";
+  const typeCode = (type ?? "manual").replace(/[^a-z0-9]/gi, "").slice(0, 3).toUpperCase() || "MAN";
+  const dateCode = new Date().toISOString().slice(0, 10).replaceAll("-", "");
+  return `MA-${typeCode}-${productCode}-${dateCode}`;
 }
 
 export default async function CheckoutPage({
