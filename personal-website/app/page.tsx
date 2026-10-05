@@ -60,24 +60,37 @@ export default function MusaAllamaHome() {
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/stardust.png')" }}></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center gap-12">
           
-          <div className="lg:w-3/5 text-center lg:text-left">
-            <div className="inline-block bg-[#1e293b] border border-[#d4af37]/30 px-4 py-1 rounded-full text-[#d4af37] text-xs font-bold tracking-widest uppercase mb-6">
-              Institutional Digital Headquarters
+          <div className="relative lg:w-3/5 overflow-hidden rounded-sm text-center lg:text-left">
+            <div className="pointer-events-none absolute inset-0">
+              <img
+                src="/images/musa-dashboard-ambient.webp"
+                alt=""
+                aria-hidden="true"
+                className="h-full w-full scale-105 object-cover object-center opacity-[0.16] saturate-75 blur-[0.5px]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0f172a]/92 via-[#0f172a]/78 to-[#0f172a]/56" />
+              <div className="absolute inset-0 bg-[#0f172a]/18" />
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 font-serif">
-              Knowledge. Strategy. <br />
-              <span className="text-[#d4af37] italic">Agriculture & Publishing.</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-              MusaAllama.com is the institutional headquarters for premium books, targeted courses, strategic advisory, agro-industrial intelligence, and practical transformation.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a href="#canon" className="bg-[#d4af37] text-[#0f172a] px-8 py-4 rounded-sm font-bold text-lg hover:bg-yellow-500 transition shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center">
-                Explore The Books
-              </a>
-              <a href="#advisory" className="bg-white/5 backdrop-blur-sm text-white px-8 py-4 rounded-sm font-bold text-lg hover:bg-white/10 transition border border-white/20 flex items-center justify-center">
-                Book Strategic Session
-              </a>
+
+            <div className="relative z-10 px-2 py-3 sm:px-5 sm:py-6 lg:px-7 lg:py-8">
+              <div className="inline-block bg-[#1e293b]/85 backdrop-blur-sm border border-[#d4af37]/30 px-4 py-1 rounded-full text-[#d4af37] text-xs font-bold tracking-widest uppercase mb-6">
+                Institutional Digital Headquarters
+              </div>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 font-serif">
+                Knowledge. Strategy. <br />
+                <span className="text-[#d4af37] italic">Agriculture & Publishing.</span>
+              </h1>
+              <p className="text-lg sm:text-xl text-gray-200 mb-8 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                MusaAllama.com is the institutional headquarters for premium books, targeted courses, strategic advisory, agro-industrial intelligence, and practical transformation.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a href="#canon" className="bg-[#d4af37] text-[#0f172a] px-8 py-4 rounded-sm font-bold text-lg hover:bg-yellow-500 transition shadow-[0_0_15px_rgba(212,175,55,0.4)] flex items-center justify-center">
+                  Explore The Books
+                </a>
+                <a href="#advisory" className="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-sm font-bold text-lg hover:bg-white/15 transition border border-white/20 flex items-center justify-center">
+                  Book Strategic Session
+                </a>
+              </div>
             </div>
           </div>
           
