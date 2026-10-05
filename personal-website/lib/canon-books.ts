@@ -16,7 +16,7 @@ export const recoveredCoverBySlug: Record<string, string> = {
   "bridge-of-meaning": "/assets/books/bridge-of-meaning/cover.webp",
   "cheating-time": "/assets/books/cheating-time/cover.webp",
   "chinese-for-agrochemical-professionals": "/assets/books/chinese-for-agrochemical-professionals/cover.jpg",
-  "engineering-the-journey": "/assets/books/engineering-the-journey/cover.png",
+  "engineering-the-journey": "/assets/books/engineering-the-journey/cover.webp",
   "hydroponic-mosque": "/assets/books/hydroponic-mosque/cover.jpeg",
   "knowledge-is-seed": "/assets/books/knowledge-is-seed/cover.webp",
   "nurturing-seekers-of-truth": "/assets/books/nurturing-seekers-of-truth/cover.png",
