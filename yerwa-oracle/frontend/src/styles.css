@@ -1,0 +1,8 @@
+:root{--bg:#050505;--panel:#0d1014;--gold:#d4af37;--steel:#8d99a6;--text:#ebedf0}
+body{margin:0;background:linear-gradient(180deg,#050505,#0a0d12);color:var(--text);font-family:"IBM Plex Sans Arabic","Inter","Segoe UI",sans-serif}
+*{box-sizing:border-box}.rtl{direction:rtl;text-align:right}.mono{font-variant-numeric:tabular-nums;font-family:"IBM Plex Mono","Consolas",monospace}
+.panel{background:rgba(13,16,20,.92);border:1px solid rgba(212,175,55,.35);border-radius:8px;padding:1rem;box-shadow:0 6px 20px rgba(0,0,0,.4)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+button{background:#12161c;border:1px solid var(--gold);color:var(--gold);padding:.55rem .8rem;border-radius:4px}
+input,select,textarea{width:100%;background:#0b0f14;color:#fff;border:1px solid #2f3947;border-radius:4px;padding:.55rem}
+a{color:var(--steel);text-decoration:none}
