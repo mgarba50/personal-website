@@ -1,0 +1,176 @@
+{
+  "version": "FINAL-SOVEREIGN-2026-10-11",
+  "academyProducts": [
+    {
+      "slug": "the-modern-farmer",
+      "title": "The Modern Farmer",
+      "topic": "agriculture-development",
+      "status": "available",
+      "purchasable": true
+    },
+    {
+      "slug": "agrochemical-sales-field-guide",
+      "title": "Agrochemical Sales Field Guide",
+      "topic": "agriculture-development",
+      "status": "available",
+      "purchasable": true
+    },
+    {
+      "slug": "chinese-for-agrochemical-professionals",
+      "title": "Chinese for Agrochemical Professionals",
+      "topic": "language-cross-border",
+      "status": "available",
+      "purchasable": true
+    },
+    {
+      "slug": "cheating-time",
+      "title": "Cheating Time",
+      "topic": "learning-knowledge-systems",
+      "status": "publication-ready",
+      "purchasable": false
+    },
+    {
+      "slug": "a-multilingual-mind",
+      "title": "A Multilingual Mind",
+      "topic": "language-cross-border",
+      "status": "publication-ready",
+      "purchasable": false
+    },
+    {
+      "slug": "web-development-for-world-changers",
+      "title": "Web Development for World-Changers",
+      "topic": "technology-digital-systems",
+      "status": "publication-ready",
+      "purchasable": false
+    },
+    {
+      "slug": "the-desert-ceo",
+      "title": "The Desert CEO",
+      "topic": "leadership-strategy",
+      "status": "candidate",
+      "purchasable": false
+    },
+    {
+      "slug": "the-allama-economy",
+      "title": "The Allama Economy",
+      "topic": "leadership-strategy",
+      "status": "candidate",
+      "purchasable": false
+    },
+    {
+      "slug": "the-strategist-of-power",
+      "title": "The Strategist of Power",
+      "topic": "leadership-strategy",
+      "status": "candidate",
+      "purchasable": false
+    },
+    {
+      "slug": "the-borderless-intellectual-economy",
+      "title": "The Borderless Intellectual Economy",
+      "topic": "leadership-strategy",
+      "status": "candidate",
+      "purchasable": false
+    },
+    {
+      "slug": "the-five-language-ceo",
+      "title": "The Five-Language CEO",
+      "topic": "language-cross-border",
+      "status": "candidate",
+      "purchasable": false
+    },
+    {
+      "slug": "the-entrepreneurial-polyglot",
+      "title": "The Entrepreneurial Polyglot",
+      "topic": "language-cross-border",
+      "status": "candidate",
+      "purchasable": false
+    },
+    {
+      "slug": "bridge-of-meaning",
+      "title": "The Bridge of Meaning",
+      "topic": "language-cross-border",
+      "status": "candidate",
+      "purchasable": false
+    },
+    {
+      "slug": "knowledge-is-seed",
+      "title": "Knowledge Is Seed",
+      "topic": "agriculture-development",
+      "status": "candidate",
+      "purchasable": false
+    },
+    {
+      "slug": "the-climate-resilient-farmer",
+      "title": "The Climate-Resilient Farmer",
+      "topic": "agriculture-development",
+      "status": "candidate",
+      "purchasable": false
+    },
+    {
+      "slug": "agro-logistics-across-the-great-divide",
+      "title": "Agro-Logistics Across the Great Divide",
+      "topic": "agriculture-development",
+      "status": "publication-ready",
+      "purchasable": false
+    },
+    {
+      "slug": "hydroponic-mosque",
+      "title": "The Hydroponic Mosque",
+      "topic": "agriculture-development",
+      "status": "candidate",
+      "purchasable": false
+    },
+    {
+      "slug": "nurturing-seekers-of-truth",
+      "title": "Nurturing Seekers of Truth",
+      "topic": "learning-knowledge-systems",
+      "status": "candidate",
+      "purchasable": false
+    }
+  ],
+  "innerEntries": [
+    {
+      "slug": "the-book-of-signs",
+      "title": "The Book of Signs",
+      "collection": "research",
+      "access": "archive"
+    },
+    {
+      "slug": "the-digital-sheikh",
+      "title": "The Digital Sheikh",
+      "collection": "writings",
+      "access": "archive"
+    },
+    {
+      "slug": "engineering-the-journey",
+      "title": "Engineering the Journey",
+      "collection": "writings",
+      "access": "archive"
+    },
+    {
+      "slug": "the-global-seeker",
+      "title": "The Global Seeker",
+      "collection": "writings",
+      "access": "archive"
+    },
+    {
+      "slug": "the-soul-who-will-never-disappoint",
+      "title": "The Soul Who Will Never Disappoint",
+      "collection": "writings",
+      "access": "archive"
+    }
+  ],
+  "diwanCount": 66,
+  "corporateServices": [
+    "strategic-session",
+    "china-sourcing",
+    "agro-industrial-strategy",
+    "digital-transformation",
+    "publishing-system"
+  ],
+  "blockedPublicationSlugs": [
+    "kanuri-heart-chinese-tongue",
+    "the-illusion-of-control"
+  ],
+  "securityBoundary": "Public GitHub stores code, metadata, covers, and approved previews only. Full masters live in private storage."
+}

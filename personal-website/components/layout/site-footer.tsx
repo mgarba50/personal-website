@@ -1,78 +1,54 @@
 import Link from "next/link";
-import { legalDisclaimer } from "@/lib/content";
-
-const columns = [
-  {
-    title: "Institution",
-    links: [
-      ["Executive Desk", "/"],
-      ["Executive Dossier", "/about"],
-      ["Press", "/press"],
-      ["Contact", "/contact"],
-    ],
-  },
-  {
-    title: "Knowledge",
-    links: [
-      ["The Canon", "/books"],
-      ["Al-Maqam / Diwan Canon", "/al-maqam"],
-      ["Living Library", "/library"],
-      ["The Madrasa", "/courses"],
-    ],
-  },
-  {
-    title: "Services",
-    links: [
-      ["Strategic Advisory", "/advisory"],
-      ["Agro-Industrial Command Center", "/agro"],
-      ["Gallifrey Digital & Compliance", "/gallifrey"],
-      ["Business Plans & Tender Desk", "/gallifrey/business-plans"],
-      ["Website Samples", "/gallifrey/samples"],
-      ["Membership Circles", "/membership"],
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      ["Privacy Policy", "/legal/privacy"],
-      ["Terms", "/legal/terms"],
-      ["Refund Policy", "/legal/refund"],
-      ["Disclaimer", "/legal/consulting-disclaimer"],
-    ],
-  },
-];
+import { legalNavigation, siteWings } from "@/lib/site-architecture";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-deep px-5 py-14 text-vellum">
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.4fr_2fr]">
-        <div>
-          <h2 className="display text-3xl font-semibold">MusaAllama.com</h2>
-          <p className="mt-4 max-w-xl text-sm leading-7 text-vellum/70">
-            A private institution of knowledge, strategy, publishing, agriculture, and practical transformation.
+    <footer className="sa-footer">
+      <div className="sa-container sa-footer__grid">
+        <div className="sa-footer__identity">
+          <Link href="/" className="sa-brand sa-brand--footer" aria-label="Musa Allama home">
+            <span className="sa-brand__mark" aria-hidden="true">MA</span>
+            <span>
+              <span className="sa-brand__name">Musa Allama</span>
+              <span className="sa-brand__descriptor">Official Digital Headquarters</span>
+            </span>
+          </Link>
+          <p className="sa-footer__statement">
+            Strategic advisory, practical education, and private intellectual work
+            routed through one institutional headquarters.
           </p>
-          <p className="mt-6 max-w-xl text-xs leading-6 text-vellum/50">{legalDisclaimer}</p>
         </div>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {columns.map((column) => (
-            <div key={column.title}>
-              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">{column.title}</h3>
-              <ul className="mt-4 space-y-3 text-sm text-vellum/70">
-                {column.links.map(([label, href]) => (
-                  <li key={href}>
-                    <Link className="transition hover:text-gold" href={href}>
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+
+        <div>
+          <p className="sa-footer__heading">Three Wings</p>
+          <div className="sa-footer__links">
+            {siteWings.map((wing) => (
+              <Link href={wing.href} key={wing.href}>{wing.shortLabel}</Link>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <p className="sa-footer__heading">Institution</p>
+          <div className="sa-footer__links">
+            <Link href="/about">Executive Dossier</Link>
+            <Link href="/consultation">Consultation</Link>
+          </div>
+        </div>
+
+        <div>
+          <p className="sa-footer__heading">Legal</p>
+          <div className="sa-footer__links">
+            {legalNavigation.map((item) => (
+              <Link href={item.href} key={item.href}>{item.label}</Link>
+            ))}
+          </div>
         </div>
       </div>
-      <div className="mx-auto mt-12 flex max-w-7xl flex-col gap-3 border-t border-gold/20 pt-6 text-xs uppercase tracking-[0.18em] text-vellum/45 md:flex-row md:items-center md:justify-between">
-        <span>Copyright 2026 MusaAllama.com</span>
-        <span>Nigeria / Global advisory available</span>
+
+      <div className="sa-container sa-footer__bottom">
+        <span>© 2026 MusaAllama.com</span>
+        <span>Nigeria · International engagements</span>
       </div>
     </footer>
   );

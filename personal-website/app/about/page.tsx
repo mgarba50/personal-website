@@ -1,21 +1,18 @@
-import { NewsletterForm } from "@/components/forms/newsletter-form";
-import { PageHero } from "@/components/ui/page-hero";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { pageMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
+import Link from "next/link";
 
-export const metadata = pageMetadata({
-  title: "About Musa Allama",
-  description:
-    "The profile of Musa Allama: scholar-practitioner, agro-industrial operator, publisher, educator, and strategic advisor.",
-  path: "/about",
-});
+export const metadata: Metadata = {
+  title: "Executive Dossier",
+  description: "The executive profile of Musa Allama: scholar-practitioner, agro-industrial operator, publisher, educator, technologist, and strategic advisor.",
+  alternates: { canonical: "/about" },
+};
 
-const timeline = [
+const journey = [
   "Multilingual study across English, Arabic, Chinese, and regional language contexts.",
-  "Field exposure to agriculture, agrochemical trading, farmer education, and procurement realities.",
-  "Publishing and digital product work across books, manuals, courses, and knowledge systems.",
-  "Technology and AI workflow development for entrepreneurs, institutions, and content operations.",
-  "Continued development of MusaAllama.com as a home for this work.",
+  "Field exposure to agriculture, agrochemical trading, farmer education, procurement, and cross-border supplier communication.",
+  "Publishing and knowledge-product work across books, manuals, courses, Diwans, and private archives.",
+  "Technology and AI workflow development for entrepreneurs, institutions, education, and digital operations.",
+  "Continued development of MusaAllama.com as the institutional headquarters joining this work into one operating system.",
 ];
 
 const expertise = [
@@ -23,8 +20,8 @@ const expertise = [
   "Hydroponics and practical agriculture training",
   "Chinese supplier communication and translation advisory",
   "Digital publishing and knowledge products",
-  "AI workflows, automation, and institutional websites",
-  "Strategic advisory for education, business, and long-term projects",
+  "AI workflows, automation, web systems, and institutional portals",
+  "Strategic advisory for education, business, trade, and long-term projects",
 ];
 
 const values = [
@@ -38,91 +35,51 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <>
-      <PageHero
-        eyebrow="About"
-        title="A scholar-practitioner working across knowledge systems and practical markets."
-        copy="Musa Allama works across agriculture, languages, technology, publishing, education, and strategic advisory, bringing multilingual study together with practical field experience."
-        primaryCta={{ label: "Explore the books", href: "/books" }}
-        secondaryCta={{ label: "Book advisory", href: "/advisory/strategic-session" }}
-      />
-
-      <section className="px-5 py-16">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
-          <div className="mx-auto w-full max-w-sm">
-            <div className="relative overflow-hidden rounded-lg border border-line bg-deep shadow-2xl">
-              <div className="pointer-events-none absolute inset-3 border border-gold/45" />
-              <img
-                src="/images/musa-portrait.webp"
-                alt="Musa Allama — engineer, scholar, publisher, and strategist"
-                className="aspect-[4/5] w-full object-cover"
-              />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-deep via-deep/85 to-transparent px-6 pb-6 pt-16 text-vellum">
-                <p className="display text-2xl font-semibold">Musa Allama</p>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-gold">
-                  Engineer · Scholar · Publisher · Strategist
-                </p>
-              </div>
-            </div>
-          </div>
+    <div className="sa-about-page">
+      <section className="sa-simple-hero">
+        <div className="sa-container sa-simple-hero__grid">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-burgundy">Professional Profile</p>
-            <h2 className="display mt-3 text-4xl font-semibold text-deep md:text-5xl">Knowledge connected to practical work.</h2>
-            <div className="content mt-6 text-muted">
-              <p>
-                MusaAllama.com brings together publishing, teaching, advisory, agriculture, language work, and digital systems in one place. Visitors can explore books, learn through courses, request advisory support, and follow new work as it develops.
-              </p>
-              <p>
-                The work is grounded in multilingual study, field-facing agriculture, publishing, and technology practice, with an emphasis on useful knowledge, clear communication, and practical outcomes.
-              </p>
-            </div>
+            <p className="sa-kicker">Executive Dossier</p>
+            <h1 className="sa-display sa-simple-hero__title">A scholar-practitioner working across knowledge systems and practical markets.</h1>
+            <p className="sa-simple-hero__copy">Musa Allama works across agriculture, languages, technology, publishing, education, and strategic advisory, bringing multilingual study together with field-facing execution.</p>
+          </div>
+          <div className="sa-executive-portrait">
+            <img src="/images/musa-portrait.webp" alt="Musa Allama — engineer, scholar, publisher, and strategist" />
+            <div><strong>Musa Allama</strong><span>Engineer · Scholar · Publisher · Strategist</span></div>
           </div>
         </div>
       </section>
 
-      <section className="bg-white/55 px-5 py-16">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Journey" title="A path across languages, agriculture, publishing, and technology" copy="A concise view of the experiences that shaped the work." />
-          <ol className="mt-10 grid gap-4 md:grid-cols-5">
-            {timeline.map((item, index) => (
-              <li className="rounded-lg border border-line bg-white/75 p-5" key={item}>
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">Stage {index + 1}</span>
-                <p className="mt-3 text-sm leading-7 text-muted">{item}</p>
-              </li>
+      <section className="sa-wing-section">
+        <div className="sa-container sa-authority__grid">
+          <div>
+            <p className="sa-kicker sa-kicker--dark">Professional Profile</p>
+            <h2 className="sa-display sa-authority__title">Knowledge connected to practical work.</h2>
+            <p className="sa-authority__copy">MusaAllama.com brings together publishing, teaching, advisory, agriculture, language work, and digital systems in one institution. The work emphasizes useful knowledge, precise communication, commercial realism, and systems that can outlast a single project.</p>
+          </div>
+          <div className="sa-authority__signals">
+            {["Multilingual communication", "Field-facing agriculture & trade", "Publishing & digital systems"].map((item,index)=>(
+              <div className="sa-signal" key={item}><span>0{index+1}</span><div><small>Operating domain</small><p>{item}</p></div></div>
             ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="px-5 py-16">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-2">
-          <div className="rounded-lg border border-line bg-white/75 p-7">
-            <h2 className="display text-4xl font-semibold text-deep">Areas of expertise</h2>
-            <ul className="mt-6 grid gap-3 text-sm leading-7 text-charcoal">
-              {expertise.map((item) => <li key={item}>{item}</li>)}
-            </ul>
-          </div>
-          <div className="rounded-lg border border-line bg-white/75 p-7">
-            <h2 className="display text-4xl font-semibold text-deep">Professional values</h2>
-            <ul className="mt-6 grid gap-3 text-sm leading-7 text-charcoal">
-              {values.map((item) => <li key={item}>{item}</li>)}
-            </ul>
           </div>
         </div>
       </section>
 
-      <section className="bg-navy px-5 py-16 text-vellum">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">Newsletter</p>
-            <h2 className="display mt-3 text-4xl font-semibold md:text-5xl">Follow the work as it develops.</h2>
-            <p className="mt-5 text-sm leading-7 text-vellum/70">
-              Receive notes on books, courses, agriculture, languages, publishing, and digital systems.
-            </p>
-          </div>
-          <NewsletterForm />
+      <section className="sa-wing-section sa-wing-section--soft">
+        <div className="sa-container">
+          <div className="sa-wing-section__heading"><p className="sa-kicker sa-kicker--dark">Journey</p><h2 className="sa-display">Languages, agriculture, publishing, and technology.</h2></div>
+          <div className="sa-timeline-grid">{journey.map((item,index)=><article key={item}><span>STAGE {index+1}</span><p>{item}</p></article>)}</div>
         </div>
       </section>
-    </>
+
+      <section className="sa-wing-section">
+        <div className="sa-container sa-profile-grid">
+          <article><p className="sa-kicker sa-kicker--dark">Areas of Expertise</p><ul>{expertise.map((x)=><li key={x}>{x}</li>)}</ul></article>
+          <article><p className="sa-kicker sa-kicker--dark">Professional Values</p><ul>{values.map((x)=><li key={x}>{x}</li>)}</ul></article>
+        </div>
+      </section>
+
+      <section className="sa-wing-final-cta"><div className="sa-container sa-wing-final-cta__inner"><h2 className="sa-display">For institutional work, enter through the qualified consultation path.</h2><Link href="/consultation" className="sa-button sa-button--gold">Book a Consultation</Link></div></section>
+    </div>
   );
 }

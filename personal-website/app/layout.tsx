@@ -4,6 +4,7 @@ import { ConversionTracker } from "@/components/commerce/conversion-tracker";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import "./globals.css";
+import "./architecture.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,52 +28,62 @@ const amiri = Amiri({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://musaallama.com"),
+  applicationName: "MusaAllama.com",
   title: {
-    default: "Musa Allama | Institutional Digital Headquarters",
+    default: "Musa Allama | Strategic Advisory, Trade & Practical Education",
     template: "%s | Musa Allama",
   },
   description:
-    "Books, courses, strategic advisory, agro-industrial intelligence, and multilingual scholarship from Musa Allama.",
+    "The official headquarters of Musa Allama: strategic advisory, agro-industrial intelligence, multilingual trade, digital systems, and practical education.",
+  alternates: {
+    canonical: "/",
+  },
+  manifest: "/manifest.webmanifest",
   openGraph: {
-    title: "Musa Allama | Institutional Digital Headquarters",
+    title: "Musa Allama | Official Digital Headquarters",
     description:
-      "A private institution of knowledge, strategy, publishing, agriculture, and practical transformation.",
-    url: "https://musaallama.com",
+      "Strategic advisory, agro-industrial intelligence, multilingual trade, digital systems, and practical education.",
+    url: "/",
     siteName: "MusaAllama.com",
+    locale: "en_US",
+    type: "website",
     images: [
       {
         url: "/images/institutional-hero.png",
         width: 1600,
         height: 1000,
-        alt: "Institutional study visual for MusaAllama.com",
+        alt: "MusaAllama.com",
       },
     ],
-    locale: "en_US",
-    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Musa Allama",
+    title: "Musa Allama | Official Digital Headquarters",
     description:
-      "Books, courses, advisory, agro-industrial intelligence, and multilingual scholarship.",
+      "Strategic advisory, trade intelligence, digital systems, and practical education.",
     images: ["/images/institutional-hero.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang="en"
       className={`${inter.variable} ${cormorant.variable} ${amiri.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full overflow-x-hidden bg-vellum text-charcoal">
+        <a className="sa-skip-link" href="#main-content">
+          Skip to content
+        </a>
         <ConversionTracker />
         <SiteHeader />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <SiteFooter />
       </body>
     </html>

@@ -1,0 +1,17 @@
+{
+  "products": {
+    "cheating-time": "products/cheating-time/digital-reader.pdf",
+    "the-desert-ceo": "products/the-desert-ceo/digital-reader.pdf",
+    "the-five-language-ceo": "products/the-five-language-ceo/digital-reader.pdf",
+    "knowledge-is-seed": "products/knowledge-is-seed/digital-reader.pdf",
+    "the-allama-economy": "products/the-allama-economy/digital-reader.pdf",
+    "the-climate-resilient-farmer": "products/the-climate-resilient-farmer/digital-reader.pdf",
+    "the-modern-farmer": "products/the-modern-farmer/digital-reader.pdf",
+    "chinese-for-agrochemical-professionals": "products/chinese-for-agrochemical-professionals/digital-reader.pdf",
+    "agrochemical-sales-field-guide": "products/agrochemical-sales-field-guide/digital-reader.pdf"
+  },
+  "leadMagnets": {
+    "50-agricultural-opportunities": "50-agricultural-opportunities.pdf",
+    "agrochemical-sales-quick-reference": "agrochemical-sales-quick-reference.html"
+  }
+}

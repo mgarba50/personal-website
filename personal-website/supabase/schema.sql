@@ -60,7 +60,7 @@ create table orders (
   product_id uuid references products(id) on delete set null,
   amount numeric(12, 2) not null,
   currency text not null default 'NGN',
-  status order_status not null default 'pending',
+  status order_status not null default 'pending_payment',
   payment_provider payment_provider not null,
   payment_reference text,
   created_at timestamptz not null default now()
@@ -212,4 +212,32 @@ create index manual_payment_status_idx on manual_payment_proofs(status);
 create index course_waitlist_interest_idx on course_waitlist_submissions(course_interest);
 create index lead_magnet_slug_idx on lead_magnet_signups(lead_magnet);
 
--- Enable RLS before production launch, then add policies for authenticated users, admins, and public read-only content.
+insert into storage.buckets (id, name, public)
+values ('payment-receipts', 'payment-receipts', false)
+on conflict (id) do update set public = false;
+
+-- Enable RLS and add authenticated/admin policies before public launch.
+-- Service-role requests used by server routes bypass row-level policies.
+
+
+create table download_tokens (
+  id uuid primary key default gen_random_uuid(),
+  token_hash text not null unique,
+  product_slug text not null,
+  customer_email text not null,
+  order_number text,
+  storage_path text not null,
+  expires_at timestamptz not null,
+  max_downloads integer not null default 3 check (max_downloads > 0),
+  download_count integer not null default 0 check (download_count >= 0),
+  last_downloaded_at timestamptz,
+  revoked_at timestamptz,
+  created_at timestamptz not null default now()
+);
+create index download_tokens_token_hash_idx on download_tokens(token_hash);
+create index download_tokens_order_number_idx on download_tokens(order_number);
+insert into storage.buckets (id,name,public) values
+ ('product-files','product-files',false),
+ ('lead-magnets','lead-magnets',false),
+ ('source-vault','source-vault',false)
+on conflict (id) do update set public=false;
