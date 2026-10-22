@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { academyProducts } from "@/content/academy";
 import { siteWings } from "@/lib/site-architecture";
@@ -22,20 +23,31 @@ export default function HomePage() {
   return (
     <div className="sa-home">
       <section className="sa-home-hero">
-        <div className="sa-home-hero__glow" aria-hidden="true" />
+        <div className="sa-home-hero__media">
+          <Image
+            src="/assets/musaallama_hero_original_face_background.png"
+            alt="Musa Allama in a red shirt and straw hat speaking with an audience"
+            fill
+            priority
+            unoptimized
+            sizes="100vw"
+            className="sa-home-hero__image"
+          />
+        </div>
         <div className="sa-container sa-home-hero__grid">
           <div className="sa-home-hero__copy">
-            <p className="sa-kicker">MusaAllama.com · Official Headquarters</p>
+            <p className="sa-kicker">MUSAALLAMA.COM · OFFICIAL HEADQUARTERS</p>
             <h1 className="sa-display sa-home-hero__title">
-              Strategic Advisory, Agro-Industrial Intelligence, and Practical Education.
+              Ideas for a{" "}
+              <span>Brighter World</span>
             </h1>
             <p className="sa-home-hero__lead">
-              The official headquarters of Musa Allama. Bridging global infrastructure,
-              multilingual trade, and institutional knowledge.
+              Exploring education, technology, travel and opportunity — sharing ideas,
+              experiences and projects for a more connected and hopeful world.
             </p>
             <div className="sa-home-hero__actions">
               <Link href="#routing" className="sa-button sa-button--gold">
-                Choose Your Path
+                Explore My Work
               </Link>
               <Link
                 href="/consultation"
@@ -48,15 +60,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="sa-home-hero__seal" aria-label="Musa Allama institutional mark">
-            <div className="sa-home-hero__seal-ring">
-              <span className="sa-home-hero__seal-mark">MA</span>
-              <span className="sa-home-hero__seal-line" />
-              <span className="sa-home-hero__seal-caption">
-                Strategy · Knowledge · Systems
-              </span>
-            </div>
-          </div>
         </div>
       </section>
 
