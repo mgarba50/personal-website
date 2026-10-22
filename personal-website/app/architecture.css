@@ -75,21 +75,142 @@
   .sa-home-hero__actions { flex-direction: column; align-items: stretch; gap: 10px; }
 }
 
-.sa-routing { padding: 96px 0 106px; background: var(--sa-paper); }
-.sa-section-intro { max-width: 760px; }
-.sa-section-intro__title { margin: 12px 0 0; color: var(--sa-ink); font-size: clamp(2.8rem, 5vw, 4.8rem); line-height: .98; font-weight: 600; }
-.sa-section-intro__copy { margin-top: 20px; max-width: 650px; color: var(--sa-copy); line-height: 1.8; }
-.sa-routing__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
-.sa-route-card { min-height: 430px; padding: 28px; display: flex; flex-direction: column; border: 1px solid rgba(183,146,97,.23); color: inherit; text-decoration: none; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
-.sa-route-card:hover { transform: translateY(-5px); border-color: rgba(183,146,97,.65); box-shadow: 0 26px 65px rgba(40,33,24,.12); }
-.sa-route-card--corporate { background: #162631; color: var(--sa-paper); }
-.sa-route-card--academy { background: #fffaf1; color: var(--sa-ink); }
-.sa-route-card--inner-circle { background: #241c25; color: var(--sa-paper); }
-.sa-route-card__number { color: var(--sa-gold); font-family: var(--font-display), Georgia, serif; font-size: 1.3rem; }
-.sa-route-card__audience { margin-top: auto; color: currentColor; opacity: .52; font-size: .62rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; }
-.sa-route-card__title { margin-top: 10px; font-size: clamp(2rem, 3vw, 3.1rem); line-height: 1; font-weight: 600; }
-.sa-route-card__copy { margin-top: 18px; min-height: 76px; opacity: .7; font-size: .94rem; line-height: 1.7; }
-.sa-route-card__action { margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(183,146,97,.23); color: var(--sa-gold); font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+/* Executive pathways: three luminous, editorial destination cards. */
+.sa-routing {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(76px, 7vw, 112px) 0 clamp(84px, 8vw, 122px);
+  background:
+    radial-gradient(ellipse at 4% 2%, rgba(116, 151, 154, .13), transparent 34%),
+    radial-gradient(ellipse at 94% 92%, rgba(198, 158, 91, .12), transparent 40%),
+    #f7f4ec;
+}
+.sa-routing::before {
+  content: ""; position: absolute; inset: 0 0 auto; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(166, 130, 75, .46), transparent);
+  pointer-events: none;
+}
+.sa-routing .sa-container { position: relative; z-index: 1; }
+.sa-section-intro { max-width: 790px; }
+.sa-routing .sa-section-intro__title {
+  margin: 17px 0 0; max-width: 850px; color: #15232a;
+  font-size: clamp(2.9rem, 5vw, 4.85rem); font-weight: 550; line-height: 1.04;
+  letter-spacing: -.035em; text-wrap: balance;
+}
+.sa-routing .sa-section-intro__copy {
+  max-width: 630px; margin-top: 19px; color: #5d625e;
+  font-size: 1rem; line-height: 1.75;
+}
+.sa-routing__grid {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px; margin-top: 48px;
+}
+.sa-route-card {
+  --route-ink: #193942; --route-accent: #286a71;
+  --route-line: rgba(40, 106, 113, .23); --route-copy: #50636b;
+  position: relative; isolation: isolate; display: flex; flex-direction: column;
+  overflow: hidden; min-width: 0; min-height: 385px; padding: 30px;
+  border: 1px solid rgba(27, 68, 73, .14); border-radius: 16px;
+  background: linear-gradient(150deg, #eaf1f1 0%, #f9fbfa 53%, #e3eeeb 100%);
+  box-shadow: 0 10px 29px rgba(37, 47, 42, .045), 0 1px 3px rgba(37, 47, 42, .035);
+  color: var(--route-ink); text-decoration: none;
+  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+}
+.sa-route-card::before {
+  position: absolute; top: -104px; right: -94px; width: 248px; height: 248px;
+  border: 1px solid var(--route-line); border-radius: 50%;
+  box-shadow: 0 0 0 20px rgba(255, 255, 255, .23), 0 0 0 59px rgba(255, 255, 255, .12);
+  content: ""; pointer-events: none; opacity: .8;
+}
+.sa-route-card::after {
+  position: absolute; top: 27px; right: 27px; display: grid; place-items: center;
+  width: 56px; height: 56px; border: 1px solid var(--route-line);
+  border-radius: 15px; background: rgba(255, 255, 255, .57);
+  box-shadow: 0 8px 28px rgba(30, 40, 32, .035);
+  color: var(--route-accent); content: "◇"; font-family: Georgia, serif;
+  font-size: 2.05rem; line-height: 1; pointer-events: none;
+}
+.sa-route-card:hover {
+  transform: translateY(-6px); border-color: var(--route-accent);
+  box-shadow: 0 27px 54px rgba(38, 48, 43, .12);
+}
+.sa-route-card:focus-visible { outline: 3px solid var(--route-accent); outline-offset: 5px; }
+.sa-route-card--corporate { color: var(--route-ink); }
+.sa-route-card--academy {
+  --route-ink: #413326; --route-accent: #92682c;
+  --route-line: rgba(146, 104, 44, .22); --route-copy: #6a5d49;
+  border-color: rgba(146, 104, 44, .16);
+  background: linear-gradient(150deg, #fff6e4 0%, #fffdfa 57%, #f5e9d3 100%);
+  color: var(--route-ink);
+}
+.sa-route-card--academy::after { content: "✦"; font-size: 1.8rem; }
+.sa-route-card--inner-circle {
+  --route-ink: #29483b; --route-accent: #4e7659;
+  --route-line: rgba(78, 118, 89, .25); --route-copy: #526a5b;
+  border-color: rgba(78, 118, 89, .17);
+  background: linear-gradient(150deg, #eaf1e8 0%, #fafcf8 57%, #dfece0 100%);
+  color: var(--route-ink);
+}
+.sa-route-card--inner-circle::after { content: "◎"; font-size: 2rem; }
+.sa-route-card__number {
+  display: grid; place-items: center; width: 48px; height: 48px;
+  border: 1px solid var(--route-line); border-radius: 11px;
+  background: rgba(255, 255, 255, .57); color: var(--route-accent);
+  font-family: var(--font-display), Georgia, serif; font-size: 1.23rem; line-height: 1;
+}
+.sa-route-card__audience {
+  display: block; max-width: 96%; margin-top: 54px;
+  color: var(--route-accent); opacity: 1; font-size: .61rem;
+  font-weight: 800; letter-spacing: .115em; line-height: 1.5; text-transform: uppercase;
+}
+.sa-route-card__title {
+  margin-top: 12px; color: var(--route-ink);
+  font-size: clamp(2.05rem, 2.55vw, 2.65rem); font-weight: 580;
+  letter-spacing: -.035em; line-height: 1.065; text-wrap: balance;
+}
+.sa-route-card__copy {
+  max-width: 35ch; min-height: 0; margin-top: 17px; margin-bottom: 27px;
+  color: var(--route-copy); opacity: 1; font-size: .9rem; line-height: 1.66;
+}
+.sa-route-card__action {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-top: auto; padding-top: 17px; border-top: 1px solid var(--route-line);
+  color: var(--route-accent); font-size: .68rem; font-weight: 800;
+  letter-spacing: .11em; text-transform: uppercase;
+}
+.sa-route-card__action span {
+  display: grid; flex: 0 0 37px; place-items: center; width: 37px; height: 37px;
+  border: 1px solid var(--route-line); border-radius: 50%;
+  background: rgba(255, 255, 255, .6); font-size: 1.22rem; line-height: 1;
+  transition: transform .28s ease, background .28s ease;
+}
+.sa-route-card:hover .sa-route-card__action span,
+.sa-route-card:focus-visible .sa-route-card__action span {
+  transform: translateX(3px); background: rgba(255, 255, 255, .92);
+}
+@media (min-width: 901px) and (max-width: 1130px) {
+  .sa-routing__grid { gap: 13px; }
+  .sa-route-card { padding: 24px; }
+  .sa-route-card__title { font-size: clamp(1.85rem, 2.8vw, 2.35rem); }
+  .sa-route-card::after { top: 23px; right: 23px; }
+}
+@media (max-width: 900px) {
+  .sa-routing__grid { gap: 16px; }
+  .sa-route-card { min-height: 330px; }
+  .sa-route-card__audience { margin-top: 36px; }
+  .sa-route-card__title { max-width: 28ch; }
+}
+@media (max-width: 640px) {
+  .sa-routing__grid { margin-top: 34px; }
+  .sa-route-card { padding: 24px; border-radius: 14px; }
+  .sa-route-card__title { font-size: clamp(2rem, 7.7vw, 2.6rem); }
+  .sa-route-card__audience { margin-top: 33px; }
+  .sa-route-card::after { top: 22px; right: 22px; width: 50px; height: 50px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sa-route-card, .sa-route-card__action span { transition: none; }
+  .sa-route-card:hover { transform: none; }
+}
 
 .sa-authority { padding: 100px 0; background: #fffdf8; }
 .sa-authority__grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 80px; align-items: center; }
