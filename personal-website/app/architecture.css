@@ -1563,3 +1563,604 @@
 .sa-diwan-card p { color:var(--sa-copy); font-size:.72rem; line-height:1.6; }
 @media(max-width:980px){.sa-timeline-grid{grid-template-columns:1fr 1fr}.sa-service-grid,.sa-diwan-grid{grid-template-columns:1fr 1fr}.sa-inner-entry-hero__grid:has(.sa-inner-entry-cover){grid-template-columns:220px 1fr}.sa-inner-entry-status{grid-column:1/-1}.sa-service-detail{grid-template-columns:1fr}}
 @media(max-width:640px){.sa-executive-portrait{justify-self:start}.sa-timeline-grid,.sa-profile-grid,.sa-service-grid,.sa-diwan-grid{grid-template-columns:1fr}.sa-inner-entry-hero__grid:has(.sa-inner-entry-cover){grid-template-columns:1fr}.sa-inner-entry-cover{max-width:220px}}
+
+
+/* ALLAMA EXECUTIVE POLISH | Visual architecture v1 | 2026-10-22
+   A unified, CSS-only institutional atmosphere. Scope: homepage below hero,
+   public wing landings and their shared secondary sections. */
+
+/* Quiet typography and accessible interaction rhythm. */
+.sa-wing-section__heading h2,
+.sa-authority__title,
+.sa-consultation-anchor__title,
+.sa-wing-final-cta h2 {
+  letter-spacing: -.034em;
+  text-wrap: balance;
+}
+.sa-wing-section__heading h2 { line-height: 1.055; }
+.sa-wing-section__heading { position: relative; }
+.sa-wing-section__heading > .sa-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.sa-wing-section__heading > .sa-kicker::before {
+  content: "";
+  width: 27px;
+  height: 1px;
+  flex: 0 0 27px;
+  background: currentColor;
+  opacity: .62;
+}
+
+/* HOMEPAGE: transition from the executive routing matrix into the library. */
+.sa-home .sa-routing {
+  background:
+    radial-gradient(ellipse at 2% 5%, rgba(104,147,151,.12), transparent 38%),
+    radial-gradient(ellipse at 92% 97%, rgba(194,154,90,.12), transparent 38%),
+    linear-gradient(180deg, #f6f3eb 0%, #fcfaf5 58%, #f2eee4 100%);
+}
+.sa-home .sa-routing::after {
+  content: "";
+  position: absolute;
+  left: max(20px, calc((100% - 1180px) / 2));
+  right: max(20px, calc((100% - 1180px) / 2));
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(151,118,74,.35), transparent);
+  pointer-events: none;
+}
+.sa-home-flagship {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 87% 13%, rgba(83,126,130,.12), transparent 32%),
+    radial-gradient(ellipse at 8% 93%, rgba(200,163,98,.13), transparent 39%),
+    linear-gradient(155deg, #f6f5f0 0%, #eaece8 51%, #f8f3ea 100%);
+}
+.sa-home-flagship::before {
+  position: absolute;
+  top: -270px;
+  right: -190px;
+  width: 550px;
+  height: 550px;
+  border: 1px solid rgba(73,107,106,.12);
+  border-radius: 50%;
+  box-shadow: 0 0 0 43px rgba(73,107,106,.025),
+              0 0 0 105px rgba(73,107,106,.018);
+  content: "";
+  pointer-events: none;
+}
+.sa-home-flagship .sa-container { position: relative; z-index: 1; }
+.sa-home-flagship .sa-wing-section__heading {
+  max-width: 800px;
+  margin-bottom: 42px;
+}
+.sa-home-flagship .sa-wing-section__heading h2 { color: #172d32; }
+.sa-home-flagship .sa-wing-section__heading p:last-child { color: #596967; }
+
+/* Homepage proof / authority: bright editorial paper, engineered index. */
+.sa-authority {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(86px, 8vw, 126px);
+  background:
+    radial-gradient(circle at 11% 4%, rgba(194,151,90,.15), transparent 29%),
+    radial-gradient(circle at 100% 85%, rgba(79,125,120,.10), transparent 41%),
+    repeating-linear-gradient(0deg, transparent 0 73px, rgba(108,112,99,.033) 74px),
+    #fffcf6;
+}
+.sa-authority::before {
+  position: absolute;
+  right: -140px;
+  bottom: -205px;
+  width: 480px;
+  height: 480px;
+  border: 1px solid rgba(149,115,67,.16);
+  border-radius: 50%;
+  box-shadow: 0 0 0 40px rgba(149,115,67,.023), 0 0 0 85px rgba(149,115,67,.012);
+  content: "";
+  pointer-events: none;
+}
+.sa-authority__grid { position: relative; z-index: 1; gap: clamp(44px, 6vw, 90px); }
+.sa-authority__title { color: #172b32; line-height: 1.015; }
+.sa-authority__copy { color: #5c625c; }
+.sa-authority__signals {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 27px;
+  border: 1px solid rgba(155,129,89,.24);
+  border-radius: 15px;
+  background: linear-gradient(153deg, rgba(255,255,255,.85), rgba(240,240,232,.78));
+  box-shadow: 0 24px 57px rgba(37,51,49,.07);
+}
+.sa-authority__signals::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #5a827d, #c4a474 62%, transparent);
+}
+.sa-signal { min-height: 115px; border-bottom-color: rgba(162,146,114,.25); }
+.sa-signal:last-child { border-bottom: 0; }
+.sa-signal span { color: #986f3a; font-size: 1.45rem; }
+.sa-signal p { color: #273c3f; }
+
+/* Homepage final handshake: luminous, architectural navy. */
+.sa-consultation-anchor {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(78px, 7vw, 110px);
+  border-top: 1px solid rgba(203,166,111,.42);
+  background:
+    radial-gradient(ellipse at 88% 20%, rgba(198,153,92,.23), transparent 29%),
+    radial-gradient(ellipse at 11% 84%, rgba(66,115,126,.22), transparent 40%),
+    repeating-linear-gradient(90deg, transparent 0 91px, rgba(227,199,149,.023) 92px),
+    linear-gradient(116deg, #091723 2%, #102d38 52%, #0a1521 100%);
+  color: #f8f3e9;
+}
+.sa-consultation-anchor::before {
+  position: absolute;
+  top: -220px;
+  right: -65px;
+  width: 500px;
+  height: 500px;
+  border: 1px solid rgba(210,172,111,.2);
+  border-radius: 50%;
+  box-shadow: 0 0 0 55px rgba(210,172,111,.028);
+  content: "";
+  pointer-events: none;
+}
+.sa-consultation-anchor__inner { position: relative; z-index: 1; }
+.sa-consultation-anchor__title { max-width: 740px; line-height: 1.045; }
+.sa-consultation-anchor .sa-button--gold {
+  border-color: rgba(255,255,255,.17);
+  background: linear-gradient(105deg, #be985f, #e0c08a);
+  box-shadow: 0 12px 30px rgba(0,0,0,.15);
+  color: #111e27;
+}
+
+/* ALL THREE WINGS: monumental editorial headers without added images. */
+.sa-wing-shell-hero {
+  isolation: isolate;
+  min-height: 520px;
+  padding-block: clamp(82px, 8vw, 118px);
+  border-bottom: 1px solid rgba(218,186,133,.35);
+}
+.sa-wing-shell-hero::before {
+  position: absolute;
+  top: -270px;
+  right: -145px;
+  width: min(780px, 66vw);
+  aspect-ratio: 1;
+  border: 1px solid rgba(226,192,142,.20);
+  border-radius: 50%;
+  box-shadow: 0 0 0 58px rgba(226,192,142,.027),
+              0 0 0 132px rgba(226,192,142,.016);
+  content: "";
+  pointer-events: none;
+}
+.sa-wing-shell-hero::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(229,197,151,.035) 1px, transparent 1px),
+    linear-gradient(rgba(229,197,151,.035) 1px, transparent 1px);
+  background-size: 68px 68px;
+  content: "";
+  pointer-events: none;
+  mask-image: linear-gradient(115deg, rgba(0,0,0,.7), transparent 82%);
+}
+.sa-wing-shell-hero__grid {
+  position: relative;
+  z-index: 2;
+  align-items: center;
+  gap: clamp(36px, 6vw, 84px);
+}
+.sa-wing-shell-hero__title {
+  margin-top: 20px;
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  line-height: .99;
+  font-weight: 600;
+  letter-spacing: -.036em;
+  text-wrap: balance;
+}
+.sa-wing-shell-hero__copy {
+  max-width: 600px;
+  margin-top: 25px;
+  line-height: 1.78;
+}
+
+/* Corporate: marine glass, brass etching and institutional confidence. */
+.sa-wing-shell-hero--corporate {
+  background:
+    radial-gradient(ellipse at 83% 18%, rgba(205,168,111,.22), transparent 33%),
+    radial-gradient(ellipse at 6% 100%, rgba(58,116,139,.3), transparent 44%),
+    linear-gradient(135deg, #091522 0%, #14313c 51%, #0a1c2b 100%);
+  color: #f8f2e8;
+}
+.sa-wing-shell-hero--corporate .sa-wing-shell-hero__copy { color: rgba(247,241,230,.83); }
+.sa-wing-shell-hero--corporate .sa-kicker { color: #e4bf83; }
+
+/* Academy: illuminated parchment & copper, not an ordinary dark dashboard. */
+.sa-wing-shell-hero--academy {
+  background:
+    radial-gradient(ellipse at 89% 0%, rgba(209,164,93,.28), transparent 36%),
+    radial-gradient(ellipse at 3% 90%, rgba(99,146,145,.13), transparent 43%),
+    repeating-linear-gradient(0deg, transparent 0 82px, rgba(121,107,83,.033) 83px),
+    linear-gradient(125deg, #f8f3e8 0%, #e9dfca 58%, #f6efdf 100%);
+  color: #26363b;
+  border-bottom-color: rgba(148,114,67,.32);
+}
+.sa-wing-shell-hero--academy::before {
+  border-color: rgba(150,113,59,.20);
+  box-shadow: 0 0 0 58px rgba(150,113,59,.04),
+              0 0 0 132px rgba(150,113,59,.022);
+}
+.sa-wing-shell-hero--academy::after {
+  background:
+    linear-gradient(90deg, rgba(133,110,75,.043) 1px, transparent 1px),
+    linear-gradient(rgba(133,110,75,.043) 1px, transparent 1px);
+  background-size: 68px 68px;
+}
+.sa-wing-shell-hero--academy .sa-kicker { color: #875f2d; }
+.sa-wing-shell-hero--academy .sa-wing-shell-hero__title { color: #24373a; }
+.sa-wing-shell-hero--academy .sa-wing-shell-hero__copy { color: #505d5b; }
+
+/* Inner Circle: a private, illuminated literary atelier. */
+.sa-wing-shell-hero--inner {
+  background:
+    radial-gradient(ellipse at 83% 12%, rgba(182,137,92,.20), transparent 34%),
+    radial-gradient(ellipse at 8% 90%, rgba(82,116,107,.24), transparent 44%),
+    linear-gradient(127deg, #171921 0%, #30242e 55%, #162b2b 100%);
+  color: #faf4ea;
+}
+.sa-wing-shell-hero--inner .sa-wing-shell-hero__copy { color: rgba(249,239,225,.82); }
+.sa-wing-shell-hero--inner .sa-kicker { color: #e0c399; }
+
+/* Architecture indexes become refined floating route dossiers. */
+.sa-wing-shell-hero .sa-architecture-index {
+  position: relative;
+  overflow: hidden;
+  padding: 30px;
+  border: 1px solid rgba(213,184,141,.31);
+  border-radius: 14px;
+  background: linear-gradient(150deg, rgba(17,36,45,.74), rgba(9,20,30,.52));
+  box-shadow: 0 26px 64px rgba(0,0,0,.15), inset 0 1px rgba(255,255,255,.09);
+  backdrop-filter: blur(15px);
+}
+.sa-wing-shell-hero .sa-architecture-index::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 38%;
+  height: 3px;
+  background: linear-gradient(90deg, #e0be8a, transparent);
+  content: "";
+  pointer-events: none;
+}
+.sa-wing-shell-hero .sa-architecture-index li {
+  gap: 14px;
+  padding-block: 13px;
+  border-top-color: rgba(231,206,170,.15);
+  color: rgba(250,244,233,.83);
+  line-height: 1.5;
+}
+.sa-wing-shell-hero .sa-architecture-index li span { color: #e2be86; }
+.sa-wing-shell-hero--academy .sa-architecture-index {
+  border-color: rgba(144,109,62,.26);
+  background: linear-gradient(155deg, rgba(255,255,255,.76), rgba(250,242,224,.69));
+  box-shadow: 0 22px 50px rgba(81,72,57,.09), inset 0 1px rgba(255,255,255,.65);
+}
+.sa-wing-shell-hero--academy .sa-architecture-index__label { color: #825b2d; }
+.sa-wing-shell-hero--academy .sa-architecture-index li {
+  border-top-color: rgba(136,113,79,.2);
+  color: #475553;
+}
+.sa-wing-shell-hero--academy .sa-architecture-index li span { color: #8c6738; }
+.sa-wing-shell-hero--inner .sa-architecture-index {
+  background: linear-gradient(150deg, rgba(49,34,46,.77), rgba(23,35,34,.63));
+}
+
+/* Shared page backgrounds — a restrained architectural paper system. */
+.sa-wing-section:not(.sa-wing-section--dark) {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(109,139,130,.08), transparent 36%),
+    radial-gradient(ellipse at 3% 95%, rgba(188,152,98,.09), transparent 40%),
+    #f8f5ee;
+}
+.sa-wing-section--soft {
+  background:
+    radial-gradient(ellipse at 6% 9%, rgba(93,129,136,.09), transparent 38%),
+    linear-gradient(135deg, #ebeee9, #f8f5ef 55%, #f3eee5) !important;
+}
+.sa-wing-section--dark {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom-color: rgba(201,169,116,.24);
+  background:
+    radial-gradient(ellipse at 90% 10%, rgba(182,146,101,.15), transparent 34%),
+    radial-gradient(ellipse at 7% 90%, rgba(72,112,124,.18), transparent 43%),
+    linear-gradient(131deg, #0c1a26, #172833 56%, #111b25);
+  color: #f5f0e7;
+}
+.sa-wing-section--dark::before {
+  position: absolute;
+  top: -190px;
+  right: -110px;
+  width: 430px;
+  height: 430px;
+  border-radius: 50%;
+  border: 1px solid rgba(205,172,123,.15);
+  box-shadow: 0 0 0 62px rgba(205,172,123,.018);
+  content: "";
+  pointer-events: none;
+}
+.sa-wing-section--dark > .sa-container { position: relative; z-index: 1; }
+.sa-wing-section--dark .sa-wing-section__heading p:last-child { color: rgba(244,239,228,.76); }
+
+/* Distinct thematic body tones beneath each main wing hero. */
+.sa-wing-shell-hero--corporate ~ .sa-wing-section:not(.sa-wing-section--dark) {
+  background:
+    radial-gradient(ellipse at 97% 4%, rgba(89,136,145,.11), transparent 40%),
+    linear-gradient(150deg, #eff2ef, #fbfaf5 51%, #e9efec);
+}
+.sa-wing-shell-hero--corporate ~ .sa-wing-section--dark {
+  background:
+    radial-gradient(ellipse at 90% 10%, rgba(201,161,103,.18), transparent 37%),
+    linear-gradient(125deg, #0c1a25, #19333d 51%, #101e2d);
+}
+.sa-wing-shell-hero--academy ~ .sa-wing-section:not(.sa-wing-section--dark) {
+  background:
+    radial-gradient(ellipse at 92% 13%, rgba(185,143,71,.11), transparent 36%),
+    linear-gradient(145deg, #faf4e9, #fffdf7 54%, #f0e8da);
+}
+.sa-wing-shell-hero--academy ~ .sa-wing-section--soft {
+  background: linear-gradient(143deg, #f0e5d3, #fffaf1 56%, #e9e4d7) !important;
+}
+.sa-wing-shell-hero--inner ~ .sa-wing-section:not(.sa-wing-section--dark) {
+  background:
+    radial-gradient(ellipse at 90% 15%, rgba(98,138,109,.13), transparent 37%),
+    linear-gradient(140deg, #f2f3ed, #fffaf3 52%, #e9eee5);
+}
+.sa-wing-shell-hero--inner ~ .sa-wing-section--dark {
+  background:
+    radial-gradient(ellipse at 87% 20%, rgba(193,151,105,.16), transparent 36%),
+    linear-gradient(118deg, #151a24, #2c2430 60%, #1c3030);
+}
+
+/* Card surfaces — premium information objects, not decorative placeholders. */
+.sa-capability-grid .sa-structural-card,
+.sa-editorial-grid .sa-structural-card,
+.sa-service-card,
+.sa-bundle-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(138,119,87,.24);
+  border-radius: 13px;
+  background: linear-gradient(150deg, rgba(255,255,255,.88), rgba(249,246,238,.7));
+  box-shadow: 0 9px 25px rgba(37,47,45,.04);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.sa-capability-grid .sa-structural-card::before,
+.sa-editorial-grid .sa-structural-card::before,
+.sa-service-card::before,
+.sa-bundle-card::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(177,136,77,.88), rgba(80,125,126,.56), transparent);
+  content: "";
+  pointer-events: none;
+}
+.sa-capability-grid .sa-structural-card:hover,
+.sa-editorial-grid .sa-structural-card:hover,
+.sa-service-card:hover,
+.sa-bundle-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(154,116,67,.43);
+  box-shadow: 0 22px 43px rgba(37,47,45,.09);
+}
+.sa-capability-grid .sa-structural-card h3,
+.sa-editorial-grid .sa-structural-card h3,
+.sa-service-card h3,
+.sa-bundle-card h3 {
+  color: #21383b;
+  letter-spacing: -.026em;
+  line-height: 1.1;
+}
+.sa-service-card p,
+.sa-capability-grid .sa-structural-card p,
+.sa-editorial-grid .sa-structural-card p,
+.sa-bundle-card ul { color: #5c625b; }
+.sa-structural-card:focus-visible,
+.sa-service-card:focus-visible,
+.sa-book-card a:focus-visible,
+.sa-topic-directory__item:focus-visible {
+  outline: 3px solid #987247;
+  outline-offset: 4px;
+}
+.sa-wing-shell-hero--inner ~ .sa-wing-section .sa-editorial-grid .sa-structural-card {
+  background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(239,245,235,.78));
+}
+.sa-wing-shell-hero--corporate ~ .sa-wing-section .sa-capability-grid .sa-structural-card {
+  background: linear-gradient(150deg, rgba(255,255,255,.9), rgba(230,241,239,.78));
+}
+
+/* Book salon: clean covers, inviting reading surfaces, precise CTAs. */
+.sa-book-card {
+  position: relative;
+  border: 1px solid rgba(160,131,91,.23);
+  border-radius: 12px;
+  background: linear-gradient(165deg, #fffdfa, #f6f1e7);
+  box-shadow: 0 12px 31px rgba(43,51,45,.055);
+}
+.sa-book-card:hover {
+  border-color: rgba(149,116,72,.48);
+  box-shadow: 0 26px 54px rgba(36,46,44,.12);
+}
+.sa-book-card__cover { border-bottom: 1px solid rgba(160,131,91,.25); }
+.sa-book-card__body { padding: clamp(21px, 2.3vw, 29px); }
+.sa-book-card__body h2,
+.sa-book-card__body h3 { color: #253738; line-height: 1.075; }
+.sa-card-price { border-color: rgba(157,131,94,.23); }
+.sa-home-flagship .sa-book-card {
+  background: linear-gradient(163deg, #fffefa, #f5f5ed);
+}
+.sa-flagship-section .sa-book-card {
+  border-color: rgba(175,136,75,.28);
+  background: linear-gradient(160deg, #fffdf8, #fbf6ec);
+}
+
+/* Academy topic catalogue: thoughtful library rows rather than bare lists. */
+.sa-topic-directory { border-top-color: rgba(158,131,92,.32); }
+.sa-topic-directory__item {
+  border-bottom-color: rgba(158,131,92,.26);
+  border-radius: 8px;
+  padding-inline: 15px;
+}
+.sa-topic-directory__item:hover {
+  padding-left: 23px;
+  background: linear-gradient(90deg, rgba(218,188,135,.16), rgba(255,255,255,.08));
+}
+.sa-topic-directory__item h3 { color: #253b3c; }
+.sa-bundle-card {
+  background: linear-gradient(152deg, #fffdf6, #f1e9d9);
+}
+.sa-typographic-cover {
+  background:
+    radial-gradient(ellipse at 75% 10%, rgba(203,162,98,.29), transparent 35%),
+    repeating-linear-gradient(90deg, transparent 0 76px, rgba(229,204,159,.035) 77px),
+    linear-gradient(145deg, #10242e, #193b43 57%, #101c2b);
+}
+
+/* Inner Circle: the reading room is refined, legible, and contemplative. */
+.sa-reading-stage {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(213,174,120,.3);
+  border-radius: 14px;
+  background:
+    radial-gradient(ellipse at 83% 12%, rgba(192,150,98,.17), transparent 35%),
+    radial-gradient(ellipse at 4% 100%, rgba(112,151,132,.11), transparent 40%),
+    linear-gradient(135deg, #1b212a, #342735 55%, #1b3030);
+  box-shadow: inset 0 1px rgba(255,255,255,.07);
+}
+.sa-reading-stage::after {
+  position: absolute;
+  top: -140px;
+  right: -110px;
+  width: 400px;
+  height: 400px;
+  border: 1px solid rgba(221,182,128,.17);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+.sa-reading-stage h3 { position: relative; z-index: 1; line-height: 1.02; }
+.sa-reading-stage p:last-child {
+  position: relative; z-index: 1; color: rgba(249,242,232,.78);
+}
+.sa-access-card {
+  border-color: rgba(207,170,123,.25);
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.028));
+  box-shadow: inset 0 1px rgba(255,255,255,.055);
+}
+.sa-access-card h3 { color: #fbf3e8; }
+
+/* Secondary routes and detailed service/product pages inherit the same family. */
+.sa-simple-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 83% 12%, rgba(199,159,99,.19), transparent 31%),
+    radial-gradient(ellipse at 9% 100%, rgba(70,122,131,.18), transparent 44%),
+    linear-gradient(131deg, #0a1722, #19323d 61%, #111d2a);
+}
+.sa-simple-hero::before {
+  position: absolute; top: -160px; right: -80px; width: 400px; height: 400px;
+  border: 1px solid rgba(211,178,125,.2); border-radius: 50%; content: "";
+  pointer-events: none;
+}
+.sa-simple-hero__grid { position: relative; z-index: 1; }
+.sa-wing-hero {
+  background:
+    radial-gradient(ellipse at 85% 11%, rgba(202,163,100,.19), transparent 32%),
+    linear-gradient(135deg, var(--wing-bg), #192e38);
+}
+.sa-wing--academy .sa-wing-hero {
+  background:
+    radial-gradient(ellipse at 85% 8%, rgba(196,151,84,.14), transparent 36%),
+    linear-gradient(130deg, #f8f1e3, #e9e4d9);
+  color: #283d3e;
+}
+.sa-wing-final-cta {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(208,172,117,.28);
+  background:
+    radial-gradient(ellipse at 88% 16%, rgba(197,151,95,.18), transparent 32%),
+    linear-gradient(125deg, #0b1927, #1b303a 60%, #0d1c29);
+}
+.sa-slot,
+.sa-profile-grid article,
+.sa-proof-slot {
+  border-color: rgba(153,126,90,.24);
+  background: linear-gradient(145deg, rgba(255,255,255,.7), rgba(247,242,231,.6));
+}
+.sa-service-detail,
+.sa-consultation-layout { position: relative; }
+
+/* Responsiveness, contrast and motion discipline. */
+@media (max-width: 1024px) {
+  .sa-wing-shell-hero__grid { gap: 42px; }
+  .sa-wing-shell-hero__title { font-size: clamp(3.4rem, 7vw, 5.9rem); }
+}
+@media (max-width: 900px) {
+  .sa-authority__grid { gap: 40px; }
+  .sa-wing-shell-hero { min-height: 0; }
+  .sa-wing-shell-hero::before { width: 570px; }
+  .sa-wing-shell-hero .sa-architecture-index { max-width: 680px; }
+  .sa-reading-stage { min-height: 360px; }
+  .sa-reading-stage h3 { margin-top: 58px; }
+}
+@media (max-width: 640px) {
+  .sa-authority__signals { padding-inline: 19px; }
+  .sa-authority::before { width: 290px; height: 290px; right: -190px; bottom: -100px; }
+  .sa-home-flagship::before { width: 350px; height: 350px; top: -210px; right: -200px; }
+  .sa-wing-shell-hero { padding-block: 70px 64px; }
+  .sa-wing-shell-hero__title { font-size: clamp(3.05rem, 13vw, 4.45rem); line-height: 1.01; }
+  .sa-wing-shell-hero__copy { margin-top: 19px; }
+  .sa-wing-shell-hero .sa-architecture-index { padding: 22px; }
+  .sa-wing-section__heading h2 { font-size: clamp(2.25rem, 8vw, 3.55rem); }
+  .sa-reading-stage { min-height: 310px; }
+  .sa-reading-stage h3 { margin-top: 36px; font-size: clamp(2.35rem, 10vw, 3.45rem); }
+  .sa-capability-grid .sa-structural-card,
+  .sa-editorial-grid .sa-structural-card,
+  .sa-service-card,
+  .sa-bundle-card { border-radius: 11px; }
+  .sa-consultation-anchor__inner { gap: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sa-book-card,
+  .sa-service-card,
+  .sa-bundle-card,
+  .sa-capability-grid .sa-structural-card,
+  .sa-editorial-grid .sa-structural-card { transition: none; }
+  .sa-book-card:hover,
+  .sa-service-card:hover,
+  .sa-bundle-card:hover,
+  .sa-capability-grid .sa-structural-card:hover,
+  .sa-editorial-grid .sa-structural-card:hover { transform: none; }
+}
