@@ -46,7 +46,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "Agribusiness",
       "Wealth Creation"
     ],
-    "coverImage": "/assets/academy/books/the-modern-farmer/cover.jpg",
+    "coverImage": "/assets/academy-phase1/the-modern-farmer.webp",
     "formats": [
       "Digital PDF Book"
     ],
@@ -140,7 +140,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "Farmer Advisory",
       "Technical Selling"
     ],
-    "coverImage": "/assets/academy/books/agrochemical-sales-field-guide/cover.jpg",
+    "coverImage": "/assets/academy-phase1/agrochemical-sales-field-guide.webp",
     "formats": [
       "Digital PDF Book"
     ],
@@ -238,7 +238,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "Importation",
       "Supplier Communication"
     ],
-    "coverImage": "/assets/academy/books/chinese-for-agrochemical-professionals/cover.jpg",
+    "coverImage": "/assets/academy-phase1/chinese-for-agrochemical-professionals.webp",
     "formats": [
       "Digital PDF Book"
     ],
@@ -397,7 +397,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "Cognition",
       "Communication"
     ],
-    "coverImage": "/assets/books/a-multilingual-mind/cover.webp",
+    "coverImage": "/assets/academy-phase1/a-multilingual-mind.webp",
     "leadMagnetHref": "/assets/books/a-multilingual-mind/preview.html",
     "formats": [
       "Private master",
@@ -452,7 +452,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "Web Development",
       "Digital Sovereignty"
     ],
-    "coverImage": "/assets/books/web-development-for-world-changers/cover.png",
+    "coverImage": "/assets/academy-phase1/web-development-for-world-changers.webp",
     "leadMagnetHref": "/assets/books/web-development-for-world-changers/preview.html",
     "formats": [
       "Private Master Edition",
@@ -512,7 +512,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "resilience",
       "multilingual leadership"
     ],
-    "coverImage": "/assets/academy/books/the-desert-ceo/cover.webp",
+    "coverImage": "/assets/academy-phase1/the-desert-ceo.webp",
     "bannerImage": "/assets/academy/books/the-desert-ceo/banner.jpg",
     "leadMagnetHref": "/assets/academy/books/the-desert-ceo/free-excerpt.pdf",
     "formats": [
@@ -563,7 +563,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "knowledge economy",
       "Sahel strategy"
     ],
-    "coverImage": "/assets/academy/books/the-allama-economy/cover.webp",
+    "coverImage": "/assets/academy-phase1/the-allama-economy.webp",
     "bannerImage": "/assets/academy/books/the-allama-economy/banner.jpg",
     "leadMagnetHref": "/assets/academy/books/the-allama-economy/free-excerpt.pdf",
     "formats": [
@@ -608,7 +608,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "Leadership",
       "Institutional Power"
     ],
-    "coverImage": "/assets/books/the-strategist-of-power/cover.webp",
+    "coverImage": "/assets/academy-phase1/the-strategist-of-power.webp",
     "leadMagnetHref": "/assets/books/the-strategist-of-power/preview.html",
     "formats": [
       "Private completed HTML manuscript",
@@ -652,6 +652,7 @@ export const academyProducts: readonly AcademyProduct[] = [
     "topicSlug": "leadership-strategy",
     "kind": "book",
     "title": "The Borderless Intellectual Economy",
+    "coverImage": "/assets/academy-phase1/the-borderless-intellectual-economy.webp",
     "subtitle": "A Guide to Global Firm Collaboration",
     "summary": "A practical business and operations manual built around the Gallifrey Model — showing how knowledge, trust, talent, digital infrastructure, multilingual intelligence, and execution can be organized across continents.",
     "author": "Musa Allama Ibn Garba",
@@ -771,7 +772,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "executive communication",
       "language strategy"
     ],
-    "coverImage": "/assets/academy/books/the-five-language-ceo/cover.webp",
+    "coverImage": "/assets/academy-phase1/the-five-language-ceo.webp",
     "bannerImage": "/assets/academy/books/the-five-language-ceo/banner.jpg",
     "leadMagnetHref": "/assets/academy/books/the-five-language-ceo/free-excerpt.pdf",
     "formats": [
@@ -816,7 +817,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "Global Business",
       "Negotiation"
     ],
-    "coverImage": "/assets/books/the-entrepreneurial-polyglot/cover.webp",
+    "coverImage": "/assets/academy-phase1/the-entrepreneurial-polyglot.webp",
     "leadMagnetHref": "/assets/books/the-entrepreneurial-polyglot/preview.html",
     "formats": [
       "Private completed HTML manuscript",
@@ -870,7 +871,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "Translation",
       "Arabic–Chinese Studies"
     ],
-    "coverImage": "/assets/books/bridge-of-meaning/cover.webp",
+    "coverImage": "/assets/academy-phase1/bridge-of-meaning.webp",
     "formats": [
       "Private completed manuscript",
       "Cover verified",
@@ -927,7 +928,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "community development",
       "food security"
     ],
-    "coverImage": "/assets/academy/books/knowledge-is-seed/cover.webp",
+    "coverImage": "/assets/academy-phase1/knowledge-is-seed.webp",
     "bannerImage": "/assets/academy/books/knowledge-is-seed/banner.jpg",
     "leadMagnetHref": "/assets/academy/books/knowledge-is-seed/free-excerpt.pdf",
     "formats": [
@@ -980,7 +981,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "agroforestry",
       "drip irrigation"
     ],
-    "coverImage": "/assets/academy/books/the-climate-resilient-farmer/cover.webp",
+    "coverImage": "/assets/academy-phase1/the-climate-resilient-farmer.webp",
     "bannerImage": "/assets/academy/books/the-climate-resilient-farmer/banner.jpg",
     "leadMagnetHref": "/assets/academy/books/the-climate-resilient-farmer/free-excerpt.pdf",
     "formats": [
@@ -1041,6 +1042,7 @@ export const academyProducts: readonly AcademyProduct[] = [
     "topicSlug": "agriculture-development",
     "kind": "book",
     "title": "Agro-Logistics Across the Great Divide",
+    "coverImage": "/assets/academy-phase1/agro-logistics-across-the-great-divide.webp",
     "subtitle": "A Field Commander’s Guide to the Sahel Supply Chain",
     "summary": "A field manual on difficult-market logistics, cross-border friction, fleet economics, cold-chain improvisation, commodity movement, risk, warehousing, regional integration, and food-security infrastructure across the Sahel and West Africa.",
     "author": "Musa Allama Ibn Garba",
@@ -1161,7 +1163,7 @@ export const academyProducts: readonly AcademyProduct[] = [
       "Institution Building",
       "Learning Systems"
     ],
-    "coverImage": "/assets/books/nurturing-seekers-of-truth/cover.png",
+    "coverImage": "/assets/academy-phase1/nurturing-seekers-of-truth.webp",
     "formats": [
       "Private completed manuscript",
       "Print/digital release pending"
