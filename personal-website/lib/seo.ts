@@ -9,14 +9,17 @@ export function pageMetadata({
   title,
   description = defaultDescription,
   path = "/",
+  image = "/images/institutional-hero.png",
 }: {
   title: string;
   description?: string;
   path?: string;
+  image?: string;
 }): Metadata {
   return {
     title,
     description,
+    ...(["/admin", "/dashboard", "/checkout"].includes(path) ? { robots: { index: false, follow: false } } : {}),
     alternates: {
       canonical: path,
     },
@@ -27,10 +30,8 @@ export function pageMetadata({
       siteName,
       images: [
         {
-          url: "/images/institutional-hero.png",
-          width: 1600,
-          height: 1000,
-          alt: "MusaAllama.com institutional visual",
+          url: image,
+          alt: title,
         },
       ],
     },
@@ -38,13 +39,13 @@ export function pageMetadata({
       card: "summary_large_image",
       title: `${title} | ${baseTitle}`,
       description,
-      images: ["/images/institutional-hero.png"],
+      images: [image],
     },
   };
 }
 
 export function jsonLd(data: Record<string, unknown>) {
   return {
-    __html: JSON.stringify(data),
+    __html: JSON.stringify(data).replace(/</g, "\\u003c"),
   };
 }

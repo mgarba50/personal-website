@@ -1,101 +1,17 @@
 import Link from "next/link";
-import { academyBundles, academyProducts } from "@/content/academy";
+import { findCheckoutProduct } from "@/lib/checkout";
 import { ManualPaymentForm } from "@/components/commerce/manual-payment-form";
 import { PageHero } from "@/components/ui/page-hero";
-import { advisoryServices, courses, membershipTiers } from "@/lib/content";
 import { bankDetails } from "@/lib/revenue";
 import { pageMetadata } from "@/lib/seo";
 import { siteContact } from "@/lib/site-contact";
 
-export const metadata = pageMetadata({
+export const metadata = { ...pageMetadata({
   title: "Checkout",
   description:
     "Manual bank-transfer checkout for approved MusaAllama.com products and services.",
   path: "/checkout",
-});
-
-type CheckoutProduct = {
-  title: string;
-  amount: string;
-  purchasable: boolean;
-  reason?: string;
-};
-
-function findProduct(type?: string, slug?: string): CheckoutProduct {
-  if (type === "book") {
-    const book = academyProducts.find((item) => item.slug === slug);
-
-    if (book) {
-      if (!book.purchasable || !book.launchPrice) {
-        return {
-          title: book.title,
-          amount: book.priceLabel ?? "Not open for payment",
-          purchasable: false,
-          reason:
-            "This edition is visible in the Academy but is not currently open for payment.",
-        };
-      }
-
-      return {
-        title: book.title,
-        amount: book.launchPrice,
-        purchasable: true,
-      };
-    }
-  }
-
-  if (type === "bundle") {
-    const bundle = academyBundles.find((item) => item.slug === slug);
-    if (bundle) {
-      return {
-        title: bundle.title,
-        amount: bundle.launchPrice,
-        purchasable: bundle.purchasable,
-      };
-    }
-  }
-
-  if (type === "course") {
-    const course = courses.find((item) => item.slug === slug);
-    if (course) {
-      return {
-        title: course.title,
-        amount: course.price,
-        purchasable: true,
-      };
-    }
-  }
-
-  if (type === "advisory") {
-    const service = advisoryServices.find((item) => item.slug === slug);
-    if (service) {
-      return {
-        title: service.shortTitle,
-        amount: service.price,
-        purchasable: true,
-      };
-    }
-  }
-
-  if (type === "membership") {
-    const tier = membershipTiers.find((item) => item.slug === slug);
-    if (tier) {
-      return {
-        title: tier.title,
-        amount: tier.price,
-        purchasable: true,
-      };
-    }
-  }
-
-  return {
-    title: "Selected product",
-    amount: "Confirm amount before transfer",
-    purchasable: false,
-    reason:
-      "A valid product was not selected. Return to the relevant product page before transferring funds.",
-  };
-}
+}), robots: { index: false, follow: false } };
 
 function createOrderNumber(type?: string, slug?: string) {
   const productCode = (slug ?? "order").slice(0, 3).toUpperCase();
@@ -109,7 +25,7 @@ export default async function CheckoutPage({
   searchParams: Promise<{ type?: string; slug?: string }>;
 }) {
   const params = await searchParams;
-  const product = findProduct(params.type, params.slug);
+  const product = findCheckoutProduct(params.type, params.slug);
   const orderNumber = createOrderNumber(params.type, params.slug);
 
   if (!product.purchasable) {
@@ -141,7 +57,7 @@ export default async function CheckoutPage({
     <>
       <PageHero
         eyebrow="Manual Checkout"
-        title="Complete Your Book Order"
+        title="Complete Your Order"
         copy="Transfer the correct amount, upload your payment proof, and keep the order number for confirmation."
         primaryCta={{
           label: "Return to Academy",

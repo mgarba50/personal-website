@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { academyBundles, academyProducts } from "@/content/academy";
+import { findCheckoutProduct } from "@/lib/checkout";
 import { siteContact } from "@/lib/site-contact";
 import {
   insertSupabaseRow,
@@ -12,23 +12,20 @@ function safeSegment(value: string) {
   return value.replace(/[^a-zA-Z0-9._-]+/g, "-").slice(0, 120);
 }
 
-function isOpenForPayment(type: string, slug: string) {
-  if (type === "book") {
-    const product = academyProducts.find((item) => item.slug === slug);
-    return Boolean(product?.purchasable && product.launchPrice);
+export async function POST(request: Request) {
+  if (Number(request.headers.get("content-length") ?? 0) > 6 * 1024 * 1024) {
+    return NextResponse.json({ ok: false, message: "Payment submission is too large." }, { status: 413 });
   }
-
-  if (type === "bundle") {
-    return academyBundles.some(
-      (bundle) => bundle.slug === slug && bundle.purchasable,
-    );
+  try { return await submitPayment(request); } catch {
+    return NextResponse.json({ ok: false, message: `Payment submission is temporarily unavailable. Please email ${siteContact.email} with your order number and receipt.` }, { status: 503 });
   }
-
-  return true;
 }
 
-export async function POST(request: Request) {
-  const formData = await request.formData();
+async function submitPayment(request: Request) {
+  let formData: FormData;
+  try { formData = await request.formData(); } catch {
+    return NextResponse.json({ ok: false, message: "Invalid payment submission." }, { status: 400 });
+  }
 
   const productType = String(formData.get("type") ?? "").trim();
   const productSlug = String(formData.get("slug") ?? "").trim();
@@ -42,7 +39,8 @@ export async function POST(request: Request) {
   const notes = String(formData.get("notes") ?? "").trim();
   const receipt = formData.get("receipt");
 
-  if (!isOpenForPayment(productType, productSlug)) {
+  const selected = findCheckoutProduct(productType, productSlug);
+  if (!selected.purchasable) {
     return NextResponse.json(
       {
         ok: false,
@@ -86,13 +84,27 @@ export async function POST(request: Request) {
     );
   }
 
+  if (product !== selected.title || amountPaid !== selected.amount) {
+    return NextResponse.json({ ok: false, message: "Product or price changed. Reload checkout before submitting." }, { status: 409 });
+  }
+  if (!/^MA-[A-Z0-9-]{5,80}$/.test(orderNumber) || name.length > 200 || email.length > 254 || notes.length > 5000) {
+    return NextResponse.json({ ok: false, message: "Invalid order details." }, { status: 400 });
+  }
+  const signatures: Record<string, (bytes: Uint8Array) => boolean> = {
+    "application/pdf": (b) => Buffer.from(b).subarray(0, 5).toString() === "%PDF-",
+    "image/png": (b) => Buffer.from(b).subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10])),
+    "image/jpeg": (b) => b[0] === 255 && b[1] === 216 && b[2] === 255,
+    "image/webp": (b) => Buffer.from(b).subarray(0, 4).toString() === "RIFF" && Buffer.from(b).subarray(8, 12).toString() === "WEBP",
+  };
+  const validate = signatures[receipt.type];
+  if (!validate || !validate(new Uint8Array(await receipt.slice(0, 12).arrayBuffer()))) {
+    return NextResponse.json({ ok: false, message: "Upload a valid PDF, JPEG, PNG, or WebP receipt." }, { status: 400 });
+  }
+
   const bucket =
     process.env.SUPABASE_RECEIPTS_BUCKET ?? "payment-receipts";
 
-  const ext =
-    receipt.name.includes(".")
-      ? `.${safeSegment(receipt.name.split(".").pop() ?? "bin")}`
-      : "";
+  const ext = ({ "application/pdf": ".pdf", "image/png": ".png", "image/jpeg": ".jpg", "image/webp": ".webp" } as Record<string, string>)[receipt.type];
 
   const objectPath = [
     new Date().toISOString().slice(0, 10),
@@ -121,8 +133,8 @@ export async function POST(request: Request) {
     phone,
     product_type: productType,
     product_slug: productSlug,
-    product_title: product,
-    amount_paid: amountPaid,
+    product_title: selected.title,
+    amount_paid: selected.amount,
     transfer_reference: reference,
     proof_url: upload.path,
     receipt_file_name: receipt.name,

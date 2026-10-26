@@ -212,6 +212,20 @@ export async function updateSupabaseRows(
   return { ok: true };
 }
 
+// Compare-and-swap prevents simultaneous requests from exceeding a token's limit.
+export async function claimDownloadToken(tokenHash: string, count: number) {
+  const config = adminConfig();
+  if (!config) return false;
+  const query = new URLSearchParams({ token_hash: `eq.${tokenHash}`, download_count: `eq.${count}`, max_downloads: `gt.${count}`, revoked_at: "is.null", expires_at: `gt.${new Date().toISOString()}` });
+  const response = await fetch(`${config.supabaseUrl}/rest/v1/download_tokens?${query}`, {
+    method: "PATCH",
+    headers: { apikey: config.serviceRoleKey, Authorization: `Bearer ${config.serviceRoleKey}`, "Content-Type": "application/json", Prefer: "return=representation" },
+    body: JSON.stringify({ download_count: count + 1, last_downloaded_at: new Date().toISOString() }),
+    cache: "no-store",
+  });
+  return response.ok && (await response.json() as unknown[]).length === 1;
+}
+
 export async function createSupabaseSignedUrl(
   bucket: string,
   objectPath: string,

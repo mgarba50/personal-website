@@ -71,15 +71,15 @@ export function ManualPaymentForm({ title, productType, slug, amount, orderNumbe
       <input type="hidden" name="orderNumber" value={orderNumber} />
 
       <div className="mt-5 grid gap-3">
-        <input className="field rounded-md" name="name" placeholder="Full name" required />
-        <input className="field rounded-md" name="email" placeholder="Email" type="email" required />
-        <input className="field rounded-md" name="phone" placeholder="Phone / WhatsApp" required />
-        <input className="field rounded-md" name="reference" placeholder="Bank transfer reference or narration" required />
+        <input className="field rounded-md" name="name" aria-label="Full name" placeholder="Full name" required />
+        <input className="field rounded-md" name="email" aria-label="Email" placeholder="Email" type="email" required />
+        <input className="field rounded-md" name="phone" aria-label="Phone / WhatsApp" placeholder="Phone / WhatsApp" required />
+        <input className="field rounded-md" name="reference" aria-label="Bank transfer reference or narration" placeholder="Bank transfer reference or narration" required />
         <label className="grid gap-2 text-sm font-semibold text-deep">
           Upload receipt or screenshot
-          <input className="field rounded-md" name="receipt" type="file" accept="image/*,.pdf" required />
+          <input className="field rounded-md" name="receipt" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required />
         </label>
-        <textarea className="field min-h-28 rounded-md" name="notes" placeholder="Optional notes for admin review" />
+        <textarea className="field min-h-28 rounded-md" name="notes" aria-label="Optional notes for admin review" placeholder="Optional notes for admin review" />
         <button
           className="rounded-md bg-deep px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-vellum transition hover:bg-navy disabled:cursor-not-allowed disabled:opacity-60"
           data-conversion="payment_proof_submitted"
@@ -92,7 +92,7 @@ export function ManualPaymentForm({ title, productType, slug, amount, orderNumbe
       </div>
 
       {state ? (
-        <p className={`mt-4 rounded-md p-4 text-sm leading-7 ${state.ok ? "bg-emerald/10 text-deep" : "bg-burgundy/10 text-burgundy"}`}>
+        <p role="status" aria-live="polite" className={`mt-4 rounded-md p-4 text-sm leading-7 ${state.ok ? "bg-emerald/10 text-deep" : "bg-burgundy/10 text-burgundy"}`}>
           {state.message}
         </p>
       ) : null}

@@ -1,3 +1,18 @@
+/* Detail dossiers retain readable lists and fit narrow screens. */
+.sa-dossier .sa-wing-section ol { list-style: decimal; padding-inline-start: 1.5rem; }
+.sa-dossier .sa-wing-section ul { list-style: disc; padding-inline-start: 1.3rem; }
+.sa-dossier .sa-wing-section li { padding-inline-start: .3rem; margin-block: .65rem; line-height: 1.75; }
+.sa-dossier .sa-wing-section article + article { margin-top: 1rem; }
+.sa-dossier .sa-editorial-grid article + article { margin-top: 0; }
+.sa-dossier .sa-wing-section h2 + ul,
+.sa-dossier .sa-wing-section h2 + article { margin-top: 1.5rem; }
+.sa-dossier .sa-wing-section article h3 { font-weight: 650; margin-bottom: .65rem; }
+.sa-dossier .sa-wing-section article p { line-height: 1.8; }
+.sa-simple-hero__grid > *, .sa-editorial-grid > * { min-width: 0; }
+.sa-simple-hero__title, .sa-structural-card h3 { overflow-wrap: anywhere; }
+.sa-simple-hero .sa-button { white-space: normal; text-align: center; }
+.sa-simple-hero__note img { display: block; margin-inline: auto; object-fit: contain; }
+
 /* MusaAllama.com Phase 1 public architecture layer.
    Isolated from globals.css so legacy routes remain recoverable during migration. */
 
@@ -2190,4 +2205,10 @@
 @media (prefers-reduced-motion: reduce) {
   .sa-book-card__cover img { transition: none; }
   .sa-book-card:hover .sa-book-card__cover img { transform: none; }
+}
+
+@media (max-width: 640px) {
+  .sa-simple-hero__title { font-size: clamp(2.65rem, 12vw, 4.5rem); }
+  .sa-simple-hero__note { padding: 22px; }
+  .sa-wing-hero__actions .sa-button { max-width: 100%; }
 }

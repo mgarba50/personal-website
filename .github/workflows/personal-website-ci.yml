@@ -31,10 +31,13 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Lint
         run: npm run lint
+
+      - name: Commerce regression checks
+        run: npm run test:commerce
 
       - name: Build
         run: npm run build

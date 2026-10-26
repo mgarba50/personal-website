@@ -1,30 +1,14 @@
 import type { Metadata } from "next";
-import { Amiri, Cormorant_Garamond, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { ConversionTracker } from "@/components/commerce/conversion-tracker";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import "./globals.css";
 import "./architecture.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  display: "swap",
-});
-
-const amiri = Amiri({
-  variable: "--font-arabic",
-  subsets: ["arabic", "latin"],
-  weight: ["400", "700"],
-  display: "swap",
-});
+const inter = localFont({ src: "./fonts/inter-latin.woff2", variable: "--font-inter", weight: "100 900", display: "swap" });
+const cormorant = localFont({ src: "./fonts/cormorant-garamond-latin.woff2", variable: "--font-display", weight: "500 700", display: "swap" });
+const amiri = localFont({ src: [{ path: "./fonts/amiri-regular.ttf", weight: "400" }, { path: "./fonts/amiri-bold.ttf", weight: "700" }], variable: "--font-arabic", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://musaallama.com"),
