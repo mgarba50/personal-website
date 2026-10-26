@@ -35,7 +35,7 @@ export default async function AcademyProductPage({ params }: Params) {
   );
 
   return (
-    <main>
+    <div>
       <section className="sa-simple-hero">
         <div className="sa-container sa-simple-hero__grid">
           <div>
@@ -132,6 +132,6 @@ export default async function AcademyProductPage({ params }: Params) {
           </div>
         </section>
       ) : null}
-    </main>
+    </div>
   );
 }

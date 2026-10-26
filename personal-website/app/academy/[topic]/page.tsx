@@ -30,7 +30,7 @@ export default async function AcademyTopicPage({ params }: Params) {
   const products = getAcademyProductsByTopic(topic.slug);
 
   return (
-    <main>
+    <div>
       <section className="sa-simple-hero">
         <div className="sa-container sa-simple-hero__grid">
           <div>
@@ -80,6 +80,6 @@ export default async function AcademyTopicPage({ params }: Params) {
           ) : <p>No public titles have been registered for this topic yet.</p>}
         </div>
       </section>
-    </main>
+    </div>
   );
 }

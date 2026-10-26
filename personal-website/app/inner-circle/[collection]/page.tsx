@@ -31,7 +31,7 @@ export default async function InnerCollectionPage({ params }: Params) {
   if (!collection || collection.slug === "diwan") notFound();
   const entries = getInnerEntries(collection.slug as InnerCollectionSlug);
   return (
-    <main>
+    <div>
       <section className="sa-simple-hero">
         <div className="sa-container sa-simple-hero__grid">
           <div>
@@ -63,6 +63,6 @@ export default async function InnerCollectionPage({ params }: Params) {
           {!entries.length ? <p>No public dossiers are indexed in this collection yet.</p> : null}
         </div>
       </section>
-    </main>
+    </div>
   );
 }

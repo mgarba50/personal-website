@@ -30,7 +30,7 @@ export default async function CorporateServicePage({ params }: Params) {
   const capability = corporateCapabilities.find((item) => item.slug === service.capabilitySlug);
 
   return (
-    <main>
+    <div>
       <section className="sa-simple-hero">
         <div className="sa-container sa-simple-hero__grid">
           <div>
@@ -81,6 +81,6 @@ export default async function CorporateServicePage({ params }: Params) {
           <Link className="sa-button sa-button--gold" href="/consultation">Start a consultation</Link>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

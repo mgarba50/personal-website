@@ -45,7 +45,7 @@ export default async function InnerEntryPage({ params }: Params) {
     const work = getDiwanEntry(slug);
     if (!work) notFound();
     return (
-      <main>
+      <div>
         <section className="sa-simple-hero">
           <div className="sa-container sa-simple-hero__grid">
             <div>
@@ -70,14 +70,14 @@ export default async function InnerEntryPage({ params }: Params) {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     );
   }
 
   const entry = getInnerEntry(collection, slug);
   if (!entry) notFound();
   return (
-    <main>
+    <div>
       <section className="sa-simple-hero">
         <div className="sa-container sa-simple-hero__grid">
           <div>
@@ -106,6 +106,6 @@ export default async function InnerEntryPage({ params }: Params) {
           <p>{entry.editorialNote ?? "This entry is a descriptive catalogue record. No private manuscript is distributed from this page."}</p>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
