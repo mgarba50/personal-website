@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileNavigation } from "./mobile-navigation";
 import { primaryNavigation } from "@/lib/site-architecture";
 
 export function SiteHeader() {
@@ -24,7 +25,7 @@ export function SiteHeader() {
           </Link>
         </nav>
 
-        <details className="sa-mobile-nav">
+        <MobileNavigation>
           <summary aria-label="Open navigation">
             <span>Menu</span>
             <span className="sa-mobile-nav__icon" aria-hidden="true">≡</span>
@@ -38,7 +39,7 @@ export function SiteHeader() {
             <Link href="/about" className="sa-mobile-nav__link">About</Link>
             <Link href="/consultation" className="sa-button sa-button--gold">Book a Consultation</Link>
           </div>
-        </details>
+        </MobileNavigation>
       </div>
     </header>
   );

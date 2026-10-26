@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -30,11 +31,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   }
   const entry = getInnerEntry(collection, slug);
   if (!entry) return {};
-  return {
-    title: entry.seo?.title ?? entry.title,
-    description: entry.seo?.description ?? entry.summary,
-    alternates: { canonical: "/inner-circle/" + collection + "/" + slug },
-  };
+  return pageMetadata({ title: entry.seo?.title ?? entry.title, description: entry.seo?.description ?? entry.summary, path: "/inner-circle/" + collection + "/" + slug, image: entry.coverImage });
 }
 
 export default async function InnerEntryPage({ params }: Params) {
@@ -77,7 +74,7 @@ export default async function InnerEntryPage({ params }: Params) {
   const entry = getInnerEntry(collection, slug);
   if (!entry) notFound();
   return (
-    <div>
+    <div className="sa-dossier">
       <section className="sa-simple-hero">
         <div className="sa-container sa-simple-hero__grid">
           <div>
@@ -85,7 +82,7 @@ export default async function InnerEntryPage({ params }: Params) {
             <h1 className="sa-display sa-simple-hero__title">{entry.title}</h1>
             {entry.subtitle ? <p className="sa-simple-hero__copy">{entry.subtitle}</p> : null}
             <p className="sa-simple-hero__copy">{entry.summary}</p>
-            <Link className="sa-button sa-button--gold" href={"/inner-circle/" + collection}>Back to collection</Link>
+            <div className="sa-wing-hero__actions"><Link className="sa-button sa-button--gold" href={"/contact?inquiry=book-publication&product=" + encodeURIComponent(entry.slug)}>Enquire about this work</Link><Link className="sa-button sa-button--ghost" href={"/inner-circle/" + collection}>Back to collection</Link></div>
           </div>
           <aside className="sa-simple-hero__note">
             {entry.coverImage ? <img src={entry.coverImage} alt={entry.title + " cover"} style={{ width: "100%", maxWidth: 260, height: "auto", marginBottom: 18 }} /> : null}

@@ -1,3 +1,5 @@
+import { pageMetadata } from "@/lib/seo";
+import { canPurchaseBook } from "@/lib/checkout";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -16,11 +18,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { topic, slug } = await params;
   const product = getAcademyProduct(topic, slug);
   if (!product) return {};
-  return {
-    title: product.seo?.title ?? product.title,
-    description: product.seo?.description ?? product.summary,
-    alternates: { canonical: "/academy/" + topic + "/" + slug },
-  };
+  return pageMetadata({ title: product.seo?.title ?? product.title, description: product.seo?.description ?? product.summary, path: "/academy/" + topic + "/" + slug, image: product.coverImage });
 }
 
 export default async function AcademyProductPage({ params }: Params) {
@@ -29,13 +27,13 @@ export default async function AcademyProductPage({ params }: Params) {
   const category = getAcademyTopic(topic);
   if (!product || !category) notFound();
 
-  const canBuy = Boolean(product.purchasable && product.launchPrice);
+  const canBuy = canPurchaseBook(product);
   const related = academyProducts.filter((item) =>
     product.relatedProductSlugs?.includes(item.slug) && item.slug !== product.slug
   );
 
   return (
-    <div>
+    <div className="sa-dossier">
       <section className="sa-simple-hero">
         <div className="sa-container sa-simple-hero__grid">
           <div>

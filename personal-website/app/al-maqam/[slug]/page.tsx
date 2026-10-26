@@ -17,6 +17,7 @@ export async function generateMetadata({
   const record = diwanBySlug.get(slug);
   if (!record) return { title: "Diwan not found" };
   return {
+    alternates: { canonical: `/al-maqam/${record.slug}` },
     title: `${record.title} | Al-Maqam · Musa Allama`,
     description: `Explore ${record.title} in the Al-Maqam Arabic Diwan collection by Musa Allama.`,
   };
@@ -51,7 +52,7 @@ export default async function DiwanPage({
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">Al-Maqam</p>
             <h2 className="display mt-3 text-3xl font-semibold text-deep">A work from the Arabic Diwan collection.</h2>
             <p className="mt-4 max-w-3xl text-sm leading-7 text-muted">
-              Discover this title as part of Musa Allama's collection of Arabic poetry, reflection, language, and literary expression. Availability varies by title; use the options below to read a preview when available or ask about the work.
+              Discover this title as part of Musa Allama&apos;s collection of Arabic poetry, reflection, language, and literary expression. Availability varies by title; use the options below to read a preview when available or ask about the work.
             </p>
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">

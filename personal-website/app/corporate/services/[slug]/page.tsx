@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -16,11 +17,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const service = getCorporateService(slug);
   if (!service) return {};
-  return {
-    title: service.seo?.title ?? service.title,
-    description: service.seo?.description ?? service.summary,
-    alternates: { canonical: "/corporate/services/" + slug },
-  };
+  return pageMetadata({ title: service.seo?.title ?? service.title, description: service.seo?.description ?? service.summary, path: "/corporate/services/" + slug });
 }
 
 export default async function CorporateServicePage({ params }: Params) {

@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -16,11 +17,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { topic: topicSlug } = await params;
   const topic = getAcademyTopic(topicSlug);
   if (!topic) return {};
-  return {
-    title: topic.title + " | The Academy",
-    description: topic.summary,
-    alternates: { canonical: "/academy/" + topic.slug },
-  };
+  return pageMetadata({ title: topic.title + " | The Academy", description: topic.summary, path: "/academy/" + topic.slug });
 }
 
 export default async function AcademyTopicPage({ params }: Params) {

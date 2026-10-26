@@ -1,7 +1,9 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  outputFileTracingRoot: path.resolve(__dirname),
   output: "standalone",
   async redirects() {
     return [
@@ -33,7 +35,6 @@ const nextConfig: NextConfig = {
       { source: "/courses", destination: "/academy", permanent: true },
       { source: "/library", destination: "/inner-circle", permanent: true },
       { source: "/membership", destination: "/inner-circle", permanent: true },
-      { source: "/al-maqam", destination: "/inner-circle/diwan", permanent: true },
       { source: "/advisory", destination: "/corporate", permanent: true },
       { source: "/agro", destination: "/corporate", permanent: true },
       { source: "/gallifrey", destination: "/corporate", permanent: true },

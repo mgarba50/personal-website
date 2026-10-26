@@ -5,10 +5,12 @@
   "scripts": {
     "dev": "next dev --webpack",
     "verify:publication": "node scripts/verify-publication.mjs",
-    "build": "npm run verify:publication && npm run verify:routes && next build --webpack",
+    "build": "npm run verify:publication && npm run verify:routes && npm run verify:site && next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "verify:routes": "node scripts/verify-routes.mjs"
+    "verify:routes": "node scripts/verify-routes.mjs",
+    "verify:site": "node scripts/verify-site.mjs",
+    "test:commerce": "node scripts/test-commerce.mjs"
   },
   "dependencies": {
     "next": "16.2.6",

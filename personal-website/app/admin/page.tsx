@@ -54,7 +54,7 @@ export default function AdminPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-burgundy">Admin actions</p>
               <h2 className="display mt-3 text-4xl font-semibold text-deep md:text-5xl">Content, commerce, and users.</h2>
             </div>
-            <Link className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep" href="/supabase/schema.sql">
+            <Link className="text-sm font-semibold uppercase tracking-[0.14em] text-burgundy hover:text-deep" href="https://github.com/mgarba50/personal-website/blob/master/personal-website/supabase/schema.sql">
               Database schema
             </Link>
           </div>
