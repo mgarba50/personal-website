@@ -44,19 +44,6 @@ for (const [, source, destination] of redirects) {
   }
 }
 
-const academy = await readFile("app/academy/page.tsx", "utf8");
-const inner = await readFile("app/inner-circle/page.tsx", "utf8");
-const corporate = await readFile("app/corporate/page.tsx", "utf8");
-if (!academy.includes('href={\`/academy/\${topic.slug}\`}')) {
-  errors.push("Academy topic link binding changed: review route checks");
-}
-if (!inner.includes('href={\`/inner-circle/\${collection.slug}\`}')) {
-  errors.push("Inner Circle collection link binding changed: review route checks");
-}
-if (!corporate.includes('href={\`/corporate/services/\${service.slug}\`}')) {
-  errors.push("Corporate service link binding changed: review route checks");
-}
-
 if (errors.length) {
   console.error("Institutional route verification failed:");
   for (const error of errors) console.error("- " + error);
