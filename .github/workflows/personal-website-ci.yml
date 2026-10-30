@@ -28,13 +28,19 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Database permissions and commerce regressions
+        run: npm run test:database && npm run test:commerce
 
       - name: Lint
         run: npm run lint
 
       - name: Build
         run: npm run build
+
+      - name: Compiled authentication and order flow
+        run: npm run test:http

@@ -264,3 +264,21 @@ export async function createSupabaseSignedUrl(
       : `${config.supabaseUrl}/storage/v1${signed}`,
   };
 }
+
+export async function supabaseRpc<T>(name: string, args: Record<string, unknown>): Promise<{ ok: true; data: T } | { ok: false; code: string }> {
+  const config = adminConfig();
+  if (!config) return { ok: false, code: "NOT_CONFIGURED" };
+  try {
+    const response = await fetch(`${config.supabaseUrl}/rest/v1/rpc/${encodeURIComponent(name)}`, { method: "POST", headers: { apikey: config.serviceRoleKey, Authorization: `Bearer ${config.serviceRoleKey}`, "Content-Type": "application/json" }, body: JSON.stringify(args), cache: "no-store", signal: AbortSignal.timeout(15000) });
+    const body = await response.json().catch(() => null);
+    return response.ok ? { ok: true, data: body as T } : { ok: false, code: typeof body?.message === "string" && /^[A-Z_]+$/.test(body.message) ? body.message : "SERVICE_UNAVAILABLE" };
+  } catch { return { ok: false, code: "SERVICE_UNAVAILABLE" }; }
+}
+
+export async function deleteSupabaseFile(bucket: string, objectPath: string) {
+  const config = adminConfig(); if (!config) return false;
+  try {
+    const response = await fetch(`${config.supabaseUrl}/storage/v1/object/${encodeURIComponent(bucket)}`, { method: "DELETE", headers: { apikey: config.serviceRoleKey, Authorization: `Bearer ${config.serviceRoleKey}`, "Content-Type": "application/json" }, body: JSON.stringify({ prefixes: [objectPath] }), signal: AbortSignal.timeout(15000) });
+    return response.ok;
+  } catch { return false; }
+}

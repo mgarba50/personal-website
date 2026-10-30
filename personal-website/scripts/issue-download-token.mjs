@@ -30,6 +30,15 @@ if (!supabaseUrl || !key) {
   );
 }
 
+// Delivery follows an approved receipt for this exact product and customer.
+const proofQuery = new URLSearchParams({ order_number: `eq.${orderNumber}`, product_slug: `eq.${slug}`, email: `eq.${email}`, status: "in.(payment_approved,download_sent)", select: "id", limit: "1" });
+const approval = await fetch(`${supabaseUrl}/rest/v1/manual_payment_proofs?${proofQuery}`, {
+  headers: { apikey: key, Authorization: `Bearer ${key}` },
+});
+if (!approval.ok || !(await approval.json()).length) {
+  throw new Error("No approved payment proof matches this order, product, and email. Review payment before issuing access.");
+}
+
 const hours = Math.max(1, Number(hoursArg) || 72);
 const token = randomBytes(32).toString("base64url");
 const tokenHash = createHash("sha256").update(token).digest("hex");

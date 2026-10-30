@@ -2,6 +2,7 @@
   "name": "project-name-musaallama-com-institutional-digital",
   "version": "0.1.0",
   "private": true,
+  "engines": { "node": "24.x" },
   "scripts": {
     "dev": "next dev --webpack",
     "verify:publication": "node scripts/verify-publication.mjs",
@@ -9,14 +10,21 @@
     "start": "next start",
     "lint": "eslint",
     "verify:routes": "node scripts/verify-routes.mjs",
-    "verify:runtime": "node scripts/smoke-routes.mjs"
+    "verify:runtime": "node scripts/smoke-routes.mjs",
+    "test:database": "node scripts/test-database.mjs",
+    "test:commerce": "node scripts/test-commerce.mjs",
+    "test:http": "node scripts/test-http-flow.mjs"
   },
   "dependencies": {
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.118.0",
     "next": "16.2.6",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "server-only": "0.0.1"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.13",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
