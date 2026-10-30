@@ -1,0 +1,2992 @@
+{
+  "captured_at": "2026-10-30T19:36:17.543Z",
+  "project_ref": "rhxztdjosriejkxllrny",
+  "purpose": "Schema and access snapshot before additive G1/G2 activation. No customer records, credentials or storage object contents are included. This is not a full database/storage backup or a tested restore. Do not restore the insecure client grants as a rollback.",
+  "application_rows": [
+    {
+      "table_name": "users",
+      "row_count": 0
+    },
+    {
+      "table_name": "products",
+      "row_count": 0
+    },
+    {
+      "table_name": "courses",
+      "row_count": 0
+    },
+    {
+      "table_name": "lessons",
+      "row_count": 0
+    },
+    {
+      "table_name": "orders",
+      "row_count": 0
+    },
+    {
+      "table_name": "memberships",
+      "row_count": 0
+    },
+    {
+      "table_name": "articles",
+      "row_count": 0
+    },
+    {
+      "table_name": "inquiries",
+      "row_count": 0
+    },
+    {
+      "table_name": "bookings",
+      "row_count": 0
+    },
+    {
+      "table_name": "certificates",
+      "row_count": 0
+    },
+    {
+      "table_name": "course_enrollments",
+      "row_count": 0
+    },
+    {
+      "table_name": "downloads",
+      "row_count": 0
+    },
+    {
+      "table_name": "newsletter_subscribers",
+      "row_count": 0
+    },
+    {
+      "table_name": "manual_payment_proofs",
+      "row_count": 0
+    },
+    {
+      "table_name": "course_waitlist_submissions",
+      "row_count": 0
+    },
+    {
+      "table_name": "lead_magnet_signups",
+      "row_count": 0
+    },
+    {
+      "table_name": "conversion_events",
+      "row_count": 0
+    },
+    {
+      "table_name": "download_tokens",
+      "row_count": 0
+    }
+  ],
+  "auth_users": 0,
+  "storage_objects_by_bucket": {
+    "source-vault": 345,
+    "product-files": 47,
+    "lead-magnets": 2,
+    "payment-receipts": 0
+  },
+  "baseline": {
+    "enums": [
+      {
+        "typname": "booking_status",
+        "enumlabel": "requested",
+        "enumsortorder": 1
+      },
+      {
+        "typname": "booking_status",
+        "enumlabel": "confirmed",
+        "enumsortorder": 2
+      },
+      {
+        "typname": "booking_status",
+        "enumlabel": "completed",
+        "enumsortorder": 3
+      },
+      {
+        "typname": "booking_status",
+        "enumlabel": "cancelled",
+        "enumsortorder": 4
+      },
+      {
+        "typname": "inquiry_status",
+        "enumlabel": "new",
+        "enumsortorder": 1
+      },
+      {
+        "typname": "inquiry_status",
+        "enumlabel": "reviewing",
+        "enumsortorder": 2
+      },
+      {
+        "typname": "inquiry_status",
+        "enumlabel": "responded",
+        "enumsortorder": 3
+      },
+      {
+        "typname": "inquiry_status",
+        "enumlabel": "closed",
+        "enumsortorder": 4
+      },
+      {
+        "typname": "membership_status",
+        "enumlabel": "active",
+        "enumsortorder": 1
+      },
+      {
+        "typname": "membership_status",
+        "enumlabel": "expired",
+        "enumsortorder": 2
+      },
+      {
+        "typname": "membership_status",
+        "enumlabel": "cancelled",
+        "enumsortorder": 3
+      },
+      {
+        "typname": "membership_status",
+        "enumlabel": "manual_review",
+        "enumsortorder": 4
+      },
+      {
+        "typname": "membership_tier",
+        "enumlabel": "gold_circle",
+        "enumsortorder": 1
+      },
+      {
+        "typname": "membership_tier",
+        "enumlabel": "eternal_circle",
+        "enumsortorder": 2
+      },
+      {
+        "typname": "membership_tier",
+        "enumlabel": "majestic_circle",
+        "enumsortorder": 3
+      },
+      {
+        "typname": "order_status",
+        "enumlabel": "pending_payment",
+        "enumsortorder": 1
+      },
+      {
+        "typname": "order_status",
+        "enumlabel": "payment_submitted",
+        "enumsortorder": 2
+      },
+      {
+        "typname": "order_status",
+        "enumlabel": "payment_under_review",
+        "enumsortorder": 3
+      },
+      {
+        "typname": "order_status",
+        "enumlabel": "payment_approved",
+        "enumsortorder": 4
+      },
+      {
+        "typname": "order_status",
+        "enumlabel": "download_sent",
+        "enumsortorder": 5
+      },
+      {
+        "typname": "order_status",
+        "enumlabel": "cancelled",
+        "enumsortorder": 6
+      },
+      {
+        "typname": "payment_provider",
+        "enumlabel": "stripe",
+        "enumsortorder": 1
+      },
+      {
+        "typname": "payment_provider",
+        "enumlabel": "paystack",
+        "enumsortorder": 2
+      },
+      {
+        "typname": "payment_provider",
+        "enumlabel": "flutterwave",
+        "enumsortorder": 3
+      },
+      {
+        "typname": "payment_provider",
+        "enumlabel": "manual",
+        "enumsortorder": 4
+      },
+      {
+        "typname": "product_type",
+        "enumlabel": "book",
+        "enumsortorder": 1
+      },
+      {
+        "typname": "product_type",
+        "enumlabel": "bundle",
+        "enumsortorder": 2
+      },
+      {
+        "typname": "product_type",
+        "enumlabel": "digital",
+        "enumsortorder": 3
+      },
+      {
+        "typname": "user_role",
+        "enumlabel": "admin",
+        "enumsortorder": 1
+      },
+      {
+        "typname": "user_role",
+        "enumlabel": "member",
+        "enumsortorder": 2
+      },
+      {
+        "typname": "user_role",
+        "enumlabel": "student",
+        "enumsortorder": 3
+      },
+      {
+        "typname": "user_role",
+        "enumlabel": "client",
+        "enumsortorder": 4
+      }
+    ],
+    "grants": {
+      "courses": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "lessons": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "users": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "orders": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "products": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "memberships": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "articles": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "inquiries": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "bookings": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "certificates": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "course_enrollments": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "downloads": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "newsletter_subscribers": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "manual_payment_proofs": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "course_waitlist_submissions": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "lead_magnet_signups": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "conversion_events": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      },
+      "download_tokens": {
+        "postgres": {
+          "INSERT": "YES",
+          "SELECT": "YES",
+          "UPDATE": "YES",
+          "DELETE": "YES",
+          "TRUNCATE": "YES",
+          "REFERENCES": "YES",
+          "TRIGGER": "YES"
+        },
+        "anon": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "authenticated": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        },
+        "service_role": {
+          "INSERT": "NO",
+          "SELECT": "NO",
+          "UPDATE": "NO",
+          "DELETE": "NO",
+          "TRUNCATE": "NO",
+          "REFERENCES": "NO",
+          "TRIGGER": "NO"
+        }
+      }
+    },
+    "tables": [
+      {
+        "rls": false,
+        "name": "courses",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "lessons",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "users",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "orders",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "products",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "memberships",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "articles",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "inquiries",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "bookings",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "certificates",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "course_enrollments",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "downloads",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "newsletter_subscribers",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "manual_payment_proofs",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "course_waitlist_submissions",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "lead_magnet_signups",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "conversion_events",
+        "owner": "postgres"
+      },
+      {
+        "rls": false,
+        "name": "download_tokens",
+        "owner": "postgres"
+      }
+    ],
+    "columns": [
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "articles",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "articles",
+        "udt_schema": "pg_catalog",
+        "column_name": "title",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "articles",
+        "udt_schema": "pg_catalog",
+        "column_name": "slug",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "articles",
+        "udt_schema": "pg_catalog",
+        "column_name": "category",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "articles",
+        "udt_schema": "pg_catalog",
+        "column_name": "content",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "articles",
+        "udt_schema": "pg_catalog",
+        "column_name": "excerpt",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "articles",
+        "udt_schema": "pg_catalog",
+        "column_name": "seo_title",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 7
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "articles",
+        "udt_schema": "pg_catalog",
+        "column_name": "meta_description",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 8
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "articles",
+        "udt_schema": "pg_catalog",
+        "column_name": "featured_image",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 9
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "articles",
+        "udt_schema": "pg_catalog",
+        "column_name": "published_at",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 10
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "bookings",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "bookings",
+        "udt_schema": "pg_catalog",
+        "column_name": "user_id",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "bookings",
+        "udt_schema": "pg_catalog",
+        "column_name": "service_type",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "bookings",
+        "udt_schema": "pg_catalog",
+        "column_name": "booking_date",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "booking_status",
+        "data_type": "USER-DEFINED",
+        "table_name": "bookings",
+        "udt_schema": "public",
+        "column_name": "status",
+        "is_nullable": "NO",
+        "column_default": "'requested'::booking_status",
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "bookings",
+        "udt_schema": "pg_catalog",
+        "column_name": "notes",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "certificates",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "certificates",
+        "udt_schema": "pg_catalog",
+        "column_name": "user_id",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "certificates",
+        "udt_schema": "pg_catalog",
+        "column_name": "course_id",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "certificates",
+        "udt_schema": "pg_catalog",
+        "column_name": "certificate_number",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "certificates",
+        "udt_schema": "pg_catalog",
+        "column_name": "issued_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "certificates",
+        "udt_schema": "pg_catalog",
+        "column_name": "file_url",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "conversion_events",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "conversion_events",
+        "udt_schema": "pg_catalog",
+        "column_name": "action",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "conversion_events",
+        "udt_schema": "pg_catalog",
+        "column_name": "label",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "conversion_events",
+        "udt_schema": "pg_catalog",
+        "column_name": "href",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "conversion_events",
+        "udt_schema": "pg_catalog",
+        "column_name": "path",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "conversion_events",
+        "udt_schema": "pg_catalog",
+        "column_name": "user_id",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "jsonb",
+        "data_type": "jsonb",
+        "table_name": "conversion_events",
+        "udt_schema": "pg_catalog",
+        "column_name": "metadata",
+        "is_nullable": "NO",
+        "column_default": "'{}'::jsonb",
+        "ordinal_position": 7
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "conversion_events",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 8
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "course_enrollments",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "course_enrollments",
+        "udt_schema": "pg_catalog",
+        "column_name": "user_id",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "course_enrollments",
+        "udt_schema": "pg_catalog",
+        "column_name": "course_id",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "course_enrollments",
+        "udt_schema": "pg_catalog",
+        "column_name": "progress",
+        "is_nullable": "NO",
+        "column_default": "0",
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "course_enrollments",
+        "udt_schema": "pg_catalog",
+        "column_name": "completed_at",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "course_enrollments",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "course_waitlist_submissions",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "course_waitlist_submissions",
+        "udt_schema": "pg_catalog",
+        "column_name": "name",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "course_waitlist_submissions",
+        "udt_schema": "pg_catalog",
+        "column_name": "email",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "course_waitlist_submissions",
+        "udt_schema": "pg_catalog",
+        "column_name": "whatsapp",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "course_waitlist_submissions",
+        "udt_schema": "pg_catalog",
+        "column_name": "course_interest",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "course_waitlist_submissions",
+        "udt_schema": "pg_catalog",
+        "column_name": "preferred_format",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "course_waitlist_submissions",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 7
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "courses",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "courses",
+        "udt_schema": "pg_catalog",
+        "column_name": "title",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "courses",
+        "udt_schema": "pg_catalog",
+        "column_name": "slug",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "courses",
+        "udt_schema": "pg_catalog",
+        "column_name": "description",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "courses",
+        "udt_schema": "pg_catalog",
+        "column_name": "price",
+        "is_nullable": "NO",
+        "column_default": "0",
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "jsonb",
+        "data_type": "jsonb",
+        "table_name": "courses",
+        "udt_schema": "pg_catalog",
+        "column_name": "modules",
+        "is_nullable": "NO",
+        "column_default": "'[]'::jsonb",
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "courses",
+        "udt_schema": "pg_catalog",
+        "column_name": "status",
+        "is_nullable": "NO",
+        "column_default": "'draft'::text",
+        "ordinal_position": 7
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "courses",
+        "udt_schema": "pg_catalog",
+        "column_name": "certificate_enabled",
+        "is_nullable": "NO",
+        "column_default": "false",
+        "ordinal_position": 8
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "courses",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 9
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "download_tokens",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "download_tokens",
+        "udt_schema": "pg_catalog",
+        "column_name": "token_hash",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "download_tokens",
+        "udt_schema": "pg_catalog",
+        "column_name": "product_slug",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "download_tokens",
+        "udt_schema": "pg_catalog",
+        "column_name": "customer_email",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "download_tokens",
+        "udt_schema": "pg_catalog",
+        "column_name": "order_number",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "download_tokens",
+        "udt_schema": "pg_catalog",
+        "column_name": "storage_path",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "download_tokens",
+        "udt_schema": "pg_catalog",
+        "column_name": "expires_at",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 7
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "download_tokens",
+        "udt_schema": "pg_catalog",
+        "column_name": "max_downloads",
+        "is_nullable": "NO",
+        "column_default": "3",
+        "ordinal_position": 8
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "download_tokens",
+        "udt_schema": "pg_catalog",
+        "column_name": "download_count",
+        "is_nullable": "NO",
+        "column_default": "0",
+        "ordinal_position": 9
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "download_tokens",
+        "udt_schema": "pg_catalog",
+        "column_name": "last_downloaded_at",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 10
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "download_tokens",
+        "udt_schema": "pg_catalog",
+        "column_name": "revoked_at",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 11
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "download_tokens",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 12
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "downloads",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "downloads",
+        "udt_schema": "pg_catalog",
+        "column_name": "user_id",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "downloads",
+        "udt_schema": "pg_catalog",
+        "column_name": "product_id",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "downloads",
+        "udt_schema": "pg_catalog",
+        "column_name": "file_url",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "downloads",
+        "udt_schema": "pg_catalog",
+        "column_name": "expires_at",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "downloads",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "inquiries",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "inquiries",
+        "udt_schema": "pg_catalog",
+        "column_name": "name",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "inquiries",
+        "udt_schema": "pg_catalog",
+        "column_name": "email",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "inquiries",
+        "udt_schema": "pg_catalog",
+        "column_name": "phone",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "inquiries",
+        "udt_schema": "pg_catalog",
+        "column_name": "inquiry_type",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "inquiries",
+        "udt_schema": "pg_catalog",
+        "column_name": "message",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "inquiry_status",
+        "data_type": "USER-DEFINED",
+        "table_name": "inquiries",
+        "udt_schema": "public",
+        "column_name": "status",
+        "is_nullable": "NO",
+        "column_default": "'new'::inquiry_status",
+        "ordinal_position": 7
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "inquiries",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 8
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "lead_magnet_signups",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "lead_magnet_signups",
+        "udt_schema": "pg_catalog",
+        "column_name": "name",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "lead_magnet_signups",
+        "udt_schema": "pg_catalog",
+        "column_name": "email",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "lead_magnet_signups",
+        "udt_schema": "pg_catalog",
+        "column_name": "whatsapp",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "lead_magnet_signups",
+        "udt_schema": "pg_catalog",
+        "column_name": "interest_category",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "lead_magnet_signups",
+        "udt_schema": "pg_catalog",
+        "column_name": "lead_magnet",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "lead_magnet_signups",
+        "udt_schema": "pg_catalog",
+        "column_name": "routed_to",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 7
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "lead_magnet_signups",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 8
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "lessons",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "lessons",
+        "udt_schema": "pg_catalog",
+        "column_name": "course_id",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "lessons",
+        "udt_schema": "pg_catalog",
+        "column_name": "title",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "lessons",
+        "udt_schema": "pg_catalog",
+        "column_name": "content",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "lessons",
+        "udt_schema": "pg_catalog",
+        "column_name": "video_url",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "int4",
+        "data_type": "integer",
+        "table_name": "lessons",
+        "udt_schema": "pg_catalog",
+        "column_name": "lesson_order",
+        "is_nullable": "NO",
+        "column_default": "0",
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "lessons",
+        "udt_schema": "pg_catalog",
+        "column_name": "is_free_preview",
+        "is_nullable": "NO",
+        "column_default": "false",
+        "ordinal_position": 7
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "lessons",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 8
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "order_number",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "name",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "email",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "phone",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "product_type",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "product_slug",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 7
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "product_title",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 8
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "amount_paid",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 9
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "transfer_reference",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 10
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "proof_url",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 11
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "receipt_file_name",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 12
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "receipt_file_type",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 13
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "notes",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 14
+      },
+      {
+        "udt_name": "order_status",
+        "data_type": "USER-DEFINED",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "public",
+        "column_name": "status",
+        "is_nullable": "NO",
+        "column_default": "'payment_submitted'::order_status",
+        "ordinal_position": 15
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "admin_note",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 16
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "reviewed_at",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 17
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "manual_payment_proofs",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 18
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "memberships",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "memberships",
+        "udt_schema": "pg_catalog",
+        "column_name": "user_id",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "membership_tier",
+        "data_type": "USER-DEFINED",
+        "table_name": "memberships",
+        "udt_schema": "public",
+        "column_name": "tier",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "memberships",
+        "udt_schema": "pg_catalog",
+        "column_name": "start_date",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "memberships",
+        "udt_schema": "pg_catalog",
+        "column_name": "end_date",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "membership_status",
+        "data_type": "USER-DEFINED",
+        "table_name": "memberships",
+        "udt_schema": "public",
+        "column_name": "status",
+        "is_nullable": "NO",
+        "column_default": "'active'::membership_status",
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "memberships",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 7
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "newsletter_subscribers",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "newsletter_subscribers",
+        "udt_schema": "pg_catalog",
+        "column_name": "name",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "newsletter_subscribers",
+        "udt_schema": "pg_catalog",
+        "column_name": "email",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "newsletter_subscribers",
+        "udt_schema": "pg_catalog",
+        "column_name": "interest",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "newsletter_subscribers",
+        "udt_schema": "pg_catalog",
+        "column_name": "lead_magnet",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "newsletter_subscribers",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "orders",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "orders",
+        "udt_schema": "pg_catalog",
+        "column_name": "user_id",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "orders",
+        "udt_schema": "pg_catalog",
+        "column_name": "product_id",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "orders",
+        "udt_schema": "pg_catalog",
+        "column_name": "amount",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "orders",
+        "udt_schema": "pg_catalog",
+        "column_name": "currency",
+        "is_nullable": "NO",
+        "column_default": "'NGN'::text",
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "order_status",
+        "data_type": "USER-DEFINED",
+        "table_name": "orders",
+        "udt_schema": "public",
+        "column_name": "status",
+        "is_nullable": "NO",
+        "column_default": "'pending_payment'::order_status",
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "payment_provider",
+        "data_type": "USER-DEFINED",
+        "table_name": "orders",
+        "udt_schema": "public",
+        "column_name": "payment_provider",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 7
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "orders",
+        "udt_schema": "pg_catalog",
+        "column_name": "payment_reference",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 8
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "orders",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 9
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "products",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "products",
+        "udt_schema": "pg_catalog",
+        "column_name": "title",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "products",
+        "udt_schema": "pg_catalog",
+        "column_name": "slug",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "product_type",
+        "data_type": "USER-DEFINED",
+        "table_name": "products",
+        "udt_schema": "public",
+        "column_name": "type",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "numeric",
+        "data_type": "numeric",
+        "table_name": "products",
+        "udt_schema": "pg_catalog",
+        "column_name": "price",
+        "is_nullable": "NO",
+        "column_default": "0",
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "products",
+        "udt_schema": "pg_catalog",
+        "column_name": "currency",
+        "is_nullable": "NO",
+        "column_default": "'NGN'::text",
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "products",
+        "udt_schema": "pg_catalog",
+        "column_name": "description",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 7
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "products",
+        "udt_schema": "pg_catalog",
+        "column_name": "cover_image",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 8
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "products",
+        "udt_schema": "pg_catalog",
+        "column_name": "file_url",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 9
+      },
+      {
+        "udt_name": "bool",
+        "data_type": "boolean",
+        "table_name": "products",
+        "udt_schema": "pg_catalog",
+        "column_name": "is_published",
+        "is_nullable": "NO",
+        "column_default": "false",
+        "ordinal_position": 10
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "products",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 11
+      },
+      {
+        "udt_name": "uuid",
+        "data_type": "uuid",
+        "table_name": "users",
+        "udt_schema": "pg_catalog",
+        "column_name": "id",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "ordinal_position": 1
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "users",
+        "udt_schema": "pg_catalog",
+        "column_name": "name",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 2
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "users",
+        "udt_schema": "pg_catalog",
+        "column_name": "email",
+        "is_nullable": "NO",
+        "column_default": null,
+        "ordinal_position": 3
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "users",
+        "udt_schema": "pg_catalog",
+        "column_name": "phone",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 4
+      },
+      {
+        "udt_name": "user_role",
+        "data_type": "USER-DEFINED",
+        "table_name": "users",
+        "udt_schema": "public",
+        "column_name": "role",
+        "is_nullable": "NO",
+        "column_default": "'member'::user_role",
+        "ordinal_position": 5
+      },
+      {
+        "udt_name": "text",
+        "data_type": "text",
+        "table_name": "users",
+        "udt_schema": "pg_catalog",
+        "column_name": "country",
+        "is_nullable": "YES",
+        "column_default": null,
+        "ordinal_position": 6
+      },
+      {
+        "udt_name": "timestamptz",
+        "data_type": "timestamp with time zone",
+        "table_name": "users",
+        "udt_schema": "pg_catalog",
+        "column_name": "created_at",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "ordinal_position": 7
+      }
+    ],
+    "indexes": [
+      {
+        "indexdef": "CREATE UNIQUE INDEX courses_pkey ON public.courses USING btree (id)",
+        "indexname": "courses_pkey",
+        "tablename": "courses"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX courses_slug_key ON public.courses USING btree (slug)",
+        "indexname": "courses_slug_key",
+        "tablename": "courses"
+      },
+      {
+        "indexdef": "CREATE INDEX courses_slug_idx ON public.courses USING btree (slug)",
+        "indexname": "courses_slug_idx",
+        "tablename": "courses"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX lessons_pkey ON public.lessons USING btree (id)",
+        "indexname": "lessons_pkey",
+        "tablename": "lessons"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX users_pkey ON public.users USING btree (id)",
+        "indexname": "users_pkey",
+        "tablename": "users"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX users_email_key ON public.users USING btree (email)",
+        "indexname": "users_email_key",
+        "tablename": "users"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX orders_pkey ON public.orders USING btree (id)",
+        "indexname": "orders_pkey",
+        "tablename": "orders"
+      },
+      {
+        "indexdef": "CREATE INDEX orders_user_id_idx ON public.orders USING btree (user_id)",
+        "indexname": "orders_user_id_idx",
+        "tablename": "orders"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX products_pkey ON public.products USING btree (id)",
+        "indexname": "products_pkey",
+        "tablename": "products"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX products_slug_key ON public.products USING btree (slug)",
+        "indexname": "products_slug_key",
+        "tablename": "products"
+      },
+      {
+        "indexdef": "CREATE INDEX products_slug_idx ON public.products USING btree (slug)",
+        "indexname": "products_slug_idx",
+        "tablename": "products"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX memberships_pkey ON public.memberships USING btree (id)",
+        "indexname": "memberships_pkey",
+        "tablename": "memberships"
+      },
+      {
+        "indexdef": "CREATE INDEX memberships_user_id_idx ON public.memberships USING btree (user_id)",
+        "indexname": "memberships_user_id_idx",
+        "tablename": "memberships"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX articles_pkey ON public.articles USING btree (id)",
+        "indexname": "articles_pkey",
+        "tablename": "articles"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX articles_slug_key ON public.articles USING btree (slug)",
+        "indexname": "articles_slug_key",
+        "tablename": "articles"
+      },
+      {
+        "indexdef": "CREATE INDEX articles_slug_idx ON public.articles USING btree (slug)",
+        "indexname": "articles_slug_idx",
+        "tablename": "articles"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX inquiries_pkey ON public.inquiries USING btree (id)",
+        "indexname": "inquiries_pkey",
+        "tablename": "inquiries"
+      },
+      {
+        "indexdef": "CREATE INDEX inquiries_status_idx ON public.inquiries USING btree (status)",
+        "indexname": "inquiries_status_idx",
+        "tablename": "inquiries"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX bookings_pkey ON public.bookings USING btree (id)",
+        "indexname": "bookings_pkey",
+        "tablename": "bookings"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX certificates_pkey ON public.certificates USING btree (id)",
+        "indexname": "certificates_pkey",
+        "tablename": "certificates"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX certificates_certificate_number_key ON public.certificates USING btree (certificate_number)",
+        "indexname": "certificates_certificate_number_key",
+        "tablename": "certificates"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX course_enrollments_pkey ON public.course_enrollments USING btree (id)",
+        "indexname": "course_enrollments_pkey",
+        "tablename": "course_enrollments"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX course_enrollments_user_id_course_id_key ON public.course_enrollments USING btree (user_id, course_id)",
+        "indexname": "course_enrollments_user_id_course_id_key",
+        "tablename": "course_enrollments"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX downloads_pkey ON public.downloads USING btree (id)",
+        "indexname": "downloads_pkey",
+        "tablename": "downloads"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX newsletter_subscribers_pkey ON public.newsletter_subscribers USING btree (id)",
+        "indexname": "newsletter_subscribers_pkey",
+        "tablename": "newsletter_subscribers"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX newsletter_subscribers_email_key ON public.newsletter_subscribers USING btree (email)",
+        "indexname": "newsletter_subscribers_email_key",
+        "tablename": "newsletter_subscribers"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX manual_payment_proofs_pkey ON public.manual_payment_proofs USING btree (id)",
+        "indexname": "manual_payment_proofs_pkey",
+        "tablename": "manual_payment_proofs"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX manual_payment_proofs_order_number_key ON public.manual_payment_proofs USING btree (order_number)",
+        "indexname": "manual_payment_proofs_order_number_key",
+        "tablename": "manual_payment_proofs"
+      },
+      {
+        "indexdef": "CREATE INDEX manual_payment_order_number_idx ON public.manual_payment_proofs USING btree (order_number)",
+        "indexname": "manual_payment_order_number_idx",
+        "tablename": "manual_payment_proofs"
+      },
+      {
+        "indexdef": "CREATE INDEX manual_payment_status_idx ON public.manual_payment_proofs USING btree (status)",
+        "indexname": "manual_payment_status_idx",
+        "tablename": "manual_payment_proofs"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX course_waitlist_submissions_pkey ON public.course_waitlist_submissions USING btree (id)",
+        "indexname": "course_waitlist_submissions_pkey",
+        "tablename": "course_waitlist_submissions"
+      },
+      {
+        "indexdef": "CREATE INDEX course_waitlist_interest_idx ON public.course_waitlist_submissions USING btree (course_interest)",
+        "indexname": "course_waitlist_interest_idx",
+        "tablename": "course_waitlist_submissions"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX lead_magnet_signups_pkey ON public.lead_magnet_signups USING btree (id)",
+        "indexname": "lead_magnet_signups_pkey",
+        "tablename": "lead_magnet_signups"
+      },
+      {
+        "indexdef": "CREATE INDEX lead_magnet_slug_idx ON public.lead_magnet_signups USING btree (lead_magnet)",
+        "indexname": "lead_magnet_slug_idx",
+        "tablename": "lead_magnet_signups"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX conversion_events_pkey ON public.conversion_events USING btree (id)",
+        "indexname": "conversion_events_pkey",
+        "tablename": "conversion_events"
+      },
+      {
+        "indexdef": "CREATE INDEX conversion_events_action_idx ON public.conversion_events USING btree (action)",
+        "indexname": "conversion_events_action_idx",
+        "tablename": "conversion_events"
+      },
+      {
+        "indexdef": "CREATE INDEX conversion_events_path_idx ON public.conversion_events USING btree (path)",
+        "indexname": "conversion_events_path_idx",
+        "tablename": "conversion_events"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX download_tokens_pkey ON public.download_tokens USING btree (id)",
+        "indexname": "download_tokens_pkey",
+        "tablename": "download_tokens"
+      },
+      {
+        "indexdef": "CREATE UNIQUE INDEX download_tokens_token_hash_key ON public.download_tokens USING btree (token_hash)",
+        "indexname": "download_tokens_token_hash_key",
+        "tablename": "download_tokens"
+      },
+      {
+        "indexdef": "CREATE INDEX download_tokens_token_hash_idx ON public.download_tokens USING btree (token_hash)",
+        "indexname": "download_tokens_token_hash_idx",
+        "tablename": "download_tokens"
+      },
+      {
+        "indexdef": "CREATE INDEX download_tokens_order_number_idx ON public.download_tokens USING btree (order_number)",
+        "indexname": "download_tokens_order_number_idx",
+        "tablename": "download_tokens"
+      }
+    ],
+    "policies": [],
+    "constraints": [
+      {
+        "name": "conversion_events_user_id_fkey",
+        "table": "conversion_events",
+        "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "download_tokens_max_downloads_check",
+        "table": "download_tokens",
+        "definition": "CHECK ((max_downloads > 0))"
+      },
+      {
+        "name": "download_tokens_download_count_check",
+        "table": "download_tokens",
+        "definition": "CHECK ((download_count >= 0))"
+      },
+      {
+        "name": "download_tokens_pkey",
+        "table": "download_tokens",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "download_tokens_token_hash_key",
+        "table": "download_tokens",
+        "definition": "UNIQUE (token_hash)"
+      },
+      {
+        "name": "users_pkey",
+        "table": "users",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "users_email_key",
+        "table": "users",
+        "definition": "UNIQUE (email)"
+      },
+      {
+        "name": "products_pkey",
+        "table": "products",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "products_slug_key",
+        "table": "products",
+        "definition": "UNIQUE (slug)"
+      },
+      {
+        "name": "courses_pkey",
+        "table": "courses",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "courses_slug_key",
+        "table": "courses",
+        "definition": "UNIQUE (slug)"
+      },
+      {
+        "name": "lessons_pkey",
+        "table": "lessons",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "lessons_course_id_fkey",
+        "table": "lessons",
+        "definition": "FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "orders_pkey",
+        "table": "orders",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "orders_user_id_fkey",
+        "table": "orders",
+        "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "orders_product_id_fkey",
+        "table": "orders",
+        "definition": "FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "memberships_pkey",
+        "table": "memberships",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "memberships_user_id_fkey",
+        "table": "memberships",
+        "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "articles_pkey",
+        "table": "articles",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "articles_slug_key",
+        "table": "articles",
+        "definition": "UNIQUE (slug)"
+      },
+      {
+        "name": "inquiries_pkey",
+        "table": "inquiries",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "bookings_pkey",
+        "table": "bookings",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "bookings_user_id_fkey",
+        "table": "bookings",
+        "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL"
+      },
+      {
+        "name": "certificates_pkey",
+        "table": "certificates",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "certificates_certificate_number_key",
+        "table": "certificates",
+        "definition": "UNIQUE (certificate_number)"
+      },
+      {
+        "name": "certificates_user_id_fkey",
+        "table": "certificates",
+        "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "certificates_course_id_fkey",
+        "table": "certificates",
+        "definition": "FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "course_enrollments_pkey",
+        "table": "course_enrollments",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "course_enrollments_user_id_course_id_key",
+        "table": "course_enrollments",
+        "definition": "UNIQUE (user_id, course_id)"
+      },
+      {
+        "name": "course_enrollments_user_id_fkey",
+        "table": "course_enrollments",
+        "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "course_enrollments_course_id_fkey",
+        "table": "course_enrollments",
+        "definition": "FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "downloads_pkey",
+        "table": "downloads",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "downloads_user_id_fkey",
+        "table": "downloads",
+        "definition": "FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "downloads_product_id_fkey",
+        "table": "downloads",
+        "definition": "FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "newsletter_subscribers_pkey",
+        "table": "newsletter_subscribers",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "newsletter_subscribers_email_key",
+        "table": "newsletter_subscribers",
+        "definition": "UNIQUE (email)"
+      },
+      {
+        "name": "manual_payment_proofs_pkey",
+        "table": "manual_payment_proofs",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "manual_payment_proofs_order_number_key",
+        "table": "manual_payment_proofs",
+        "definition": "UNIQUE (order_number)"
+      },
+      {
+        "name": "course_waitlist_submissions_pkey",
+        "table": "course_waitlist_submissions",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "lead_magnet_signups_pkey",
+        "table": "lead_magnet_signups",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "conversion_events_pkey",
+        "table": "conversion_events",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "custom_functions": [],
+    "storage_metadata": [
+      {
+        "id": "product-files",
+        "public": false,
+        "file_size_limit": null,
+        "allowed_mime_types": null
+      },
+      {
+        "id": "lead-magnets",
+        "public": false,
+        "file_size_limit": null,
+        "allowed_mime_types": null
+      },
+      {
+        "id": "source-vault",
+        "public": false,
+        "file_size_limit": null,
+        "allowed_mime_types": null
+      },
+      {
+        "id": "payment-receipts",
+        "public": false,
+        "file_size_limit": null,
+        "allowed_mime_types": null
+      }
+    ]
+  }
+}
