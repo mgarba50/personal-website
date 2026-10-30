@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "next dev --webpack",
     "verify:publication": "node scripts/verify-publication.mjs",
-    "build": "npm run verify:publication && next build --webpack",
+    "build": "npm run verify:publication && npm run verify:routes && next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "verify:routes": "node scripts/verify-routes.mjs",
+    "verify:runtime": "node scripts/smoke-routes.mjs"
   },
   "dependencies": {
     "next": "16.2.6",
