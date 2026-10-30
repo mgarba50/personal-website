@@ -1,212 +1,29 @@
+import { randomUUID } from "node:crypto";
 import Link from "next/link";
-import { academyBundles, academyProducts } from "@/content/academy";
 import { ManualPaymentForm } from "@/components/commerce/manual-payment-form";
 import { PageHero } from "@/components/ui/page-hero";
-import { advisoryServices, courses, membershipTiers } from "@/lib/content";
+import { findCheckoutProduct } from "@/lib/checkout";
 import { bankDetails } from "@/lib/revenue";
-import { pageMetadata } from "@/lib/seo";
 import { siteContact } from "@/lib/site-contact";
+export const dynamic = "force-dynamic";
+export const metadata = { title: "Checkout", robots: { index: false, follow: false } };
 
-export const metadata = pageMetadata({
-  title: "Checkout",
-  description:
-    "Manual bank-transfer checkout for approved MusaAllama.com products and services.",
-  path: "/checkout",
-});
-
-type CheckoutProduct = {
-  title: string;
-  amount: string;
-  purchasable: boolean;
-  reason?: string;
-};
-
-function findProduct(type?: string, slug?: string): CheckoutProduct {
-  if (type === "book") {
-    const book = academyProducts.find((item) => item.slug === slug);
-
-    if (book) {
-      if (!book.purchasable || !book.launchPrice) {
-        return {
-          title: book.title,
-          amount: book.priceLabel ?? "Not open for payment",
-          purchasable: false,
-          reason:
-            "This edition is visible in the Academy but is not currently open for payment.",
-        };
-      }
-
-      return {
-        title: book.title,
-        amount: book.launchPrice,
-        purchasable: true,
-      };
-    }
-  }
-
-  if (type === "bundle") {
-    const bundle = academyBundles.find((item) => item.slug === slug);
-    if (bundle) {
-      return {
-        title: bundle.title,
-        amount: bundle.launchPrice,
-        purchasable: bundle.purchasable,
-      };
-    }
-  }
-
-  if (type === "course") {
-    const course = courses.find((item) => item.slug === slug);
-    if (course) {
-      return {
-        title: course.title,
-        amount: course.price,
-        purchasable: true,
-      };
-    }
-  }
-
-  if (type === "advisory") {
-    const service = advisoryServices.find((item) => item.slug === slug);
-    if (service) {
-      return {
-        title: service.shortTitle,
-        amount: service.price,
-        purchasable: true,
-      };
-    }
-  }
-
-  if (type === "membership") {
-    const tier = membershipTiers.find((item) => item.slug === slug);
-    if (tier) {
-      return {
-        title: tier.title,
-        amount: tier.price,
-        purchasable: true,
-      };
-    }
-  }
-
-  return {
-    title: "Selected product",
-    amount: "Confirm amount before transfer",
-    purchasable: false,
-    reason:
-      "A valid product was not selected. Return to the relevant product page before transferring funds.",
-  };
-}
-
-function createOrderNumber(type?: string, slug?: string) {
-  const productCode = (slug ?? "order").slice(0, 3).toUpperCase();
-  const typeCode = (type ?? "manual").slice(0, 2).toUpperCase();
-  return `MA-${typeCode}-${productCode}-${Date.now().toString(36).toUpperCase()}`;
-}
-
-export default async function CheckoutPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ type?: string; slug?: string }>;
-}) {
-  const params = await searchParams;
-  const product = findProduct(params.type, params.slug);
-  const orderNumber = createOrderNumber(params.type, params.slug);
-
-  if (!product.purchasable) {
-    return (
-      <>
-        <PageHero
-          eyebrow="Availability"
-          title={product.title}
-          copy={
-            product.reason ??
-            "This product is not currently available for purchase."
-          }
-          primaryCta={{
-            label: "Return to Academy",
-            href: "/academy",
-            action: "view_academy",
-          }}
-          secondaryCta={{
-            label: "Ask about availability",
-            href: siteContact.whatsappHref,
-            action: "send_inquiry",
-          }}
-        />
-      </>
-    );
-  }
-
-  return (
-    <>
-      <PageHero
-        eyebrow="Manual Checkout"
-        title="Complete Your Book Order"
-        copy="Transfer the correct amount, upload your payment proof, and keep the order number for confirmation."
-        primaryCta={{
-          label: "Return to Academy",
-          href: "/academy",
-          action: "view_academy",
-        }}
-        secondaryCta={{
-          label: "Need help",
-          href: siteContact.whatsappHref,
-          action: "send_inquiry",
-        }}
-      />
-
-      <section className="px-5 py-16">
-        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <article className="rounded-lg border border-line bg-white/80 p-7">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-burgundy">
-              Step 1
-            </p>
-            <h2 className="display mt-3 text-4xl font-semibold text-deep">
-              Transfer the correct amount.
-            </h2>
-
-            <div className="mt-6 rounded-md border border-line bg-vellum/70 p-5 text-sm leading-7 text-charcoal">
-              <p><strong>Product:</strong> {product.title}</p>
-              <p><strong>Amount:</strong> {product.amount}</p>
-              <p><strong>Order Number:</strong> {orderNumber}</p>
-            </div>
-
-            <div className="mt-5 rounded-md border border-line bg-white p-5 text-sm leading-7 text-charcoal">
-              <p><strong>Account Name:</strong> {bankDetails.accountName}</p>
-              <p><strong>Account Number:</strong> {bankDetails.accountNumber}</p>
-              <p><strong>Bank:</strong> {bankDetails.bank}</p>
-              <p className="mt-2 text-muted">{bankDetails.notice}</p>
-            </div>
-
-            <div className="mt-6 grid gap-4 text-sm leading-7 text-muted">
-              <div>
-                <p className="font-semibold text-deep">Step 2</p>
-                <p>Upload your receipt or screenshot using the secure form.</p>
-              </div>
-              <div>
-                <p className="font-semibold text-deep">Step 3</p>
-                <p>
-                  Your payment will be reviewed. Once confirmed, access will be
-                  delivered by email, dashboard, or secure link.
-                </p>
-              </div>
-            </div>
-
-            <p className="mt-6 text-xs leading-6 text-muted">
-              Do not make a payment for any product whose page does not show an
-              active Buy PDF button.
-            </p>
-          </article>
-
-          <ManualPaymentForm
-            title={product.title}
-            productType={params.type ?? "book"}
-            slug={params.slug ?? ""}
-            amount={product.amount}
-            orderNumber={orderNumber}
-          />
-        </div>
-      </section>
-    </>
-  );
+export default async function Checkout({ searchParams }: { searchParams: Promise<{ type?: string; slug?: string }> }) {
+  const query = await searchParams;
+  const product = findCheckoutProduct(query.type, query.slug);
+  if (!product.purchasable) return <PageHero eyebrow="Availability" title={product.title} copy={product.reason || "This edition is not open for payment."} primaryCta={{ label: "Return to Academy", href: "/academy" }} secondaryCta={{ label: "Ask about availability", href: siteContact.whatsappHref }} />;
+  return <>
+    <PageHero eyebrow="Book order" title="Order your approved edition" copy="Create your order first, transfer the displayed amount using its reference, then upload the receipt for bank verification." primaryCta={{ label: "Return to Academy", href: "/academy" }} secondaryCta={{ label: "Order support", href: siteContact.whatsappHref }} />
+    <section className="px-5 py-16"><div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[.85fr_1.15fr]">
+      <aside className="rounded-lg border border-line bg-white/80 p-7">
+        <p className="text-xs font-semibold uppercase tracking-widest text-burgundy">Your selection</p>
+        <h2 className="display mt-3 text-3xl font-semibold text-deep">{product.title}</h2>
+        <p className="mt-4 text-xl font-semibold">{product.amount}</p>
+        <ol className="mt-6 list-decimal space-y-4 pl-5 text-sm leading-7 text-muted"><li>Create an order to receive its payment reference.</li><li>Transfer the exact amount and upload a receipt.</li><li>The order desk checks the bank transaction. Approved files are delivered by a protected email link.</li></ol>
+        <p className="mt-6 text-sm leading-7 text-muted">A receipt upload is a request for review. Please keep your order number and avoid paying twice.</p>
+        <p className="mt-5 text-sm"><Link className="underline" href="/login">Sign in</Link> to associate a new order with your account, or continue as a guest.</p>
+      </aside>
+      <ManualPaymentForm key={`${query.type}:${query.slug}`} title={product.title} productType={query.type || "book"} slug={query.slug || ""} amount={product.amount} requestKey={randomUUID()} bank={bankDetails} />
+    </div></section>
+  </>;
 }

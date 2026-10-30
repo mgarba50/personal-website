@@ -33,6 +33,7 @@ export function SiteFooter() {
           <div className="sa-footer__links">
             <Link href="/about">Executive Dossier</Link>
             <Link href="/consultation">Consultation</Link>
+            <a href="/dashboard">Account and order support</a>
           </div>
         </div>
 
