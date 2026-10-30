@@ -1,11 +1,17 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 import { PGlite } from "@electric-sql/pglite";
 
 export const ADMIN = "11111111-1111-4111-8111-111111111111";
 export const BUYER = "22222222-2222-4222-8222-222222222222";
 export const OTHER = "33333333-3333-4333-8333-333333333333";
+async function applyAccountMigrations(db) {
+  await db.exec(readFileSync("supabase/20261030_g1_g2.sql", "utf8"));
+  for (const file of readdirSync("supabase/migrations").filter(name => name.endsWith(".sql")).sort()) {
+    await db.exec(readFileSync(`supabase/migrations/${file}`, "utf8"));
+  }
+}
 export async function testDatabase() {
   const db = new PGlite();
   await db.exec(`create role anon; create role authenticated; create role service_role bypassrls;
@@ -16,7 +22,7 @@ export async function testDatabase() {
     grant usage on schema public,auth to anon,authenticated,service_role;`);
   await db.exec(readFileSync("supabase/schema.sql", "utf8"));
   await db.exec(readFileSync("supabase/20261008_secure_content_storage.sql", "utf8"));
-  await db.exec(readFileSync("supabase/20261030_g1_g2.sql", "utf8"));
+  await applyAccountMigrations(db);
   await db.query("insert into auth.users(id,email) values ($1,'admin@example.test'),($2,'buyer@example.test'),($3,'other@example.test')", [ADMIN,BUYER,OTHER]);
   await db.query("insert into app_user_roles(user_id,role) values($1,'admin'),($2,'buyer'),($3,'buyer')", [ADMIN,BUYER,OTHER]);
   return db;
@@ -35,7 +41,7 @@ async function tests() {
   const reject = async (fn, pattern) => { await assert.rejects(fn, pattern); assertions++; };
   try {
     // Apply the additive migration twice; it must not recreate/delete existing records.
-    await db.exec(readFileSync("supabase/20261030_g1_g2.sql", "utf8"));
+    await applyAccountMigrations(db);
     await db.exec(`set role authenticated; select set_config('request.jwt.claim.sub','${BUYER}',false);`);
     let roles = await db.query("select role from app_user_roles");
     ok(roles.rows.length === 1 && roles.rows[0].role === "buyer", "RLS reveals only the caller's role");

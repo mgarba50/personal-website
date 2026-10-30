@@ -74,15 +74,20 @@ secrets into a PR, report or chat. Required names:
 
 Use separate non-production configuration for previews. If unavailable, leave
 their backend keys and commerce activation unset; use isolated fixtures for tests.
-Never run a test fixture against production or substitute production credentials
-into the test harness.
+Never point the local test harness at production or substitute production
+credentials into it. Separately reviewed live SQL checks must roll back their
+test records, as recorded in the activation evidence.
 
 ## Database migration and operator setup
 
 1. Back up the existing database and inventory pending/approved historical receipts.
 2. For an existing project, do not rerun `schema.sql` (it creates existing types and
    tables). Confirm the earlier secure-content migration is present, then apply
-   `supabase/20261030_g1_g2.sql` in the intended Supabase project.
+   `supabase/20261030_g1_g2.sql` and then
+   `supabase/migrations/20261030194448_g1_g2_role_policy_indexes.sql` in the intended project.
+   Both are already recorded in the connected project's migration history; see
+   [live activation evidence](evidence/supabase-g1-activation-20261030.md) before
+   applying anything to that project again.
 3. The migration is additive and transactional. It adds the account role, order,
    audit, delivery and rate-limit tables/functions, protects operational tables,
    and keeps the four default content/receipt buckets private. Inspect any existing
@@ -173,12 +178,18 @@ Do not merge or promote solely because the mock-backed tests passed.
 
 ## Current external blockers
 
-The Vercel connection returned HTTP 403 for `mgarba50s-projects`, so live environment
-configuration, the hosting runtime and private backend state are not verified.
-An authorised account connection and the matching database setup are required
-before the live gates can be marked passed. Browser QA of the new protected
-preview is pending. GitHub Actions was account-billing-locked during the preceding
-release; local checks remain the evidence until that job actually executes.
+The connected Supabase database has the two recorded G1/G2 migrations, protected
+tables/RPCs and four private buckets. Seventeen rolled-back SQL assertions and
+twelve real anonymous HTTP checks passed; no test order/receipt remained. See the
+[live evidence](evidence/supabase-g1-activation-20261030.md) for exact limits.
+
+Vercel still returns HTTP 403 for `mgarba50s-projects`, so its environment
+configuration and project-to-database mapping remain unverified. The operator
+account/admin grant, Auth and book email delivery, actual PDF editions and
+protected browser acceptance journey are still open. The three flagship objects
+exist but have generic MIME metadata; open and verify them before activation.
+GitHub Actions did not start because of its account billing lock. Commerce stays
+disabled until the required live checks pass.
 
 Implementation references consulted: Supabase's official Next.js server-side Auth
 guide and the installed `@supabase/ssr` / `@supabase/supabase-js` sources and types.
