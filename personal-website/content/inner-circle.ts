@@ -121,7 +121,6 @@ export const innerEntries: readonly InnerEntry[] = [
     "access": "archive",
     "language": "English",
     "author": "Musa Allama Ibn Garba",
-    "coverImage": "/assets/books/the-global-seeker/cover.png",
     "contents": [
       "The Scattered Mirror, the Sand of Borno, and the Engineer’s Doubt",
       "The Tao and the Ramal, Beijing, and the Silk Road of Knowledge",
@@ -146,7 +145,7 @@ export const innerEntries: readonly InnerEntry[] = [
     "access": "archive",
     "language": "English",
     "author": "Musa Allama Ibn Garba",
-    "coverImage": "/assets/books/the-soul-who-will-never-disappoint/cover.png",
+    "coverImage": "/assets/academy-phase1/the-soul-who-will-never-disappoint.webp",
     "contents": [
       "The Fatigue of Reliability and the Discovery of the Absolute",
       "The Boardroom Member and the Engineer of Hearts",
